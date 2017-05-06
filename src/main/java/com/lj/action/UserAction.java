@@ -28,6 +28,7 @@ public class UserAction extends ActionSupport {
 
 
     public String test() {
+        /*tongy*/
         System.out.println("进入了action");
         String id="lj";
         System.out.println("useService是否为空1111："+(userService==null));
