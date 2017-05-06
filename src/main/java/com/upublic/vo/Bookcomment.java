@@ -1,40 +1,45 @@
 package com.upublic.vo;
 
+import java.util.Date;
+
+/**
+ * Created by SJ on 2017/5/6.
+ */
 public class Bookcomment {
-  private Long uid;
-  private Long bid;
-  private java.sql.Date bctime;
-  private String inf;
+    private Integer uid;
+    private Integer bid;
+    private Date bctime;
+    private String inf;
 
-  public Long getUid() {
-    return uid;
-  }
+    public Integer getUid() {
+        return uid;
+    }
 
-  public void setUid(Long uid) {
-    this.uid = uid;
-  }
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
-  public Long getBid() {
-    return bid;
-  }
+    public Integer getBid() {
+        return bid;
+    }
 
-  public void setBid(Long bid) {
-    this.bid = bid;
-  }
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
 
-  public java.sql.Date getBctime() {
-    return bctime;
-  }
+    public Date getBctime() {
+        return bctime;
+    }
 
-  public void setBctime(java.sql.Date bctime) {
-    this.bctime = bctime;
-  }
+    public void setBctime(Date bctime) {
+        this.bctime = bctime;
+    }
 
-  public String getInf() {
-    return inf;
-  }
+    public String getInf() {
+        return inf;
+    }
 
-  public void setInf(String inf) {
-    this.inf = inf;
-  }
+    public void setInf(String inf) {
+        this.inf = inf;
+    }
 }

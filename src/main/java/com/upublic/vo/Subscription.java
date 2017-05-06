@@ -1,22 +1,25 @@
 package com.upublic.vo;
 
+/**
+ * Created by SJ on 2017/5/6.
+ */
 public class Subscription {
-  private Long uid;
-  private Long bid;
+    private Integer uid;
+    private Integer bid;
 
-  public Long getUid() {
-    return uid;
-  }
+    public Integer getUid() {
+        return uid;
+    }
 
-  public void setUid(Long uid) {
-    this.uid = uid;
-  }
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
-  public Long getBid() {
-    return bid;
-  }
+    public Integer getBid() {
+        return bid;
+    }
 
-  public void setBid(Long bid) {
-    this.bid = bid;
-  }
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
 }
