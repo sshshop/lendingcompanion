@@ -1,2 +1,6 @@
 .idea/*
 target/*
+lengingbook.iml
+.idea/artifacts/*
+.idea/dataSources/*
+.idea/libraries/*
