@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+         <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.upublic.dao.provinceDao.xml">
+
+    <resultMap type="province" id="provinceResultMap">
+        <id column="pid" property="pid"/>
+        <result column="pname" property="pname"/>
+    </resultMap>
+
+    <select id="getProvince" parameterType="Long"
+             resultType="com.upublic.vo.Province">
+             select * from users where pid=#{pid}
+     </select>
+
+     </mapper>
