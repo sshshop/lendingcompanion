@@ -1,35 +1,35 @@
 package com.upublic.vo;
 
 public class Borrowbook {
-  private Long bbid;
-  private Long uid;
-  private Long bid;
+  private Integer bbid;
+  private Integer uid;
+  private Integer bid;
   private java.sql.Date btime;
   private java.sql.Date rtime;
-  private Long bstatus;
+  private Integer bstatus;
   private java.sql.Date ttime;
 
-  public Long getBbid() {
+  public Integer getBbid() {
     return bbid;
   }
 
-  public void setBbid(Long bbid) {
+  public void setBbid(Integer bbid) {
     this.bbid = bbid;
   }
 
-  public Long getUid() {
+  public Integer getUid() {
     return uid;
   }
 
-  public void setUid(Long uid) {
+  public void setUid(Integer uid) {
     this.uid = uid;
   }
 
-  public Long getBid() {
+  public Integer getBid() {
     return bid;
   }
 
-  public void setBid(Long bid) {
+  public void setBid(Integer bid) {
     this.bid = bid;
   }
 
@@ -49,11 +49,11 @@ public class Borrowbook {
     this.rtime = rtime;
   }
 
-  public Long getBstatus() {
+  public Integer getBstatus() {
     return bstatus;
   }
 
-  public void setBstatus(Long bstatus) {
+  public void setBstatus(Integer bstatus) {
     this.bstatus = bstatus;
   }
 

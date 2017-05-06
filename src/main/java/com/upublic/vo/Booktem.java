@@ -1,8 +1,8 @@
 package com.upublic.vo;
 
 public class Booktem {
-  private Long btid;
-  private Long cid;
+  private Integer btid;
+  private Integer cid;
   private String btname;
   private String adr;
   private String num;
@@ -10,22 +10,22 @@ public class Booktem {
   private String sequence;
   private String btcontent;
   private String idt;
-  private Long cobn;
+  private Integer cobn;
   private String author;
 
-  public Long getBtid() {
+  public Integer getBtid() {
     return btid;
   }
 
-  public void setBtid(Long btid) {
+  public void setBtid(Integer btid) {
     this.btid = btid;
   }
 
-  public Long getCid() {
+  public Integer getCid() {
     return cid;
   }
 
-  public void setCid(Long cid) {
+  public void setCid(Integer cid) {
     this.cid = cid;
   }
 
@@ -85,11 +85,11 @@ public class Booktem {
     this.idt = idt;
   }
 
-  public Long getCobn() {
+  public Integer getCobn() {
     return cobn;
   }
 
-  public void setCobn(Long cobn) {
+  public void setCobn(Integer cobn) {
     this.cobn = cobn;
   }
 
