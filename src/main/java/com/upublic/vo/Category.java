@@ -1,14 +1,14 @@
 package com.upublic.vo;
 
-public class Category {
-  private Long cid;
+public class  Category {
+  private int cid;
   private String cname;
 
-  public Long getCid() {
+  public int getCid() {
     return cid;
   }
 
-  public void setCid(Long cid) {
+  public void setCid(int cid) {
     this.cid = cid;
   }
 
