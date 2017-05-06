@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.upublic.dao.User">
+    <!-- 跟数据库中的表达成映射关系 -->
+    <resultMap id="User" type="com.upublic.vo.User">
+        <id property="uid" column="uid"/>
+        <result property="username" column="username"/>
+        <result property="upassword" column="upassword"/>
+        <result property="sex" column="sex"/>
+        <result property="dob" column="dob"/>
+        <result property="phone" column="phone"/>
+        <result property="addr" column="addr"/>
+        <result property="email" column="email"/>
+        <result property="state" column="state"/>
+        <!-- 数据库的外键连接 -->
+        <association property="pid" column="pid" javaType="Province" resultMap=""/>
+        <association property="cid" column="cid" javaType="City" resultMap=""/>
+    </resultMap>
+
+</mapper>

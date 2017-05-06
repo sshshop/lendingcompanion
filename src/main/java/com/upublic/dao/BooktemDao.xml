@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.upublic.dao.BooktemDao">
+<!-- 与数据库表达成映射关系<陈达>   -->
+   <resultMap id="Booktem" type="com.upublic.vo.Booktem">
+       <id column="btid" property="btid"/>
+       <result column="cid" property="cid"/>
+       <result column="btname" property="btname"/>
+       <result column="adr" property="adr"/>
+       <result column="num" property="num"/>
+       <result column="cover" property="cover"/>
+       <result column="sequence" property="sequence"/>
+       <result column="btcontent" property="btcontent"/>
+       <result column="idt" property="idt"/>
+       <result column="cobn" property="cobn"/>
+       <result column="author" property="author"/>
+
+
+       <association property="cid" javaType="com.upublic.vo.City">
+           <id column="id" property="cid"/>
+           <result column="cname" property="cname"/>
+           <result column="pid" property="pid"/>
+       </association>
+
+       <association property="btid" javaType="com.upublic.vo.Booktem">
+
+           <id column="btid" property="btid"/>
+           <result column="cid" property="cid"/>
+           <result column="btname" property="btname"/>
+           <result column="adr" property="adr"/>
+           <result column="num" property="num"/>
+           <result column="cover" property="cover"/>
+           <result column="sequence" property="sequence"/>
+           <result column="btcontent" property="btcontent"/>
+           <result column="idt" property="idt"/>
+           <result column="cobn" property="cobn"/>
+           <result column="author" property="author"/>
+
+       </association>
+   </resultMap>
+
+</mapper>
+

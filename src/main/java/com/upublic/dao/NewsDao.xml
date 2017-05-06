@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.upublic.dao.NewsDao">
+    <!--跟数据库中的表达成映射关系luyujing-->
+    <resultMap id="news" type="com.upublic.dao.NewsDao">
+        <id column="uid" property="uid"/>
+        <result column="nid" property="nid"/>
+        <result column="ncontent" property="ncontent"/>
+        <result column="nstatus" property="nstatus"/>
+
+        <association property="uid" javaType="com.upublic.dao.NewsDao" >
+
+            <id column="uid" property="id"/>
+            <result column="nid" property="nid"/>
+            <result column="ncontent" property="ncontent"/>
+            <result column="nstatus" property="nstatus"/>
+        </association>
+
+    </resultMap>
+
+</mapper>
