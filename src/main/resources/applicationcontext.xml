@@ -36,4 +36,14 @@
         <property name="mapperInterface" value="com.lj.dao.UserDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+    <!--配置province-->
+    <bean id="provinceDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.upublic.dao.ProvinceDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    <!--配置city-->
+    <bean id="cityDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.upublic.dao.cityDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
 </beans>
