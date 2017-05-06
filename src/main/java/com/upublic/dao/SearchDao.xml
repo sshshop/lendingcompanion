@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.upublic.dao.SearchDao">
+    <!-- 跟数据库中的表达成映射关系 -->
+    <resultMap id="Search" type="com.upublic.vo.Search">
+        <id property="sid" column="sid"/>
+        <result property="scontent" column="scontent"/>
+        <result property="stime" column="stime"/>
+        <!-- 数据库的外键连接 -->
+        <association property="uid" column="uid"
+                     javaType="User" resultMap="com.upublic.vo.User"/>
+    </resultMap>
+
+</mapper>
