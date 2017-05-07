@@ -1,5 +1,7 @@
 package com.upublic.vo;
 
+import java.util.Date;
+
 public class Book {
   private Integer bid;
   private Integer cid;
@@ -16,6 +18,15 @@ public class Book {
   private Integer hborrowed;
   private String initials;
   private String fight;
+  private Date time;
+
+  public Date getTime() {
+    return time;
+  }
+
+  public void setTime(Date time) {
+    this.time = time;
+  }
 
   public Integer getBid() {
     return bid;

@@ -1,103 +1,114 @@
 package com.upublic.vo;
 
+import java.util.Date;
+
 public class Booktem {
-  private Integer btid;
-  private Integer cid;
-  private String btname;
-  private String adr;
-  private String num;
-  private String cover;
-  private String sequence;
-  private String btcontent;
-  private String idt;
-  private Integer cobn;
-  private String author;
+    private Integer btid;
+    private Integer cid;
+    private String btname;
+    private String adr;
+    private String num;
+    private String cover;
+    private String sequence;
+    private String btcontent;
+    private String idt;
+    private Integer cobn;
+    private String author;
+    private Date time;
 
-  public Integer getBtid() {
-    return btid;
-  }
+    public Date getTime() {
+        return time;
+    }
 
-  public void setBtid(Integer btid) {
-    this.btid = btid;
-  }
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
-  public Integer getCid() {
-    return cid;
-  }
+    public Integer getBtid() {
+        return btid;
+    }
 
-  public void setCid(Integer cid) {
-    this.cid = cid;
-  }
+    public void setBtid(Integer btid) {
+        this.btid = btid;
+    }
 
-  public String getBtname() {
-    return btname;
-  }
+    public Integer getCid() {
+        return cid;
+    }
 
-  public void setBtname(String btname) {
-    this.btname = btname;
-  }
+    public void setCid(Integer cid) {
+        this.cid = cid;
+    }
 
-  public String getAdr() {
-    return adr;
-  }
+    public String getBtname() {
+        return btname;
+    }
 
-  public void setAdr(String adr) {
-    this.adr = adr;
-  }
+    public void setBtname(String btname) {
+        this.btname = btname;
+    }
 
-  public String getNum() {
-    return num;
-  }
+    public String getAdr() {
+        return adr;
+    }
 
-  public void setNum(String num) {
-    this.num = num;
-  }
+    public void setAdr(String adr) {
+        this.adr = adr;
+    }
 
-  public String getCover() {
-    return cover;
-  }
+    public String getNum() {
+        return num;
+    }
 
-  public void setCover(String cover) {
-    this.cover = cover;
-  }
+    public void setNum(String num) {
+        this.num = num;
+    }
 
-  public String getSequence() {
-    return sequence;
-  }
+    public String getCover() {
+        return cover;
+    }
 
-  public void setSequence(String sequence) {
-    this.sequence = sequence;
-  }
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
-  public String getBtcontent() {
-    return btcontent;
-  }
+    public String getSequence() {
+        return sequence;
+    }
 
-  public void setBtcontent(String btcontent) {
-    this.btcontent = btcontent;
-  }
+    public void setSequence(String sequence) {
+        this.sequence = sequence;
+    }
 
-  public String getIdt() {
-    return idt;
-  }
+    public String getBtcontent() {
+        return btcontent;
+    }
 
-  public void setIdt(String idt) {
-    this.idt = idt;
-  }
+    public void setBtcontent(String btcontent) {
+        this.btcontent = btcontent;
+    }
 
-  public Integer getCobn() {
-    return cobn;
-  }
+    public String getIdt() {
+        return idt;
+    }
 
-  public void setCobn(Integer cobn) {
-    this.cobn = cobn;
-  }
+    public void setIdt(String idt) {
+        this.idt = idt;
+    }
 
-  public String getAuthor() {
-    return author;
-  }
+    public Integer getCobn() {
+        return cobn;
+    }
 
-  public void setAuthor(String author) {
-    this.author = author;
-  }
+    public void setCobn(Integer cobn) {
+        this.cobn = cobn;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 }
