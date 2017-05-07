@@ -75,7 +75,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:jconsole:1.8.0">
         <CLASSES>
-          <root url="jar://D:/Tools/Java/jdk1.8.0_121/lib/jconsole.jar!/" />
+          <root url="jar://C:/Program Files/Java/jdk1.8.0_65/lib/jconsole.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -84,7 +84,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:tools:1.8.0">
         <CLASSES>
-          <root url="jar://D:/Tools/Java/jdk1.8.0_121/lib/tools.jar!/" />
+          <root url="jar://C:/Program Files/Java/jdk1.8.0_65/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -99,5 +99,6 @@
     <orderEntry type="library" name="Maven: asm:asm:3.3" level="project" />
     <orderEntry type="library" name="Maven: asm:asm-commons:3.3" level="project" />
     <orderEntry type="library" name="Maven: asm:asm-tree:3.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.struts:struts2-config-browser-plugin:2.3.32" level="project" />
   </component>
 </module>
