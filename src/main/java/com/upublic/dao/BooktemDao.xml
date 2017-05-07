@@ -14,7 +14,7 @@
        <result column="btcontent" property="btcontent"/>
        <result column="idt" property="idt"/>
        <result column="cobn" property="cobn"/>
-       <result column="author" property="author"/>
+       <result column="btauthor" property="btauthor"/>
        <result column="time" property="time"/>
 
 

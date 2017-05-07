@@ -36,6 +36,11 @@
         <property name="mapperInterface" value="com.lj.dao.UserDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+   <!-- 一级分类category的dao配置《罗剑》-->
+    <bean id="categoryDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lj.category.dao.CategoryDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
     <!--配置province-->
     <bean id="provinceDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.upublic.dao.ProvinceDao"/>

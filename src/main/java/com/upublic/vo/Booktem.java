@@ -13,7 +13,7 @@ public class Booktem {
     private String btcontent;
     private String idt;
     private Integer cobn;
-    private String author;
+    private String btauthor;
     private Date time;
 
     public Date getTime() {
@@ -104,11 +104,11 @@ public class Booktem {
         this.cobn = cobn;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getBtauthor() {
+        return btauthor;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setBtauthor(String btauthor) {
+        this.btauthor = btauthor;
     }
 }
