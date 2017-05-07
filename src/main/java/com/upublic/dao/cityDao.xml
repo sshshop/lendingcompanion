@@ -6,15 +6,10 @@
         <id column="cid" property="cid"/>
         <result column="cname" property="cname"/>
 
-        <association property="province" javaType="province" >
+        <association property="province" javaType="provinceResultMap"  resultMap="com.upublic.dao.provinceDao.xml">
             <id column="pid" property="pid"/>
             <result column="pname" property="pname"/>
         </association>
     </resultMap>
-
-    <select id="getCity" parameterType="Long"
-            resultType="com.upublic.vo.City">
-        select * from City where cid=#{cid}
-    </select>
 
 </mapper>

@@ -7,9 +7,5 @@
         <result column="pname" property="pname"/>
     </resultMap>
 
-    <select id="getProvince" parameterType="Long"
-             resultType="com.upublic.vo.Province">
-             select * from users where pid=#{pid}
-     </select>
 
      </mapper>
