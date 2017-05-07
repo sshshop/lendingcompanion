@@ -15,6 +15,7 @@
        <result column="idt" property="idt"/>
        <result column="cobn" property="cobn"/>
        <result column="author" property="author"/>
+       <result column="time" property="time"/>
 
 
        <association property="cid" javaType="com.upublic.vo.City">
