@@ -1,24 +1,24 @@
 package com.upublic.vo;
 
 public class Search {
-  private Long sid;
-  private Long uid;
+  private Integer sid;
+  private Integer uid;
   private String scontent;
   private java.sql.Date stime;
 
-  public Long getSid() {
+  public Integer getSid() {
     return sid;
   }
 
-  public void setSid(Long sid) {
+  public void setSid(Integer sid) {
     this.sid = sid;
   }
 
-  public Long getUid() {
+  public Integer getUid() {
     return uid;
   }
 
-  public void setUid(Long uid) {
+  public void setUid(Integer uid) {
     this.uid = uid;
   }
 

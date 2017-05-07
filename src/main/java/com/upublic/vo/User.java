@@ -1,23 +1,32 @@
 package com.upublic.vo;
 
 public class User {
-    private Long uid;
+    private Integer uid;
     private String username;
     private String upassword;
-    private Long sex;
+    private Integer sex;
     private java.sql.Date dob;
     private String phone;
-    private Long pid;
-    private Long cid;
+    private Integer pid;
+    private Integer cid;
     private String addr;
     private String email;
-    private Long state;
+    private Integer state;
+    private  String code;
 
-    public Long getUid() {
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(Long uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
@@ -37,11 +46,11 @@ public class User {
         this.upassword = upassword;
     }
 
-    public Long getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(Long sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -61,19 +70,19 @@ public class User {
         this.phone = phone;
     }
 
-    public Long getPid() {
+    public Integer getPid() {
         return pid;
     }
 
-    public void setPid(Long pid) {
+    public void setPid(Integer pid) {
         this.pid = pid;
     }
 
-    public Long getCid() {
+    public Integer getCid() {
         return cid;
     }
 
-    public void setCid(Long cid) {
+    public void setCid(Integer cid) {
         this.cid = cid;
     }
 
@@ -93,11 +102,11 @@ public class User {
         this.email = email;
     }
 
-    public Long getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(Long state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 }

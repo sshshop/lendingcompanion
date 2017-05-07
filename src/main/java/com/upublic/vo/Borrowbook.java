@@ -1,13 +1,15 @@
 package com.upublic.vo;
 
+import java.util.Date;
+
 public class Borrowbook {
   private Integer bbid;
   private Integer uid;
   private Integer bid;
-  private java.sql.Date btime;
-  private java.sql.Date rtime;
+  private Date btime;
+  private Date rtime;
   private Integer bstatus;
-  private java.sql.Date ttime;
+  private Date ttime;
 
   public Integer getBbid() {
     return bbid;
@@ -33,19 +35,19 @@ public class Borrowbook {
     this.bid = bid;
   }
 
-  public java.sql.Date getBtime() {
+  public Date getBtime() {
     return btime;
   }
 
-  public void setBtime(java.sql.Date btime) {
+  public void setBtime(Date btime) {
     this.btime = btime;
   }
 
-  public java.sql.Date getRtime() {
+  public Date getRtime() {
     return rtime;
   }
 
-  public void setRtime(java.sql.Date rtime) {
+  public void setRtime(Date rtime) {
     this.rtime = rtime;
   }
 
@@ -57,11 +59,11 @@ public class Borrowbook {
     this.bstatus = bstatus;
   }
 
-  public java.sql.Date getTtime() {
+  public Date getTtime() {
     return ttime;
   }
 
-  public void setTtime(java.sql.Date ttime) {
+  public void setTtime(Date ttime) {
     this.ttime = ttime;
   }
 }

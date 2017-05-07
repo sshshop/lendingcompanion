@@ -1,15 +1,15 @@
 package com.upublic.vo;
 
 public class City {
-  private Long cid;
+  private Integer cid;
   private String cname;
-  private Long pid;
+  private Integer pid;
 
-  public Long getCid() {
+  public Integer getCid() {
     return cid;
   }
 
-  public void setCid(Long cid) {
+  public void setCid(Integer cid) {
     this.cid = cid;
   }
 
@@ -21,11 +21,11 @@ public class City {
     this.cname = cname;
   }
 
-  public Long getPid() {
+  public Integer getPid() {
     return pid;
   }
 
-  public void setPid(Long pid) {
+  public void setPid(Integer pid) {
     this.pid = pid;
   }
 }

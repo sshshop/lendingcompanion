@@ -1,16 +1,16 @@
 package com.upublic.vo;
 
 public class Admuser {
-  private Long auid;
+  private Integer auid;
   private String auname;
   private String apwd;
-  private Long authority;
+  private Integer authority;
 
-  public Long getAuid() {
+  public Integer getAuid() {
     return auid;
   }
 
-  public void setAuid(Long auid) {
+  public void setAuid(Integer auid) {
     this.auid = auid;
   }
 
@@ -30,11 +30,11 @@ public class Admuser {
     this.apwd = apwd;
   }
 
-  public Long getAuthority() {
+  public Integer getAuthority() {
     return authority;
   }
 
-  public void setAuthority(Long authority) {
+  public void setAuthority(Integer authority) {
     this.authority = authority;
   }
 }

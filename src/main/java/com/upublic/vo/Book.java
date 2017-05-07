@@ -1,8 +1,8 @@
 package com.upublic.vo;
 
 public class Book {
-  private Long bid;
-  private Long cid;
+  private Integer bid;
+  private Integer cid;
   private String bname;
   private String badr;
   private String bnum;
@@ -10,26 +10,26 @@ public class Book {
   private String bsequence;
   private String bcontent;
   private String bidt;
-  private Long bcobn;
-  private Long nborrowed;
+  private Integer bcobn;
+  private Integer nborrowed;
   private String bauthor;
-  private Long hborrowed;
+  private Integer hborrowed;
   private String initials;
   private String fight;
 
-  public Long getBid() {
+  public Integer getBid() {
     return bid;
   }
 
-  public void setBid(Long bid) {
+  public void setBid(Integer bid) {
     this.bid = bid;
   }
 
-  public Long getCid() {
+  public Integer getCid() {
     return cid;
   }
 
-  public void setCid(Long cid) {
+  public void setCid(Integer cid) {
     this.cid = cid;
   }
 
@@ -89,19 +89,19 @@ public class Book {
     this.bidt = bidt;
   }
 
-  public Long getBcobn() {
+  public Integer getBcobn() {
     return bcobn;
   }
 
-  public void setBcobn(Long bcobn) {
+  public void setBcobn(Integer bcobn) {
     this.bcobn = bcobn;
   }
 
-  public Long getNborrowed() {
+  public Integer getNborrowed() {
     return nborrowed;
   }
 
-  public void setNborrowed(Long nborrowed) {
+  public void setNborrowed(Integer nborrowed) {
     this.nborrowed = nborrowed;
   }
 
@@ -113,11 +113,11 @@ public class Book {
     this.bauthor = bauthor;
   }
 
-  public Long getHborrowed() {
+  public Integer getHborrowed() {
     return hborrowed;
   }
 
-  public void setHborrowed(Long hborrowed) {
+  public void setHborrowed(Integer hborrowed) {
     this.hborrowed = hborrowed;
   }
 

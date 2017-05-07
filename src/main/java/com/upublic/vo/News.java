@@ -1,24 +1,24 @@
 package com.upublic.vo;
 
 public class News {
-  private Long nid;
-  private Long uid;
+  private Integer nid;
+  private Integer uid;
   private String ncontent;
-  private Long nstatus;
+  private Integer nstatus;
 
-  public Long getNid() {
+  public Integer getNid() {
     return nid;
   }
 
-  public void setNid(Long nid) {
+  public void setNid(Integer nid) {
     this.nid = nid;
   }
 
-  public Long getUid() {
+  public Integer getUid() {
     return uid;
   }
 
-  public void setUid(Long uid) {
+  public void setUid(Integer uid) {
     this.uid = uid;
   }
 
@@ -30,11 +30,11 @@ public class News {
     this.ncontent = ncontent;
   }
 
-  public Long getNstatus() {
+  public Integer getNstatus() {
     return nstatus;
   }
 
-  public void setNstatus(Long nstatus) {
+  public void setNstatus(Integer nstatus) {
     this.nstatus = nstatus;
   }
 }

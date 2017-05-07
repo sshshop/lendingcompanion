@@ -2,7 +2,7 @@ package com.upublic.vo;
 
 public class T_base_pinyin {
   private String pin_yin_;
-  private Long code_;
+  private Integer code_;
 
   public String getPin_yin_() {
     return pin_yin_;
@@ -12,11 +12,11 @@ public class T_base_pinyin {
     this.pin_yin_ = pin_yin_;
   }
 
-  public Long getCode_() {
+  public Integer getCode_() {
     return code_;
   }
 
-  public void setCode_(Long code_) {
+  public void setCode_(Integer code_) {
     this.code_ = code_;
   }
 }
