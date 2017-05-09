@@ -1,0 +1,33 @@
+.context{
+    position: relative;
+}
+
+.context_form{
+    padding:20px;
+    background-color:rgb(250,250,250);
+}
+
+.register .form-group input{
+    width: 200px;
+}
+
+#man{
+    width:15px;
+    margin-right: 4px;
+    padding-top: 4px;
+}
+
+#woman{
+    width:15px;
+    margin-right: 4px;
+    padding-top: 4px;
+}
+
+.register .submit_btn{
+    margin-top: 10px;
+}
+
+.register .form-group .protocol_a{
+    display: inline;
+    color: rgb(37,0,239);
+}
