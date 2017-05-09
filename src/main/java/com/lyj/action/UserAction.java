@@ -4,6 +4,7 @@ import com.lyj.dao.UserDao;
 import com.opensymphony.xwork2.ModelDriven;
 import com.lyj.service.UserService;
 import com.upublic.vo.User;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -56,8 +57,7 @@ public class UserAction implements ModelDriven<User>{
         } else {
 
 
-            /*ServletActionContext.getRequest().getSession()
-           s  .setAttribute("user",list.get(0));*/
+            ServletActionContext.getRequest().getSession().setAttribute("loginedUser",list.get(0));
             return  "loginSuccess";
         }
 
@@ -65,5 +65,10 @@ public class UserAction implements ModelDriven<User>{
     @Action(value = "loginS",results = @Result(name = "login",location = "login.jsp"))
     public String loginS() {
         return "login";
+    }
+
+    @Action(value = "registerS",results = @Result(name = "register",location = "register.jsp"))
+    public String registerS() {
+        return "register";
     }
 }
