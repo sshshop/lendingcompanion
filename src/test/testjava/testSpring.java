@@ -1,5 +1,5 @@
 import com.lj.category.service.CategoryService;
-import com.lj.service.UserService;
+import com.lyj.service.UserService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,7 +14,7 @@ public class testSpring {
     public void test(){
         ApplicationContext ac=new ClassPathXmlApplicationContext("classpath:applicationcontext.xml" );
         UserService userService= (UserService) ac.getBean("UserService");
-        userService.test();
+//        userService.test();
     }
     @Test
     public void  testCategoryFindAll(){

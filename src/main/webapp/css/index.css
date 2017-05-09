@@ -1,0 +1,66 @@
+ol{
+    list-style: none;
+}
+
+.index{
+
+}
+
+.index_category{
+    height:500px;
+    /*background-color: red;*/
+}
+
+.index_information{
+    height: 500px;
+    /*background-color: blue;*/
+}
+
+.category_nav{
+    background-color: rgba(129,146,214,1);
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    border-radius:25px;
+    text-align: center;
+    margin-left: 15px;
+    padding-top:10px;
+}
+
+.category_nav ol{
+    list-style: none;
+    padding-left:10px;
+}
+
+.category_nav .category_nav_item{
+    font-size: 18px;
+    font-family: 黑体;
+    color: #74325c;
+    padding:5px;
+    margin:10px 0px;
+}
+
+.category_nav .category_nav_item a{
+    color:#fff;
+}
+
+.index_information .carousel-inner .item img{
+    height:340px;
+    width:600px;
+}
+
+.borrowBook{
+    font-size:15px;
+    background-color: rgba(243,215,181,0.8);
+    padding:10px 0px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.borrowBook_title{
+    font-size: 18px;
+    color:darkred;
+}
+
+.borrowBook .borrowBook_row{
+    margin:10px 0px;
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>“无微不至”的借阅伴侣</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <script src="../js/jquery-2.1.1/jquery.min.js"></script>
+    <script src="../css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="../image/background.jpg" style="width: 100%;height: 100%;"></div>
+    <!--头部页面-->
+    <div class="container header">
+        <!-- 顶部信息 -->
+        <div class="row header_title">
+            <div class="col-md-4 header_title_left">
+
+            </div>
+            <div class="col-md-6 header_title_mid">
+                <span>“无微不至”的借阅伴侣</span>
+            </div>
+            <div class="col-md-2 header_title_right">
+                <a class="login">登录</a>
+                <a class="register">注册</a>
+                <a class="collect">收藏本站</a>
+            </div>
+        </div>
+        <!-- logo以及搜索框 -->
+        <div class="row header_main">
+            <div class="col-md-5 logo">
+                <img src="../image/logo.png">
+            </div>
+            <div class="col-md-7 header_search">
+                <form class="nameSearch_form" id="nameSearch_form" action="">
+                    <span class="header_search_text">书名或作者名</span>
+                    <input class="nameSearch" id="nameSearch" type="text" placeholder="请输入您要搜的书..." />
+                    <button type="submit" class="glyphicon-search"></button>
+                </form>
+                <div class="header_search_title">
+                    无微不至，搜你想搜
+                </div>
+            </div>
+        </div>
+        <!--导航栏-->
+        <div class="row header_nav" id="header_nav">
+            <div class="col-md-12">
+                <a  href="#">主页</a>
+                <a  href="#">热门推荐</a>
+                <a  href="#">借书排行榜</a>
+                <a  href="#">网站简介</a>
+                <a  href="#">网站公告</a>
+                <a  href="#">联系我们</a>
+            </div>
+        </div>
+        <!--面包屑导航栏-->
+        <div class="row header_smallNav">
+            <div class="col-md-12">
+                <span class="header_smallNav_text">您所在的位置:</span>
+                <ol class="breadcrumb">
+                    <li><a href="#">主页</a></li>
+                    <li class="active">注册</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!--中间部分-->
+    <div class="container index">
+        <div class="row">
+            <div class="col-md-3 index_category">
+                <div class="col-md-8 category_nav">
+                    <ol class="">
+                        <li class="category_nav_item"><a href="#">分类1</a></li>
+                        <li class="category_nav_item"><a href="#">分类2</a></li>
+                        <li class="category_nav_item"><a href="#">分类3</a></li>
+                        <li class="category_nav_item"><a href="#">分类4</a></li>
+                        <li class="category_nav_item"><a href="#">分类5</a></li>
+                        <li class="category_nav_item"><a href="#">分类6</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-md-9 index_information">
+                <div class="col-md-9">
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- 轮播（Carousel）指标 -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <!-- 轮播（Carousel）项目 -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="../image/40.jpg" alt="First slide">
+                            </div>
+                            <div class="item">
+                                <img src="../image/39.jpg" alt="Second slide">
+                            </div>
+                            <div class="item">
+                                <img src="../image/42.jpg" alt="Third slide">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 borrowBook">
+                    <div class="borrowBook_title"><strong>借书排行榜</strong></div>
+                    <div class="row borrowBook_row">
+                        <div class="col-md-4 bookname">
+                            <span>三体</span>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 bookgrade">
+                            <span>123123</span>
+                        </div>
+                    </div>
+                    <div class="row borrowBook_row">
+                        <div class="col-md-4 bookname">
+                            <span>三体</span>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 bookgrade">
+                            <span>123123</span>
+                        </div>
+                    </div>
+                    <div class="row borrowBook_row">
+                        <div class="col-md-4 bookname">
+                            <span>三体</span>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 bookgrade">
+                            <span>123123</span>
+                        </div>
+                    </div>
+                    <div class="row borrowBook_row">
+                        <div class="col-md-4 bookname">
+                            <span>三体</span>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 bookgrade">
+                            <span>123123</span>
+                        </div>
+                    </div>
+                    <div class="row borrowBook_row">
+                        <div class="col-md-4 bookname">
+                            <span>三体</span>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 bookgrade">
+                            <span>123123</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部页面-->
+    <div class="container footer"></div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
