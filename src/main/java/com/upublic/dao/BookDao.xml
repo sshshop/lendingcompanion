@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.upublic.dao.BookcommentDao">
+    <resultMap id="book" type="com.upublic.vo.Book">
+        <id column="bid" property="bid"/>
+            <id column="bid" property="bid"/>
+            <result column="cid" property="cid"/>
+            <result column="bname" property="bname"/>
+            <result column="badr" property="badr"/>
+            <result column="bnum" property="bnum"/>
+            <result column="bcover" property="bcover"/>
+            <result column="bsequence" property="bsequence"/>
+            <result column="bcontent" property="bcontent"/>
+            <result column="bidt" property="bidt"/>
+            <result column="bcobn" property="bcobn"/>
+            <result column="nborrowed" property="nborrowed"/>
+            <result column="bauthor" property="bauthor"/>
+            <result column="hborrowed" property="hborrowed"/>
+            <result column="initials" property="initials"/>
+            <result column="fight" property="fight"/>
+            <result column="time" property="time"/>
+            <result column="money" property="money"/>
+    </resultMap>
+</mapper>
