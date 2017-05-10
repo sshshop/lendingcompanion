@@ -31,14 +31,31 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:myatis.xml"/>
     </bean>
-    <!--配置userdao的bean-->
-    <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.lyj.dao.UserDao"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-   <!-- 一级分类category的dao配置《罗剑》-->
+    <!-- 一级分类category的dao配置《罗剑》-->
     <bean id="categoryDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.lj.category.dao.CategoryDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    <!--图书book的dao的配置-->
+    <bean id="bookDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lj.book.dao.BookDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+    <!--订单表的收藏dao-->
+    <bean id="subscriptionDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lj.subcription.dao.SubscriptionDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    <!--借书表的dao-->
+    <bean id="borrowbookDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lj.borrowbook.dao.BorrowbookDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+    <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lyj.user.dao.UserDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
     <!--配置province-->
@@ -50,9 +67,5 @@
     <bean id="cityDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.upublic.dao.cityDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-    <bean id="bookDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-            <property name="mapperInterface" value="com.jidy.dao.BookDao"/>
-            <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 </beans>
