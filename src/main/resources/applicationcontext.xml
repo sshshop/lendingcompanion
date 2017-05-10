@@ -33,7 +33,7 @@
     </bean>
     <!--配置userdao的bean-->
     <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.lj.dao.UserDao"/>
+        <property name="mapperInterface" value="com.lyj.dao.UserDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
    <!-- 一级分类category的dao配置《罗剑》-->
@@ -50,5 +50,9 @@
     <bean id="cityDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.upublic.dao.cityDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    <bean id="bookDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+            <property name="mapperInterface" value="com.jidy.dao.BookDao"/>
+            <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 </beans>
