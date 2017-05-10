@@ -2,6 +2,10 @@ ol{
     list-style: none;
 }
 
+ol, ul {
+    list-style: none;
+}
+
 .index{
 
 }
@@ -24,6 +28,7 @@ ol{
     text-align: center;
     margin-left: 15px;
     padding-top:10px;
+    height:340px;
 }
 
 .category_nav ol{
@@ -53,7 +58,7 @@ ol{
     background-color: rgba(243,215,181,0.8);
     padding:10px 0px;
     text-align: center;
-    margin-top: 5px;
+    height: 340px;
 }
 
 .borrowBook_title{
