@@ -10,11 +10,12 @@ import java.util.List;
 /**
  * Created by Rabit on 2017/5/6.
  */
+@Resource(name = "userDao")
 @Service("userService")
 public class UserService {
 
     // 注入UserDao
-    @Resource(name = "userDao")
+
     private UserDao userDao;
 
     public List<User> findUserAll(User user) {
