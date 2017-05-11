@@ -87,6 +87,7 @@ body a:link{
     margin:auto;
     padding-top: 40px;
     position: relative;
+    padding-left:5px;
 }
 
 .header_search_text{

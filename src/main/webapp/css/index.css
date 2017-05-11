@@ -16,7 +16,7 @@ ol, ul {
 }
 
 .index_information{
-    height: 500px;
+    height: auto;
     /*background-color: blue;*/
 }
 
@@ -68,4 +68,37 @@ ol, ul {
 
 .borrowBook .borrowBook_row{
     margin:10px 0px;
+}
+
+.index_booklist{
+    color: #666;
+    height:40px;
+    line-height: 40px;
+    border-bottom:5px solid rgb(242,117,63);
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+
+.index_booklist .index_booklist_text{
+    font-size: 18px;
+    background-color: rgb(242,117,63);
+    padding:10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.index_information .book_list{
+    height:auto;
+    margin-top:10px;
+    background-color: #fff;
+    padding:10px 0px;
+}
+
+.index_information .book_list .book_list_item{
+    text-align: center;
+}
+
+.index_information .book_list .book_list_item .book_img{
+    width:200px;
+    height:230px;
 }

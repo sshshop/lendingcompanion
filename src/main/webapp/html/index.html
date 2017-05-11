@@ -36,8 +36,8 @@
             <div class="col-md-7 header_search">
                 <form class="nameSearch_form" id="nameSearch_form" action="">
                     <span class="header_search_text">书名或作者名</span>
-                    <input class="nameSearch" id="nameSearch" type="text" placeholder="请输入您要搜的书..." />
-                    <button type="submit" class="glyphicon-search"></button>
+                    <input class="nameSearch" id="nameSearch" type="text" placeholder="请输入您要搜的书..." style="padding-left:10px;" />
+                    <button type="submit"><span class="glyphicon-search"></span></button>
                 </form>
                 <div class="header_search_title">
                     无微不至，搜你想搜
@@ -95,7 +95,7 @@
                            <!-- 轮播（Carousel）项目 -->
                            <div class="carousel-inner">
                                <div class="item active">
-                                   <img src="../image/40.jpg" alt="First slide">
+                                   <a href="#"><img src="../image/40.jpg" alt="First slide"></a>
                                </div>
                                <div class="item">
                                    <img src="../image/39.jpg" alt="Second slide">
@@ -156,13 +156,48 @@
                    </div>
                </div>
                <div class="row">
-                    <div class="col-md-12">
-
+                    <div class="col-md-12 index_booklist">
+                        <span class="index_booklist_text">热门流行书</span>
                     </div>
                </div>
+                <div class="row book_list">
+                    <div>
+                        <div class="col-md-3 book_list_item">
+                            <a href="#">
+                                <img src="../image/1/d01.jpg" class="book_img">
+                            </a>
+                            <br>
+                            <span class="bname">《今天也想表白你》</span>
+                            <br>
+                            总借阅量：<span class="hborrowed"></span>
+                        </div>
+                        <div class="col-md-3 book_list_item">
+                            <a href="#"><img src="../image/1/d02.jpg" class="book_img"></a>
+                            <br>
+                            <span class="bname">《散步去》</span>
+                            <br>
+                            总借阅量：<span class="hborrowed"></span>
+                        </div>
+                        <div class="col-md-3 book_list_item">
+                            <a href="#"><img src="../image/1/d03.jpg" class="book_img"></a>
+                            <br>
+                            <span class="bname">《爆笑校园》</span>
+                            <br>
+                            总借阅量：<span class="hborrowed"></span>
+                        </div>
+                        <div class="col-md-3 book_list_item">
+                            <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                            <br>
+                            <span class="bname">《是我把你弄哭了吗》</span>
+                            <br>
+                            总借阅量：<span class="hborrowed">123123123</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <br>
     <!--底部页面-->
     <div class="container footer">
         <div class="row img_information">
@@ -179,7 +214,7 @@
                 <img class="img4" src="../image/service_items_4.png">
             </div>
         </div>
-        <div id="footer-2013">
+        <div class="row " id="footer-2013">
             <div class="links">
 
                 <a href="article-5.html" target="_blank">关于我们</a>
