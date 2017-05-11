@@ -1,0 +1,72 @@
+.index_information .productlist .productlist_1{
+    height:auto;
+    padding:5px 10px;
+    background-color: rgba(255,255,255,0.7)
+}
+
+.index_information .productlist .productlist_1 button{
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    padding:0px;
+}
+
+.index_information .productlist .productlist_1 span{
+    font-size: 18px;
+    color: gray;
+}
+
+.index_information .productlist .productlist_2{
+    margin-top: 20px;
+    background-color: rgba(255,255,255,0.7);
+    padding:10px;
+}
+
+.index_information .productlist .productlist_2 .productlistimg img{
+    width:200px;
+    height:230px;
+}
+
+.index_information .productlist .productlist_2 .bname{
+    font-size: 20px;
+}
+
+.index_information .productlist .productlist_2 .bauthor{
+    font-size: 15px;
+}
+
+.index_information .productlist .productlist_2 .productlistcontent{
+    position: relative;
+    padding-left:30px;
+    height:230px;
+}
+
+.index_information .productlist .productlist_2 .productlistcontent .productlistname{
+    margin: 0px;
+}
+
+.index_information .productlist .productlist_2 .productlistcontent .productlistauthor{
+    margin:20px 0px;
+}
+
+.index_information .productlist .productlist_2 .productlistcontent .productlisttext{
+    margin:0px;
+}
+
+.index_information .productlist .productlist_2 .productlistcontent .borrowButton{
+    position: absolute;
+    top:87%;
+    left:90%;
+    float: right;
+}
+.index_information .productlist .productlist_2 .productlistcontent .borrowButton .borrow{
+    padding:0px;
+}
+
+.index_information .productlist .productlist_2 .productlistcontent .borrowButton .modal .modal-content .modal-body .loginform input{
+    width:200px;
+}
+
+.index_information .productlist .productlist_2 .productlistcontent .borrowButton .modal .modal-content .modal-body .loginform .modal-body{
+    text-align: center;
+}
