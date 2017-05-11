@@ -12,9 +12,15 @@ import java.util.List;
 @Service(value = "bookService")
 public class BookService {
     @Resource(name = "bookDao")
+    //bname、initials、fight、bnum、badr、bauthor
     private BookDao bookDao;
-    public List<Book> searchBookInfo(String bname){
-        List<Book> list=bookDao.searchBookInfo(bname);
+    public List<Book> searchBookInfo(Book book){
+        List<Book> list=bookDao.searchBookInfo(book.getBname(),
+                book.getInitials(),
+                book.getFight(),
+                book.getBnum(),
+                book.getBadr(),
+                book.getBauthor());
         return list;
     }
 }

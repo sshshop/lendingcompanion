@@ -14,9 +14,19 @@ public interface BookDao {
     * 模糊查询：
     * name like CONCAT('%',#{name},'%')
     * */
-    @Select("select bcover,bname,bauthor,nborrowed from book " +
-            "where bname like CONCAT('%',#{bname},'%')")
+    @Select("select bcover,bname,bauthor,nborrowed ,badr from book " +
+            "where bname like CONCAT('%',#{bname},'%') " +
+            "OR initials like CONCAT('%',#{initials},'%') " +
+            "OR fight like CONCAT('%',#{fight},'%') " +
+            "OR bnum like CONCAT('%',#{bnum},'%') " +
+            "OR badr like CONCAT('%',#{badr},'%') " +
+            "OR bauthor like CONCAT('%',#{bauthor},'%') ")
 
-    List<Book> searchBookInfo(@Param("bname") String bname);
+    List<Book> searchBookInfo(@Param("bname") String bname,
+                              @Param("initials") String initials,
+                              @Param("fight") String fight,
+                              @Param("bnum") String bnum,
+                              @Param("badr") String badr,
+                              @Param("bauthor") String bauthor);
 
 }

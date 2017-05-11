@@ -15,20 +15,25 @@
 <body>
 <h1>WEB-INF/content下的index.jsp</h1>
     <tbody>
-        <s:iterator var="BookInfo" value="Booklist" >
-            <tr>
-                <td width="60"><img src="${ pageContext.request.contextPath }/<s:property value="#BookInfo.bcover"/>" /></td>
-            </tr>
-            <tr>
-                <td><s:property value="#BookInfo.bname" /></td>
-            </tr>
-            <tr>
-                <td><s:property value="#BookInfo.bauthor" /></td>
-            </tr>
-            <tr>
-                <td><s:property value="#BookInfo.nborrowed" /></td>
-            </tr>
-        </s:iterator>
+        <div style="width:200px;height:150px;float: left;">
+            <s:iterator var="BookInfo" value="Booklist" >
+                <tr>
+                    <td width="60"><img src="${ pageContext.request.contextPath }/<s:property value="#BookInfo.bcover"/>" /><br/></td>
+                </tr>
+                <tr>
+                    <td>书名：<s:property value="#BookInfo.bname" /><br/></td>
+                </tr>
+                <tr>
+                    <td>作者：<s:property value="#BookInfo.bauthor" /><br/></td>
+                </tr>
+                <tr>
+                    <td>出版社：<s:property value="#BookInfo.badr" /><br/></td>
+                </tr>
+                <tr>
+                    <td>余量：<s:property value="#BookInfo.nborrowed" /><br/></td>
+                </tr>
+            </s:iterator>
+        </div>
     </tbody>
 </body>
 </html>
