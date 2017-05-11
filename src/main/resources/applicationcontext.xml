@@ -36,7 +36,7 @@
         <property name="mapperInterface" value="com.lyj.dao.UserDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
-   <!-- 一级分类category的dao配置《罗剑》-->
+    <!-- 一级分类category的dao配置《罗剑》-->
     <bean id="categoryDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.lj.category.dao.CategoryDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
@@ -52,7 +52,7 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
     <bean id="bookDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-            <property name="mapperInterface" value="com.jidy.dao.BookDao"/>
-            <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="com.jidy.dao.BookDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 </beans>
