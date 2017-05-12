@@ -38,6 +38,7 @@ public class index extends ActionSupport{
     @Override
     public String execute() throws Exception {
         System.out.println("进入一级分类表");
+        this.addActionMessage("主页");
         ActionContext.getContext().getSession().put("category",categoryService.findCategoryAll());
         ActionContext.getContext().getValueStack().set("nbook", bookService.findNewBook());
        ActionContext.getContext().getValueStack().set("hbook", bookService.findHotBook());

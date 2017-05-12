@@ -44,12 +44,14 @@
     </div>
     <!--面包屑导航栏-->
     <div class="row header_smallNav">
-        <div class="col-md-12">
+        <div class="col-md-3">
             <span class="header_smallNav_text">您所在的位置:</span>
             <ol class="breadcrumb">
-                <li><a href="#">主页</a></li>
-                <li class="active">注册</li>
+                <li><s:actionmessage/></li>
             </ol>
+        </div>
+        <div class="col-md-9" style="padding-top: 10px; font-size: 16px;color:rgb(81,14,173);">
+            <marquee behavior="scroll" direction="left" scrollamount="5"><img src="image/guangbo.png" alt="广播图标" style="width:20px; height: 20px; margin-right: 7px;">今日添加新书有：人民的名义 作者：谭正兵</marquee>
         </div>
     </div>
 </div>
