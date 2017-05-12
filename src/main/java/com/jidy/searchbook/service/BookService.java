@@ -23,4 +23,13 @@ public class BookService {
                 book.getBauthor());
         return list;
     }
+
+
+    public List<Book> findNewBook() {
+        return bookDao.findNewBook();
+    }
+
+    public List<Book> findHotBook() {
+        return bookDao.findHotBook();
+    }
 }

@@ -11,7 +11,7 @@ ol, ul {
 }
 
 .index_category{
-    height:500px;
+    height:auto;
     /*background-color: red;*/
 }
 
@@ -28,7 +28,7 @@ ol, ul {
     text-align: center;
     margin-left: 15px;
     padding-top:10px;
-    height:340px;
+    height:auto;
 }
 
 .category_nav ol{
@@ -54,8 +54,7 @@ ol, ul {
 }
 
 .borrowBook{
-    font-size:15px;
-    background-color: rgba(243,215,181,0.8);
+    background-color: rgba(243,215,181,0.6);
     padding:10px 0px;
     text-align: center;
     height: 340px;
@@ -67,7 +66,15 @@ ol, ul {
 }
 
 .borrowBook .borrowBook_row{
-    margin:10px 0px;
+
+    font-size:13px;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right:24px;
+}
+
+.borrowBook .borrowBook_row .bookgrade{
+    color: red;
 }
 
 .index_booklist{
@@ -90,7 +97,7 @@ ol, ul {
 .index_information .book_list{
     height:auto;
     margin-top:10px;
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.5);
     padding:10px 0px;
 }
 
