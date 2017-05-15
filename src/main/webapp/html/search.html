@@ -84,17 +84,8 @@
             </div>
         </div>
         <div class="col-md-9 index_information">
+            <!--显示搜索结果start-->
             <div class="productlist">
-                <div class="row productlist_1">
-                    <div class="col-md-2">
-                        <span>排序 :</span>
-                    </div>
-                    <div class="col-md-7"></div>
-                    <div class="col-md-3">
-                        <button type="button" class="defaultsort" onclick=""><img src="../image/defaultsort.gif"></button>
-                        <button type="button" class="hborrowsort" onclick=""><img src="../image/hborrowed1.gif"></button>
-                    </div>
-                </div>
                 <div class="row productlist_2">
                     <div class="col-md-3 productlistimg">
                         <img src="../image/1/d01.jpg">
@@ -106,53 +97,149 @@
                         <div class="row productlistauthor">
                             <span class="bauthor">作者：人名</span>
                         </div>
+                        <div class="row productlistauthor">
+                            <span class="bauthor">出版社：</span>
+                        </div>
                         <div class="row productlisttext">
-                            <span class="content">内容</span>
+                            <p class="content" style="overflow: hidden">内容</p>
                         </div>
                         <div class="row">
                             <div class="borrowButton">
                                 <button type="button" class="borrow" data-toggle="modal" data-target="#borrowModal"><img src="../image/borrow.gif"></button>
-                                <div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="borrowLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                    &times;
-                                                </button>
-                                                <h4 class="modal-title" id="borrowLabel">您还没有登录，请先登录</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-4"></div>
-                                                    <div class="col-md-4">
-                                                        <form class="loginform form-horizontal" id="loginform" method="post">
-                                                            <div class="form-group">
-                                                                <input class="form-control username" id="username" placeholder="请输入用户名" />
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input class="form-control password" id="password" placeholder="请输入密码" />
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-md-4"></div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                                <button type="button" class="btn btn-primary">登录</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--显示搜索结果end-->
+            <div class="productlist">
+                <div class="row productlist_2">
+                    <div class="col-md-3 productlistimg">
+                        <img src="../image/1/d01.jpg">
+                    </div>
+                    <div class="col-md-8 productlistcontent">
+                        <div class="row productlistname">
+                            <span class="bname">书名</span>
+                        </div>
+                        <div class="row productlistauthor">
+                            <span class="bauthor">作者：人名</span>
+                        </div>
+                        <div class="row productlistauthor">
+                            <span class="bauthor">出版社：</span>
+                        </div>
+                        <div class="row productlisttext">
+                            <p class="content" style="overflow: hidden">内容</p>
+                        </div>
+                        <div class="row">
+                            <div class="borrowButton">
+                                <button type="button" class="borrow" data-toggle="modal" data-target="#borrowModal"><img src="../image/borrow.gif"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <div class="productlist">
+            <div class="row productlist_2">
+                <div class="col-md-3 productlistimg">
+                    <img src="../image/1/d01.jpg">
+                </div>
+                <div class="col-md-8 productlistcontent">
+                    <div class="row productlistname">
+                        <span class="bname">书名</span>
+                    </div>
+                    <div class="row productlistauthor">
+                        <span class="bauthor">作者：人名</span>
+                    </div>
+                    <div class="row productlistauthor">
+                        <span class="bauthor">出版社：</span>
+                    </div>
+                    <div class="row productlisttext">
+                        <p class="content" style="overflow: hidden">内容</p>
+                    </div>
+                    <div class="row">
+                        <div class="borrowButton">
+                            <button type="button" class="borrow" data-toggle="modal" data-target="#borrowModal"><img src="../image/borrow.gif"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row productlist_2">
+                <div class="col-md-3 productlistimg">
+                    <img src="../image/1/d01.jpg">
+                </div>
+                <div class="col-md-8 productlistcontent">
+                    <div class="row productlistname">
+                        <span class="bname">书名</span>
+                    </div>
+                    <div class="row productlistauthor">
+                        <span class="bauthor">作者：人名</span>
+                    </div>
+                    <div class="row productlistauthor">
+                        <span class="bauthor">出版社：</span>
+                    </div>
+                    <div class="row productlisttext">
+                        <p class="content" style="overflow: hidden">内容</p>
+                    </div>
+                    <div class="row">
+                        <div class="borrowButton">
+                            <button type="button" class="borrow" data-toggle="modal" data-target="#borrowModal"><img src="../image/borrow.gif"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--分页标签start 不要删-->
+            <div class="row" style="text-align: center">
+                <ul class="pagination">
+                    <li><a href="#">&laquo;</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+            <!--分页标签END-->
+        </div>
         </div>
     </div>
 </div>
 <br>
+<!--模态框主体start-->
+<div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="borrowLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="borrowLabel">您还没有登录，请先登录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <form class="loginform form-horizontal" id="loginform" method="post">
+                            <div class="form-group">
+                                <input class="form-control username" id="username" placeholder="请输入用户名" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control password" id="password" placeholder="请输入密码" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--模态框主体end-->
 <!--底部页面-->
 <div class="container footer">
     <div class="row img_information">
