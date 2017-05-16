@@ -44,10 +44,10 @@ public class UserAction implements ModelDriven<User>{
 
     @Action(value = "userLogin",
 
-            results = @Result(name = "loginSuccess",location = "index.jsp")
+            results = @Result(name = "loginSuccess",location = "/index.action",type = "redirect")
     )
     public String login(){
-
+        System.out.println(user.getUsername()+"-------------"+user.getUpassword());
         List<User> list =userService.findUserAll(user);
         if (list.isEmpty()){
 

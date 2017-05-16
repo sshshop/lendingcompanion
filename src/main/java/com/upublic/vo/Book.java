@@ -3,148 +3,166 @@ package com.upublic.vo;
 import java.util.Date;
 
 public class Book {
-  private Integer bid;
-  private Integer cid;
-  private String bname;
-  private String badr;
-  private String bnum;
-  private String bcover;
-  private String bsequence;
-  private String bcontent;
-  private String bidt;
-  private Integer bcobn;
-  private Integer nborrowed;
-  private String bauthor;
-  private Integer hborrowed;
-  private String initials;
-  private String fight;
-  private Date time;
+    private Integer bid;
+    private Integer cid;
+    private Category category;
+    private String bname;
+    private String badr;
+    private String bnum;
+    private String bcover;
+    private String bsequence;
+    private String bcontent;
+    private String bidt;
+    private Integer bcobn;
+    private Integer nborrowed;
+    private String bauthor;
+    private Integer hborrowed;
+    private String initials;
+    private String fight;
+    private Date time;
+    private Integer comment;
 
-  public Date getTime() {
-    return time;
-  }
+    public Category getCategory() {
+        return category;
+    }
 
-  public void setTime(Date time) {
-    this.time = time;
-  }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
-  public Integer getBid() {
-    return bid;
-  }
+    public Date getTime() {
+        return time;
+    }
 
-  public void setBid(Integer bid) {
-    this.bid = bid;
-  }
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
-  public Integer getCid() {
-    return cid;
-  }
+    public Integer getBid() {
+        return bid;
+    }
 
-  public void setCid(Integer cid) {
-    this.cid = cid;
-  }
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
 
-  public String getBname() {
-    return bname;
-  }
+    public Integer getCid() {
+        return cid;
+    }
 
-  public void setBname(String bname) {
-    this.bname = bname;
-  }
+    public void setCid(Integer cid) {
+        this.cid = cid;
+    }
 
-  public String getBadr() {
-    return badr;
-  }
+    public String getBname() {
+        return bname;
+    }
 
-  public void setBadr(String badr) {
-    this.badr = badr;
-  }
+    public void setBname(String bname) {
+        this.bname = bname;
+    }
 
-  public String getBnum() {
-    return bnum;
-  }
+    public String getBadr() {
+        return badr;
+    }
 
-  public void setBnum(String bnum) {
-    this.bnum = bnum;
-  }
+    public void setBadr(String badr) {
+        this.badr = badr;
+    }
 
-  public String getBcover() {
-    return bcover;
-  }
+    public String getBnum() {
+        return bnum;
+    }
 
-  public void setBcover(String bcover) {
-    this.bcover = bcover;
-  }
+    public void setBnum(String bnum) {
+        this.bnum = bnum;
+    }
 
-  public String getBsequence() {
-    return bsequence;
-  }
+    public String getBcover() {
+        return bcover;
+    }
 
-  public void setBsequence(String bsequence) {
-    this.bsequence = bsequence;
-  }
+    public void setBcover(String bcover) {
+        this.bcover = bcover;
+    }
 
-  public String getBcontent() {
-    return bcontent;
-  }
+    public String getBsequence() {
+        return bsequence;
+    }
 
-  public void setBcontent(String bcontent) {
-    this.bcontent = bcontent;
-  }
+    public void setBsequence(String bsequence) {
+        this.bsequence = bsequence;
+    }
 
-  public String getBidt() {
-    return bidt;
-  }
+    public String getBcontent() {
+        return bcontent;
+    }
 
-  public void setBidt(String bidt) {
-    this.bidt = bidt;
-  }
+    public void setBcontent(String bcontent) {
+        this.bcontent = bcontent;
+    }
 
-  public Integer getBcobn() {
-    return bcobn;
-  }
+    public String getBidt() {
+        return bidt;
+    }
 
-  public void setBcobn(Integer bcobn) {
-    this.bcobn = bcobn;
-  }
+    public void setBidt(String bidt) {
+        this.bidt = bidt;
+    }
 
-  public Integer getNborrowed() {
-    return nborrowed;
-  }
+    public Integer getBcobn() {
+        return bcobn;
+    }
 
-  public void setNborrowed(Integer nborrowed) {
-    this.nborrowed = nborrowed;
-  }
+    public void setBcobn(Integer bcobn) {
+        this.bcobn = bcobn;
+    }
 
-  public String getBauthor() {
-    return bauthor;
-  }
+    public Integer getNborrowed() {
+        return nborrowed;
+    }
 
-  public void setBauthor(String bauthor) {
-    this.bauthor = bauthor;
-  }
+    public void setNborrowed(Integer nborrowed) {
+        this.nborrowed = nborrowed;
+    }
 
-  public Integer getHborrowed() {
-    return hborrowed;
-  }
+    public String getBauthor() {
+        return bauthor;
+    }
 
-  public void setHborrowed(Integer hborrowed) {
-    this.hborrowed = hborrowed;
-  }
+    public void setBauthor(String bauthor) {
+        this.bauthor = bauthor;
+    }
 
-  public String getInitials() {
-    return initials;
-  }
+    public Integer getHborrowed() {
+        return hborrowed;
+    }
 
-  public void setInitials(String initials) {
-    this.initials = initials;
-  }
+    public void setHborrowed(Integer hborrowed) {
+        this.hborrowed = hborrowed;
+    }
 
-  public String getFight() {
-    return fight;
-  }
+    public String getInitials() {
+        return initials;
+    }
 
-  public void setFight(String fight) {
-    this.fight = fight;
-  }
+    public void setInitials(String initials) {
+        this.initials = initials;
+    }
+
+    public String getFight() {
+        return fight;
+    }
+
+    public void setFight(String fight) {
+        this.fight = fight;
+    }
+
+    public Integer getComment() {
+        return comment;
+    }
+
+    public void setComment(Integer comment) {
+        this.comment = comment;
+    }
 }

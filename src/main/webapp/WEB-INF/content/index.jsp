@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <html lang="en">
 <head>
@@ -58,7 +57,7 @@
                     <s:iterator var="h" value="hbook">
                         <div class="row borrowBook_row">
                             <div class="col-md-10 bookname">
-                                <a href="#" style="display: inherit;"><span class="borrorBook_row_item"><s:property value="#h.bname" /></span></a>
+                                <a href="findBookBybid.action?bid=<s:property value="#h.bid"/>" style="display: inherit;"><span class="borrorBook_row_item"><s:property value="#h.bname" /></span></a>
                             </div>
                             <div class="col-md-2 bookgrade">
                                 <span><s:property value="#h.hborrowed"/> </span>
@@ -113,11 +112,11 @@
                 <div>
                     <s:iterator var="n" value="nbook">
                         <div class="col-md-3 book_list_item">
-                            <a href="#">
+                            <a href="findBookBybid.action?bid=<s:property value="#n.bid"/> ">
                                 <img src="<s:property value="#n.bcover" />" class="book_img">
                             </a>
                             <br>
-                            <span class="bname"><s:property value="#n.bname" /></span>
+                            <span class="bname"><a href="findBookBybid.action?bid=<s:property value="#n.bid"/> "><s:property value="#n.bname" /></a></span>
                             <br>
                             余量：<span class="hborrowed"><s:property value="#n.nborrowed" /></span>
                         </div>

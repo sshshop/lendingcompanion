@@ -55,4 +55,11 @@
         <property name="mapperInterface" value="com.jidy.searchbook.dao.BookDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+
+    <!--配置书评表的dao-->
+    <bean id="bookCommentDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lj.bookcomment.dao.BookcommentDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
 </beans>
