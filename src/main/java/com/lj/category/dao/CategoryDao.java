@@ -1,5 +1,6 @@
 package com.lj.category.dao;
 
+import com.upublic.vo.Book;
 import com.upublic.vo.Category;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -31,4 +32,20 @@ public interface CategoryDao {
             }
     )
     Category findCategoryById(Integer cid);
+
+    /**
+     * 根据图书分类id查询所有的该分类下面的图书
+     * @param cid 图书的分类id
+     * @return  封装图书分类的集合
+     */
+    @Select("SELECT * FROM book WHERE cid=#{cid} ORDER BY time desc;")
+    List<Book> findBookByCid(Integer cid);
+
+    /**
+     * 根据图书查询该分类下面的热门书籍
+     * @param cid 图书分类主键cid
+     * @return 返回图书的集合
+     */
+    @Select("SELECT bid,cid,bcover,bname,bauthor FROM book WHERE cid=#{cid} ORDER BY hborrowed desc,bid asc limit 8;")
+    List<Book> findBookByCidSome(Integer cid);
 }

@@ -1,6 +1,7 @@
 import com.lj.bookcomment.dao.BookcommentDao;
 import com.lj.category.service.CategoryService;
 import com.lyj.service.UserService;
+import com.upublic.vo.Book;
 import com.upublic.vo.Bookcomment;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -14,10 +15,11 @@ import static org.junit.Assert.assertEquals;
  * Created by Rabit on 2017/5/6.
  */
 public class testSpring {
+    ApplicationContext ac=new ClassPathXmlApplicationContext("classpath:applicationcontext.xml" );
+    UserService userService= (UserService) ac.getBean("userService");
+    CategoryService categoryService= (CategoryService) ac.getBean("categoryService");
     @Test
     public void test(){
-        ApplicationContext ac=new ClassPathXmlApplicationContext("classpath:applicationcontext.xml" );
-        UserService userService= (UserService) ac.getBean("UserService");
 //        userService.test();
     }
     @Test
@@ -35,5 +37,10 @@ public class testSpring {
         List<Bookcomment> list=bookcommentDao.findCommentByBId(5);
         System.out.println(list.get(1).getInf()+list.get(1).getBctime()+"-----"+list.get(1).getUsername()+"-----");
     System.out.println(list.size());
+    }
+@Test
+    public void testFindBookByCid(){
+      List<Book> list= categoryService.findBookByCid(1);
+        System.out.println(list.size());
     }
 }

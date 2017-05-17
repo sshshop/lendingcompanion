@@ -1,6 +1,7 @@
 package com.lj.category.action;
 
 import com.lj.category.service.CategoryService;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.upublic.vo.Category;
 import org.apache.struts2.convention.annotation.Action;
@@ -16,35 +17,26 @@ import java.util.List;
  */
 @ParentPackage(value = "struts-default")
 @Namespace(value = "")
-@Action(
-        value = "categoryAction ")
 public class CategoryAction extends ActionSupport {
+    private int cid;
 
     @Resource(name = "categoryService")
     private CategoryService categoryService;
 
-    @Action( value = "cafindall" ,
-            results = {
-            /*多个返回值*/
-            @Result(name = "success",location = "test.jsp")
-    })
-    public String findcategoryall() {
-        List<Category> list = categoryService.findCategoryAll();
-        System.out.println(list.get(0).getCname());
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
+    /**
+     * 通过cid查询图书的分类
+     * @return
+     */
+    @Action(value = "findBookByCid",
+            results = @Result(name = SUCCESS, location = "index.jsp")
+    )
+    public String findBookByCid() {
+        ActionContext.getContext().getValueStack().set("cbook",categoryService.findBookByCid(cid));
         return SUCCESS;
     }
 
-    @Action(value = "din",
-    /*一个返回值*/
-    results = @Result(name = "suqqs",location = "index.jsp")
-    )
-    public String din(){
-        System.out.println("din");
-        return "suqqs";
-    }
-
-    @Override
-    public String execute() throws Exception {
-        return super.execute();
-    }
 }

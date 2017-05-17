@@ -3,6 +3,7 @@ package com.jidy.searchbook.action;
 
 import com.jidy.searchbook.service.BookService;
 import com.jidy.searchbook.utils.SearchRegex;
+import com.lj.category.service.CategoryService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -33,6 +34,9 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     //注入bookCommentService
     @Resource(name = "bookCommentService")
     private BookCommentService bookCommentService;
+    //注入分类categoryService
+    @Resource(name = "categoryService")
+    private CategoryService categoryService;
 
     //将前台页面获取的值转换为对象
     Book book = new Book();
@@ -162,7 +166,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     public String findBookByBid() {
         book = bookService.findBookById(book.getBid());
         ActionContext.getContext().getValueStack().set("pageBean", bookCommentService.findCommentByBId(book.getBid()));
-        //差一个功能
+       ActionContext.getContext().getValueStack().set("category",categoryService.findBookByCidSome(book.getCid()) );
         if (book == null) {
             return "findfail";
         } else {
