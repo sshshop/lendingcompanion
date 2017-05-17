@@ -102,40 +102,44 @@ public interface BookDao {
     @Select("SELECT bid,bname,hborrowed FROM book ORDER BY hborrowed DESC LIMIT 10;")
     List<Book> findHotBook();
 
-//    /**
-//     * 通过图书id查询图书的详细信息，此处还关联查询了图书分类的信息
-//     * @param bid
-//     * @return
-//     */
-//    @Select("SELECT\n" +
-//            "book.bid,\n" +
-//            "book.cid,\n" +
-//            "book.bname,\n" +
-//            "book.badr,\n" +
-//            "book.bnum,\n" +
-//            "book.bcover,\n" +
-//            "book.bsequence,\n" +
-//            "book.bcontent,\n" +
-//            "book.bidt,\n" +
-//            "book.bcobn,\n" +
-//            "book.nborrowed,\n" +
-//            "book.bauthor,\n" +
-//            "book.hborrowed,\n" +
-//            "book.initials,\n" +
-//            "book.fight,\n" +
-//            "book.time,\n" +
-//            "book.money,\n" +
-//            "category.cname,\n" +
-//            "category.cid\n" +
-//            "FROM\n" +
-//            "book\n" +
-//            "INNER JOIN category ON book.cid = category.cid\n" +
-//            "WHERE\n" +
-//            "book.bid = #{bid}")
-//    @Results(value = {
-//            @Result(column = "cid", property = "cid"),
-//            @Result(column = "cid", property = "category", one = @One(select = "com.lj.category.dao.CategoryDao.findCategoryById"))
-//    })
-//    Book findBookById(Integer bid);
+
+
+    /**
+     * 通过图书id查询图书的详细信息，此处还关联查询了图书分类的信息
+     * @param bid 图书id
+     * @return 图书封装类
+     */
+    @Select("SELECT\n" +
+            "book.bid,\n" +
+            "book.cid,\n" +
+            "book.bname,\n" +
+            "book.badr,\n" +
+            "book.bnum,\n" +
+            "book.bcover,\n" +
+            "book.bsequence,\n" +
+            "book.bcontent,\n" +
+            "book.bidt,\n" +
+            "book.bcobn,\n" +
+            "book.nborrowed,\n" +
+            "book.bauthor,\n" +
+            "book.hborrowed,\n" +
+            "book.initials,\n" +
+            "book.fight,\n" +
+            "book.time,\n" +
+            "book.money,\n" +
+            "category.cname,\n" +
+            "category.cid\n" +
+            "FROM\n" +
+            "book\n" +
+            "INNER JOIN category ON book.cid = category.cid\n" +
+            "WHERE\n" +
+            "book.bid = #{bid}")
+    @Results(value = {
+            @Result(column = "cid", property = "cid"),
+            @Result(column = "cid", property = "category", one = @One(select = "com.lj.category.dao.CategoryDao.findCategoryById"))
+    })
+    Book findBookById(Integer bid);
+
+
 
 }

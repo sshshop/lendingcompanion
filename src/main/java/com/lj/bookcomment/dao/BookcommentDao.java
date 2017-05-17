@@ -17,11 +17,8 @@ public interface BookcommentDao extends PageParents<Bookcomment> {
      * @param bid 图书的主键bid
      * @return 多个书评信息
      */
-    @Select("SELECT uid,bctime,inf FROM bookcomment WHERE bid=#{bid} ORDER BY bctime DESC LIMIT #{begin},#{limit}")
-    @Results(value = {
-            @Result(column = "uid", property = "uid"),
-            @Result(column = "user.username", property = "user.username")
-    })
+    @Select("SELECT uid,bctime,inf,username FROM bookcomment WHERE bid=#{bid} ORDER BY bctime DESC LIMIT #{begin},#{limit}")
+
     List<Bookcomment> findAll(@Param("bid") Integer bid, @Param("begin") Integer begin, @Param("limit") Integer limit);
 
     /**
@@ -32,4 +29,12 @@ public interface BookcommentDao extends PageParents<Bookcomment> {
      */
     @Select("SELECT COUNT(*) FROM bookcomment WHERE bid=#{id}")
     int findCountByid(Integer id);
+
+    /**
+     * 根据图书id查询所有用户的书评信息
+     * @param bid 图书id
+     * @return 返回集合
+     */
+    @Select("SELECT uid,bctime,inf,username FROM bookcomment WHERE bid=#{bid} ORDER BY bctime DESC")
+    List<Bookcomment> findCommentByBId(Integer bid);
 }

@@ -32,8 +32,8 @@ public class testSpring {
         ApplicationContext ac=new ClassPathXmlApplicationContext("classpath:applicationcontext.xml" );
         BookcommentDao bookcommentDao= (BookcommentDao) ac.getBean("bookCommentDao");
         //Mybatis注解开发+联表查询
-        List<Bookcomment> list=bookcommentDao.findAll(5,0,7);
-        System.out.println(list.get(1).getInf()+list.get(1).getBctime());
+        List<Bookcomment> list=bookcommentDao.findCommentByBId(5);
+        System.out.println(list.get(1).getInf()+list.get(1).getBctime()+"-----"+list.get(1).getUsername()+"-----");
     System.out.println(list.size());
     }
 }

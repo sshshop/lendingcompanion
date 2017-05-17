@@ -91,14 +91,16 @@ public class BookService{
     public List<Book> findHotBook() {
         return bookDao.findHotBook();
     }
-//
-//    /**
-//     * 通过书籍主键查询图书详情
-//     *
-//     * @param bid
-//     * @return
-//     */
-//    public Book findBookById(Integer bid) {
-//        return bookDao.findBookById(bid);
-//    }
+
+
+
+    /**
+    * 通过书籍主键查询图书详情
+    *
+    * @param bid
+    * @return
+    */
+   public Book findBookById(Integer bid) {
+       return bookDao.findBookById(bid);
+   }
 }
