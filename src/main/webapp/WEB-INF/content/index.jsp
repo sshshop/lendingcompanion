@@ -63,7 +63,6 @@
                                 <span><s:property value="#h.hborrowed"/> </span>
                             </div>
                         </div>
-
                     </s:iterator>
                    <%-- <div class="row borrowBook_row">
                         <div class="col-md-4 bookname">

@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/bookdetail.css">
     <link rel="stylesheet" href="css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <script src="js/pageJS.js"></script>
+    <script src="js/jquery-2.1.1/jquery.js"></script>
     <script src="js/jquery-2.1.1/jquery.min.js"></script>
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <title>书籍详情页</title>
 </head>
-<body>
+<body onload="goPage(1,7)">
 <div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg"
                                                                                           style="width: 100%;height: 100%;">
 </div>
@@ -143,7 +145,7 @@
                     </div>
                     <div class="tab-pane fade" id="comment" style="position: relative">
                         <!--评价内容-->
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="count">
                             <!--评价详细内容start-->
                             <s:iterator var="p" value="pageBean">
                                 <div class="row book-content">
@@ -151,20 +153,16 @@
                                     <div class="row" style="float:right;">评价时间：<s:property value="#p.bctime"/> &nbsp;&nbsp;&nbsp;&nbsp;用户：<s:property
                                             value="#p.username"/></div>
                                 </div>
-                                <br>
                             </s:iterator>
                             <!--评价内容end-->
                         </div>
-                        <div class="row" style="height: 10%; float: right; margin-right: 30px;">
-                            <ul class="pagination pagination-sm">
-                                <li><a href="findBookBybid.action?bid=<s:property value="model.bid"/>&page=<s:property value="pageBean.page-1"/> ">&laquo;</a></li>
-                                <li><a href="#comment">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">6</a></li>
-                                <li><a href="findBookBybid.action?bid=<s:property value="model.bid"/>&page=<s:property value="pageBean.page+1"/> ">&raquo;</a></li>
+                        <div class="row" style="height: 50px; float: right; margin-right: 30px;">
+                            <ul class="pagination pagination-sm" id="jumpWhere">
+                                <%--<li><a href="#">2</a></li>--%>
+                                    <%--<li><a href="#">3</a></li>--%>
+                                    <%--<li><a href="#">4</a></li>--%>
+                                    <%--<li><a href="#">5</a></li>--%>
+                                    <%--<li><a href="#">6</a></li>--%>
 
                             </ul>
 

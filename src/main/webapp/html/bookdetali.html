@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/bookdetail.css">
+    <link rel="stylesheet" href="../css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <script src="../js/jquery-2.1.1/jquery.min.js"></script>
+    <script src="../css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <title>书籍详情页</title>
+</head>
+<body>
+<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="../image/background.jpg"
+                                                                                          style="width: 100%;height: 100%;">
+</div>
+<!--头部-->
+<div class="container header">
+    <!-- 顶部信息 -->
+    <div class="row header_title">
+        <div class="col-md-4 header_title_left">
+
+        </div>
+        <div class="col-md-6 header_title_mid">
+            <span>“无微不至”的借阅伴侣</span>
+        </div>
+        <div class="col-md-2 header_title_right">
+            <a class="login">登录</a>
+            <a class="register" href="../html/register.html">注册</a>
+            <a class="collect">收藏本站</a>
+        </div>
+    </div>
+    <!-- logo以及搜索框 -->
+    <div class="row header_main">
+        <div class="col-md-5 logo">
+            <img src="../image/logo.png">
+        </div>
+        <div class="col-md-7 header_search">
+            <form class="nameSearch_form" id="nameSearch_form" action="">
+                <span class="header_search_text">书名或作者名</span>
+                <input class="nameSearch" id="nameSearch" type="text" placeholder="请输入您要搜的书..."/>
+                <button type="submit" class="glyphicon-search"></button>
+            </form>
+            <div class="header_search_title">
+                无微不至，搜你想搜
+            </div>
+        </div>
+    </div>
+    <!--导航栏-->
+    <div class="row header_nav" id="header_nav">
+        <div class="col-md-12">
+            <a href="#">主页</a>
+            <a href="#">热门推荐</a>
+            <a href="#">借书排行榜</a>
+            <a href="#">网站简介</a>
+            <a href="#">网站公告</a>
+            <a href="#">联系我们</a>
+        </div>
+    </div>
+    <!--面包屑导航栏-->
+    <div class="row header_smallNav">
+        <div class="col-md-12">
+            <span class="header_smallNav_text">您所在的位置:</span>
+            <ol class="breadcrumb">
+                <li><a href="#">主页</a></li>
+                <li class="active">注册</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--中间-->
+<div class="container index">
+    <div class="row">
+        <div class="col-md-3 index_about_book">
+            <div class="col-md-9 about-book ">
+                <div class="row" style="margin-bottom: 5px" ><span STYLE="font-size: 20px">相关书籍</span></div>
+                <div class="row">
+                    <div class="about-book-imagediv"><img class="about-book-image" src="../image/1/d02.png"
+                                                                   alt=""></div>
+                    <div class=" about-book-detaildiv">
+                        <span>《在那遥远的地方》</span>
+                        <br>
+                        <span>作者：谢晓晓</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="about-book-imagediv"><img class="about-book-image" src="../image/1/d02.png"
+                                                          alt=""></div>
+                    <div class=" about-book-detaildiv">
+                        <span>《在那遥远的地方》</span>
+                        <br>
+                        <span>作者：谢晓晓</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="about-book-imagediv"><img class="about-book-image" src="../image/1/d02.png"
+                                                          alt=""></div>
+                    <div class=" about-book-detaildiv">
+                        <span>《在那遥远的地方》</span>
+                        <br>
+                        <span>作者：谢晓晓</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="about-book-imagediv"><img class="about-book-image" src="../image/1/d02.png"
+                                                          alt=""></div>
+                    <div class=" about-book-detaildiv">
+                        <span>《在那遥远的地方》</span>
+                        <br>
+                        <span>作者：谢晓晓</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="about-book-imagediv"><img class="about-book-image" src="../image/1/d02.png"
+                                                          alt=""></div>
+                    <div class=" about-book-detaildiv">
+                        <span>《在那遥远的地方》</span>
+                        <br>
+                        <span>作者：谢晓晓</span>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="about-book-imagediv"><img class="about-book-image" src="../image/1/d02.png"
+                                                      alt=""></div>
+                <div class=" about-book-detaildiv">
+                    <span>《在那遥远的地方》</span>
+                    <br>
+                    <span>作者：谢晓晓</span>
+                </div>
+            </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-9 index-information">
+            <!--书籍标题-->
+            <div class="row" style="background-color:#91c2ad;height:19%;">
+                <div class="col-md-12">
+                    <h1 class="text-center" style="font-size: 25px">《小明的故事》
+                        <small>作者：张三</small>
+                    </h1>
+                </div>
+            </div>
+            <!--书籍图片-->
+            <div class="row book-detail" style="background-color: #FFFFFF;height:30% ">
+                <div class="col-md-5 book-detail-bimgage"><img class="book-detail-bimgage-img img-responsive"
+                                                               src="../image/1/d01.jpg"></div>
+                <!--书籍基本信息-->
+                <div class="col-md-7 book-detail-bimgage book-detail-sign">
+                    <div class="row test_color"><p class="text-left book-detail-sign-font">版本号</p></div>
+                    <div class="row test_color"><p class="text-left book-detail-sign-font">出版社</p></div>
+                    <div class="row test_color"><p class="text-left book-detail-sign-font">所属分类</p></div>
+                    <div class="row test_color"><p class="text-left book-detail-sign-font">历史借阅量</p></div>
+                    <div class="row test_color"><p class="text-left book-detail-sign-font">总藏书量</p></div>
+                    <div class="row test_color"><p class="text-left book-detail-sign-font">未借阅量</p></div>
+                   <!-- <div class="row test_color"><p class="text-left book-detail-sign-font">模态框</p></div>-->
+<!--模态框测试-->
+<!--S-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+                    <button type="button" class="borrow" data-toggle="modal" data-target="#borrowModal" style="padding: 0px;"><img src="../image/borrow.gif"></button>
+
+
+
+
+
+
+
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+                </div>
+            </div>
+            <!--导读、简介、书评-->
+            <div class="row book-detail-introductions" style="height:50%">
+                <div class="row" id="book-detail-introduction">
+                    <!--局部导航-->
+                    <!-- <ul class="col-md-12 nav nav-tabs book-detail-introduction-item">
+                         <li class="active"><a href="#">内容简介</a></li>
+                         <li><a href="#home">导读</a></li>
+                         <li><a href="#">书评</a></li>
+                         <li><a href="#">绪论</a></li>
+                     </ul>-->
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#home" data-toggle="tab">
+                                内容简介
+                            </a>
+                        </li>
+                        <li><a href="#ios" data-toggle="tab">导读</a></li>
+                        <li><a href="#test" data-toggle="tab">绪论</a></li>
+                        <li><a href="#java" data-toggle="tab">书评</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row book-detail-introduction-content">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade in active" id="home">
+                        <br>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;精心策划，官方出品：中日双方编写者再次倾情奉献，精心设计，继续打造人教精品；与*版教材同步，适合新日本语能力考试用书；手机阅读，
+                            离线使用：把《新版标准日本语》装进手机，出行学习不用背书，资源包单独下载，随时随地无流量、离线学习；新版内容，轻松学习：权威语法
+                            解释，精良互动练习，让书本知识变得有声有色，让日语学习不再枯燥，实现轻松、快乐学习；内容全面，逐步更新：五十音图示范教学，课文、
+                            生词中日文对照，音视频与内容同步播放，随时更新，让日语学习永远学在前沿。精心策划，官方出品：中日双方编写者再次倾情奉献，精心设
+                            计，继续打造人教精品；与*版教材同步，适合新日本语能力考试用书；手机阅读，离线使用：把《新版标准日本语》装进手机，出行学习不用背
+                            书，资源包单独下载，随时随地无流量、离线学习；新版内容，轻松学习：权威语法解释，精良互动练习，让书本知识变得有声有色，让日语学习
+                            不再枯燥，实现轻松、快乐学习；内容全面，逐步更新：五十音图示范教学，课文、生词中日文对照，音视频与内容同步播放，随时更新，让日语
+                            学习永远学在前沿。
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="ios">
+                        <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                            TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                    </div>
+                    <div class="tab-pane fade" id="java" style="position: relative">
+                        <!--评价内容-->
+                        <div class="col-md-12">
+                            <!--评价详细内容start-->
+                            <div class="row book-content">
+                                <div class="row">收到货付款及速度和福克斯的福克斯交电话费快结束货到付款水电费看</div>
+                                <div class="row" style="float:right;">评价时间：2017-12-12 &nbsp;&nbsp;&nbsp;&nbsp;用户：张三</div>
+                            </div>
+        <br>
+                            <div class="row book-content">
+                                <div class="row">收到货付款及速度和福克斯的福克斯交电话费快结束货到付款水电费看</div>
+                                <div class="row" style="float:right;">评价时间：2017-12-12 &nbsp;&nbsp;&nbsp;&nbsp;用户：张三</div>
+                            </div>
+                            <br>
+                            <div class="row book-content">
+                                <div class="row">收到货付款及速度和福克斯的福克斯交电话费快结束货到付款水电费看</div>
+                                <div class="row" style="float:right;">评价时间：2017-12-12 &nbsp;&nbsp;&nbsp;&nbsp;用户：张三</div>
+                            </div>
+                            <br>
+                            <div class="row book-content">
+                                <div class="row">收到货付款及速度和福克斯的福克斯交电话费快结束货到付款水电费看</div>
+                                <div class="row" style="float:right;">评价时间：2017-12-12 &nbsp;&nbsp;&nbsp;&nbsp;用户：张三</div>
+                            </div>
+                            <br>
+                            <div class="row book-content">
+                                <div class="row">收到货付款及速度和福克斯的福克斯交电话费快结束货到付款水电费看</div>
+                                <div class="row" style="float:right;">评价时间：2017-12-12 &nbsp;&nbsp;&nbsp;&nbsp;用户：张三</div>
+                            </div>
+                            <br>
+                            <div class="row book-content">
+                                <div class="row">收到货付款及速度和福克斯的福克斯交电话费快结束货到付款水电费看</div>
+                                <div class="row" style="float:right;">评价时间：2017-12-12 &nbsp;&nbsp;&nbsp;&nbsp;用户：张三</div>
+                            </div>
+                            <br>
+                            <div class="row book-content">
+                                <div class="row">收到货付款及速度和福克斯的福克斯交电话费快结束货到付款水电费看</div>
+                                <div class="row" style="float:right;">评价时间：2017-12-12 &nbsp;&nbsp;&nbsp;&nbsp;用户：张三</div>
+                            </div>
+                            <br>
+                            <!--评价内容end-->
+                        </div>
+                        <div class="row" style="height: 10%; float: right; margin-right: 30px;">
+                            <ul class="pagination pagination-sm">
+                                <li><a href="#">&laquo;</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="test">
+                        <p>11111111111111111111111111111111111111111</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--模态框主体start-->
+<div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="borrowLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="borrowLabel">您还没有登录，请先登录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <form class="loginform form-horizontal" id="loginform" method="post">
+                            <div class="form-group">
+                                <input class="form-control username" id="username" placeholder="请输入用户名" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control password" id="password" placeholder="请输入密码" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--模态框主体end-->
+
+<!--尾部-->
+<div class="container footer">
+    <div class="row img_information">
+        <div class="col-md-3 img_item">
+            <img class="img1" src="../image/service_items_1.png">
+        </div>
+        <div class="col-md-3 img_item">
+            <img class="img2" src="../image/service_items_2.png">
+        </div>
+        <div class="col-md-3 img_item">
+            <img class="img3" src="../image/service_items_3.png">
+        </div>
+        <div class="col-md-3 img_item">
+            <img class="img4" src="../image/service_items_4.png">
+        </div>
+    </div>
+    <div id="footer-2013">
+        <div class="links">
+
+            <a href="article-5.html" target="_blank">关于我们</a>
+            |
+
+            <a href="article-1056.html" target="_blank">法律声明</a>
+            |
+
+            <a href="article-24.html" target="_blank">诚征英才</a>
+            |
+
+            <a href="article-9.html" target="_blank">商家入驻</a>
+            |
+
+            <a href="article-12.html" target="_blank">加盟我们</a>
+            |
+
+            <a href="article-14.html" target="_blank">广告服务</a>
+            |
+
+            <a href="article-1045.html" target="_blank">客服中心</a>
+
+
+        </div>
+
+        <div class="copyright">
+            Copyright © 2010-2017 XX借书网 www.XXX.com 版权所有 | E-mail：651081143@qq.com<br>
+
+
+            <br>
+
+            相关备案信息：京ICP备10218744号-1｜京ICP证070359号｜京公网安备11011202001572号｜新出发京零字第通100048号
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
