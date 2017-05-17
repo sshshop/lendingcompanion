@@ -73,14 +73,15 @@
 
             <!--分页标签start 不要删-->
         <s:iterator begin="var item=1" var="pageBean" value="pageBean">
-            <div class="row" style="text-align: center">
-                <ul class="pagination">
-                    <li></li>
-                    <li><a <s:if test="pageBean.page != 1"> href="searchBookInfo.action?page=1&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>首页</a></li>
-                    <li><a <s:if test="pageBean.page > 1"> href="searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>" </s:if>>上一页</a></li>
-                    <li><a <s:if test="pageBean.page < pageBean.totalPage"> href="searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>下一页</a></li>
-                    <li><a <s:if test="pageBean.page != pageBean.totalPage"> href="searchBookInfo.action?page=<s:property value="pageBean.totalPage"/>&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>尾页</a></li>
-                    <li><select style="border: 0px;height: 33px">
+            <s:if test="pageBean.totalPage!=0">
+                <div class="row" style="text-align: center">
+                    <ul class="pagination">
+                        <li></li>
+                        <li><a <s:if test="pageBean.page != 1"> href="searchBookInfo.action?page=1&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>首页</a></li>
+                        <li><a <s:if test="pageBean.page > 1"> href="searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>" </s:if>>上一页</a></li>
+                        <li><a <s:if test="pageBean.page < pageBean.totalPage"> href="searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>下一页</a></li>
+                        <li><a <s:if test="pageBean.page != pageBean.totalPage&&pageBean.totalPage>0"> href="searchBookInfo.action?page=<s:property value="pageBean.totalPage"/>&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>尾页</a></li>
+                        <li><select style="border: 0px;height: 33px">
                             <s:if test="1 < pageBean.page">
                                 <option><a href="searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">第<s:property value="pageBean.page-1"/>/<s:property value="pageBean.totalPage"/>页</a></option>
                             </s:if>
@@ -88,9 +89,10 @@
                             <s:if test="pageBean.page < pageBean.totalPage">
                                 <option><a href="searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">第<s:property value="pageBean.page+1"/>/<s:property value="pageBean.totalPage"/>页</a></option>
                             </s:if>
-                    </select></li>
-                </ul>
-            </div>
+                        </select></li>
+                    </ul>
+                </div>
+            </s:if>
         </s:iterator>
             <!--分页标签END-->
         </div>
@@ -101,32 +103,33 @@
 <div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="borrowLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="borrowLabel">您还没有登录，请先登录</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <form class="loginform form-horizontal" id="loginform" method="post">
-                            <div class="form-group">
-                                <input class="form-control username" id="username" placeholder="请输入用户名" />
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control password" id="password" placeholder="请输入密码" />
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-4"></div>
+            <form class="loginform form-horizontal" id="loginform" method="post" action="userLogin.action">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="borrowLabel">您还没有登录，请先登录</h4>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">登录</button>
-            </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input class="form-control username" name="username" id="username" placeholder="请输入用户名" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control password" id="password" name="upassword" placeholder="请输入密码" />
+                                    </div>
+                            </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">登陆</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
