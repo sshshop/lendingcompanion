@@ -29,7 +29,6 @@ public class CategoryAction extends ActionSupport {
             @Result(name = "success",location = "test.jsp")
     })
     public String findcategoryall() {
-        System.out.println("进入一级分类表");
         List<Category> list = categoryService.findCategoryAll();
         System.out.println(list.get(0).getCname());
         return SUCCESS;

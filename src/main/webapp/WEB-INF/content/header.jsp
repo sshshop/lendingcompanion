@@ -10,8 +10,8 @@
             <span>“无微不至”的借阅伴侣</span>
         </div>
         <div class="col-md-2 header_title_right">
-            <a class="login">登录</a>
-            <a class="register" href="../html/register.html">注册</a>
+            <a class="login" href="loginS.action">登录</a>
+            <a class="register" href="html/register.html">注册</a>
             <a class="collect">收藏本站</a>
         </div>
     </div>
@@ -21,9 +21,9 @@
             <img src="image/logo.png">
         </div>
         <div class="col-md-7 header_search">
-            <form class="nameSearch_form" id="nameSearch_form" action="">
+            <form class="nameSearch_form" id="nameSearch_form" method="post" action="searchBookInfo.action">
                 <span class="header_search_text">书名或作者名</span>
-                <input class="nameSearch" id="nameSearch" type="text" placeholder="请输入您要搜的书..." style="padding-left:10px;" />
+                <input class="nameSearch" id="inputInfo" name="inputInfo" type="text" placeholder="请输入您要搜的书..." style="padding-left:10px;"  <s:if test="inputInfo!=null"> value="<%=request.getParameter("inputInfo")%>"</s:if>/>
                 <button type="submit"><span class="glyphicon-search"></span></button>
             </form>
             <div class="header_search_title">
@@ -34,7 +34,7 @@
     <!--导航栏-->
     <div class="row header_nav" id="header_nav">
         <div class="col-md-12">
-            <a  href="#">主页</a>
+            <a  href="index.action">主页</a>
             <a  href="#">热门推荐</a>
             <a  href="#">借书排行榜</a>
             <a  href="#">网站简介</a>

@@ -1,18 +1,140 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>搜索</title>
-    <link href="./css/base.css" type="text/css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>“无微不至”的借阅伴侣</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/productlist.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <script src="js/jquery-2.1.1/jquery.min.js"></script>
+    <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <s:actionerror/>
-    <form method="post" action="${pageContext.request.contextPath}/searchBookInfo.action">
-        <input id="inputInfo" name="inputInfo"  placeholder="请输入您要搜索的作品" >
-        <input type="submit" name="submit" value="搜索">
-    </form>
+<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg" style="width: 100%;height: 100%;"></div>
+<!--头部页面-->
+<%@include file="header.jsp"%>
+<!--中间部分-->
+<div class="container index">
+    <div class="row">
+        <div class="col-md-3 index_category">
+            <div class="col-md-8 category_nav">
+                <ol class="">
+                    <li class="category_nav_item"><a href="#">分类1</a></li>
+                    <li class="category_nav_item"><a href="#">分类2</a></li>
+                    <li class="category_nav_item"><a href="#">分类3</a></li>
+                    <li class="category_nav_item"><a href="#">分类4</a></li>
+                    <li class="category_nav_item"><a href="#">分类5</a></li>
+                    <li class="category_nav_item"><a href="#">分类6</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-9 index_information">
+            <!--显示搜索结果start-->
+            <div style="float: right;margin-right: 5px">
+                <s:iterator var="pageBean" value="pageBean">
+                    <tr>
+                        <td>共查询<s:property value="#pageBean.totalCount"/>条信息<br/></td>
+                    </tr>
+                </s:iterator>
+            </div>
+            <s:actionmessage/>
+            <s:iterator var="BookList" value="BookList">
+                <div class="productlist">
+                    <div class="row productlist_2" style="overflow: hidden">
+                        <div class="col-md-3 productlistimg">
+                            <a href="#"><img src="<s:property value="#BookList.bname"/>"></a>
+                        </div>
+                        <div class="col-md-8 productlistcontent">
+                            <div class="row productlistname">
+                                <span class="bname">书名：<s:property value="#BookList.bname"/></span>
+                            </div>
+                            <div class="row productlistauthor">
+                                <span class="bauthor">作者：<s:property value="#BookList.bauthor"/></span>
+                            </div>
+                            <div class="row productlistauthor">
+                                <span class="bauthor">出版社：<s:property value="#BookList.badr"/></span>
+                            </div>
+                            <div class="row productlisttext">
+                                <span class="bnumber">图书编号：<s:property value="#BookList.bnum"/></span>
+                            </div>
+                            <div class="row">
+                                <div class="borrowButton">
+                                    <button type="button" class="borrow" data-toggle="modal" data-target="#borrowModal"><img src="image/borrow.gif"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </s:iterator>
+            <!--显示搜索结果end-->
+
+            <!--分页标签start 不要删-->
+        <s:iterator begin="var item=1" var="pageBean" value="pageBean">
+            <div class="row" style="text-align: center">
+                <ul class="pagination">
+                    <li></li>
+                    <li><a <s:if test="pageBean.page != 1"> href="searchBookInfo.action?page=1&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>首页</a></li>
+                    <li><a <s:if test="pageBean.page > 1"> href="searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>" </s:if>>上一页</a></li>
+                    <li><a <s:if test="pageBean.page < pageBean.totalPage"> href="searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>下一页</a></li>
+                    <li><a <s:if test="pageBean.page != pageBean.totalPage"> href="searchBookInfo.action?page=<s:property value="pageBean.totalPage"/>&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>尾页</a></li>
+                    <li><select style="border: 0px;height: 33px">
+                            <s:if test="1 < pageBean.page">
+                                <option><a href="searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">第<s:property value="pageBean.page-1"/>/<s:property value="pageBean.totalPage"/>页</a></option>
+                            </s:if>
+                            <a href=""><option selected>第<s:property value="pageBean.page"/>/<s:property value="pageBean.totalPage"/>页</option></a>
+                            <s:if test="pageBean.page < pageBean.totalPage">
+                                <option><a href="searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">第<s:property value="pageBean.page+1"/>/<s:property value="pageBean.totalPage"/>页</a></option>
+                            </s:if>
+                    </select></li>
+                </ul>
+            </div>
+        </s:iterator>
+            <!--分页标签END-->
+        </div>
+    </div>
+</div>
+<br>
+<!--模态框主体start-->
+<div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="borrowLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="borrowLabel">您还没有登录，请先登录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <form class="loginform form-horizontal" id="loginform" method="post">
+                            <div class="form-group">
+                                <input class="form-control username" id="username" placeholder="请输入用户名" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control password" id="password" placeholder="请输入密码" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--模态框主体end-->
+<!--底部页面-->
+<%@include file="footer.jsp"%>
 </body>
 </html>
 
+</body>
+</html>
