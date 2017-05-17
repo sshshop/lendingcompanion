@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>借阅伴侣</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/productlist.css">
+    <link rel="stylesheet" href="../css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <script src="../js/jquery-2.1.1/jquery.min.js"></script>
+    <script src="../css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body onload="goPage(1,12)">
+<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="../image/background.jpg" style="width: 100%;height: 100%;"></div>
+<!--头部页面-->
+<div class="container header">
+    <!-- 顶部信息 -->
+    <div class="row header_title">
+        <div class="col-md-4 header_title_left">
+
+        </div>
+        <div class="col-md-6 header_title_mid">
+            <span>“无微不至”的借阅伴侣</span>
+        </div>
+        <div class="col-md-2 header_title_right">
+            <a class="login">登录</a>
+            <a class="register" href="../html/register.html">注册</a>
+            <a class="collect">收藏本站</a>
+        </div>
+    </div>
+    <!-- logo以及搜索框 -->
+    <div class="row header_main">
+        <div class="col-md-5 logo">
+            <img src="../image/logo.png">
+        </div>
+        <div class="col-md-7 header_search">
+            <form class="nameSearch_form" id="nameSearch_form" action="">
+                <span class="header_search_text">书名或作者名</span>
+                <input class="nameSearch" id="nameSearch" type="text" placeholder="请输入您要搜的书..." style="padding-left:10px;" />
+                <button type="submit"><span class="glyphicon-search"></span></button>
+            </form>
+            <div class="header_search_title">
+                无微不至，搜你想搜
+            </div>
+        </div>
+    </div>
+    <!--导航栏-->
+    <div class="row header_nav" id="header_nav">
+        <div class="col-md-12">
+            <a  href="#">主页</a>
+            <a  href="#">热门推荐</a>
+            <a  href="#">借书排行榜</a>
+            <a  href="#">网站简介</a>
+            <a  href="#">网站公告</a>
+            <a  href="#">联系我们</a>
+        </div>
+    </div>
+    <!--面包屑导航栏-->
+    <div class="row header_smallNav">
+        <div class="col-md-12">
+            <span class="header_smallNav_text">您所在的位置:</span>
+            <ol class="breadcrumb">
+                <li><a href="#">主页</a></li>
+                <li class="active">图书列表</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<!--中间部分-->
+<div class="container index">
+    <div class="row">
+        <div class="col-md-3 index_category">
+            <div class="col-md-8 category_nav">
+                <ol class="">
+                    <li class="category_nav_item"><a href="#">分类1</a></li>
+                    <li class="category_nav_item"><a href="#">分类2</a></li>
+                    <li class="category_nav_item"><a href="#">分类3</a></li>
+                    <li class="category_nav_item"><a href="#">分类4</a></li>
+                    <li class="category_nav_item"><a href="#">分类5</a></li>
+                    <li class="category_nav_item"><a href="#">分类6</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-9 index_information">
+            <!--显示搜索结果start-->
+            <div class="row">
+                <div class="col-md-12 index_booklist">
+                    <span class="index_booklist_text">热门流行书</span>
+                </div>
+            </div>
+            <div class="row book_list" id="count">
+
+                    <div class="col-md-3 book_list_item">
+                        <a href="#">
+                            <img src="../image/1/d01.jpg" class="book_img">
+                        </a>
+                        <br>
+                        <span class="bname">《今天也想表白你》</span>
+                        <br>
+                        作者：<span class="hborrowed"></span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d02.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《散步去》</span>
+                        <br>
+                        作者：<span class="hborrowed"></span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d03.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《爆笑校园》</span>
+                        <br>
+                        作者：<span class="hborrowed"></span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《是我把你弄哭了吗》</span>
+                        <br>
+                        作者：<span class="hborrowed">123123123</span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《是我把你弄哭了吗》</span>
+                        <br>
+                        作者：<span class="hborrowed">123123123</span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《是我把你弄哭了吗》</span>
+                        <br>
+                        作者：<span class="hborrowed">123123123</span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《是我把你弄哭了吗》</span>
+                        <br>
+                        作者：<span class="hborrowed">123123123</span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《是我把你弄哭了吗》</span>
+                        <br>
+                        作者：<span class="hborrowed">123123123</span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《是我把你弄哭了吗》</span>
+                        <br>
+                        作者：<span class="hborrowed">123123123</span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《是我把你弄哭了吗》</span>
+                        <br>
+                        作者：<span class="hborrowed">123123123</span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《是我把你弄哭了吗》</span>
+                        <br>
+                        作者：<span class="hborrowed">123123123</span>
+                    </div>
+                    <div class="col-md-3 book_list_item">
+                        <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                        <br>
+                        <span class="bname">《是我把你弄哭了吗》</span>
+                        <br>
+                        作者：<span class="hborrowed">123123123</span>
+                    </div>
+                <div class="col-md-3 book_list_item">
+                    <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                    <br>
+                    <span class="bname">《是我把你弄哭了吗》</span>
+                    <br>
+                    作者：<span class="hborrowed">123123123</span>
+                </div>
+                <div class="col-md-3 book_list_item">
+                    <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                    <br>
+                    <span class="bname">《是我把你弄哭了吗》</span>
+                    <br>
+                    作者：<span class="hborrowed">123123123</span>
+                </div>
+                <div class="col-md-3 book_list_item">
+                    <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                    <br>
+                    <span class="bname">《是我把你弄哭了吗》</span>
+                    <br>
+                    作者：<span class="hborrowed">123123123</span>
+                </div>
+                <div class="col-md-3 book_list_item">
+                    <a href="#"><img src="../image/1/d04.jpg" class="book_img"></a>
+                    <br>
+                    <span class="bname">《是我把你弄哭了吗》</span>
+                    <br>
+                    作者：<span class="hborrowed">123123123</span>
+                </div>
+
+            </div>
+            <!--热门推荐-->
+            <div class="row" style="height: 50px; float: right; margin-right: 30px;">
+                <ul class="pagination pagination-sm" id="jumpWhere">
+                    <!--<%&#45;&#45;<li><a href="#">2</a></li>&#45;&#45;%>-->
+                    <!--<%&#45;&#45;<li><a href="#">3</a></li>&#45;&#45;%>-->
+                    <!--<%&#45;&#45;<li><a href="#">4</a></li>&#45;&#45;%>-->
+                    <!--<%&#45;&#45;<li><a href="#">5</a></li>&#45;&#45;%>-->
+                    <!--<%&#45;&#45;<li><a href="#">6</a></li>&#45;&#45;%>-->
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<!--底部页面-->
+<div class="container footer">
+    <div class="row img_information">
+        <div class="col-md-3 img_item">
+            <img class="img1" src="../image/service_items_1.png">
+        </div>
+        <div class="col-md-3 img_item">
+            <img class="img2" src="../image/service_items_2.png">
+        </div>
+        <div class="col-md-3 img_item">
+            <img class="img3" src="../image/service_items_3.png">
+        </div>
+        <div class="col-md-3 img_item">
+            <img class="img4" src="../image/service_items_4.png">
+        </div>
+    </div>
+    <div class="row " id="footer-2013">
+        <div class="links">
+
+            <a href="article-5.html" target="_blank">关于我们</a>
+            |
+
+            <a href="article-1056.html" target="_blank">法律声明</a>
+            |
+
+            <a href="article-24.html" target="_blank">诚征英才</a>
+            |
+
+            <a href="article-9.html" target="_blank">商家入驻</a>
+            |
+
+            <a href="article-12.html" target="_blank">加盟我们</a>
+            |
+
+            <a href="article-14.html" target="_blank">广告服务</a>
+            |
+
+            <a href="article-1045.html" target="_blank">客服中心</a>
+
+
+        </div>
+
+        <div class="copyright">
+            Copyright © 2010-2017 XX借书网 www.XXX.com 版权所有 | E-mail：651081143@qq.com<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <br>
+
+            相关备案信息：京ICP备10218744号-1｜京ICP证070359号｜京公网安备11011202001572号｜新出发京零字第通100048号
+
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var pageSize=0;//每页显示行数
+    var currentPage_=1;//当前页全局变量，用于跳转时判断是否在相同页，在就不跳，否则跳转。
+    function goPage(pno,psize){
+        var divNum = document.getElementById("count");
+        var num = divNum.getElementsByClassName("book_list_item").length;
+        var divCount = divNum.getElementsByClassName("book_list_item");
+        pageSize = psize;//每页显示行数
+        //总共分几页
+        if(num/pageSize > parseInt(num/pageSize)){
+            totalPage=parseInt(num/pageSize)+1;
+        }else{
+            totalPage=parseInt(num/pageSize);
+        }
+        var currentPage = pno;//当前页数
+        currentPage_=currentPage;
+        var startRow = (currentPage - 1) * pageSize+1;
+        var endRow = currentPage * pageSize;
+        endRow = (endRow > num)? num : endRow;
+        //遍历显示数据实现分页
+        for(var i=1;i<(num+1);i++){
+            var irow = divCount[i-1];
+            if(i>=startRow && i<=endRow){
+                irow.style.display = "";
+            }else{
+                irow.style.display = "none";
+            }
+        }
+        var tempLi="";
+        for(var i=1;i<=totalPage;i++)
+
+        {
+            tempLi+='<li value='+i+'><a href="#comment" onclick="jumpPage('+i+')"> '+i+'</a></li>'
+        }
+        $("#jumpWhere").html(tempLi);
+        $("#jumpWhere").val(currentPage);
+    }
+
+
+    function jumpPage(i)
+    {
+        var num=parseInt(i);
+        console.log(pageSize);
+        if(num!=currentPage_)
+        {
+            goPage(num,pageSize);
+        }
+    }
+</script>
+</html>

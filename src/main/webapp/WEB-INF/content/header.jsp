@@ -28,11 +28,10 @@
         <div class="col-md-7 header_search">
             <form class="nameSearch_form" id="nameSearch_form" method="post" action="searchBookInfo.action">
                 <span class="header_search_text">书名或作者名</span>
-                <input class="nameSearch" id="inputInfo" name="inputInfo" type="text" placeholder="请输入您要搜的书..." style="padding-left:10px;"  <s:if test="inputInfo!=null"> value="<%=request.getParameter("inputInfo")%>"</s:if>/>
+                <input class="nameSearch" id="inputInfo" name="inputInfo" type="text" placeholder="无微不至，搜你想搜..." style="padding-left:10px;"  <s:if test="inputInfo!=null"> value="<%=request.getParameter("inputInfo")%>"</s:if>/>
                 <button type="submit"><span class="glyphicon-search"></span></button>
             </form>
             <div class="header_search_title">
-                无微不至，搜你想搜
             </div>
         </div>
     </div>

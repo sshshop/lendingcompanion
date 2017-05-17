@@ -103,6 +103,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 list.addAll(pageBean.getList());
             }
             bookList = uniq(list);//去重并保持排序
+            System.out.println(bookList.get(0).getBid());
             ActionContext.getContext().getValueStack().set("pageBean", pageBean);
             if (bookList != null && bookList.size() > 0) {
                 ActionContext.getContext().getValueStack().set("BookList", bookList);

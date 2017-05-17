@@ -35,7 +35,7 @@ public interface BookDao {
     * #{begin,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
     * 查询页数
     * */
-    @Select("select bcover,bname,bauthor,nborrowed,badr,bcobn,bnum from book " +
+    @Select("select bid,bcover,bname,bauthor,nborrowed,badr,bcobn,bnum from book " +
             "where bname REGEXP CONCAT('(',#{bname},')')" +
             "OR initials REGEXP CONCAT('(',#{initials},')') " +
             "OR fight REGEXP CONCAT('(',#{fight},')') " +

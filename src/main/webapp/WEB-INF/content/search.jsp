@@ -22,12 +22,9 @@
         <div class="col-md-3 index_category">
             <div class="col-md-8 category_nav">
                 <ol class="">
-                    <li class="category_nav_item"><a href="#">分类1</a></li>
-                    <li class="category_nav_item"><a href="#">分类2</a></li>
-                    <li class="category_nav_item"><a href="#">分类3</a></li>
-                    <li class="category_nav_item"><a href="#">分类4</a></li>
-                    <li class="category_nav_item"><a href="#">分类5</a></li>
-                    <li class="category_nav_item"><a href="#">分类6</a></li>
+                    <s:iterator var="c" value="#session.category">
+                        <li class="category_nav_item"><a href="#"><s:property value="#c.cname" /></a></li>
+                    </s:iterator>
                 </ol>
             </div>
         </div>
@@ -45,7 +42,7 @@
                 <div class="productlist">
                     <div class="row productlist_2" style="overflow: hidden">
                         <div class="col-md-3 productlistimg">
-                            <a href="#"><img src="<s:property value="#BookList.bname"/>"></a>
+                            <a href="findBookBybid.action?bid=<s:property value="#BookList.bid"/>"><img src="<s:property value="#BookList.bcover"/>"></a>
                         </div>
                         <div class="col-md-8 productlistcontent">
                             <div class="row productlistname">
