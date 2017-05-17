@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/bookdetail.css">
     <link rel="stylesheet" href="css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="laydate/skins/default/laydate.css" id="LayDateSkin">
+    <link type="text/css" rel="stylesheet" href="laydate/need/laydate.css">
     <script src="js/pageJS.js"></script>
     <script src="js/jquery-2.1.1/jquery.js"></script>
     <script src="js/jquery-2.1.1/jquery.min.js"></script>
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="laydate/laydate.js"></script>
     <title>书籍详情页</title>
 </head>
 <body onload="goPage(1,7)">
@@ -27,62 +30,21 @@
         <div class="col-md-3 index_about_book">
             <div class="col-md-9 about-book ">
                 <div class="row" style="margin-bottom: 5px"><span STYLE="font-size: 20px">相关书籍</span></div>
-                <div class="row">
-                    <div class="about-book-imagediv"><img class="about-book-image" src="image/1/d02.png"
-                                                          alt=""></div>
-                    <div class=" about-book-detaildiv">
-                        <span>《在那遥远的地方》</span>
-                        <br>
-                        <span>作者：谢晓晓</span>
+                <s:iterator var="c" value="category">
+                    <div class="row">
+                        <div class="about-book-imagediv"><a
+                                href="findBookBybid.action?bid=<s:property value="#c.bid"/>&cid=<s:property value="c.cid" />"><img
+                                class="about-book-image" src="<s:property value="#c.bcover"/> " alt=""></a></div>
+                        <div class=" about-book-detaildiv">
+                            <span><a
+                                    href="findBookBybid.action?bid=<s:property value="#c.bid"/>&cid=<s:property value="c.cid" />">《<s:property
+                                    value="#c.bname"/> 》</a></span>
+                            <br>
+                                <%--加上搜索链接--%>
+                            <span>作者：<s:property value="#c.bauthor"/> </span>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="about-book-imagediv"><img class="about-book-image" src="image/1/d02.png"
-                                                          alt=""></div>
-                    <div class=" about-book-detaildiv">
-                        <span>《在那遥远的地方》</span>
-                        <br>
-                        <span>作者：谢晓晓</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="about-book-imagediv"><img class="about-book-image" src="image/1/d02.png"
-                                                          alt=""></div>
-                    <div class=" about-book-detaildiv">
-                        <span>《在那遥远的地方》</span>
-                        <br>
-                        <span>作者：谢晓晓</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="about-book-imagediv"><img class="about-book-image" src="image/1/d02.png"
-                                                          alt=""></div>
-                    <div class=" about-book-detaildiv">
-                        <span>《在那遥远的地方》</span>
-                        <br>
-                        <span>作者：谢晓晓</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="about-book-imagediv"><img class="about-book-image" src="image/1/d02.png"
-                                                          alt=""></div>
-                    <div class=" about-book-detaildiv">
-                        <span>《在那遥远的地方》</span>
-                        <br>
-                        <span>作者：谢晓晓</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="about-book-imagediv"><img class="about-book-image" src="image/1/d02.png"
-                                                          alt=""></div>
-                    <div class=" about-book-detaildiv">
-                        <span>《在那遥远的地方》</span>
-                        <br>
-                        <span>作者：谢晓晓</span>
-                    </div>
-                </div>
-
-
+                </s:iterator>
             </div>
         </div>
         <div class="col-md-9 index-information">
@@ -186,12 +148,23 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
                 </button>
-                <h4 class="modal-title" id="borrowLabel">您还没有登录，请先登录</h4>
+                <h4 class="modal-title" id="borrowLabel">
+                    <s:if test="#session.loginedUser == null">
+                    您还没有登录，请先登录
+                    </s:if><s:else>
+                            <s:if test="model.nborrowed > 0">
+                                请选择您的取书时间和还书时间
+                            </s:if><s:else>
+                                啊哦~已经没有余量了
+                            </s:else>
+                </s:else>
+                </h4>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <s:if test="#session.loginedUser == null">
                         <form class="loginform form-horizontal" id="loginform" method="post">
                             <div class="form-group">
                                 <input class="form-control username" id="username" placeholder="请输入用户名"/>
@@ -200,13 +173,38 @@
                                 <input class="form-control password" id="password" placeholder="请输入密码"/>
                             </div>
                         </form>
+                        </s:if><s:else>
+                                <s:if test="model.nborrowed > 0">
+                                    <form class="" method="post">
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-4">取书时间</label>
+                                            <input style="height: 50px;" type="text" class="form-control col-md-4 laydate-icon" id="borrowTime" />
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-4">还书时间</label>
+                                            <input style="height: 50px;" type="text" class="form-control col-md-4 laydate-icon" id="takeTime" />
+                                        </div>
+
+                                    </form>
+                                </s:if><s:else>
+                                    <p style="font-size: 18px;color: #000;">亲！这本书已经没有余量了，点击下方的收藏按钮我们会在有书的第一时间通知您的哟</p>
+                        </s:else>
+                    </s:else>
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-2"></div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <s:if test="#session.loginedUser == null">
                 <button type="button" class="btn btn-primary">登录</button>
+                </s:if><s:else>
+                        <s:if test="model.nborrowed > 0">
+                         <button type="submit" class="btn btn-primary">借阅</button>
+                        </s:if><s:else>
+                         <button  class="btn btn-primary">收藏</button>
+                        </s:else>
+            </s:else>
             </div>
         </div>
     </div>
@@ -217,4 +215,33 @@
 <%@include file="footer.jsp" %>
 
 </body>
+<script>
+    var star = {
+        elem:'#borrowTime',
+        format:'YYYY/MM/DD',
+        min:laydate.now(),
+        max:laydate.now(3),
+        istime:true,
+        istoday:false,
+        choose:function (datas) {
+            end.min = datas;//开始日选好以后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+
+    var end = {
+        elem:'#takeTime',
+        format:'YYYY/MM/DD',
+        min:laydate.now(),
+        max:'2099-12-30',
+        istime:true,
+        istoday:false,
+        choose:function (datas) {
+            start.max = datas;
+        }
+    };
+    laydate(star);
+    laydate(end)
+
+</script>
 </html>
