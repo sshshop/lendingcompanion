@@ -31,9 +31,21 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:myatis.xml"/>
     </bean>
-    <!--配置userdao的bean-->
+
+    <!--配置userdao的bean《陆育静》-->
     <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.lyj.dao.UserDao"/>
+        <property name="mapperInterface" value="com.lyj.user.dao.UserDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    <!--配置province《陆育静》-->
+    <bean id="provinceDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lyj.province.dao.ProvinceDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!--配置city《陆育静》-->
+    <bean id="cityDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lyj.city.dao.CityDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
     <!-- 一级分类category的dao配置《罗剑》-->
@@ -41,16 +53,8 @@
         <property name="mapperInterface" value="com.lj.category.dao.CategoryDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
-    <!--配置province-->
-    <bean id="provinceDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.upublic.dao.ProvinceDao"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-    <!--配置city-->
-    <bean id="cityDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.upublic.dao.cityDao"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
+
+
     <bean id="bookDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.jidy.searchbook.dao.BookDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
