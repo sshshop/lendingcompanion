@@ -3,15 +3,20 @@
 <div class="container header">
     <!-- 顶部信息 -->
     <div class="row header_title">
-        <div class="col-md-4 header_title_left">
+        <div class="col-md-2 header_title_left">
 
         </div>
         <div class="col-md-6 header_title_mid">
             <span>“无微不至”的借阅伴侣</span>
         </div>
-        <div class="col-md-2 header_title_right">
+        <div class="col-md-4 header_title_right">
+            <s:if test="#session.loginedUser == null">
             <a class="login" href="loginS.action">登录</a>
-            <a class="register" href="html/register.html">注册</a>
+            <a class="register" href="loginS.action">注册</a>
+            </s:if><s:else>
+            <a class="login" href="#"><s:property value="#session.loginedUser.username" /></a>
+            <a class="login" href="#">个人中心</a>
+        </s:else>
             <a class="collect">收藏本站</a>
         </div>
     </div>
