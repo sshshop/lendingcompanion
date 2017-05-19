@@ -1,6 +1,6 @@
 import com.lj.bookcomment.dao.BookcommentDao;
 import com.lj.category.service.CategoryService;
-import com.lyj.service.UserService;
+import com.lyj.user.service.UserService;
 import com.upublic.vo.Book;
 import com.upublic.vo.Bookcomment;
 import org.junit.Test;
