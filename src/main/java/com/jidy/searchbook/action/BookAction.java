@@ -2,6 +2,7 @@ package com.jidy.searchbook.action;
 
 
 import com.jidy.searchbook.service.BookService;
+import com.jidy.searchbook.utils.KeyWordRed;
 import com.jidy.searchbook.utils.SearchRegex;
 import com.lj.category.service.CategoryService;
 import com.opensymphony.xwork2.ActionContext;
@@ -43,8 +44,10 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     //获取前台页面的值
     private String inputInfo;
     private Integer page = 1;
-    //将字符串匹配
+    //匹配字符串
     SearchRegex searchRegex = new SearchRegex();
+    //关键字标红
+    KeyWordRed<Book> keyWordRed=new KeyWordRed<Book>();
 
     public void setPage(Integer page) {
         this.page = page;
@@ -99,15 +102,16 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         if (search.length() != 0) {
             book = bookInfo(search);//获取book对象
             PageBean<Book> pageBean = bookService.findByPage(book, page);
-            list.addAll(pageBean.getList());
+            //将关键字加粗标红
+            list.addAll(keyWordRed.replaceList(pageBean.getList(),inputInfo));
             //如果查询为空进行第二次查询
             if (list == null || list.size() <= 0) {
-                book = bookInfo(searchRegex.searchFinal(inputInfo));//第二次匹配
+                String string[]=searchRegex.searchFinal(inputInfo);
+                book = bookInfo(string);//第二次匹配
                 pageBean = bookService.findByBname(book, page);
-                list.addAll(pageBean.getList());
+                list.addAll(keyWordRed.replaceList(pageBean.getList(),inputInfo));
             }
             bookList = uniq(list);//去重并保持排序
-            System.out.println(bookList.get(0).getBid());
             ActionContext.getContext().getValueStack().set("pageBean", pageBean);
             if (bookList != null && bookList.size() > 0) {
                 ActionContext.getContext().getValueStack().set("BookList", bookList);
@@ -176,7 +180,6 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         }
 
     }
-
 
     public Book getModel() {
         return book;

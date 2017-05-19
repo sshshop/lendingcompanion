@@ -46,16 +46,16 @@
                         </div>
                         <div class="col-md-8 productlistcontent">
                             <div class="row productlistname">
-                                <span class="bname">书名：<s:property value="#BookList.bname"/></span>
+                                <span class="bname">书名：<s:property value="#BookList.bname"  escapeHtml="escapeHtml"/></span>
                             </div>
                             <div class="row productlistauthor">
-                                <span class="bauthor">作者：<s:property value="#BookList.bauthor"/></span>
+                                <span class="bauthor">作者：<s:property value="#BookList.bauthor" escapeHtml="escapeHtml"/></span>
                             </div>
                             <div class="row productlistauthor">
-                                <span class="bauthor">出版社：<s:property value="#BookList.badr"/></span>
+                                <span class="bauthor">出版社：<s:property value="#BookList.badr" escapeHtml="escapeHtml"/></span>
                             </div>
                             <div class="row productlisttext">
-                                <span class="bnumber">图书编号：<s:property value="#BookList.bnum"/></span>
+                                <span class="bnumber">图书编号：<s:property value="#BookList.bnum" escapeHtml="escapeHtml"/></span>
                             </div>
                             <div class="row">
                                 <div class="borrowButton">

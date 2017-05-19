@@ -6,7 +6,7 @@ import org.apache.ibatis.jdbc.SQL;
 import java.util.Map;
 
 /**
- * Created by jidy on 2017/5/15.
+ * Created by ojidy n 2017/5/15.
  */
 public class SearchBookSqlProvider {
 
