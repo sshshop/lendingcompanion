@@ -8,3 +8,5 @@ lengingbook.iml
 /.idea/
 /.idea/dataSources/*.xml
 /.idea/libraries/*.xml
+lib/
+target/

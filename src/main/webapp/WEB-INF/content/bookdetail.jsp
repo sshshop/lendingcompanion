@@ -33,7 +33,7 @@
                 <s:iterator var="c" value="category">
                     <div class="row">
                         <div class="about-book-imagediv"><a
-                                href="findBookBybid.action?bid=<s:property value="#c.bid"/>&cid=<s:property value="c.cid" />"><img
+                                href="findBookBybid.action?bid=<s:property value="#c.bid"/>&cid=<s:property value="#c.cid" />"><img
                                 class="about-book-image" src="<s:property value="#c.bcover"/> " alt=""></a></div>
                         <div class=" about-book-detaildiv">
                             <span><a
@@ -120,11 +120,6 @@
                         </div>
                         <div class="row" style="height: 50px; float: right; margin-right: 30px;">
                             <ul class="pagination pagination-sm" id="jumpWhere">
-                                <%--<li><a href="#">2</a></li>--%>
-                                    <%--<li><a href="#">3</a></li>--%>
-                                    <%--<li><a href="#">4</a></li>--%>
-                                    <%--<li><a href="#">5</a></li>--%>
-                                    <%--<li><a href="#">6</a></li>--%>
 
                             </ul>
 

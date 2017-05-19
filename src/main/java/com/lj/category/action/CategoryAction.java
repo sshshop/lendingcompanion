@@ -32,10 +32,12 @@ public class CategoryAction extends ActionSupport {
      * @return
      */
     @Action(value = "findBookByCid",
-            results = @Result(name = SUCCESS, location = "index.jsp")
+            results = @Result(name = SUCCESS, location = "categorySearch.jsp")
     )
     public String findBookByCid() {
+        this.addActionMessage("分类搜索");
         ActionContext.getContext().getValueStack().set("cbook",categoryService.findBookByCid(cid));
+        ActionContext.getContext().getSession().put("categoryName",categoryService.findCategoryNameByCid(cid));
         return SUCCESS;
     }
 
