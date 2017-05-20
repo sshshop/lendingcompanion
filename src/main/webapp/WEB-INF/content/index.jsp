@@ -57,49 +57,13 @@
                     <s:iterator var="h" value="hbook">
                         <div class="row borrowBook_row">
                             <div class="col-md-10 bookname">
-                                <a href="findBookBybid.action?bid=<s:property value="#h.bid"/>&cid=<s:property value="h.cid" />" style="display: inherit;"><span class="borrorBook_row_item"><s:property value="#h.bname" /></span></a>
+                                <a href="findBookBybid.action?bid=<s:property value="#h.bid"/>" style="display: inherit;"><span class="borrorBook_row_item"><s:property value="#h.bname" /></span></a>
                             </div>
                             <div class="col-md-2 bookgrade">
                                 <span><s:property value="#h.hborrowed"/> </span>
                             </div>
                         </div>
                     </s:iterator>
-                   <%-- <div class="row borrowBook_row">
-                        <div class="col-md-4 bookname">
-                            <span>三体</span>
-                        </div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 bookgrade">
-                            <span>123123</span>
-                        </div>
-                    </div>
-                    <div class="row borrowBook_row">
-                        <div class="col-md-4 bookname">
-                            <span>三体</span>
-                        </div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 bookgrade">
-                            <span>123123</span>
-                        </div>
-                    </div>
-                    <div class="row borrowBook_row">
-                        <div class="col-md-4 bookname">
-                            <span>三体</span>
-                        </div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 bookgrade">
-                            <span>123123</span>
-                        </div>
-                    </div>
-                    <div class="row borrowBook_row">
-                        <div class="col-md-4 bookname">
-                            <span>三体</span>
-                        </div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 bookgrade">
-                            <span>123123</span>
-                        </div>
-                    </div>--%>
                 </div>
             </div>
             <div class="row">
@@ -111,11 +75,11 @@
                 <div>
                     <s:iterator var="n" value="nbook">
                         <div class="col-md-3 book_list_item">
-                            <a href="findBookBybid.action?bid=<s:property value="#n.bid"/>&cid=<s:property value="h.cid" />">
+                            <a href="findBookBybid.action?bid=<s:property value="#n.bid"/>">
                                 <img src="<s:property value="#n.bcover" />" class="book_img">
                             </a>
                             <br>
-                            <span class="bname"><a href="findBookBybid.action?bid=<s:property value="#n.bid"/>&cid=<s:property value="h.cid" /> "><s:property value="#n.bname" /></a></span>
+                            <span class="bname"><a href="findBookBybid.action?bid=<s:property value="#n.bid"/>"><s:property value="#n.bname" /></a></span>
                             <br>
                             余量：<span class="hborrowed"><s:property value="#n.nborrowed" /></span>
                         </div>

@@ -36,6 +36,12 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     private String city;
     private String dob;
     private String sex1;
+    private int bid;//图书bid
+    private int status=0;//用户跳转状态，默认值为0；1为详情页跳转，2未搜索页跳转
+
+    public void setBid(int bid) {
+        this.bid = bid;
+    }
 
     public void setSex1(String sex1) {
         this.sex1 = sex1;
@@ -91,7 +97,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     )
     public String login() {
         User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
-        if (loginuser==null) {
+        if (loginuser == null) {
             List<User> list = userService.findUserAll(user);
             if (list.isEmpty()) {
                 //登录失败
@@ -103,7 +109,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
                 ServletActionContext.getRequest().getSession().setAttribute("existedUser", list.get(0));
                 return "loginSuccess";
             }
-        }else {
+        } else {
             return ERROR;
         }
     }
@@ -205,7 +211,43 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     }
     )
     public String loginOut() {
+        ServletActionContext.getRequest().getSession().removeAttribute("existedUser");
         ServletActionContext.getRequest().getSession().invalidate();
         return SUCCESS;
+    }
+
+    /**
+     * 用于用户前台在非首页登录跳转到当前页面
+     * @return
+     */
+    @Action(value = "loginJumpThis",
+
+            results = {
+                    @Result(type = "redirect", location = "findBookBybid.action"),
+                    @Result(name = ERROR, type = "redirect", location = "index.action"),
+                    @Result(name = LOGIN,location = "login.jsp")
+            }
+    )
+    public String loginJumpThis() {
+        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (loginuser != null) {
+            System.out.println("已经登录过了");
+            return ERROR;
+        }
+        System.out.println("进入登录了，书名是：" + bid+"状态是："+status);
+        ServletActionContext.getRequest().getSession().setAttribute("bid", bid);
+        System.out.println(user.getUsername() + "--" + user.getUpassword());
+        List<User> list = userService.findUserAll(user);
+        if (list.isEmpty()) {
+        this.addActionError("用户名或者密码错误");
+            //登录失败
+            return LOGIN;
+        } else {
+            System.out.println("登录成功--------------");
+            ServletActionContext.getRequest().getSession().setAttribute("existedUser", list.get(0).getUsername());
+            ServletActionContext.getResponse().setStatus(1);
+            return SUCCESS;
+        }
+
     }
 }

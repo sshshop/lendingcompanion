@@ -15,10 +15,7 @@ import com.upublic.utils.PageBean;
 import com.upublic.vo.Book;
 import com.upublic.vo.User;
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.*;
 
 import com.lj.bookcomment.service.BookCommentService;
 
@@ -159,20 +156,30 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     @Action(
             value = "findBookBybid",
             results = {
-                    @Result(name = "findfail", location = "notFind.jsp"),
-                    @Result(name = "findsuccess", location = "bookdetail.jsp"),
-                    @Result(name = "login", location = "login.jsp")
+                    @Result(name = ERROR, location = "index.action", type = "redirect"),
+                    @Result(location = "bookdetail.jsp"),
+            },
+            exceptionMappings = {
+                    //映射映射声明
+            @ExceptionMapping(exception="java.lang.Exception",result=ERROR)
             }
     )
     public String findBookByBid() {
+        Integer bid= (Integer) ServletActionContext.getRequest().getSession()
+                .getAttribute("bid");
+        if (bid!=null){
+            book.setBid(bid);
+            ServletActionContext.getRequest().getSession().removeAttribute("bid");
+           // ServletActionContext.getRequest().getSession().setAttribute("bid",null);
+        }
         book = bookService.findBookById(book.getBid());
         ActionContext.getContext().getValueStack().set("pageBean", bookCommentService.findCommentByBId(book.getBid()));
-       ActionContext.getContext().getValueStack().set("category",categoryService.findBookByCidSome(book.getCid()) );
+        ActionContext.getContext().getValueStack().set("category",categoryService.findBookByCidSome(book.getCid()) );
         if (book == null) {
-            return "findfail";
+            return ERROR;
         } else {
             this.addActionMessage("书籍详情");
-            return "findsuccess";
+            return SUCCESS;
         }
 
     }
