@@ -44,17 +44,32 @@
             <div class="row book_list" id="count">
 
                 <s:iterator var="c" value="cbook">
-                    <div class="col-md-3 book_list_item">
-                        <a href="#">
-                            <a href="findBookBybid.action?bid=<s:property value="#c.bid"/>&cid=<s:property value="c.cid" />"><img
+                    <div class="col-md-3 book_list_item" style="height: auto">
+                        <div class="row"><a href="#">
+                            <a href="findBookBybid.action?bid=<s:property value="#c.bid"/>"><img
                                     src="<s:property value="#c.bcover"/> " class="book_img">
                             </a>
-                            <br>
-                            <span class="bname"><a
-                                    href="findBookBybid.action?bid=<s:property value="#c.bid"/>&cid=<s:property value="c.cid" />">《<s:property
-                                    value="#c.bname"/>》</a></span>
-                            <br><%--作者搜索--%>
-                            作者：<s:property value="#c.bauthor"/><span class="hborrowed"></span>
+                        </div>
+                        <div class="row"> <span class="bname"><a
+                                href="findBookBybid.action?bid=<s:property value="#c.bid"/>">《<s:property
+                                value="#c.bname"/>》</a></span>
+                        </div>
+                        <div class="row">
+                            <div style="height: auto"><p
+                                    class="hborrowed" style="height: auto">作者：<s:property value="#c.bauthor"/></p>
+                                <br><br></div>
+                        </div>
+                            <%-- <a href="#">
+                                 <a href="findBookBybid.action?bid=<s:property value="#c.bid"/>"><img
+                                         src="<s:property value="#c.bcover"/> " class="book_img">
+                                 </a>--%>
+
+                            <%-- <span class="bname"><a
+                                     href="findBookBybid.action?bid=<s:property value="#c.bid"/>">《<s:property
+                                     value="#c.bname"/>》</a></span>--%>
+                            <%--作者搜索--%>
+                            <%--  作者：<s:property value="#c.bauthor"/><span class="hborrowed"></span>
+                              <br>--%>
                     </div>
                 </s:iterator>
 

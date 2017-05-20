@@ -23,7 +23,8 @@
                                                                                           style="width: 100%;height: 100%;">
 </div>
 <!--头部-->
-<<%@include file="header.jsp" %>
+<
+<%@include file="header.jsp" %>
 
 <!--中间-->
 <div class="container index">
@@ -145,7 +146,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="borrowLabel">
-                    <s:if test="#session.loginedUser == null">
+                    <s:if test="#session.existedUser == null">
                         您还没有登录，请先登录
                     </s:if><s:else>
                     <s:if test="model.nborrowed > 0">
@@ -160,15 +161,15 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8 logindiv">
-                        <s:if test="#session.loginedUser == null">
+                        <s:if test="#session.existedUser == null">
                             <form class="loginform form-horizontal" id="loginform" method="post"
-                                  action="loginJumpThis.action?bid=<s:property value="model.bid"/>&status=1 ">
+                                  action="loginJumpThis.action?bid=<s:property value="model.bid"/>">
                                 <div class="form-group">
                                     <input class="form-control username" name="username" id="username"
                                            placeholder="请输入用户名"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control password" name="upassword" id="upassword"
+                                    <input type="password" class="form-control password" name="upassword" id="upassword"
                                            placeholder="请输入密码"/>
                                 </div>
                                 <button type="submit" class="btn btn-primary">登录</button>
@@ -176,15 +177,15 @@
                             </form>
                         </s:if><s:else>
                         <s:if test="model.nborrowed > 0">
-                            <form class="" method="post">
+                            <form class="" method="post" action="addBorrowBook.action?bid=<s:property value="model.bid"/>">
                                 <div class="form-group row">
                                     <label class="control-label col-md-4">取书时间</label>
-                                    <input style="height: 50px;" type="text" class="form-control col-md-4 laydate-icon"
+                                    <input style="height: 50px;" type="text" name="ttime" class="form-control col-md-4 laydate-icon"
                                            id="borrowTime"/>
                                 </div>
                                 <div class="form-group row">
                                     <label class="control-label col-md-4">还书时间</label>
-                                    <input style="height: 50px;" type="text" class="form-control col-md-4 laydate-icon"
+                                    <input style="height: 50px;" type="text" name="rtime" class="form-control col-md-4 laydate-icon"
                                            id="takeTime"/>
                                 </div>
                                 <button type="submit" class="btn btn-primary">借阅</button>
@@ -192,8 +193,11 @@
                             </form>
                         </s:if><s:else>
                         <p style="font-size: 18px;color: #000;">亲！这本书已经没有余量了，点击下方的收藏按钮我们会在有书的第一时间通知您的哟</p>
-                        <button class="btn btn-primary">收藏</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <form class="loginform form-horizontal" id="loginform" method="post"
+                              action="addSubscription.action?bid=<s:property value="model.bid"/>">
+                            <button class="btn btn-primary">收藏</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </form>
                     </s:else>
                     </s:else>
                     </div>
@@ -221,26 +225,26 @@
 </body>
 <script>
     var star = {
-        elem:'#borrowTime',
-        format:'YYYY/MM/DD',
-        min:laydate.now(),
-        max:laydate.now(3),
-        istime:true,
-        istoday:false,
-        choose:function (datas) {
+        elem: '#borrowTime',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        min: laydate.now(),
+        max: laydate.now(3),
+        istime: true,
+        istoday: false,
+        choose: function (datas) {
             end.min = datas;//开始日选好以后，重置结束日的最小日期
             end.start = datas //将结束日的初始值设定为开始日
         }
     };
 
     var end = {
-        elem:'#takeTime',
-        format:'YYYY/MM/DD',
-        min:laydate.now(),
-        max:'2099-12-30',
-        istime:true,
-        istoday:false,
-        choose:function (datas) {
+        elem: '#takeTime',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        min: laydate.now(),
+        max: '2099-12-30',
+        istime: true,
+        istoday: false,
+        choose: function (datas) {
             start.max = datas;
         }
     };

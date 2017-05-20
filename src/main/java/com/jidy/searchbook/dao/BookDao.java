@@ -85,7 +85,7 @@ public interface BookDao {
      * 查询最新书籍
      * @return
      */
-    @Select("SELECT bid,bname,bcover,bauthor,nborrowed FROM book ORDER BY time DESC,nborrowed ASC,bid ASC LIMIT 12")
+    @Select("SELECT bid,bname,bcover,bauthor,nborrowed FROM book ORDER BY time DESC,nborrowed DESC,bid ASC LIMIT 12")
     @Results(id = "newbookresult", value = {
             @Result(property = "bid", column = "bid", id = true),
             @Result(property = "bname", column = "bname"),
@@ -96,7 +96,7 @@ public interface BookDao {
 
     /**
      * 查询最热门书籍，根据历史借阅量查询
-     * @return
+     * @return 书籍信息集合
      */
     @Select("SELECT bid,bname,hborrowed FROM book ORDER BY hborrowed DESC LIMIT 10;")
     List<Book> findHotBook();
