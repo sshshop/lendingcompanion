@@ -1,11 +1,15 @@
 package com.jidy.recentsearch.service;
 
 import com.jidy.recentsearch.dao.RecentSearchDao;
+import com.jidy.utils.SearchRegex;
+import com.opensymphony.xwork2.ActionContext;
 import com.upublic.vo.Book;
+import com.upublic.vo.User;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +17,11 @@ import java.util.List;
  */
 @Service(value = "recentSearchService")
 public class RecentSearchService {
+    //注入资源
     @Resource(name = "recentSearchDao")
     RecentSearchDao recentSearchDao;
+
+    SearchRegex searchRegex=new SearchRegex();
     /**
      * 将用户搜索关键字插入用户搜索表
      *
@@ -29,7 +36,8 @@ public class RecentSearchService {
     *
     * 返回值为关键字数组
     * */
-    public String[] findSearchKeyword(Integer uid) {
+    public List<String> findSearchKeyword(Integer uid) {
+        System.out.println(recentSearchDao.findSearchKeyword(uid).size());
         return recentSearchDao.findSearchKeyword(uid);
     }
 
@@ -38,8 +46,8 @@ public class RecentSearchService {
     *
     * 返回最近搜索的图书列表
     * */
-    public List<Book> recentSearchBook(String keyWord) {
-        return recentSearchDao.recentSearchBook(keyWord);
+    public List<Book> recentSearchBookMaster(String keyWord) {
+        return recentSearchDao.recentSearchBookMaster(keyWord);
     }
 
     /*
@@ -47,8 +55,9 @@ public class RecentSearchService {
     *
     * 返回最近搜索的图书列表
     * */
-    public List<Book> recentSearchBook(String keyWord[]) {
-        return recentSearchDao.recentSearchBook(keyWord);
+    public List<Book> recentSearchBookFinal(String keyWord[]) {
+        return recentSearchDao.recentSearchBookFinal(keyWord);
+
     }
 
 

@@ -1,8 +1,7 @@
 package com.jidy.searchbook.action;
 
 
-import com.jidy.recentsearch.action.RecentSearchAction;
-import com.jidy.recentsearch.dao.RecentSearchDao;
+import com.jidy.recentsearch.action.RecentSearch;
 import com.jidy.recentsearch.service.RecentSearchService;
 import com.jidy.searchbook.service.BookService;
 import com.jidy.utils.KeyWord;
@@ -22,10 +21,8 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.lj.bookcomment.service.BookCommentService;
-import org.junit.Test;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -43,9 +40,9 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     //注入分类categoryService
     @Resource(name = "categoryService")
     private CategoryService categoryService;
+    //将用户搜索信息插入搜索表
     @Resource(name = "recentSearchService")
-    private  RecentSearchService recentSearchService;
-
+       private RecentSearchService recentSearchService;
     //将前台页面获取的值转换为对象
     Book book = new Book();
     //获取前台页面的值
@@ -55,8 +52,6 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     SearchRegex searchRegex = new SearchRegex();
     //关键字标红
     KeyWordRed<Book> keyWordRed=new KeyWordRed<Book>();
-    //将用户搜索信息插入搜索表
-    RecentSearchAction recentSearchAction=new RecentSearchAction();
     //获取查询的关键字
     KeyWord keyWord=new KeyWord();
 
@@ -106,8 +101,9 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                     @Result(name = "searchBookSuccess", location = "search.jsp")
             })
     public String searchBookInfo() {
-        List<Book> list = new ArrayList<Book>();
-        List<Book> bookList = new ArrayList<Book>();
+        List<Book> list = new ArrayList<Book>();//接收搜索结果
+        List<Book> bookList = new ArrayList<Book>();//返回结果到页面
+        List<Book> recentSearch=new ArrayList<Book>();//接收最近搜索结果
         String search = searchRegex.searchMaster(inputInfo);//第一次匹配
         //如果输入不为空进行第一次查询
         if (search.length() != 0) {
@@ -130,9 +126,18 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 if( user!=null){
                     int uid=user.getUid();
                     recentSearchService.insertSearchKeyword(uid,inputInfo);
-                    ActionContext.getContext().getValueStack().set("bookList", bookList);
-                }else {
-                    ActionContext.getContext().getValueStack().set("bookList", bookList);
+                    System.out.println("--------1234567:"+1234567);
+                    List<String> strings=recentSearchService.findSearchKeyword(uid);
+                    for (String string:strings) {
+                        recentSearch.addAll(recentSearchService.recentSearchBookMaster(searchRegex.searchMaster(string)));
+                    }
+                    if (recentSearch.size()<6){
+                        for (String string:strings)
+                            recentSearch.addAll(recentSearchService.recentSearchBookFinal(searchRegex.searchFinal(string)));
+                    }
+                    ActionContext.getContext().getValueStack().set("recentSearchBook", recentSearch);
+                }else{
+
                 }
                 ActionContext.getContext().getValueStack().set("BookList", bookList);
                 return "searchBookSuccess";

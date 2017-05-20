@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -28,17 +29,18 @@ public interface RecentSearchDao {
     * 返回关键字数组
     * */
     @Select("select scontent from search where uid=#{uid} order by stime LIMIT 5")
-    String[] findSearchKeyword(Integer uid);
+    List<String> findSearchKeyword(Integer uid);
 
     /*
     * 搜索图书列表<第一次>
     * */
-    @Select("select scontent from search where scontent=#{scontent} order by stime LIMIT 5")
-    public List<Book> recentSearchBook(@Param("scontent") String keyWord);
+    @Select("select * from book where bname REGEXP #{bname}  order by bname LIMIT 6")
+    public List<Book> recentSearchBookMaster(@Param("bname") String keyWord);
 
     /*
     * 搜索图书列表<第二次>
     * */
-   // @SelectProvider(type = SearchBookSqlProvider.class ,method = "")
-    public List<Book> recentSearchBook(@Param("scontent") String keyWord[]);
+    //@SelectProvider(type = SearchBookSqlProvider.class ,method = "")
+    //@Select("select * from book where bname REGEXP #{bname}  order by bname LIMIT 6")
+    public List<Book> recentSearchBookFinal(@Param("scontent") String keyWord[]);
 }

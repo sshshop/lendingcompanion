@@ -23,12 +23,12 @@
             <div class="col-md-8 category_nav">
                 <ol class="">
                     <s:if test="#session.loginedUser != null">
-                        <span style="float: left;">相关历史搜索：</span>
-                        <s:iterator var="bookList" value="recentSearchBook">
+                        <span style="float: left;">相关历史搜索：</span></br>
+                        <s:iterator var="book" value="recentSearchBook">
                             <s:div>
-                                <span><img src="<s:property value="#bookList.bcover"/>"></span></br>
-                                <span><s:property value="#bookList.bname"/></span></br>
-                                <span><small>作者：<s:property value="#bookList.bauthor"/></small></span></br>
+                                <span style="width: 190px;margin:auto;margin-left: -20px;"><img style="width:165px;height: 160px " src="<s:property value="#book.bcover" />"></span></br>
+                                <span><s:property value="#book.bname"/></span></br>
+                                <span><small>作者：<s:property value="#book.bauthor"/></small></span></br>
                             </s:div>
                         </s:iterator>
                     </s:if>
