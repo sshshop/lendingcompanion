@@ -1,12 +1,11 @@
-package com.jidy.searchbook.utils;
+package com.jidy.utils;
 
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
 
 /**
- * Created by ojidy n 2017/5/15.
+ * Created by jidy on 2017/5/15.
  */
 public class SearchBookSqlProvider {
 

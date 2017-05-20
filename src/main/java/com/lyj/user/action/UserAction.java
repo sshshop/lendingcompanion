@@ -77,9 +77,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
     }
 
     //用户登录跳转
-    @Action(value = "userLogin",
-
-            results = @Result(name = "loginSuccess",location = "index.jsp")
+    @Action(value = "userLogin", results ={
+                    @Result(name = "loginSuccess",location = "index.jsp")
+            }
     )
     public String login(){
 
@@ -96,6 +96,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 
 
             ServletActionContext.getRequest().getSession().setAttribute("loginedUser",list.get(0).getUsername());
+            ServletActionContext.getRequest().getSession().setAttribute("existedUser",list.get(0));
             return  "loginSuccess";
         }
 

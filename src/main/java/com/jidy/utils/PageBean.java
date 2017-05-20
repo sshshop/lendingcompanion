@@ -1,8 +1,10 @@
-package com.jidy.searchbook.utils;
+package com.jidy.utils;
 
 import java.util.List;
 /**
  * Created by jidy on 2017/5/11.
+ *
+ * 分页类，处理后台分页
  */
 public class PageBean<T> {
     private int page;	// 当前页数

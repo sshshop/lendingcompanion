@@ -22,9 +22,23 @@
         <div class="col-md-3 index_category">
             <div class="col-md-8 category_nav">
                 <ol class="">
-                    <s:iterator var="c" value="#session.category">
-                        <li class="category_nav_item"><a href="#"><s:property value="#c.cname" /></a></li>
-                    </s:iterator>
+                    <s:if test="#session.loginedUser != null">
+                        <span style="float: left;">相关历史搜索：</span>
+                        <s:iterator var="bookList" value="recentSearchBook">
+                            <s:div>
+                                <span><img src="<s:property value="#bookList.bcover"/>"></span></br>
+                                <span><s:property value="#bookList.bname"/></span></br>
+                                <span><small>作者：<s:property value="#bookList.bauthor"/></small></span></br>
+                            </s:div>
+                        </s:iterator>
+                    </s:if>
+
+                    <s:else>
+                        <span style="float: left;margin-left: -10px">您可能感兴趣：</span></br>
+                        <s:iterator var="c" value="#session.category">
+                            <li class="category_nav_item"><a href="#"><s:property value="#c.cname" /></a></li>
+                        </s:iterator>
+                    </s:else>
                 </ol>
             </div>
         </div>

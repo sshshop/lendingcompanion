@@ -1,6 +1,4 @@
-package com.jidy.searchbook.utils;
-
-import com.upublic.vo.Book;
+package com.jidy.utils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

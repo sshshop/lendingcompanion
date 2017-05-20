@@ -1,6 +1,5 @@
 package com.jidy.searchbook.dao;
 
-import com.jidy.searchbook.utils.PageBean;
 import com.upublic.vo.Book;
 import org.apache.ibatis.annotations.*;
 
