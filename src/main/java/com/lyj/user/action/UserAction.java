@@ -28,12 +28,12 @@ import static com.opensymphony.xwork2.Action.NONE;
  */
 @ParentPackage(value = "struts-default")
 @Namespace(value = "")
-public class UserAction extends ActionSupport implements ModelDriven<User>{
+public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     // 模型驱动使用的对象
     private User user = new User();
     private String province;
-    private  String city;
+    private String city;
     private String dob;
     private String sex1;
 
@@ -66,8 +66,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
     @Resource(name = "provinceService")
     private ProvinceService provinceService;
 
-    @Resource(name ="cityService")
+    @Resource(name = "cityService")
     private CityService cityService;
+
     public User getUser() {
         return user;
     }
@@ -76,36 +77,52 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
         this.user = user;
     }
 
-    //用户登录跳转
-    @Action(value = "userLogin", results ={
-                    @Result(name = "loginSuccess",location = "index.jsp")
-            }
-    )
-    public String login(){
-
-        List<User> list =userService.findUserAll(user);
-
-      /*  System.out.print(list.get(0).getUsername());*/
-
-        if (list.isEmpty()){
-
-            //登录失败
-
-           return LOGIN;
-        } else {
-            ServletActionContext.getRequest().getSession().setAttribute("existedUser",list.get(0));
-            return  "loginSuccess";
-        }
-
+    /**
+     * 用户登录跳转
+     * 前台传入值驱动模型然后获取登录
+     * 登录以后的值存入session，
+     * 成功跳转至首页，登录失败跳转至登录页
+     */
+    @Action(value = "userLogin", results = {
+            @Result(name = "loginSuccess", location = "index.action", type = "redirect"),
+            @Result(name = LOGIN, location = "login.jsp"),
+            @Result(name = ERROR, location = "index.action", type = "redirect")
     }
+    )
+    public String login() {
+        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (loginuser==null) {
+            List<User> list = userService.findUserAll(user);
+            if (list.isEmpty()) {
+                //登录失败
+                this.addActionError("密码或者用户名错误");
+                return LOGIN;
+            } else {
+                System.out.println("登录成功");
+
+                ServletActionContext.getRequest().getSession().setAttribute("existedUser", list.get(0));
+                return "loginSuccess";
+            }
+        }else {
+            return ERROR;
+        }
+    }
+
     //用户登录
-    @Action(value = "loginS",results = @Result(name = "login",location = "login.jsp"))
+    @Action(value = "loginS", results = {@Result(name = LOGIN, location = "login.jsp"),
+            @Result(name = ERROR, location = "index.action", type = "redirect")
+    })
     public String loginS() {
-        return "login";
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (user == null) {
+            return LOGIN;
+        } else {
+            return ERROR;
+        }
     }
 
     //用户注册
-    @Action(value = "registerS",results = @Result(name = "register",location = "register.jsp"))
+    @Action(value = "registerS", results = @Result(name = "register", location = "register.jsp"))
     public String registerS() {
         return "register";
     }
@@ -117,14 +134,14 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
         /**
          * 调用service进行查询
          */
-  //      System.out.println(user.getUsername());
-        List<User> list =userService.findUsernameAll(user);
+        //      System.out.println(user.getUsername());
+        List<User> list = userService.findUsernameAll(user);
         /*System.out.println(list.get(0).getUsername());*/
         //获得rresponse对象，向页面输出
-        HttpServletResponse response= ServletActionContext.getResponse();
+        HttpServletResponse response = ServletActionContext.getResponse();
         response.setContentType("text/html;charset=UTF-8");
 
-        if (list.isEmpty()||list.size()<1){
+        if (list.isEmpty() || list.size() < 1) {
             //没有查询到该用户：用户名可以使用
             response.getWriter().println("<font color='green'>用户名可以使用</font>");
         } else {
@@ -136,11 +153,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
     }
 
     //用户注册方法
-    @Action(value = "registerPost",results = @Result(name = "registerSuccess",location = "login.jsp"))
-    public  String register(){
-        if (sex1=="man"){
+    @Action(value = "registerPost", results = @Result(name = "registerSuccess", location = "login.jsp"))
+    public String register() {
+        if (sex1 == "man") {
             user.setSex(1);
-        }else {
+        } else {
             user.setSex(0);
         }
 
@@ -151,21 +168,21 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
        /* System.out.println(user.getCid());*/
         userService.sava(user);
         //注册成功返回页面
-        return  "registerSuccess";
+        return "registerSuccess";
     }
 
     //用户激活方法
     @Action(value = "active",
-            results = @Result(name = "registerSuccess",location = "login.jsp")
+            results = @Result(name = "registerSuccess", location = "login.jsp")
     )
-    public String active(){
-        User existUser=userService.findBycode(user.getCode());
-        if (existUser==null){
+    public String active() {
+        User existUser = userService.findBycode(user.getCode());
+        if (existUser == null) {
             // 激活失败
-           this.addActionMessage("激活失败：激活码错误！");
+            this.addActionMessage("激活失败：激活码错误！");
             // 激活失败返回页面
             return "registerSuccess";
-        }else {
+        } else {
 
             // 激活成功
             // 修改用户的状态
@@ -176,6 +193,19 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
             // 激活成功返回页面
             return NONE;
         }
+    }
 
+    /**
+     * 用户退出登录，销毁用户session，重定向到主页
+     *
+     * @return 返回用户session成功
+     */
+    @Action(value = "loginOut", results = {
+            @Result(name = SUCCESS, location = "index.action", type = "redirect"),
+    }
+    )
+    public String loginOut() {
+        ServletActionContext.getRequest().getSession().invalidate();
+        return SUCCESS;
     }
 }
