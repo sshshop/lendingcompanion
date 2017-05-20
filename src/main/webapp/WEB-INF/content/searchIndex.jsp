@@ -16,7 +16,7 @@
     </script>
 </head>
 <body>
-        <form method="post" action="${pageContext.request.contextPath}/searchBookInfo.action">
+        <form method="post" action="searchBookInfo.action">
             <input id="inputInfo" name="inputInfo"  placeholder="请输入您要搜索的作品" value="<%=request.getParameter("inputInfo")%>" >
             <input type="submit" name="submit" value="搜索">
         </form>
@@ -31,7 +31,7 @@
 
     <s:iterator var="BookList" value="BookList">
         <tr>
-            <td>图片：<img width="40" height="45" src="${ pageContext.request.contextPath }/<s:property value="#BookList.image"/>"><br/></td>
+            <td>图片：<img width="40" height="45" src="<s:property value="#BookList.image"/>"><br/></td>
         </tr>
         <tr>
             <td>书名：<a href="#"><s:property value="#BookList.bname"/></a><br/></td>
@@ -59,12 +59,12 @@
         <s:iterator var="pageBean" value="pageBean">
             第<s:property value="pageBean.page"/>/<s:property value="pageBean.totalPage"/>页
             <s:if test="pageBean.page != 1">
-                <a href="${ pageContext.request.contextPath }/searchBookInfo.action?page=1&inputInfo= <%= request.getAttribute("inputInfo") %>">首页</a>|
-                <a href="${ pageContext.request.contextPath }/searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">上一页</a>|
+                <a href="searchBookInfo.action?page=1&inputInfo= <%= request.getAttribute("inputInfo") %>">首页</a>|
+                <a href="searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">上一页</a>|
             </s:if>
             <s:if test="pageBean.page != pageBean.totalPage">
-                <a href="${ pageContext.request.contextPath }/searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">下一页</a>|
-                <a href="${ pageContext.request.contextPath }/searchBookInfo.action?page=<s:property value="pageBean.totalPage"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">尾页</a>|
+                <a href="searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">下一页</a>|
+                <a href="searchBookInfo.action?page=<s:property value="pageBean.totalPage"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">尾页</a>|
             </s:if>
         </s:iterator>
 

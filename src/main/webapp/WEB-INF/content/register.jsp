@@ -7,30 +7,30 @@
 
     <title>注册</title>
     
-    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/laydate/skins/default/laydate.css" id="LayDateSkin">
-    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/laydate/need/laydate.css">
-    <script src="<%=request.getContextPath() %>/js/jquery-2.1.1/jquery.min.js"></script>
-    <script src="<%=request.getContextPath() %>/css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/laydate/laydate.js"></script>
+    <link type="text/css" rel="stylesheet" href="laydate/skins/default/laydate.css" id="LayDateSkin">
+    <link type="text/css" rel="stylesheet" href="laydate/need/laydate.css">
+    <script src="js/jquery-2.1.1/jquery.min.js"></script>
+    <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="laydate/laydate.js"></script>
     
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/footer.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/bootstrap-3.3.7/css/bootstrap.min.css">
 
-    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/laydate/need/laydate.css">
-    <script src="<%=request.getContextPath() %>/js/jquery-2.1.1/jquery.min.js"></script>
-    <script src="<%=request.getContextPath() %>/css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/laydate/laydate.js"></script>
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/register.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap-3.3.7/css/bootstrap.min.css">
-    <script src="<%=request.getContextPath() %>/js/jquery-2.1.1/jquery.min.js"></script>
-    <script src="<%=request.getContextPath() %>/css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/js/register.js"  type="text/javascript" charset="utf-8"></script>
-    <script src="<%=request.getContextPath() %>/js/laydate/laydate.js"  type="text/javascript" charset="utf-8"></script>
+    <link type="text/css" rel="stylesheet" href="laydate/need/laydate.css">
+    <script src="js/jquery-2.1.1/jquery.min.js"></script>
+    <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="laydate/laydate.js"></script>
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <script src="js/jquery-2.1.1/jquery.min.js"></script>
+    <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/register.js"  type="text/javascript" charset="utf-8"></script>
+    <script src="js/laydate/laydate.js"  type="text/javascript" charset="utf-8"></script>
 
 </head>
 <body>
-<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="<%=request.getContextPath() %>/image/background.jpg" style="width: 100%;height: 100%;"></div>
+<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg" style="width: 100%;height: 100%;"></div>
     <!-- 头部页面 -->
     <div class="container header">
         <!-- 顶部信息 -->
@@ -50,7 +50,7 @@
         <!-- logo以及搜索框 -->
         <div class="row header_main">
             <div class="col-md-5 logo">
-                <img src="<%=request.getContextPath() %>/image/logo.png">
+                <img src="image/logo.png">
             </div>
             <div class="col-md-7 header_search">
                 <form class="nameSearch_form" id="nameSearch_form" action="">
@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-    <form method="post"  action="${pageContext.request.contextPath}/registerPost.action" onsubmit="return checkForm();">
+    <form method="post"  action="registerPost.action" onsubmit="return checkForm();">
     <!-- 中间部分 -->
     <div class="container context">
         <div class="row">
@@ -214,16 +214,16 @@
     <div class="footer">
         <div class="row img_information">
             <div class="col-md-3 img_item">
-                <img class="img1" src="<%=request.getContextPath() %>/image/service_items_1.png">
+                <img class="img1" src="image/service_items_1.png">
             </div>
             <div class="col-md-3 img_item">
-                <img class="img2" src="<%=request.getContextPath() %>/image/service_items_2.png">
+                <img class="img2" src="image/service_items_2.png">
             </div>
             <div class="col-md-3 img_item">
-                <img class="img3" src="<%=request.getContextPath() %>/image/service_items_3.png">
+                <img class="img3" src="image/service_items_3.png">
             </div>
             <div class="col-md-3 img_item">
-                <img class="img4" src="<%=request.getContextPath() %>/image/service_items_4.png">
+                <img class="img4" src="image/service_items_4.png">
             </div>
         </div>
         <div id="footer-2013">

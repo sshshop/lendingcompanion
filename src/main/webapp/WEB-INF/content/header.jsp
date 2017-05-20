@@ -12,10 +12,11 @@
         <div class="col-md-4 header_title_right" id="loginuser">
             <s:if test="#session.loginedUser == null">
             <a class="login" href="loginS.action">登录</a>
-            <a class="register" href="loginS.action">注册</a>
+            <a class="register" href="registerS.action">注册</a>
             </s:if><s:else>
             <a class="login" href="#"><s:property value="#session.loginedUser.username" /></a>
             <a class="login" href="#">个人中心</a>
+            <a class="login" href="#">退出</a>
         </s:else>
             <a class="collect">收藏本站</a>
         </div>

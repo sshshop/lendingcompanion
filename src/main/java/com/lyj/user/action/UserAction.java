@@ -93,9 +93,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>{
 
            return LOGIN;
         } else {
-
-
-            ServletActionContext.getRequest().getSession().setAttribute("loginedUser",list.get(0).getUsername());
             ServletActionContext.getRequest().getSession().setAttribute("existedUser",list.get(0));
             return  "loginSuccess";
         }

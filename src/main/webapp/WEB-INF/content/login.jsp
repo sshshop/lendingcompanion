@@ -26,7 +26,7 @@
         <div class="col-md-6">
             <!--注册表单-->
             <div class="context_form" style="background-color:rgba(112,128,144,0.8);">
-                <form class="form-horizontal register" id="register" action="${pageContext.request.contextPath}/userLogin.action" method="post">
+                <form class="form-horizontal register" id="register" action="userLogin.action" method="post">
                     <!--用户名-->
                     <div class="form-group">
                         <label class="control-label col-md-4">用户名</label>
