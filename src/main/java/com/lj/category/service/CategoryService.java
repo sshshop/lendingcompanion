@@ -35,4 +35,13 @@ public class CategoryService {
     public List<Book> findBookByCidSome(Integer cid) {
         return categoryDao.findBookByCidSome(cid);
     }
+
+    /**
+     * 通过cid查询分类对象
+     * @param cid 分类主键cid
+     * @return category实体对象
+     */
+    public Category findCategoryNameByCid(int cid) {
+        return categoryDao.findCategoryById(cid);
+    }
 }

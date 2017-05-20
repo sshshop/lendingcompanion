@@ -48,4 +48,5 @@ public interface CategoryDao {
      */
     @Select("SELECT bid,cid,bcover,bname,bauthor FROM book WHERE cid=#{cid} ORDER BY hborrowed desc,bid asc limit 8;")
     List<Book> findBookByCidSome(Integer cid);
+
 }

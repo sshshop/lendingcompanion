@@ -165,4 +165,9 @@ public class Book {
     public void setComment(Integer comment) {
         this.comment = comment;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

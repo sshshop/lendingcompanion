@@ -9,7 +9,7 @@
         <div class="col-md-6 header_title_mid">
             <span>“无微不至”的借阅伴侣</span>
         </div>
-        <div class="col-md-4 header_title_right">
+        <div class="col-md-4 header_title_right" id="loginuser">
             <s:if test="#session.loginedUser == null">
             <a class="login" href="loginS.action">登录</a>
             <a class="register" href="loginS.action">注册</a>

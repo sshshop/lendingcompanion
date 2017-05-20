@@ -23,7 +23,7 @@
             <div class="col-md-8 category_nav">
                 <ol class="">
                     <s:iterator var="c" value="#session.category">
-                        <li class="category_nav_item"><a href="#"><s:property value="#c.cname" /></a></li>
+                        <li class="category_nav_item"><a href="findBookByCid.action?cid=<s:property value="#c.cid"/> "><s:property value="#c.cname" /></a></li>
                     </s:iterator>
                 </ol>
             </div>
