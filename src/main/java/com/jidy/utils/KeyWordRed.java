@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 
 public class KeyWordRed<T>{
     public List<T> replaceList(List<T> strSource, String inputInfo){
-        String regex="[` _~!@#$^&*()=+|{}':;',\\\\[\\\\].<>/?~！@#￥……&*（）\\-《》——|{}【】‘；：”“'。，、？]+";
-        inputInfo = inputInfo.trim();
-        String[] strFrom=inputInfo.split(regex);
+        String regex="[` _~!@#$^&*()（）=+|{}':;',\\\\[\\\\].<>/?~！@#￥……&*（）\\-《》——|{}【】‘；：”“'。，、？]+";
+        inputInfo=inputInfo.replaceAll(regex," ").trim();
+        String[] strFrom=inputInfo.split(" ");
         List<T> list =new ArrayList<T>();
         List<T> listBook =new ArrayList<T>();
         list.addAll(strSource);

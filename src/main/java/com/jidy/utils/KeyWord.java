@@ -40,12 +40,24 @@ public class KeyWord {
    *返回查询关键字
    * */
     public Book bookInfoFinal(String[] search) {
-        book.setBname(search[0]);
-        book.setInitials(search[1]);
-        book.setBauthor(search[2]);
-        book.setFight(search[3]);
-        book.setBadr(search[4]);
-        book.setBnum(search[5]);
+        if (!search[0].equals(" ")){
+            book.setBname(search[0]);
+        }
+        if (!search[1].equals(" ")){
+            book.setInitials(search[1]);
+        }
+        if (!search[2].equals(" ")){
+            book.setBauthor(search[2]);
+        }
+        if (!search[3].equals(" ")){
+            book.setFight(search[3]);
+        }
+        if (!search[4].equals(" ")){
+            book.setBadr(search[4]);
+        }
+        if (!search[5].equals(" ")){
+            book.setBnum(search[5]);
+        }
         return book;
     }
 

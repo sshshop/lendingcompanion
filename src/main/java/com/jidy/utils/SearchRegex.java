@@ -6,7 +6,7 @@ package com.jidy.utils;
  */
 public class SearchRegex {
     String chinaeseRegex="[\u4e00-\u9fa5]";
-    String regex="[` _~!@#$^&*()=+|{}':;',\\\\[\\\\].<>/?~！@#￥……&*（）\\-《》——|{}【】‘；：”“'。，、？]+";
+    String regex="[` _~!@#$^&*()（）=+|{}':;',\\\\[\\\\].<>/?~！@#￥……&*（）\\-《》——|{}【】‘；：”“'。，、？]+";
 
     /*
     * 第一次接收前台字符串，将特殊字符去除
@@ -18,7 +18,7 @@ public class SearchRegex {
             return "";
         }else {
             inputInfo=inputInfo.trim();
-            String regexSearch=inputInfo.replaceAll(regex,"+");
+            String regexSearch=inputInfo.replaceAll(regex,"");
             return regexSearch;
         }
     }
@@ -32,9 +32,9 @@ public class SearchRegex {
     * */
 
     public String[] searchFinal(String inputInfo) {
-        inputInfo = inputInfo.trim();
+        inputInfo=inputInfo.replaceAll(regex," ").trim();
         String str[] = new String[6];
-        String str1[]=inputInfo.split(regex,6);
+        String str1[]=inputInfo.split(" ",6);
         for (int i=0;i<6;i++){
             if (i<str1.length){
                 str[i]=str1[i];

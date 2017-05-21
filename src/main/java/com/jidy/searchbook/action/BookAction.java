@@ -104,46 +104,48 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         String search = searchRegex.searchMaster(inputInfo);//第一次匹配
         //如果输入不为空进行第一次查询
         if (search.length() != 0) {
-            book = keyWord.bookInfoMaster(search);//获取book对象
+            book = keyWord.bookInfoMaster(inputInfo);
             PageBean<Book> pageBean = bookService.findByPage(book, page);
+            if (pageBean.getList().size() <= 0 || pageBean.getList() == null) {
+                book = keyWord.bookInfoMaster(search);//获取book对象
+                pageBean = bookService.findByPage(book, page);
+            }
             //将关键字加粗标红
-            list.addAll(keyWordRed.replaceList(pageBean.getList(),inputInfo));
+            list.addAll(keyWordRed.replaceList(pageBean.getList(), inputInfo));
             //如果查询为空进行第二次查询
             if (list == null || list.size() <= 0) {
-                String string[]=searchRegex.searchFinal(inputInfo);
+                String string[] = searchRegex.searchFinal(inputInfo);
                 book = keyWord.bookInfoFinal(string);//第二次匹配
                 pageBean = bookService.findByBname(book, page);
-                list.addAll(keyWordRed.replaceList(pageBean.getList(),inputInfo));
+                list.addAll(keyWordRed.replaceList(pageBean.getList(), inputInfo));
             }
             bookList = keyWord.uniq(list);//去重并保持排序
             ActionContext.getContext().getValueStack().set("pageBean", pageBean);
             //将登陆用户搜索数据插入搜索表
             if (bookList != null && bookList.size() > 0) {
-                User user= (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
-                if( user!=null){
-                    int uid=user.getUid();
-                    recentSearchService.insertSearchKeyword(uid,inputInfo);
-                    List<String> strings=recentSearchService.findSearchKeyword(uid);
-                    for (String string:strings) {
+                User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+                if (user != null) {
+                    int uid = user.getUid();
+                    recentSearchService.insertSearchKeyword(uid, inputInfo);
+                    List<String> strings = recentSearchService.findSearchKeyword(uid);
+                    for (String string : strings) {
                         recentSearch.addAll(recentSearchService.recentSearchBookMaster(searchRegex.searchMaster(string)));
                     }
-                    Set<Book> books=new HashSet<Book>();
+                    Set<Book> books = new HashSet<Book>();
                     books.addAll(recentSearch);
                     ActionContext.getContext().getValueStack().set("recentSearchBook", books);
-                }else{
-                        String st="是";
-                        recentSearch.addAll(recentSearchService.recentSearchBookFinal(st));
-                        Set<Book> books=new HashSet<Book>();
-                        books.addAll(recentSearch);
-                        ActionContext.getContext().getValueStack().set("recentSearchBook", books);
+                } else {
+                    String st = "是";
+                    recentSearch.addAll(recentSearchService.recentSearchBookFinal(st));
+                    Set<Book> books = new HashSet<Book>();
+                    books.addAll(recentSearch);
+                    ActionContext.getContext().getValueStack().set("recentSearchBook", books);
                 }
                 ActionContext.getContext().getValueStack().set("BookList", bookList);
                 return "searchBookSuccess";
-            } else {
+            }else {
                 this.addActionMessage("没有查询到图书信息");
-                return "searchBookFail";
-            }
-
+                return "searchBookFail";}
         }
         this.addActionMessage("请输入查询数据");
         return "searchBookFail";

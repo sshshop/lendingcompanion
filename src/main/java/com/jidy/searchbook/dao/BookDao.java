@@ -20,13 +20,11 @@ public interface BookDao {
             "where bname REGEXP CONCAT('(',#{bname},')')" +
             "OR initials REGEXP CONCAT('(',#{initials},')') " +
             "OR fight REGEXP CONCAT('(',#{fight},')') " +
-            "OR bnum REGEXP CONCAT('(',#{bnum},')') " +
             "OR badr REGEXP CONCAT('(',#{badr},')') " +
             "OR bauthor REGEXP CONCAT('(',#{bauthor},')') ")
     int findByCount(@Param("bname") String bname,
                     @Param("initials") String initials,
                     @Param("fight") String fight,
-                    @Param("bnum") String bnum,
                     @Param("badr") String badr,
                     @Param("bauthor") String bauthor);
     /*
@@ -38,14 +36,12 @@ public interface BookDao {
             "where bname REGEXP CONCAT('(',#{bname},')')" +
             "OR initials REGEXP CONCAT('(',#{initials},')') " +
             "OR fight REGEXP CONCAT('(',#{fight},')') " +
-            "OR bnum REGEXP CONCAT('(',#{bnum},')') " +
             "OR badr REGEXP CONCAT('(',#{badr},')') " +
             "OR bauthor REGEXP CONCAT('(',#{bauthor},')') " +
             " LIMIT #{begin},#{limit}")
     List<Book> findByPage(@Param("bname") String bname,
                           @Param("initials") String initials,
                           @Param("fight") String fight,
-                          @Param("bnum") String bnum,
                           @Param("badr") String badr,
                           @Param("bauthor") String bauthor,
                           @Param("begin") Integer begin,
@@ -56,7 +52,6 @@ public interface BookDao {
     int findByBnameCount(@Param("bname") String bname,
                          @Param("initials") String initials,
                          @Param("fight") String fight,
-                         @Param("bnum") String bnum,
                          @Param("badr") String badr,
                          @Param("bauthor") String bauthor);
 
@@ -64,14 +59,12 @@ public interface BookDao {
             "where bname REGEXP CONCAT('(',#{bname},')')" +
             "OR bname REGEXP CONCAT('(',#{initials},')') " +
             "OR bname REGEXP CONCAT('(',#{fight},')') " +
-            "OR bname REGEXP CONCAT('(',#{bnum},')') " +
             "OR bname REGEXP CONCAT('(',#{badr},')') " +
             "OR bname REGEXP CONCAT('(',#{bauthor},')') " +
             " LIMIT #{begin},#{limit}")
     List<Book> findByBname(@Param("bname") String bname,
                            @Param("initials") String initials,
                            @Param("fight") String fight,
-                           @Param("bnum") String bnum,
                            @Param("badr") String badr,
                            @Param("bauthor") String bauthor,
                            @Param("begin") Integer begin,

@@ -23,9 +23,9 @@ public class BookService{
         int totalCount =bookDao.findByCount(book.getBname(),
                 book.getInitials(),
                 book.getFight(),
-                book.getBnum(),
                 book.getBadr(),
                 book.getBauthor());  //获取总的记录数
+
         pageBean.setTotalCount(totalCount);
         int totalPage=0;//设置总的页数
         if(totalCount%limit==0){
@@ -39,7 +39,6 @@ public class BookService{
         List<Book> list = bookDao.findByPage(book.getBname(),
                 book.getInitials(),
                 book.getFight(),
-                book.getBnum(),
                 book.getBadr(),
                 book.getBauthor(),
                 pageBean.getBegin(),
@@ -56,9 +55,9 @@ public class BookService{
         int totalCount =bookDao.findByBnameCount(book.getBname(),
                 book.getInitials(),
                 book.getFight(),
-                book.getBnum(),
                 book.getBadr(),
                 book.getBauthor());  //获取总的记录数
+        totalCount+=totalCount;
         pageBean.setTotalCount(totalCount);
         int totalPage=0;//设置总的页数
         if(totalCount%limit==0){
@@ -72,7 +71,6 @@ public class BookService{
         List<Book> list = bookDao.findByBname(book.getBname(),
                 book.getInitials(),
                 book.getFight(),
-                book.getBnum(),
                 book.getBadr(),
                 book.getBauthor(),
                 pageBean.getBegin(),
