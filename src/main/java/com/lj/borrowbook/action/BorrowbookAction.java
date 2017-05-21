@@ -34,7 +34,7 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     /**
      * 将借书信息添加到数据库
      *
-     * @return
+     * @return 返回信息
      */
     @Action(
             value = "addBorrowBook",

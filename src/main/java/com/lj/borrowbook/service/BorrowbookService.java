@@ -44,8 +44,8 @@ public class BorrowbookService {
 
     /**
      * 查询同一本书用户是否是二次借阅
-     * @param user 用户id封装
-     * @param borrowbook 图书id封装
+     * @param user 用户uid封装
+     * @param borrowbook 图书bid封装
      * @return 返回存在返回false，不存在返回true
      */
     public boolean existBorrMsg(User user,Borrowbook borrowbook){
