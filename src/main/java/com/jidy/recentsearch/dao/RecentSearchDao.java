@@ -41,6 +41,6 @@ public interface RecentSearchDao {
     * 搜索图书列表<第二次>
     * */
     //@SelectProvider(type = SearchBookSqlProvider.class ,method = "")
-    //@Select("select * from book where bname REGEXP #{bname}  order by bname LIMIT 6")
-    public List<Book> recentSearchBookFinal(@Param("scontent") String keyWord[]);
+    @Select("select * from book where bname REGEXP #{bname}  order by bname LIMIT 6")
+    public List<Book> recentSearchBookFinal(@Param("bname") String keyWord);
 }

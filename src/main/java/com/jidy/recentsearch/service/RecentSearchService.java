@@ -54,7 +54,7 @@ public class RecentSearchService {
     *
     * 返回最近搜索的图书列表
     * */
-    public List<Book> recentSearchBookFinal(String keyWord[]) {
+    public List<Book> recentSearchBookFinal(String keyWord) {
         return recentSearchDao.recentSearchBookFinal(keyWord);
 
     }

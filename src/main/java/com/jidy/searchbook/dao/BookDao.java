@@ -52,12 +52,7 @@ public interface BookDao {
                           @Param("limit") Integer limit);
     //第二次查询
     @Select("select count(*) from book " +
-            "where bname REGEXP CONCAT('(',#{bname},')')" +
-            "OR bname REGEXP CONCAT('(',#{initials},')') " +
-            "OR bname REGEXP CONCAT('(',#{fight},')') " +
-            "OR bname REGEXP CONCAT('(',#{bnum},')') " +
-            "OR bname REGEXP CONCAT('(',#{badr},')') " +
-            "OR bname REGEXP CONCAT('(',#{bauthor},')') ")
+            "where bname REGEXP CONCAT('(',#{bname},')')" )
     int findByBnameCount(@Param("bname") String bname,
                          @Param("initials") String initials,
                          @Param("fight") String fight,

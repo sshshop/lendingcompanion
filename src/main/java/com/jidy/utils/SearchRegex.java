@@ -16,8 +16,7 @@ public class SearchRegex {
     public String searchMaster(String inputInfo){
         if(inputInfo==null){
             return "";
-        }
-        else {
+        }else {
             inputInfo=inputInfo.trim();
             String regexSearch=inputInfo.replaceAll(regex,"+");
             return regexSearch;
@@ -34,7 +33,15 @@ public class SearchRegex {
 
     public String[] searchFinal(String inputInfo) {
         inputInfo = inputInfo.trim();
-        String str[]=inputInfo.split(regex);
+        String str[] = new String[6];
+        String str1[]=inputInfo.split(regex,6);
+        for (int i=0;i<6;i++){
+            if (i<str1.length){
+                str[i]=str1[i];
+            }else{
+                str[i]=" ";
+            }
+        }
         return str;
     }
 

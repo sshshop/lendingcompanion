@@ -22,9 +22,6 @@ public class KeyWordRed<T>{
             if (!strFrom[j].equals(" ")){
                 try {
                     list=replace(list,strFrom[j],"<font color='red'><b>"+strFrom[j]+"</b></font>");
-                    list=replace_1(list,strFrom[j],"<font color='red'><b>"+strFrom[j]+"</b></font>");
-                    list=replace_2(list,strFrom[j],"<font color='red'><b>"+strFrom[j]+"</b></font>");
-                    list=replace_3(list,strFrom[j],"<font color='red'><b>"+strFrom[j]+"</b></font>");
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
@@ -41,128 +38,27 @@ public class KeyWordRed<T>{
         Matcher m;
         for (int i = 0; i < strSource.size(); i++) {
             Field fields = null;
-            try {
-                fields = strSource.get(i).getClass().getDeclaredField("bname");
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
+            String string[]={"bname","bnum","bauthor","badr"};
+            for (int j=0;j<4;j++){
+                try {
+                    fields = strSource.get(i).getClass().getDeclaredField(string[j]);
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                }
 
-            Object oi = strSource.get(i);
+                Object oi = strSource.get(i);
                 if(!fields.isAccessible()){
-                fields.setAccessible(true);
-            }
+                    fields.setAccessible(true);
+                }
                 String str=fields.get(oi).toString();
                 m=p.matcher(str);
                 while(m.find()){
-                    stringBuffer.append(str.substring(0,m.start()));
-                    stringBuffer.append(strTo);
-                    stringBuffer.append(str.substring(m.end()));
-                }
-                int length=stringBuffer.length();
-                if (length!=0){
-                    str= stringBuffer.toString();
-                    stringBuffer.delete(0,length);
+                    str=m.replaceAll(strTo);
                 }
                 fields.set(oi,str);
             }
-        return strSource;
-        }
-
-    List<T> replace_2(List<T> strSource, String strFrom, String strTo) throws IllegalAccessException {
-        StringBuffer stringBuffer=new StringBuffer();
-        Pattern p = Pattern.compile(strFrom,Pattern.CASE_INSENSITIVE);
-        Matcher m;
-        for (int i = 0; i < strSource.size(); i++) {
-            Field fields = null;
-            try {
-                fields = strSource.get(i).getClass().getDeclaredField("bnum");
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
-
-            Object oi = strSource.get(i);
-            if(!fields.isAccessible()){
-                fields.setAccessible(true);
-            }
-            String str=fields.get(oi).toString();
-            m=p.matcher(str);
-            while(m.find()){
-                stringBuffer.append(str.substring(0,m.start()));
-                stringBuffer.append(strTo);
-                stringBuffer.append(str.substring(m.end()));
-            }
-            int length=stringBuffer.length();
-            if (length!=0){
-                str= stringBuffer.toString();
-                stringBuffer.delete(0,length);
-            }
-            fields.set(oi,str);
-        }
-        return strSource;
-    }
-    List<T> replace_3(List<T> strSource, String strFrom, String strTo) throws IllegalAccessException {
-        StringBuffer stringBuffer=new StringBuffer();
-        Pattern p = Pattern.compile(strFrom,Pattern.CASE_INSENSITIVE);
-        Matcher m;
-        for (int i = 0; i < strSource.size(); i++) {
-            Field fields = null;
-            try {
-                fields = strSource.get(i).getClass().getDeclaredField("bauthor");
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
-
-            Object oi = strSource.get(i);
-            if(!fields.isAccessible()){
-                fields.setAccessible(true);
-            }
-            String str=fields.get(oi).toString();
-            m=p.matcher(str);
-            while(m.find()){
-                stringBuffer.append(str.substring(0,m.start()));
-                stringBuffer.append(strTo);
-                stringBuffer.append(str.substring(m.end()));
-            }
-            int length=stringBuffer.length();
-            if (length!=0){
-                str= stringBuffer.toString();
-                stringBuffer.delete(0,length);
-            }
-            fields.set(oi,str);
         }
         return strSource;
     }
 
-    List<T> replace_1(List<T> strSource, String strFrom, String strTo) throws IllegalAccessException {
-        StringBuffer stringBuffer=new StringBuffer();
-        Pattern p = Pattern.compile(strFrom,Pattern.CASE_INSENSITIVE);
-        Matcher m;
-        for (int i = 0; i < strSource.size(); i++) {
-            Field fields = null;
-            try {
-                fields = strSource.get(i).getClass().getDeclaredField("badr");
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
-
-            Object oi = strSource.get(i);
-            if(!fields.isAccessible()){
-                fields.setAccessible(true);
-            }
-            String str=fields.get(oi).toString();
-            m=p.matcher(str);
-            while(m.find()){
-                stringBuffer.append(str.substring(0,m.start()));
-                stringBuffer.append(strTo);
-                stringBuffer.append(str.substring(m.end()));
-            }
-            int length=stringBuffer.length();
-            if (length!=0){
-                str= stringBuffer.toString();
-                stringBuffer.delete(0,length);
-            }
-            fields.set(oi,str);
-        }
-        return strSource;
-    }
 }

@@ -104,14 +104,14 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         String search = searchRegex.searchMaster(inputInfo);//第一次匹配
         //如果输入不为空进行第一次查询
         if (search.length() != 0) {
-            book = keyWord.bookInfo(search);//获取book对象
+            book = keyWord.bookInfoMaster(search);//获取book对象
             PageBean<Book> pageBean = bookService.findByPage(book, page);
             //将关键字加粗标红
             list.addAll(keyWordRed.replaceList(pageBean.getList(),inputInfo));
             //如果查询为空进行第二次查询
             if (list == null || list.size() <= 0) {
                 String string[]=searchRegex.searchFinal(inputInfo);
-                book = keyWord.bookInfo(string);//第二次匹配
+                book = keyWord.bookInfoFinal(string);//第二次匹配
                 pageBean = bookService.findByBname(book, page);
                 list.addAll(keyWordRed.replaceList(pageBean.getList(),inputInfo));
             }
@@ -125,18 +125,17 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                     recentSearchService.insertSearchKeyword(uid,inputInfo);
                     List<String> strings=recentSearchService.findSearchKeyword(uid);
                     for (String string:strings) {
-                        System.out.println(string);
                         recentSearch.addAll(recentSearchService.recentSearchBookMaster(searchRegex.searchMaster(string)));
-                    }
-                    if (recentSearch.size()<6){
-                        for (String string:strings);
-                            //recentSearch.addAll(recentSearchService.recentSearchBookFinal(searchRegex.searchFinal(string)));
                     }
                     Set<Book> books=new HashSet<Book>();
                     books.addAll(recentSearch);
                     ActionContext.getContext().getValueStack().set("recentSearchBook", books);
                 }else{
-
+                        String st="是";
+                        recentSearch.addAll(recentSearchService.recentSearchBookFinal(st));
+                        Set<Book> books=new HashSet<Book>();
+                        books.addAll(recentSearch);
+                        ActionContext.getContext().getValueStack().set("recentSearchBook", books);
                 }
                 ActionContext.getContext().getValueStack().set("BookList", bookList);
                 return "searchBookSuccess";
