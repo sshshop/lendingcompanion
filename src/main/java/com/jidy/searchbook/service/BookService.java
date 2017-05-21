@@ -57,7 +57,6 @@ public class BookService{
                 book.getFight(),
                 book.getBadr(),
                 book.getBauthor());  //获取总的记录数
-        totalCount+=1;
         pageBean.setTotalCount(totalCount);
         int totalPage=0;//设置总的页数
         if(totalCount%limit==0){

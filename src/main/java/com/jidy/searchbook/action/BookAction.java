@@ -1,7 +1,6 @@
 package com.jidy.searchbook.action;
 
 
-import com.jidy.recentsearch.action.RecentSearch;
 import com.jidy.recentsearch.service.RecentSearchService;
 import com.jidy.searchbook.service.BookService;
 import com.jidy.utils.KeyWord;
@@ -140,7 +139,6 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                     ActionContext.getContext().getValueStack().set("recentSearchBook", books);
                 }
                 ActionContext.getContext().getValueStack().set("BookList", bookList);
-                //pageBean.setTotalCount(bookList.size());
                 ActionContext.getContext().getValueStack().set("pageBean", pageBean);
                 return "searchBookSuccess";
             }else {
