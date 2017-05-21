@@ -83,6 +83,12 @@
         <property name="mapperInterface" value="com.lj.borrowbook.dao.BorrowbookDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+
+    <!--后台管理员登录的Dao配置<ScreamHyy>-->
+    <bean id="adminUserDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.hyy.adminUser.dao.AdminUserDao" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
     <!--消息底层的dao配置【rabit】-->
     <bean id="newsDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.lj.news.dao.NewsDao"/>

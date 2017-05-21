@@ -1,0 +1,23 @@
+#bcontent .form-group{
+    margin-top: 30px;
+    text-align: center;
+}
+
+#comment .form-group{
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+}
+
+#comment .form-group span{
+    position: absolute;
+    left:35%;
+}
+
+.adminnav{
+    margin-top:30px;
+}
+
+.adminnav ul li{
+    float: left;
+}
