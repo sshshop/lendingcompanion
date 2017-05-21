@@ -269,7 +269,7 @@
                         <td><s:property value="" default="null" /></td>
                         <td><s:property value="" default="null" /></td>
                         <td><a href="">
-                            <img src="image/i_del.gif" border="0" style="CURSOR: hand;height: 17px;">
+                            <img src="image/i_del.png" border="0" style="CURSOR: hand;height: 20px;">
                         </a></td>
                     </tr>
                     </tbody>
