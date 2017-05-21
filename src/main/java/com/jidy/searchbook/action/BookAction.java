@@ -120,7 +120,6 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 list.addAll(keyWordRed.replaceList(pageBean.getList(), inputInfo));
             }
             bookList = keyWord.uniq(list);//去重并保持排序
-            ActionContext.getContext().getValueStack().set("pageBean", pageBean);
             //将登陆用户搜索数据插入搜索表
             if (bookList != null && bookList.size() > 0) {
                 User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
@@ -135,13 +134,14 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                     books.addAll(recentSearch);
                     ActionContext.getContext().getValueStack().set("recentSearchBook", books);
                 } else {
-                    String st = "是";
-                    recentSearch.addAll(recentSearchService.recentSearchBookFinal(st));
+                    recentSearch.addAll(recentSearchService.recentSearchBookFinal());
                     Set<Book> books = new HashSet<Book>();
                     books.addAll(recentSearch);
                     ActionContext.getContext().getValueStack().set("recentSearchBook", books);
                 }
                 ActionContext.getContext().getValueStack().set("BookList", bookList);
+                //pageBean.setTotalCount(bookList.size());
+                ActionContext.getContext().getValueStack().set("pageBean", pageBean);
                 return "searchBookSuccess";
             }else {
                 this.addActionMessage("没有查询到图书信息");

@@ -33,9 +33,11 @@
 
                     <s:else>
                         <span style="float: left;margin-left: -10px">您可能感兴趣：</span></br>
-                        <s:iterator var="c" value="#session.category">
-                        <li class="category_nav_item"><a href="#"><s:property value="#c.cname" /></a></li>
-                    </s:iterator>
+                        <s:iterator var="book" value="recentSearchBook">
+                            <span style="width: 190px;margin:0 auto;margin-left: -10px;"><img style="width:130px;height: 140px " src="<s:property value="#book.bcover" />"></span></br>
+                            <span><s:property value="#book.bname"/></span></br>
+                            <span><small>作者：<s:property value="#book.bauthor"/></small></span></br>
+                        </s:iterator>
                     </s:else>
                 </ol>
             </div>
