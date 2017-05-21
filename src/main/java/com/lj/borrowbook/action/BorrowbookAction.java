@@ -51,12 +51,18 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
             return LOGIN;
         }
         if (borrowbookService.isOverBorrored(user)) {
-            //可以借阅时
-            borrowbookService.insertBorrowdbook(user, borrowbook);
-            System.out.println(borrowbook.getBid() + borrowbook.getRtime().toString() + borrowbook.getTtime());
-            borrowbookService.updateBookNborrow(borrowbook);
-            addActionMessage("借书成功");
-            return SUCCESS;
+            if (borrowbookService.existBorrMsg(user,borrowbook)){
+                //可以借阅时
+                borrowbookService.insertBorrowdbook(user, borrowbook);
+                System.out.println(borrowbook.getBid() + borrowbook.getRtime().toString() + borrowbook.getTtime());
+                borrowbookService.updateBookNborrow(borrowbook);
+                this.addActionMessage("借书成功");
+                return SUCCESS;
+            }else {
+                this.addActionMessage("借书失败，同一本书不能借阅两次！");
+                return ERROR;
+            }
+
         } else {
             this.addActionMessage("借书失败，因为您现在还有两本书未归还！");
             return ERROR;

@@ -34,4 +34,13 @@ public interface BorrowbookDao {
      */
     @Select("UPDATE book SET nborrowed=nborrowed-1,hborrowed=hborrowed+1 WHERE bid=#{borrowbook.bid}")
     void updateBookNborrow(@Param("borrowbook")Borrowbook borrowbook);
+
+    /**
+     * 查询用户当前书籍的借阅数量
+     * @param user 用户id封装
+     * @param borrowbook 图书id封装
+     * @return 返回数量
+     */
+    @Select("SELECT COUNT(*) FROM borrowbook WHERE bstatus<3 AND uid=#{user.uid} AND bid=#{borrowbook.bid}")
+    int existBorrMsg(@Param("user") User user,@Param("borrowbook") Borrowbook borrowbook);
 }
