@@ -2,8 +2,10 @@ package com.lj.news.dao;
 
 import com.upublic.vo.News;
 import com.upublic.vo.User;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -19,4 +21,18 @@ public interface NewsDao {
      */
     @Select("SELECT * FROM news WHERE uid=#{user.uid}")
     List<News> findNewByUid(@Param("user") User user);
+
+    /**
+     * 根据消息id删除消息
+     * @param news 消息实体类，提供消息id
+     */
+    @Delete("DELETE FROM news WHERE nid=#{news.nid}")
+    void delNew(@Param("news") News news);
+
+    /**
+     * 更新消息阅读状态
+     * @param news
+     */
+    @Update("UPDATE news SET nstatus=1 WHERE nid=#{news.nid}")
+    void updatStatus(@Param("news") News news);
 }

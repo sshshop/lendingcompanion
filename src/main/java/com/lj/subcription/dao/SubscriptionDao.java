@@ -43,4 +43,7 @@ public interface SubscriptionDao {
     )
     List<Subscription> findSubBooks(@Param("user") User user);
 
+    @Delete("DELETE FROM subscription WHERE uid=#{user.uid} AND bid =#{subscription.bid}")
+    void delSub(@Param("user") User user,@Param("subscription") Subscription subscription);
+
 }
