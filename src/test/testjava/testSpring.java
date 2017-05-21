@@ -1,4 +1,5 @@
 import com.jidy.recentsearch.service.RecentSearchService;
+import com.lj.borrowbook.dao.BorrowbookDao;
 import com.lj.subcription.dao.SubscriptionDao;
 import com.upublic.vo.Book;
 import com.upublic.vo.Subscription;
@@ -16,27 +17,38 @@ import static org.junit.Assert.assertEquals;
  */
 public class testSpring {
     private ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-    RecentSearchService recentSearchService= (RecentSearchService) ac.getBean("recentSearchService");
-    SubscriptionDao subscriptionDao= (SubscriptionDao) ac.getBean("subscriptionDao");
+    RecentSearchService recentSearchService = (RecentSearchService) ac.getBean("recentSearchService");
+    SubscriptionDao subscriptionDao = (SubscriptionDao) ac.getBean("subscriptionDao");
+    BorrowbookDao borrowbookDao = (BorrowbookDao) ac.getBean("borrowbookDao");
 
     @Test
-    public void test(){
-        recentSearchService.insertSearchKeyword(1,"dsfg");
+    public void test() {
+        recentSearchService.insertSearchKeyword(1, "dsfg");
     }
 
     @Test
-    public void testSubBook(){
-        User user=new User();
+    public void testSubBook() {
+        User user = new User();
         user.setUid(1);
-       List<Subscription> list= subscriptionDao.findSubBooks(user);
-        System.out.println(list.get(3).getList().get(0).getBname()+list.get(3).getList().get(0).getCategory().getCname());
+        List<Subscription> list = subscriptionDao.findSubBooks(user);
+        System.out.println(list.get(3).getList().get(0).getBname() + list.get(3).getList().get(0).getCategory().getCname());
     }
 
     @Test
-    public void testInsertSub(){
-        User user=new User();
+    public void testInsertSub() {
+        User user = new User();
         user.setUid(1);
-       Subscription subscription=new Subscription();
-        System.out.println(subscriptionDao.addSubscrition(user,subscription));
+        Subscription subscription = new Subscription();
+        System.out.println(subscriptionDao.addSubscrition(user, subscription));
     }
+
+    @Test
+    public void testSelectcout() {
+        User user = new User();
+        user.setUid(1);
+        int i = borrowbookDao.selectCountBorrowBook(user);
+        System.out.println(i);
+    }
+
+
 }

@@ -25,7 +25,7 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     @Resource(name = "bookService")
     private BookService bookService;
     private Borrowbook borrowbook = new Borrowbook();
-  //  private int bid; //图书id
+    //  private int bid; //图书id
 
     public void setBorrowbookService(BorrowbookService borrowbookService) {
         this.borrowbookService = borrowbookService;
@@ -33,38 +33,49 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
 
     /**
      * 将借书信息添加到数据库
+     *
      * @return
      */
     @Action(
             value = "addBorrowBook",
             results = {
-                    @Result(name =SUCCESS, location = "msg.jsp"),
-                    @Result(name = LOGIN,location ="login.jsp" )
+                    @Result( location = "msg.jsp"),
+                    @Result(name = LOGIN, location = "login.jsp"),
+                    @Result(name = ERROR, location = "msg.jsp")
             }
     )
     public String addBorrowBook() {
-        System.out.println("添加图书的id:=="+borrowbook.getBid());
-    User user=(User)ServletActionContext.getRequest().getSession().getAttribute("existedUser");
-    if (user==null){
-        return LOGIN;
-    }
-        borrowbookService.insertBorrowdbook(user,borrowbook);
-        System.out.println(borrowbook.getBid()+borrowbook.getRtime().toString()+borrowbook.getTtime());
-        addActionMessage("借书成功");
-        return SUCCESS;
+        System.out.println("添加图书的id:==" + borrowbook.getBid());
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (user == null) {
+            return LOGIN;
+        }
+        if (borrowbookService.isOverBorrored(user)) {
+            //可以借阅时
+            borrowbookService.insertBorrowdbook(user, borrowbook);
+            System.out.println(borrowbook.getBid() + borrowbook.getRtime().toString() + borrowbook.getTtime());
+            borrowbookService.updateBookNborrow(borrowbook);
+            addActionMessage("借书成功");
+            return SUCCESS;
+        } else {
+            this.addActionMessage("借书失败，因为您现在还有两本书未归还！");
+            return ERROR;
+        }
+
     }
 
     /**
      * 跳转到借书详情页
+     *
      * @return
      */
     @Action(
             value = "jumpBorrowdBook",
-            results = @Result(location = "borroweBook.jsp" )
+            results = @Result(location = "borroweBook.jsp")
     )
-    public  String jumpBorrowBook(){
-        System.out.println("跳转到页面成功,获取到的图书id是："+borrowbook.getBid());
-        ServletActionContext.getRequest().getSession().setAttribute("addBook",bookService.findBookById(borrowbook.getBid()));
+    public String jumpBorrowBook() {
+        System.out.println("跳转到页面成功,获取到的图书id是：" + borrowbook.getBid());
+        ServletActionContext.getRequest().getSession().setAttribute("addBook", bookService.findBookById(borrowbook.getBid()));
         return SUCCESS;
     }
 

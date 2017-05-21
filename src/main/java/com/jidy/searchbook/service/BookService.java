@@ -81,11 +81,18 @@ public class BookService{
         return pageBean;
     }
 
-
+    /**
+     * 查询最新书籍
+     * @return 返回书籍集合
+     */
     public List<Book> findNewBook() {
         return bookDao.findNewBook();
     }
 
+    /**
+     * 查询最热门书籍
+     * @return 返回书籍集合
+     */
     public List<Book> findHotBook() {
         return bookDao.findHotBook();
     }
@@ -94,11 +101,12 @@ public class BookService{
 
     /**
     * 通过书籍主键查询图书详情
-    *
-    * @param bid
-    * @return
+    * @param bid 图书主键id
+    * @return 返回唯一的图书实体类
     */
    public Book findBookById(Integer bid) {
        return bookDao.findBookById(bid);
    }
+
+
 }

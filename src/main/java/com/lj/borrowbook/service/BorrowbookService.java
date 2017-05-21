@@ -20,4 +20,18 @@ public class BorrowbookService {
         borrowbookDao.insertBorrowdbook(borrowbook);
     }
 
+    /**
+     * 当用户借书年大于2等于2时。返回一个对应的bool值
+     *
+     * @param user 用户id封装的实体类
+     * @return 返回布尔值，当数字大于等于2返回false，反之返回true
+     */
+    public boolean isOverBorrored(User user) {
+        return borrowbookDao.selectCountBorrowBook(user) >= 2 ? false : true;
+    }
+
+    public void updateBookNborrow(Borrowbook borrowbook) {
+        borrowbookDao.updateBookNborrow(borrowbook);
+    }
+
 }
