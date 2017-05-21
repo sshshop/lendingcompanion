@@ -123,16 +123,18 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 if( user!=null){
                     int uid=user.getUid();
                     recentSearchService.insertSearchKeyword(uid,inputInfo);
-                    System.out.println("--------1234567:"+1234567);
                     List<String> strings=recentSearchService.findSearchKeyword(uid);
                     for (String string:strings) {
+                        System.out.println(string);
                         recentSearch.addAll(recentSearchService.recentSearchBookMaster(searchRegex.searchMaster(string)));
                     }
                     if (recentSearch.size()<6){
-                        for (String string:strings)
-                            recentSearch.addAll(recentSearchService.recentSearchBookFinal(searchRegex.searchFinal(string)));
+                        for (String string:strings);
+                            //recentSearch.addAll(recentSearchService.recentSearchBookFinal(searchRegex.searchFinal(string)));
                     }
-                    ActionContext.getContext().getValueStack().set("recentSearchBook", recentSearch);
+                    Set<Book> books=new HashSet<Book>();
+                    books.addAll(recentSearch);
+                    ActionContext.getContext().getValueStack().set("recentSearchBook", books);
                 }else{
 
                 }

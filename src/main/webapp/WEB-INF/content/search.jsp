@@ -22,14 +22,12 @@
         <div class="col-md-3 index_category">
             <div class="col-md-8 category_nav">
                 <ol class="">
-                    <s:if test="#session.loginedUser != null">
+                    <s:if test="#session.existedUser != null">
                         <span style="float: left;">相关历史搜索：</span></br>
                         <s:iterator var="book" value="recentSearchBook">
-                            <s:div>
-                                <span style="width: 190px;margin:auto;margin-left: -20px;"><img style="width:165px;height: 160px " src="<s:property value="#book.bcover" />"></span></br>
+                                <span style="width: 190px;margin:0 auto;margin-left: -10px;"><img style="width:130px;height: 140px " src="<s:property value="#book.bcover" />"></span></br>
                                 <span><s:property value="#book.bname"/></span></br>
                                 <span><small>作者：<s:property value="#book.bauthor"/></small></span></br>
-                            </s:div>
                         </s:iterator>
                     </s:if>
 

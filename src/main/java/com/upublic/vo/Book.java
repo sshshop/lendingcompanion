@@ -167,7 +167,13 @@ public class Book {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        Book book=(Book)obj;
+        return bid.equals(book.bid) && bname.equals(book.bname);
+    }
+    @Override
     public int hashCode() {
-        return super.hashCode();
+        String in = bid + bname;
+        return in.hashCode();
     }
 }

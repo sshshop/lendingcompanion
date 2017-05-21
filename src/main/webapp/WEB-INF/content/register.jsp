@@ -42,7 +42,7 @@
                 <span>“无微不至”的借阅伴侣</span>
             </div>
             <div class="col-md-2 header_title_right">
-                <a class="login">登录</a>
+                <a class="login" href="loginS.action">登录</a>
                 <a class="register">注册</a>
                 <a class="collect">收藏本站</a>
             </div>
@@ -66,7 +66,7 @@
         <!--导航栏-->
         <div class="row header_nav" id="header_nav">
             <div class="col-md-12">
-                <a  href="#">主页</a>
+                <a  href="index.action">主页</a>
                 <a  href="#">热门推荐</a>
                 <a  href="#">借书排行榜</a>
                 <a  href="#">网站简介</a>
@@ -79,7 +79,7 @@
             <div class="col-md-12">
                 <span class="header_smallNav_text">您所在的位置:</span>
                 <ol class="breadcrumb">
-                    <li><a href="#">主页</a></li>
+                    <li><a href="index.action">主页</a></li>
                     <li class="active">注册</li>
                 </ol>
             </div>

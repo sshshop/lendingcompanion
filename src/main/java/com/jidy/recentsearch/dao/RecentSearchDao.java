@@ -28,7 +28,7 @@ public interface RecentSearchDao {
     *
     * 返回关键字数组
     * */
-    @Select("select scontent from search where uid=#{uid} order by stime LIMIT 5")
+    @Select("select scontent from search where uid=#{uid} order by stime desc LIMIT 5")
     List<String> findSearchKeyword(Integer uid);
 
     /*

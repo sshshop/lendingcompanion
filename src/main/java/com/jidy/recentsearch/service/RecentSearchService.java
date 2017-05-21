@@ -37,7 +37,6 @@ public class RecentSearchService {
     * 返回值为关键字数组
     * */
     public List<String> findSearchKeyword(Integer uid) {
-        System.out.println(recentSearchDao.findSearchKeyword(uid).size());
         return recentSearchDao.findSearchKeyword(uid);
     }
 
