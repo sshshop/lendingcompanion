@@ -55,6 +55,19 @@ public class UserService {
     public void update(User existUser) {
         userDao.update(existUser);
     }
+
+    public User findUserByUid(User user){
+        return userDao.findUserByUid(user);
+    }
+
+    /**
+     * 更改用户信息
+     * @param user 实现用户的信息封装
+     * @return 返回修改的行数，一般是1
+     */
+    public int updateUser(User user) {
+            return userDao.updateUser(user);
+    }
 }
 
 

@@ -1,11 +1,13 @@
 package com.upublic.vo;
 
+import java.util.Date;
+
 public class News {
   private Integer nid;
   private Integer uid;
   private String ncontent;
   private Integer nstatus;
-
+  private Date time;
   public Integer getNid() {
     return nid;
   }
@@ -36,5 +38,13 @@ public class News {
 
   public void setNstatus(Integer nstatus) {
     this.nstatus = nstatus;
+  }
+
+  public Date getTime() {
+    return time;
+  }
+
+  public void setTime(Date time) {
+    this.time = time;
   }
 }

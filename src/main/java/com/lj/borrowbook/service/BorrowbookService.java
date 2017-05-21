@@ -1,11 +1,13 @@
 package com.lj.borrowbook.service;
 
 import com.lj.borrowbook.dao.BorrowbookDao;
+import com.upublic.vo.Book;
 import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Rabit on 2017/5/9.
@@ -52,4 +54,12 @@ public class BorrowbookService {
             return borrowbookDao.existBorrMsg(user,borrowbook)>=1?false:true;
     }
 
+    /**
+     * 通过用户id差询用户的借书的信息，其中包括书籍的信息等
+     * @param user 用户的书籍信息封装
+     * @return 返回封装的用户借书的信息
+     */
+    public List<Borrowbook> findBorrowedBookByUid(User user) {
+        return borrowbookDao.findBorrowedBookByUid(user);
+    }
 }

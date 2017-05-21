@@ -14,4 +14,6 @@ public interface ProvinceDao {
     Province findPidAll(@Param("pname") String pname);
     @Select("select pid FROM province WHERE pname=#{pname}")
     int selectPid(String pname);
+    @Select("select * FROM province WHERE pid=#{pid}")
+    Province findNameByPid();
 }

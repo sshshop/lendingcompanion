@@ -6,6 +6,7 @@ import com.upublic.vo.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Rabit on 2017/5/9.
@@ -41,5 +42,15 @@ public class SubscriptionService {
      */
     public void addSubscrition(User user, Subscription subscription) {
         subscriptionDao.addSubscrition(user,subscription);
+    }
+
+    /**
+     * 查询用的所有订阅信息，包括书籍的详情
+     * @param user 用户的实体类封装，提供uid
+     * @return 返回用户的订阅信息封装信息
+     */
+
+    public List<Subscription> findSubBooks(User user) {
+        return subscriptionDao.findSubBooks(user);
     }
 }

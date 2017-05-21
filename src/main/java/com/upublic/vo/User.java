@@ -1,18 +1,38 @@
 package com.upublic.vo;
 
+import java.util.Date;
+
 public class User {
     private Integer uid;
     private String username;
     private String upassword;
     private Integer sex;
-    private java.sql.Date dob;
+    private Date dob;
     private String phone;
     private Integer pid;
+    private Province province;
     private Integer cid;
+    private City city;
     private String addr;
     private String email;
     private Integer state;
-    private  String code;
+    private String code;
+
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 
     public String getCode() {
         return code;
@@ -54,11 +74,11 @@ public class User {
         this.sex = sex;
     }
 
-    public java.sql.Date getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(java.sql.Date dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

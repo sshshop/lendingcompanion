@@ -42,4 +42,5 @@ public interface SubscriptionDao {
     }
     )
     List<Subscription> findSubBooks(@Param("user") User user);
+
 }

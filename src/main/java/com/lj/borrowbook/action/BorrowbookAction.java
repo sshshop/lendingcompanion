@@ -7,10 +7,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -39,10 +36,13 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     @Action(
             value = "addBorrowBook",
             results = {
-                    @Result( location = "msg.jsp"),
+                    @Result(location = "msg.jsp"),
                     @Result(name = LOGIN, location = "login.jsp"),
                     @Result(name = ERROR, location = "msg.jsp")
-            }
+            }, exceptionMappings = {
+            //映射映射声明
+            @ExceptionMapping(exception = "java.lang.Exception", result = ERROR)
+    }
     )
     public String addBorrowBook() {
         System.out.println("添加图书的id:==" + borrowbook.getBid());
@@ -51,14 +51,14 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
             return LOGIN;
         }
         if (borrowbookService.isOverBorrored(user)) {
-            if (borrowbookService.existBorrMsg(user,borrowbook)){
+            if (borrowbookService.existBorrMsg(user, borrowbook)) {
                 //可以借阅时
                 borrowbookService.insertBorrowdbook(user, borrowbook);
                 System.out.println(borrowbook.getBid() + borrowbook.getRtime().toString() + borrowbook.getTtime());
                 borrowbookService.updateBookNborrow(borrowbook);
                 this.addActionMessage("借书成功");
                 return SUCCESS;
-            }else {
+            } else {
                 this.addActionMessage("借书失败，同一本书不能借阅两次！");
                 return ERROR;
             }

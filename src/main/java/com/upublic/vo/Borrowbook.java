@@ -1,69 +1,79 @@
 package com.upublic.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Borrowbook {
-  private Integer bbid;
-  private Integer uid;
-  private Integer bid;
-  private Date btime;
-  private Date rtime;
-  private Integer bstatus; //借书状态，1为提交信息（包括交押金）借书未取书，2为已取书未还书，3为已还书
-  private Date ttime;
+    private Integer bbid;
+    private Integer uid;
+    private Integer bid;
+    private List<Book> list;
+    private Date btime;
+    private Date rtime;
+    private Integer bstatus; //借书状态，1为提交信息（包括交押金）借书未取书，2为已取书未还书，3为已还书
+    private Date ttime;
 
-  public Integer getBbid() {
-    return bbid;
-  }
+    public Integer getBbid() {
+        return bbid;
+    }
 
-  public void setBbid(Integer bbid) {
-    this.bbid = bbid;
-  }
+    public void setBbid(Integer bbid) {
+        this.bbid = bbid;
+    }
 
-  public Integer getUid() {
-    return uid;
-  }
+    public Integer getUid() {
+        return uid;
+    }
 
-  public void setUid(Integer uid) {
-    this.uid = uid;
-  }
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
-  public Integer getBid() {
-    return bid;
-  }
+    public Integer getBid() {
+        return bid;
+    }
 
-  public void setBid(Integer bid) {
-    this.bid = bid;
-  }
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
 
-  public Date getBtime() {
-    return btime;
-  }
+    public List<Book> getList() {
+        return list;
+    }
 
-  public void setBtime(Date btime) {
-    this.btime = btime;
-  }
+    public void setList(List<Book> list) {
+        this.list = list;
+    }
 
-  public Date getRtime() {
-    return rtime;
-  }
+    public Date getBtime() {
+        return btime;
+    }
 
-  public void setRtime(Date rtime) {
-    this.rtime = rtime;
-  }
+    public void setBtime(Date btime) {
+        this.btime = btime;
+    }
 
-  public Integer getBstatus() {
-    return bstatus;
-  }
+    public Date getRtime() {
+        return rtime;
+    }
 
-  public void setBstatus(Integer bstatus) {
-    this.bstatus = bstatus;
-  }
+    public void setRtime(Date rtime) {
+        this.rtime = rtime;
+    }
 
-  public Date getTtime() {
-    return ttime;
-  }
+    public Integer getBstatus() {
+        return bstatus;
+    }
 
-  public void setTtime(Date ttime) {
-    this.ttime = ttime;
-  }
+    public void setBstatus(Integer bstatus) {
+        this.bstatus = bstatus;
+    }
+
+    public Date getTtime() {
+        return ttime;
+    }
+
+    public void setTtime(Date ttime) {
+        this.ttime = ttime;
+    }
 }

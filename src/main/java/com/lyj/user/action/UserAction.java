@@ -1,11 +1,16 @@
 package com.lyj.user.action;
 
+import com.lj.bookcomment.service.BookCommentService;
+import com.lj.borrowbook.service.BorrowbookService;
+import com.lj.news.service.NewsService;
+import com.lj.subcription.service.SubscriptionService;
 import com.lyj.city.service.CityService;
 import com.lyj.province.action.ProvinceAction;
 import com.lyj.province.service.ProvinceService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.lyj.user.service.UserService;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.upublic.vo.City;
 import com.upublic.vo.Province;
 import com.upublic.vo.User;
@@ -16,6 +21,8 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import javax.annotation.Resource;
+import javax.print.attribute.standard.MediaSize;
+import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +31,7 @@ import static com.opensymphony.xwork2.Action.LOGIN;
 import static com.opensymphony.xwork2.Action.NONE;
 
 /**
+ * 用户相关操作
  * Created by 盖世太保 on 2017/5/7.
  */
 @ParentPackage(value = "struts-default")
@@ -37,7 +45,25 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     private String dob;
     private String sex1;
     private int bid;//图书bid
-    private int status=0;//用户跳转状态，默认值为0；1为详情页跳转，2未搜索页跳转
+    private int status = 0;//用户跳转状态，默认值为0；1为详情页跳转，2未搜索页跳转
+    // 注入UserService
+    @Resource(name = "userService")
+    private UserService userService;
+
+    @Resource(name = "provinceService")
+    private ProvinceService provinceService;
+
+    @Resource(name = "cityService")
+    private CityService cityService;
+    @Resource(name = "borrowbookService")
+    private BorrowbookService borrowbookService;
+    @Resource(name = "subscriptionService")
+    private SubscriptionService subscriptionService;
+    @Resource(name = "bookCommentService")
+    private BookCommentService bookCommentService;
+    @Resource(name = "newsService")
+    private NewsService newsService;
+
 
     public void setBid(int bid) {
         this.bid = bid;
@@ -63,17 +89,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     public User getModel() {
         return user;
     }
-
-
-    // 注入UserService
-    @Resource(name = "userService")
-    private UserService userService;
-
-    @Resource(name = "provinceService")
-    private ProvinceService provinceService;
-
-    @Resource(name = "cityService")
-    private CityService cityService;
 
     public User getUser() {
         return user;
@@ -133,9 +148,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return "register";
     }
 
-    //用户中心
-    @Action(value = "userM",results = @Result(name = "message",location = "userMessage.jsp"))
-    public String userM(){return "message";}
+
     //用户名校验是否存在
     @Action(value = "registerU")
     public String findByName() throws IOException {
@@ -163,7 +176,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     //用户注册方法
     @Action(value = "registerPost", results = @Result(name = "registerSuccess", location = "login.jsp"))
     public String register() {
-        if (sex1 == "man") {
+        if (sex1.equals("man")) {
             user.setSex(1);
         } else {
             user.setSex(0);
@@ -220,6 +233,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     /**
      * 用于用户前台在非首页登录跳转到当前页面
+     *
      * @return
      */
     @Action(value = "loginJumpThis",
@@ -227,7 +241,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             results = {
                     @Result(type = "redirect", location = "findBookBybid.action"),
                     @Result(name = ERROR, type = "redirect", location = "index.action"),
-                    @Result(name = LOGIN,location = "login.jsp")
+                    @Result(name = LOGIN, location = "login.jsp")
             }
     )
     public String loginJumpThis() {
@@ -236,12 +250,12 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             System.out.println("已经登录过了");
             return ERROR;
         }
-        System.out.println("进入登录了，书名是：" + bid+"状态是："+status);
+        System.out.println("进入登录了，书名是：" + bid + "状态是：" + status);
         ServletActionContext.getRequest().getSession().setAttribute("bid", bid);
         System.out.println(user.getUsername() + "--" + user.getUpassword());
         List<User> list = userService.findUserAll(user);
         if (list.isEmpty()) {
-        this.addActionError("用户名或者密码错误");
+            this.addActionError("用户名或者密码错误");
             //登录失败
             return LOGIN;
         } else {
@@ -251,5 +265,57 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             return SUCCESS;
         }
 
+    }
+
+    /**
+     * 用户中心
+     * 实现用户跳转到用户中心，并查询所有的用户信息
+     */
+    @Action(value = "userMessage", results = {
+            @Result(location = "userMessage.jsp"),
+            @Result(name = LOGIN, location = "login.jsp")
+    })
+    public String userMessage() {
+
+        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (loginuser == null) {
+            //用户未登录
+            return LOGIN;
+        }
+        ServletActionContext.getRequest().getSession().setAttribute("existedUser", userService.findUserByUid(loginuser));
+        ServletActionContext.getRequest().getSession().setAttribute("mysub", subscriptionService.findSubBooks(loginuser));
+        ServletActionContext.getRequest().getSession().setAttribute("mycomment", bookCommentService.findCommentByUId(loginuser));
+        ServletActionContext.getRequest().getSession().setAttribute("myborrow", borrowbookService.findBorrowedBookByUid(loginuser));
+        ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));
+        return SUCCESS;
+    }
+
+    /**
+     * 用户中心修改用户信息
+     */
+    @Action(value = "updateUser", results = {
+            @Result(type = "redirect", location = "userMessage.action"),
+            @Result(name = ERROR,location = "userMessage.jsp"),
+            @Result(name = LOGIN, location = "login.jsp")
+    })
+    public String updateUser() {
+        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (loginuser == null) {
+            //用户未登录
+            return LOGIN;
+        }
+        if (sex1.equals("man")) {
+            user.setSex(1);
+        } else {
+            user.setSex(0);
+        }
+        user.setPid(provinceService.selectPid(province));
+        user.setCid(cityService.selectCid(city));
+        user.setUid(loginuser.getUid());
+       if ( userService.updateUser(user)!=1){
+           this.addActionMessage("信息修改失败");
+           return ERROR;
+       }
+        return SUCCESS;
     }
 }

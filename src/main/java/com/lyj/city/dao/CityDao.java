@@ -1,6 +1,7 @@
 package com.lyj.city.dao;
 
 import com.upublic.vo.City;
+import com.upublic.vo.Province;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -15,4 +16,7 @@ public interface CityDao {
 
     @Select("select cid FROM city WHERE cname=#{cname}")
     int findCid(String cname);
+
+    @Select("select * FROM city WHERE cid=#{cid}")
+    City findNameBycid(Integer cid);
 }

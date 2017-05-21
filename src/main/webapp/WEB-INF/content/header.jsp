@@ -15,7 +15,7 @@
             <a class="register" href="registerS.action">注册</a>
             </s:if><s:else>
           <%--  <a class="login" href="#"><s:property value="#session.existedUser.username" /></a>--%>
-            <a class="login" href="#">个人中心</a>
+            <a class="login" href="userMessage.action">个人中心</a>
             <a class="register" href="loginOut.action">退出</a>
         </s:else>
             <a class="collect">收藏本站</a>

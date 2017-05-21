@@ -11,6 +11,7 @@ public class Bookcomment {
     private List<User> user;
     private String username;
     private Integer bid;
+    private List<Book> list;
     private Date bctime;
     private String inf;
 
@@ -44,6 +45,14 @@ public class Bookcomment {
 
     public void setBid(Integer bid) {
         this.bid = bid;
+    }
+
+    public List<Book> getList() {
+        return list;
+    }
+
+    public void setList(List<Book> list) {
+        this.list = list;
     }
 
     public Date getBctime() {

@@ -3,9 +3,9 @@ package com.lj.borrowbook.dao;
 import com.upublic.vo.Book;
 import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * Created by CD on 2017/5/7.
@@ -43,4 +43,17 @@ public interface BorrowbookDao {
      */
     @Select("SELECT COUNT(*) FROM borrowbook WHERE bstatus<3 AND uid=#{user.uid} AND bid=#{borrowbook.bid}")
     int existBorrMsg(@Param("user") User user,@Param("borrowbook") Borrowbook borrowbook);
+
+    /**
+     * 通过用户id差询用户的借书的信息，其中包括书籍的信息等
+     * @param user 用户的书籍信息封装
+     * @return 返回封装的用户借书的信息
+     */
+    @Select("SELECT * FROM borrowbook WHERE uid=#{user.uid}")
+    @Results(value = {
+            @Result(column = "bid", property = "bid"),
+            @Result(column = "bid", property = "list", many = @Many(select = "com.jidy.searchbook.dao.BookDao.findBookById"))
+    }
+    )
+    List<Borrowbook> findBorrowedBookByUid(@Param("user") User user);
 }
