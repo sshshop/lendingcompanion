@@ -80,7 +80,7 @@
                 <li style="margin-top: 20px;"><a href="#2" data-toggle="tab">公告管理</a></li>
                 <li style="margin-top: 20px;"> <a href="#3" data-toggle="tab">图书管理</a></li>
                 <li style="margin-top: 20px;"><a href="#4" data-toggle="tab">权限管理</a></li>
-                <li style="margin-top: 20px;"><a href="#5" data-toggle="tab">消息管理</a></li>
+                <%--<li style="margin-top: 20px;"><a href="#5" data-toggle="tab">消息管理</a></li>--%>
             </ul>
         </div>
     </div>
@@ -320,9 +320,6 @@
                                         <td>出版社</td>
                                         <td>书籍编号</td>
                                         <td>书籍封面</td>
-                                        <td>序</td>
-                                        <td>导读</td>
-                                        <td>内容</td>
                                         <td>藏书量</td>
                                         <td>添加时间</td>
                                         <td>编辑</td>
@@ -331,9 +328,6 @@
                                     </thead>
                                     <tbody>
                                     <tr  ng-repeat="data in datas">
-                                        <td><s:property value="" default="null" /> </td>
-                                        <td><s:property value="" default="null" /></td>
-                                        <td><s:property value="" default="null" /></td>
                                         <td><s:property value="" default="null" /> </td>
                                         <td><s:property value="" default="null" /> </td>
                                         <td><s:property value="" default="null" /> </td>
@@ -441,17 +435,18 @@
                             <ul  class="nav nav-tabs">
 
                                 <li class="active">
-                                    <a> 我的评价  </a>
+                                    <a> 权限管理  </a>
                                 </li>
                             </ul>
                         </div>
                         <table class="table" style="text-align: center; letter-spacing: 2px;">
                             <thead>
                             <tr>
-                                <td>书籍名称</td>
-                                <td>评价内容</td>
-                                <td>评价时间</td>
-
+                                <td>管理员编号</td>
+                                <td>管理员用户名</td>
+                                <td>权限等级</td>
+                                <td>升级权限</td>
+                                <td>降低权限</td>
                             </tr>
                             </thead>
                             <tbody>
@@ -459,6 +454,16 @@
                                 <td><s:property value="" default="null" /> </td>
                                 <td><s:property value="" default="null" /></td>
                                 <td><s:property value="" default="null" /></td>
+                                <td>
+                                    <a href="#">
+                                        <img src="image/up.png" style="CURSOR: hand;height: 20px;">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <img src="image/down.png" style="CURSOR: hand;height: 20px;">
+                                    </a>
+                                </td>
 
                             </tr>
                             </tbody>
@@ -466,32 +471,32 @@
 
                     </div>
                 </div>
-                <%--消息管理--%>
-                <div class="tab-pane fade"   id="5" style="padding-top: 30px;letter-spacing: 2px;">
-                    <div  class="context_form" style="height:auto;">
-                        <div style="height:10%">
-                            <ul  class="nav nav-tabs">
+                <%--&lt;%&ndash;消息管理&ndash;%&gt;--%>
+                <%--<div class="tab-pane fade"   id="5" style="padding-top: 30px;letter-spacing: 2px;">--%>
+                    <%--<div  class="context_form" style="height:auto;">--%>
+                        <%--<div style="height:10%">--%>
+                            <%--<ul  class="nav nav-tabs">--%>
 
-                                <li class="active">
-                                    <a> 系统消息  </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <table class="table" style="text-align: center; letter-spacing: 2px;">
-                            <thead>
-                            <tr style="font-size: 70px;">
-                                <s:property value="" default="没有取到消息内容"/>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr  ng-repeat="data in datas" style="float: right">
-                                <td ><s:property value="" default="系统本地时间" /></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                <%--<li class="active">--%>
+                                    <%--<a> 系统消息  </a>--%>
+                                <%--</li>--%>
+                            <%--</ul>--%>
+                        <%--</div>--%>
+                        <%--<table class="table" style="text-align: center; letter-spacing: 2px;">--%>
+                            <%--<thead>--%>
+                            <%--<tr style="font-size: 70px;">--%>
+                                <%--<s:property value="" default="没有取到消息内容"/>--%>
+                            <%--</tr>--%>
+                            <%--</thead>--%>
+                            <%--<tbody>--%>
+                            <%--<tr  ng-repeat="data in datas" style="float: right">--%>
+                                <%--<td ><s:property value="" default="系统本地时间" /></td>--%>
+                            <%--</tr>--%>
+                            <%--</tbody>--%>
+                        <%--</table>--%>
 
-                    </div>
-                </div>
+                    <%--</div>--%>
+                <%--</div>--%>
             </div>
         </div>
     </div>
