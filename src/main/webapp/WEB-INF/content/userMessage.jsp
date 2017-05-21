@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/user.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/register.css">
+    <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/bootstrap-3.3.7/css/bootstrap.min.css">
     <script src="js/jquery-2.1.1/jquery.min.js"></script>
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/laydate/laydate.js"></script>
-    <script src="<%=request.getContextPath() %>/js/register.js"  type="text/javascript" charset="utf-8"></script>
-    <script src="<%=request.getContextPath() %>/js/laydate/laydate.js"  type="text/javascript" charset="utf-8"></script>
+    <script src="laydate/laydate.js"></script>
+    <script src="js/register.js"  type="text/javascript" charset="utf-8"></script>
+    <script src="js/laydate/laydate.js"  type="text/javascript" charset="utf-8"></script>
 
 
 </head>
