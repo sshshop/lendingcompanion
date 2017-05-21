@@ -58,38 +58,40 @@
                                 <div class="form-group">
 
                                     <label>用户名:</label>&nbsp;&nbsp;&nbsp;
-                                    <s:property  value="username" default="null" />
+                                    <s:property value="#session.existedUser.username" />
                                 </div>
 
                                 <div class="form-group">
 
                                     <label>性别:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <s:property  value="username" default="null" />
+                                  <s:if test="#session.existedUser.sex==1">
+                                      男
+                                  </s:if><s:else>女</s:else>
                                 </div>
 
                                 <div class="form-group">
 
                                     <label>出生年月:</label>
-                                    <s:property  value="username" default="null" />
+                                    <s:property value="#session.existedUser.dob" />
                                 </div>
 
                                 <div class="form-group">
 
                                     <label>联系电话:</label>
-                                    <s:property  value="username" default="null" />
+                                    <s:property value="#session.existedUser.phone" />
                                 </div>
 
                                 <div class="form-group">
 
                                     <label>所属地址:</label>
-                                    <s:property  value="username" default="省份" />
-                                    <s:property  value="username" default="城市" />
-                                    <s:property  value="username" default="城街乡镇" />
+                                    <s:property value="#session.existedUser.province.pname" />
+                                    <s:property value="#session.existedUser.caty.cname" />
+                                    <s:property value="#session.existedUser.addr" />
                                 </div>
                                 <div class="form-group">
 
                                     <label>邮箱地址:</label>
-                                    <s:property  value="username" default="null" />
+                                    <s:property value="#session.existedUser.email" />
                                 </div>
                             </div>
 
@@ -102,14 +104,11 @@
                                         <div class="col-md-8" >
                                             <!--注册表单-->
                                             <div >
-                                                <form class="form-horizontal register" id="register" action="" >
+                                                <form class="form-horizontal register" id="register" action="updateUser.action" method="post">
                                                     <!--用户名-->
                                                     <div class="form-group">
-
                                                         <label class="control-label col-md-4">用户名</label>
-                                                        <input type="text"  value="null"  readonly  name="username" class="form-control col-md-4 username" id="username" onblur="checkUsername()" />
-
-
+                                                        <input type="text"  value="<s:property value="#session.existedUser.username" />"  readonly  name="username" class="form-control col-md-4 username" id="username" onblur="checkUsername()" />
                                                     </div>
                                                     <%-- <!--密码-->
                                                      <div class="form-group">
@@ -135,17 +134,14 @@
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-4">出生年月</label>
 
-                                                        <input type="text" id="borth" name="dob" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
-
-
+                                                        <input type="text" id="borth" name="dob" value=" <s:property value="#session.existedUser.dob" />" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
 
                                                     </div>
-
 
                                                     <script>
                                                         laydate({
                                                             elem: '#test1',
-                                                            format: 'YYYY/MM', // 分隔符可以任意定义，该例子表示只显示年月
+                                                            format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
                                                             festival: true, //显示节日
                                                             choose: function(datas) { //选择日期完毕的回调
                                                                 alert('得到：' + datas);
@@ -154,7 +150,7 @@
                                                     <!--电话-->
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-4">电话</label>
-                                                        <input type="text" name="phone" class="form-control col-md-4 phone" id="phone" placeholder="电话" onblur="checkPhone()" />
+                                                        <input type="text" name="phone" value=" <s:property value="#session.existedUser.phone" />" class="form-control col-md-4 phone" id="phone" placeholder="电话" />
                                                         <span id="phone2" style="font-size: 10px; color: red " ></span>
                                                     </div>
                                                     <!--省份----城市-->
@@ -176,12 +172,12 @@
 
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-4">详细地址</label>
-                                                        <input type="text" name="addr" class="form-control col-md-4 addr" id="addr" placeholder="详细地址"  />
+                                                        <input type="text" name="addr" value=" <s:property value="#session.existedUser.addr" />" class="form-control col-md-4 addr" id="addr" placeholder="详细地址"  />
                                                     </div>
                                                     <!--邮箱-->
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-4">邮箱地址</label>
-                                                        <input type="text" id="email" name="email" class="form-control col-md-4 email"   placeholder="邮箱" onblur="return checkEmail()" />
+                                                        <input type="text" id="email" name="email" value="<s:property value="#session.existedUser.email" />" class="form-control col-md-4 email"   placeholder="邮箱" onblur="return checkEmail()" />
                                                         <span id="email2" style="font-size: 10px; color: red " ></span>
                                                     </div>
                                                     <!--使用协议-->
@@ -192,16 +188,15 @@
                                                         <button type="submit" class="btn btn-default">修改</button>
                                                     </div>
                                                 </div>
-                                            </div>
-
-
+                                                </form>
                                             </div>
                                         </div>
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
-          </div>
+                </div>
 
 
                 <div class="tab-pane fade"   id="2" style="padding-top: 30px; letter-spacing: 2px;" onload="goPage(1,10)">
@@ -221,17 +216,22 @@
                                 <td>借书时间</td>
                                 <td>取书时间</td>
                                 <td>还书截止时间</td>
-                                <td>已归还</td>
+                                <td>归还状态</td>
                             </tr>
                             </thead>
                             <tbody>
+                            <s:iterator var="mb"  value="#session.myborrow">
                             <tr  ng-repeat="data in datas">
-                                <td><s:property value="" default="null" /> </td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /></td>
+                                <s:iterator var="ml" value="#mb.list">
+                                <td><s:property value="#ml.bname" default="null" /> </td>
+                                </s:iterator>
+                                <td><s:property value="#mb.btime" default="null" /></td>
+                                <td><s:property value="#mb.ttime" default="null" /></td>
+                                <td><s:property value="#mb.rtime" default="null" /></td>
+                                <td><s:if test="#mb.bstatus==1">请尽快去取书</s:if><s:elseif test="#mb.bstatus==2">亲，记得还书哦！</s:elseif><s:else>已经归还</s:else>
+                                        <%--<s:property value="#mb.bstatus" default="null" />--%></td>
                             </tr>
+                            </s:iterator>
                             <tr>
                                     <ul class="pagination pagination-sm" id="jumpWhere">
 
@@ -264,22 +264,25 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <s:iterator var="sub" value="#session.mysub">
+                                <s:iterator var="b" value="#sub.list">
                             <tr  ng-repeat="data in datas">
-                                <td><s:property value="" default="null" /> </td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /></td>
+                                <td> <img src="<s:property value="#b.bcover" />" style="height: 50px;width: 50px"> </td>
+                                <td><s:property value="#b.bname" /></td>
+                                <td><s:property value="#b.nborrowed" /></td>
                                 <td><a href="">
                                     <img src="image/i_del.png" border="0" style="CURSOR: hand;height: 20px;">
                                 </a></td>
                             </tr>
+                                </s:iterator>
+                            </s:iterator>
                             <tr>
                                 <ul class="pagination pagination-sm" id="jumpWhere1">
-
                                 </ul>
                             </tr>
                             </tbody>
                         </table>
-                    </div>
+                        </div>
                 </div>
 
                 <div class="tab-pane fade"   id="4" style="padding-top: 30px;letter-spacing: 2px;" onload="goPage(1,10)">
@@ -302,12 +305,16 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <s:iterator var="myc" value="#session.mycomment">
                             <tr  ng-repeat="data in datas">
-                                <td><s:property value="" default="null" /> </td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /></td>
+                                <s:iterator var="book" value="#myc.list">
+                                <td><s:property value="#book.bname"  /> </td>
+                                </s:iterator>
+                                <td><s:property value="#myc.inf"  /></td>
+                                <td><s:property value="#myc.bctime" /></td>
 
                             </tr>
+                            </s:iterator>
                             <tr>
                                 <ul class="pagination pagination-sm" id="jumpWhere2">
 
@@ -315,7 +322,6 @@
                             </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
 
@@ -331,18 +337,20 @@
                         </div>
                         <table class="table" style="text-align: center; letter-spacing: 2px;">
                             <thead>
-                            <tr style="font-size: 70px;">
-                                <s:property value="" default="没有取到消息内容"/>
+                            <s:iterator var="n" value="#session.mynews">
+                            <td style="font-size: 70px;">
+                                <td><s:property value="#n.ncontent" default="没有取到消息内容"/></td>
+                                <td ><s:property value="#n.time" default="系统本地时间" /></td>
                             </tr>
+                           <%-- <tr  ng-repeat="data in datas" style="float: right">
+
+                            </tr>--%>
                             </thead>
                             <tbody>
-                            <tr  ng-repeat="data in datas" style="float: right">
-                                <td ><s:property value="" default="系统本地时间" /></td>
-                            </tr>
+                            </s:iterator>
                             </tbody>
                         </table>
-
-                    </div>
+                         </div>
                 </div>
             </div>
         </div>

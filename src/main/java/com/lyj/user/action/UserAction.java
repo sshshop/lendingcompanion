@@ -304,7 +304,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             //用户未登录
             return LOGIN;
         }
-        if (sex1.equals("man")) {
+        System.out.println(province+city+sex1);
+        if ("man".equals(sex1)) {
             user.setSex(1);
         } else {
             user.setSex(0);
@@ -312,10 +313,14 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         user.setPid(provinceService.selectPid(province));
         user.setCid(cityService.selectCid(city));
         user.setUid(loginuser.getUid());
-       if ( userService.updateUser(user)!=1){
+        System.out.println("搞事情");
+        int i=userService.updateUser(user);
+        System.out.println(i);
+       if ( i!=1){
            this.addActionMessage("信息修改失败");
            return ERROR;
        }
+        System.out.println("修改成功");
         return SUCCESS;
     }
 }

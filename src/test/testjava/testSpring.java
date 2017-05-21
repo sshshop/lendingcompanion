@@ -83,5 +83,8 @@ public class testSpring {
         user.setUid(1);
         List<News> list=newsService.findNewsByUid(user);
         System.out.println(list.size()+"---"+list.get(0).getTime());
+        for (int i=0;i<list.size();i++){
+            System.out.println(list.get(i).getNcontent());
+        }
     }
 }
