@@ -133,7 +133,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return "register";
     }
 
-
+    //用户中心
+    @Action(value = "userM",results = @Result(name = "message",location = "userMessage.jsp"))
+    public String userM(){return "message";}
     //用户名校验是否存在
     @Action(value = "registerU")
     public String findByName() throws IOException {
