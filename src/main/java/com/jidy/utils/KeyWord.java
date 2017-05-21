@@ -40,12 +40,10 @@ public class KeyWord {
    *返回查询关键字
    * */
     public Book bookInfo(String[] search) {
-        book.setBname(search[0]);
-        book.setInitials(search[1]);
-        book.setBauthor(search[2]);
-        book.setFight(search[3]);
-        book.setBadr(search[4]);
-        book.setBnum(search[5]);
+        for (int i = 0; i <search.length ; i++) {
+            book.setBname(search[i]);
+
+        }
         return book;
     }
 

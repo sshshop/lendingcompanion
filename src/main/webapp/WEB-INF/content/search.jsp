@@ -34,8 +34,8 @@
                     <s:else>
                         <span style="float: left;margin-left: -10px">您可能感兴趣：</span></br>
                         <s:iterator var="c" value="#session.category">
-                            <li class="category_nav_item"><a href="#"><s:property value="#c.cname" /></a></li>
-                        </s:iterator>
+                        <li class="category_nav_item"><a href="#"><s:property value="#c.cname" /></a></li>
+                    </s:iterator>
                     </s:else>
                 </ol>
             </div>

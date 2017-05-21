@@ -14,9 +14,14 @@ public class SearchRegex {
     * 返回结果为查询关键字
     * */
     public String searchMaster(String inputInfo){
-        inputInfo=inputInfo.trim();
-        String regexSearch=inputInfo.replaceAll(regex,"+");
-        return regexSearch;
+        if(inputInfo==null){
+            return "";
+        }
+        else {
+            inputInfo=inputInfo.trim();
+            String regexSearch=inputInfo.replaceAll(regex,"+");
+            return regexSearch;
+        }
     }
 
     /*
@@ -29,15 +34,7 @@ public class SearchRegex {
 
     public String[] searchFinal(String inputInfo) {
         inputInfo = inputInfo.trim();
-        String str[] = new String[6];
-        String str1[]=inputInfo.split(regex,6);
-        for (int i=0;i<6;i++){
-            if (i<str1.length){
-                str[i]=str1[i];
-            }else{
-                str[i]=" ";
-            }
-        }
+        String str[]=inputInfo.split(regex);
         return str;
     }
 

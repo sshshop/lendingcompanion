@@ -1,13 +1,11 @@
 package com.jidy.searchbook.service;
 
 import com.upublic.utils.PageBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.jidy.searchbook.dao.BookDao;
 import javax.annotation.Resource;
 import com.upublic.vo.Book;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by jidy on 2017/5/8.
