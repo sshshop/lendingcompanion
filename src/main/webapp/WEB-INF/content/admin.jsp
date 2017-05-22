@@ -450,22 +450,30 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr  ng-repeat="data in datas">
-                                <td><s:property value="" default="null" /> </td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /></td>
-                                <td>
-                                    <a href="#">
-                                        <img src="image/up.png" style="CURSOR: hand;height: 20px;">
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#">
-                                        <img src="image/down.png" style="CURSOR: hand;height: 20px;">
-                                    </a>
-                                </td>
 
-                            </tr>
+                            <tr ng-repeat="data in datas">
+                                <s:iterator var="admin" value="list">
+                                    <td><s:property value="#admin.auid"  /> </td>
+                                    <td><s:property value="#admin.auname"  /></td>
+                                    <td><s:property value="#admin.authority"  /></td>
+                                    <td>
+                                        <s:if test="authority<4">
+                                            <a href="adminUser_login.action?authority=<s:property value="authority+1"/>&auid=<s:property value="#admin.auid"  />">
+                                                </s:if>
+                                                    <img src="image/up.png" style="CURSOR: hand;height: 20px;">
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <s:if test="authority>1">
+                                            <a href="adminUser_login.action?authority=<s:property value="authority-1"/>&auid=<s:property value="#admin.auid"  /> ">
+                                                </s:if>
+                                                <img src="image/down.png" style="CURSOR: hand;height: 20px;">
+                                            </a>
+
+                                    </td>
+
+                                </tr>
+                            </s:iterator>
                             </tbody>
                         </table>
 
