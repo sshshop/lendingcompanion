@@ -24,6 +24,11 @@ import javax.annotation.Resource;
 public class AdminUserAction extends ActionSupport {
     private String auname;
     private String apwd;
+    private Integer uid;
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
     public void setAuname(String auname) {
         this.auname = auname;
@@ -53,7 +58,7 @@ public class AdminUserAction extends ActionSupport {
 
     @Action( value = "adminUser_login",
             results = {
-                    @Result(name = "loginSuccess",location = "admin.jsp"),
+                    @Result(location = "admin.jsp"),
                     @Result(name = "loginFailed",location = "adminindex.jsp")
             }
     )
@@ -66,12 +71,17 @@ public class AdminUserAction extends ActionSupport {
      *
      * */
     public String adminUserLogin(){
+        Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
+        if(a!=null){
+            ActionContext.getContext().getValueStack().set("allUser",adminUserService.findUserAll());
+            return SUCCESS;
+        }
         Admuser admuser = adminUserService.findAdminUser(auname,apwd);
         ActionContext.getContext().getSession().put("adminUser",admuser);
         ActionContext.getContext().getValueStack().set("allUser",adminUserService.findUserAll());
         ActionContext.getContext().getSession().put("category",categoryService.findCategoryAll());
-        System.out.println(admuser.getAuname()+","+admuser.getApwd());
         /**
+         *
          * 判断admuser是否为空，
          * 如果为空则登录失败，
          * 否则登陆成功
@@ -81,9 +91,34 @@ public class AdminUserAction extends ActionSupport {
             this.addActionError("用户不存在或用户名密码错误");
             return "loginFailed";
         }else {
-            return "loginSuccess";
+            return SUCCESS;
         }
     }
 
+    /**
+     *
+     * 编辑用户模块，根据用户ID查询到用户的所有信息并反馈回前台页面进行编辑
+     * @author Scream
+     *
+     * */
+    @Action( value = "adminUserEdit",
+            results = {
+                @Result(location = "editUser.jsp")
+            }
+    )
+
+    public String adminUserEdit(){
+        ActionContext.getContext().getValueStack().set("allUserById",adminUserService.findUserById(uid));
+        return SUCCESS;
+    }
+    @Action( value = "adminUserDel",
+            results = {
+                @Result(type = "redirect",location = "adminUser_login.action")
+            }
+    )
+    public String adminUserDel(){
+        adminUserService.deleteUser(uid);
+        return SUCCESS;
+    }
 
 }

@@ -34,4 +34,15 @@ public interface AdminUserDao {
     @Select("SELECT * FROM user WHERE state = 1")
     List<User> findUserAll();
 
+    /**
+     *
+     * 根据用户id查询所有用户
+     *
+     * */
+    @Select("SELECT * FROM user WHERE uid=#{uid}")
+    User findUserById(Integer uid);
+
+
+    @Select("Delete * From user Where uid=#{uid}")
+    void deleteUser(Integer uid);
 }

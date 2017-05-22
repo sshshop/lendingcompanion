@@ -33,10 +33,6 @@ function goPage(pno,psize){
     }
     $("#jumpWhere").html(tempLi);
     $("#jumpWhere").val(currentPage);
-    $("#jumpWhere1").html(tempLi);
-    $("#jumpWhere1").val(currentPage);
-    $("#jumpWhere2").html(tempLi);
-    $("#jumpWhere2").val(currentPage);
 }
 
 

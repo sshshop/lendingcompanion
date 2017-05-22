@@ -31,9 +31,23 @@ public class AdminUserService {
         }
     }
 
+    /**
+     *
+     * 用户管理模块Service层代码
+     * 查询所有的User信息
+     *
+     * */
     public List<User> findUserAll() {
         List<User> list = adminUserDao.findUserAll();
         return list;
 
+    }
+
+    public User findUserById(Integer uid) {
+        return adminUserDao.findUserById(uid);
+    }
+
+    public void deleteUser(Integer uid) {
+        adminUserDao.deleteUser(uid);
     }
 }
