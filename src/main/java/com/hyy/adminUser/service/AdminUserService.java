@@ -2,6 +2,7 @@ package com.hyy.adminUser.service;
 
 import com.hyy.adminUser.dao.AdminUserDao;
 import com.upublic.vo.Admuser;
+import com.upublic.vo.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,5 +29,11 @@ public class AdminUserService {
         }else {
             return null;
         }
+    }
+
+    public List<User> findUserAll() {
+        List<User> list = adminUserDao.findUserAll();
+        return list;
+
     }
 }

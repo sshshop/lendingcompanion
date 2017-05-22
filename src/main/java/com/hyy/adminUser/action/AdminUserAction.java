@@ -1,6 +1,8 @@
 package com.hyy.adminUser.action;
 
 import com.hyy.adminUser.service.AdminUserService;
+import com.lj.category.service.CategoryService;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.upublic.vo.Admuser;
@@ -37,7 +39,8 @@ public class AdminUserAction extends ActionSupport {
 
     @Resource(name = "adminUserService")
     private AdminUserService adminUserService;
-
+    @Resource(name = "categoryService")
+    private CategoryService categoryService;
 
     @Action( value = "adminUser" ,
             results = {
@@ -64,6 +67,9 @@ public class AdminUserAction extends ActionSupport {
      * */
     public String adminUserLogin(){
         Admuser admuser = adminUserService.findAdminUser(auname,apwd);
+        ActionContext.getContext().getSession().put("adminUser",admuser);
+        ActionContext.getContext().getValueStack().set("allUser",adminUserService.findUserAll());
+        ActionContext.getContext().getSession().put("category",categoryService.findCategoryAll());
         System.out.println(admuser.getAuname()+","+admuser.getApwd());
         /**
          * 判断admuser是否为空，

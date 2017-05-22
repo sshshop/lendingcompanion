@@ -1,6 +1,7 @@
 package com.hyy.adminUser.dao;
 
 import com.upublic.vo.Admuser;
+import com.upublic.vo.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,14 @@ public interface AdminUserDao {
      * **/
     @Select("SELECT * FROM admuser WHERE auname=#{auname} AND apwd=#{apwd}")
     List<Admuser> findAdminUser(@Param("auname") String auname, @Param("apwd") String apwd);
+
+
+    /**
+     * 查询所有用户信息
+     * @return用户对象
+     *
+     * */
+    @Select("SELECT * FROM user WHERE state = 1")
+    List<User> findUserAll();
 
 }
