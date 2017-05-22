@@ -40,6 +40,9 @@ public class KeyWord {
    *返回查询关键字
    * */
     public Book bookInfoFinal(String[] search) {
+        for (int i = 0; i <search.length ; i++) {
+            System.out.println("关键字"+i+search[i]);
+        }
         if (!search[0].equals(" ")){
             book.setBname(search[0]);
         }

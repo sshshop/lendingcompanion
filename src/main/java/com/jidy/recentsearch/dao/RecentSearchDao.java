@@ -41,6 +41,12 @@ public interface RecentSearchDao {
     * 搜索图书列表<第二次>
     * */
     //@SelectProvider(type = SearchBookSqlProvider.class ,method = "")
-    @Select("select * from book order by  hborrowed asc LIMIT 6")
-    public List<Book> recentSearchBookFinal();
+    @Select("select * from book where bname REGEXP #{bname} order by  hborrowed asc LIMIT 6")
+    public List<Book> recentSearchBookFinal(@Param("bname") String keyword);
+
+    /*
+    * 查询所有用户的搜索关键字
+    * */
+    @Select("select scontent from search")
+    List<String> findAllKeyword();
 }

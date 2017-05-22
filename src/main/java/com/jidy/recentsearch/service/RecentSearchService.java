@@ -1,12 +1,11 @@
 package com.jidy.recentsearch.service;
 
 import com.jidy.recentsearch.dao.RecentSearchDao;
+import com.jidy.utils.HashCode;
 import com.jidy.utils.SearchRegex;
-import com.opensymphony.xwork2.ActionContext;
 import com.upublic.vo.Book;
-import com.upublic.vo.User;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Service;
+import com.jidy.utils.SearchRegex;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class RecentSearchService {
     }
 
     /*
-    * 关键字查询<第一次查询>
+    * 关键字查询
     *
     * 返回最近搜索的图书列表
     * */
@@ -50,13 +49,23 @@ public class RecentSearchService {
     }
 
     /*
-    * 关键字查询<第二次查询>
+    * 关键字查询
     *
     * 返回最近搜索的图书列表
     * */
-    public List<Book> recentSearchBookFinal() {
-        return recentSearchDao.recentSearchBookFinal();
+    public List<Book> recentSearchBookFinal(String keyword) {
+        return recentSearchDao.recentSearchBookFinal(keyword);
 
+    }
+
+    /*
+    * 查询关键字
+    *
+    * 返回所有用户所有搜索关键字
+    *
+    * */
+    public List<String> findAllKeyword(){
+        return recentSearchDao.findAllKeyword();
     }
 
 

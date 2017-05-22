@@ -3,6 +3,7 @@ package com.jidy.searchbook.action;
 
 import com.jidy.recentsearch.service.RecentSearchService;
 import com.jidy.searchbook.service.BookService;
+import com.jidy.utils.HashCode;
 import com.jidy.utils.KeyWord;
 import com.jidy.utils.KeyWordRed;
 import com.jidy.utils.SearchRegex;
@@ -133,7 +134,13 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                     books.addAll(recentSearch);
                     ActionContext.getContext().getValueStack().set("recentSearchBook", books);
                 } else {
-                    recentSearch.addAll(recentSearchService.recentSearchBookFinal());
+                    HashCode hashCode=new HashCode();
+                    List<String> listA=recentSearchService.findAllKeyword();
+                    String[] strings=new String[listA.size()];
+                    for (int i = 0; i < listA.size(); i++) {
+                        strings[i]=listA.get(i);
+                    }
+                    recentSearch.addAll(recentSearchService.recentSearchBookFinal(hashCode.findMaxString(strings)));
                     Set<Book> books = new HashSet<Book>();
                     books.addAll(recentSearch);
                     ActionContext.getContext().getValueStack().set("recentSearchBook", books);

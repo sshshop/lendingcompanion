@@ -1,3 +1,4 @@
+import com.jidy.utils.HashCode;
 import com.lj.bookcomment.dao.BookcommentDao;
 import com.lj.bookcomment.service.BookCommentService;
 import com.lj.borrowbook.service.BorrowbookService;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -87,4 +89,6 @@ public class testSpring {
             System.out.println(list.get(i).getNcontent());
         }
     }
+
+
 }
