@@ -16,7 +16,7 @@
 <!--头部页面-->
 <%@include file="header.jsp"%>
 
-        <h1>信息提示</h1>
+        <h1 style="text-align: center">信息提示:</h1>
       <h2 style="text-align: center"><s:actionmessage /></h2>
 </body>
 </html>

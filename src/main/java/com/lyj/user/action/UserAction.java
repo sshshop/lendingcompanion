@@ -5,14 +5,10 @@ import com.lj.borrowbook.service.BorrowbookService;
 import com.lj.news.service.NewsService;
 import com.lj.subcription.service.SubscriptionService;
 import com.lyj.city.service.CityService;
-import com.lyj.province.action.ProvinceAction;
 import com.lyj.province.service.ProvinceService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.lyj.user.service.UserService;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.upublic.vo.City;
-import com.upublic.vo.Province;
 import com.upublic.vo.User;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
@@ -21,14 +17,10 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import javax.annotation.Resource;
-import javax.print.attribute.standard.MediaSize;
-import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.opensymphony.xwork2.Action.LOGIN;
-import static com.opensymphony.xwork2.Action.NONE;
 
 /**
  * 用户相关操作
@@ -155,6 +147,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         /**
          * 调用service进行查询
          */
+        System.out.println("进入住的了");
         //      System.out.println(user.getUsername());
         List<User> list = userService.findUsernameAll(user);
         /*System.out.println(list.get(0).getUsername());*/
@@ -277,7 +270,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     public String userMessage() {
 
-        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+      /*  User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
         if (loginuser == null) {
             //用户未登录
             return LOGIN;
@@ -286,7 +279,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         ServletActionContext.getRequest().getSession().setAttribute("mysub", subscriptionService.findSubBooks(loginuser));
         ServletActionContext.getRequest().getSession().setAttribute("mycomment", bookCommentService.findCommentByUId(loginuser));
         ServletActionContext.getRequest().getSession().setAttribute("myborrow", borrowbookService.findBorrowedBookByUid(loginuser));
-        ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));
+        ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));*/
         return SUCCESS;
     }
 

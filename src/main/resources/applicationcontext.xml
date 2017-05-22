@@ -94,6 +94,17 @@
         <property name="mapperInterface" value="com.lj.news.dao.NewsDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+    <!--图书底层的dao配置【rabit】-->
+    <bean id="booktemDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lj.booktemp.dao.BooktemDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!--公告底层的dao配置【rabit】-->
+    <bean id="msgDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.lj.msg.dao.MsgDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
 
     <!-- 管理员权限的dao配置《蒋德义》-->
     <bean id="adminAuthorityDao" class="org.mybatis.spring.mapper.MapperFactoryBean">

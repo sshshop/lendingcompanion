@@ -2,6 +2,7 @@ package com.lj.index.action;
 
 import com.jidy.searchbook.service.BookService;
 import com.lj.category.service.CategoryService;
+import com.lj.msg.service.MsgService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.upublic.vo.Book;
@@ -23,6 +24,8 @@ public class index extends ActionSupport{
     private BookService bookService;
     @Resource(name = "categoryService")
     private CategoryService categoryService;
+    @Resource(name = "msgService")
+    private MsgService msgService;
 
     @Action( value = "cafindall" ,
             results = {
@@ -39,8 +42,9 @@ public class index extends ActionSupport{
     public String execute() throws Exception {
         this.addActionMessage("主页");
         ActionContext.getContext().getSession().put("category",categoryService.findCategoryAll());
+        ActionContext.getContext().getSession().put("NewMsg",msgService.findNewMsg());
         ActionContext.getContext().getValueStack().set("nbook", bookService.findNewBook());
-       ActionContext.getContext().getValueStack().set("hbook", bookService.findHotBook());
+        ActionContext.getContext().getValueStack().set("hbook", bookService.findHotBook());
 
         return SUCCESS;
     }

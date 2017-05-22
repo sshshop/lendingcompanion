@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Scream
-  Date: 2017/5/21
-  Time: 21:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <html lang="en">
@@ -21,7 +14,8 @@
     <script src="js/jquery-2.1.1/jquery.min.js"></script>
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script src="laydate/laydate.js"></script>
-    <script src="js/laydate/laydate.js"  type="text/javascript" charset="utf-8"></script>
+    <script src="js/booktem.js"></script>
+    <script src="js/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
 
 
 </head>
@@ -78,7 +72,7 @@
             <ul class="nav nav-pills nav-stacked" style="text-align: center ">
                 <li class="active" style="margin-top: 20px;"><a href="#1" data-toggle="tab" id="adminUser_a">用户管理</a></li>
                 <li style="margin-top: 20px;"><a href="#2" data-toggle="tab">公告管理</a></li>
-                <li style="margin-top: 20px;"> <a href="#3" data-toggle="tab">图书管理</a></li>
+                <li style="margin-top: 20px;"><a href="#3" data-toggle="tab">图书管理</a></li>
                 <li style="margin-top: 20px;"><a href="#4" data-toggle="tab">权限管理</a></li>
                 <li style="margin-top: 20px;"><a href="#5" data-toggle="tab">借书管理</a></li>
             </ul>
@@ -86,15 +80,16 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="tab-content" >
+            <div class="tab-content">
                 <%--用户管理--%>
-                <div class="tab-pane fade in active " style="padding-top: 30px;letter-spacing: 2px;align-content: center; " id="1">
-                    <div  class="context_form" style=" height:auto; ">
+                <div class="tab-pane fade in active "
+                     style="padding-top: 30px;letter-spacing: 2px;align-content: center; " id="1">
+                    <div class="context_form" style=" height:auto; ">
                         <div style="height:10%">
-                            <ul  class="nav nav-tabs">
+                            <ul class="nav nav-tabs">
 
                                 <li class="active">
-                                    <a href="#adminUser" data-toggle="tab"> 用户管理  </a>
+                                    <a href="#adminUser" data-toggle="tab"> 用户管理 </a>
                                 </li>
                                 <li>
                                     <a href="#addUser" data-toggle="tab">添加用户</a>
@@ -198,18 +193,20 @@
                                 }
                             </script>
                             <div class="tab-pane fade" id="addUser">
-                                <div class="context" >
+                                <div class="context">
                                     <div class="row">
                                         <div class="col-md-2"></div>
-                                        <div class="col-md-8" >
+                                        <div class="col-md-8">
                                             <!--注册表单-->
-                                            <div >
-                                                <form class="form-horizontal register" id="register" action="" >
+                                            <div>
+                                                <form class="form-horizontal register" id="register" action="">
                                                     <!--用户名-->
                                                     <div class="form-group">
 
                                                         <label class="control-label col-md-4">用户名</label>
-                                                        <input type="text"  value="null"   name="username" class="form-control col-md-4 username" id="username" onblur="checkUsername()" />
+                                                        <input type="text" value="null" name="username"
+                                                               class="form-control col-md-4 username" id="username"
+                                                               onblur="checkUsername()"/>
 
 
                                                     </div>
@@ -226,15 +223,17 @@
 
                                                      <%--</div>--%>
                                                     <!--性别-->
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">性别:</label>
                                                         <span>
-                                                            <input type="radio" name="sex1" class="sex" id="man"  value="man" checked />男
-                                                            <input type="radio" name="sex1" class="sex" id="woman"  value="woman" />女
+                                                            <input type="radio" name="sex1" class="sex" id="man"
+                                                                   value="man" checked/>男
+                                                            <input type="radio" name="sex1" class="sex" id="woman"
+                                                                   value="woman"/>女
                                                         </span>
                                                     </div>
                                                     <!--出生年月-->
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">出生年月</label>
 
                                                         <input type="text" id="borth" name="dob" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
@@ -254,16 +253,17 @@
                                                             }})
                                                     </script>
                                                     <!--电话-->
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">电话</label>
                                                         <input type="text" name="phone" class="form-control col-md-4 phone" id="phone" placeholder="电话" onblur="checkPhone()" />
                                                         <span id="phone2" style="font-size: 10px; color: red " ></span>
                                                     </div>
                                                     <!--省份----城市-->
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">省份</label>
                                                         <span>
-                                                            <select name="province" id="s1" style="width: 98px" onblur="checkProvince()" >
+                                                            <select name="province" id="s1" style="width: 98px"
+                                                                    onblur="checkProvince()">
                                                                 <option id="pname1"></option>
                                                             </select>
                                                             <select name="city" id="s2"  style="width: 98px"onblur="checkCity()">
@@ -276,12 +276,12 @@
                                                         </span>
                                                     </div>
 
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">详细地址</label>
                                                         <input type="text" name="addr" class="form-control col-md-4 addr" id="addr" placeholder="详细地址"  />
                                                     </div>
                                                     <!--邮箱-->
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">邮箱地址</label>
                                                         <input type="text" id="email" name="email" class="form-control col-md-4 email"   placeholder="邮箱" onblur="return checkEmail()" />
                                                         <span id="email2" style="font-size: 10px; color: red " ></span>
@@ -289,7 +289,7 @@
                                                     <!--使用协议-->
 
                                                     <!--提交按钮-->
-                                                    <div class="form-group submit_btn" >
+                                                    <div class="form-group submit_btn">
                                                         <div class="col-md-offset-5 col-sm-10">
                                                             <button type="submit" class="btn btn-default">添加</button>
                                                         </div>
@@ -305,10 +305,10 @@
                     </div>
                 </div>
                 <%--公告管理--%>
-                <div class="tab-pane fade"   id="2" style="padding-top: 30px; letter-spacing: 2px;">
-                    <div  class="context_form" style=" height:auto; ">
+                <div class="tab-pane fade" id="2" style="padding-top: 30px; letter-spacing: 2px;">
+                    <div class="context_form" style=" height:auto; ">
                         <div style="height:10%">
-                            <ul  class="nav nav-tabs">
+                            <ul class="nav nav-tabs">
 
                                 <li class="active">
                                     <a href="#send" data-toggle="tab"> 公告管理 </a>
@@ -335,23 +335,23 @@
                                 <table class="table" style="text-align: center; ">
                                     <thead>
                                     <tr>
-                                        <td>管理员用户</td>
                                         <td>发布时间</td>
                                         <td>发布内容</td>
                                         <td>删除</td>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr  ng-repeat="data in datas">
-                                        <td><s:property value="" default="null" /> </td>
-                                        <td><s:property value="" default="null" /></td>
-                                        <td><s:property value="" default="null" /></td>
+                                    <s:iterator var="msg" value="allmsg">
+                                    <tr ng-repeat="data in datas">
+                                        <td><s:property value="#msg.time" /></td>
+                                        <td><s:property value="#msg.msg" default="null"/></td>
                                         <td>
                                             <a href="#">
                                                 <img src="image/i_del.png" style="CURSOR: hand;height: 20px;">
                                             </a>
                                         </td>
                                     </tr>
+                                    </s:iterator>
                                     </tbody>
                                 </table>
                             </div>
@@ -360,10 +360,10 @@
                 </div>
 
                 <%--图书管理--%>
-                <div class="tab-pane fade"   id="3" style="padding-top: 30px;letter-spacing: 2px;">
-                    <div  class="context_form" style="height:auto; ">
+                <div class="tab-pane fade" id="3" style="padding-top: 30px;letter-spacing: 2px;">
+                    <div class="context_form" style="height:auto; ">
                         <div style="height:10%">
-                            <ul  class="nav nav-tabs">
+                            <ul class="nav nav-tabs">
 
                                 <li class="active">
                                     <a href="#adminBook" data-toggle="tab"> 图书管理 </a>
@@ -384,29 +384,33 @@
                                         <td>书籍编号</td>
                                         <td>书籍封面</td>
                                         <td>藏书量</td>
+                                        <td>现存量</td>
                                         <td>添加时间</td>
                                         <td>编辑</td>
                                         <td>删除</td>
                                     </tr>
                                     </thead>
-                                    <tbody id="adminBookTable">
-                                    <tr  ng-repeat="data in datas">
-                                        <td><s:property value="" default="null" /> </td>
-                                        <td><s:property value="" default="null" /> </td>
-                                        <td><s:property value="" default="null" /> </td>
-                                        <td><s:property value="" default="null" /> </td>
-                                        <td><s:property value="" default="null" /> </td>
-                                        <td><s:property value="" default="null" /> </td>
-                                        <td><s:property value="" default="null" /> </td>
+                                    <tbody>
+                                    <s:iterator var="book" value="allBook">
+                                    <tr ng-repeat="data in datas">
+                                        <td><s:property value="#book.bname" /></td>
+                                        <td><s:property value="#book.bauthor" /></td>
+                                        <td><s:property value="#book.badr" /></td>
+                                        <td><s:property value="#book.bnum" /></td>
+                                        <td><s:property value="#book.bcover" /></td>
+                                        <td><s:property value="#book.bcobn"/></td>
+                                        <td><s:property value="#book.nborrowed" /></td>
+                                        <td><s:property value="#book.time" /></td>
                                         <td>
                                            <a href="#">
                                                <img src="image/edit.png" border="0" style="CURSOR: hand;height: 20px;">
                                            </a>
                                         </td>
-                                        <td><a href="">
+                                        <td><a href="delBook?btid=<s:property value="#book.bid"/> ">
                                             <img src="image/i_del.png" border="0" style="CURSOR: hand;height: 20px;">
                                         </a></td>
                                     </tr>
+                                    </s:iterator>
                                     </tbody>
                                 </table>
                             </div>
@@ -459,78 +463,96 @@
                                 }*/
                             </script>
                             <div class="tab-pane fade" id="addBook">
-                                <div class="context" >
+                                <div class="context">
                                     <div class="row">
                                         <div class="col-md-2"></div>
-                                        <div class="col-md-8" >
+                                        <div class="col-md-8">
                                             <!--注册表单-->
-                                            <div >
-                                                <form class="form-horizontal register" id="addBook_item" action="" >
+                                            <h2 id="msg" style="color: red"></h2>
+                                            <div>
+                                                <form class="form-horizontal register" id="addBook_item"
+                                                      enctype="multipart/form-data" method="post" name="addbook"
+                                                      action="addBook.action">
                                                     <!--用户名-->
                                                     <div class="form-group">
 
                                                         <label class="control-label col-md-4">书籍名称：</label>
-                                                        <input type="text"  value="null"   name="btname" class="form-control col-md-4 username" id="btname"  />
+                                                        <input type="text" name="btname"
+                                                               class="form-control col-md-4 username" id="btname"
+                                                               onblur="checkbtname()"/>
 
 
                                                     </div>
                                                     <!--密码-->
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">作者：</label>
-                                                        <input type="text" name="author" class="form-control col-md-4 " id="author" placeholder=""  />
-
+                                                        <input type="text" name="btauthor"
+                                                               class="form-control col-md-4 " id="author" onblur="checkauthor()"
+                                                               placeholder=""/>
                                                     </div>
-                                                    <%--<!--重复密码-->--%>
-                                                    <%--<div class="form-group">--%>
-                                                    <%--<label class="control-label col-md-4">重复密码</label>--%>
-                                                    <%--<input type="password" name="repassword" class="form-control col-md-4 repassword" id="repassword" placeholder="重复密码" onblur="checkRepassword()" />--%>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">分类：</label>
+                                                        <select name="tcid" id="tcid" onblur="checkbtcid()">
+                                                            <s:iterator var="c" value="#session.category">
+                                                                <option value="<s:property value="#c.cid"/> ">
+                                                                    <s:property value="#c.cname"/></option>
+                                                            </s:iterator>
+                                                        </select>
+                                                    </div>
 
-                                                    <%--</div>--%>
-                                                    <!--性别-->
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">出版社：</label>
-                                                        <input type="text" name="adr" class="form-control col-md-4 adr" id="adr" placeholder=""  />
+                                                        <input type="text" name="adr" class="form-control col-md-4 adr"
+                                                               id="adr" placeholder="" onblur="checkbadr()"/>
 
                                                     </div>
                                                     <!--出生年月-->
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">书籍编号：</label>
 
-                                                        <input type="text" id="num" name="num" class="form-control col-md-4 num" id="num" />
+                                                        <input type="text" id="num" name="num" onblur="checkbnum()"
+                                                               class="form-control col-md-4 num" id="num"/>
 
                                                     </div>
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">书籍封面:</label>
-                                                        <input type="text" name="cover" class="form-control col-md-4 cover" id="cover" />
+                                                        <input type="file" name="uploadfile" onblur="checkbcover()"
+                                                               class="form-control col-md-4 cover" id="cover"/>
                                                     </div>
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">序:</label>
-                                                        <textarea class="form-control col-md-4" name="sequence" rows="5" cols="50" ></textarea>
+                                                        <textarea class="form-control col-md-4" id="sequence" name="sequence" rows="5"
+                                                              onblur="checksequence()"       cols="50"></textarea>
                                                     </div>
 
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">导读:</label>
-                                                        <textarea class="form-control col-md-4" name="idt" rows="5" cols="50" ></textarea>
+                                                        <textarea class="form-control col-md-4" name="idt" id="idt" rows="5"
+                                                                 onblur="checkidt()" cols="50"></textarea>
                                                     </div>
                                                     <!--邮箱-->
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">内容:</label>
-                                                        <textarea class="form-control col-md-4" name="btcontent" rows="5" cols="50" ></textarea>
+                                                        <textarea class="form-control col-md-4" id="btcontent" name="btcontent"
+                                                                 onblur="checkbbtcontent()" rows="5" cols="50"></textarea>
                                                     </div>
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-4">藏书量:</label>
-                                                        <input type="text" id="cobn" name="cobn" class="form-control col-md-4 cobn" />
+                                                        <input type="text" id="cobn" name="cobn" id="cobn"
+                                                             onblur="checkbcobn()"  class="form-control col-md-4 cobn"/>
                                                     </div>
                                                     <!--使用协议-->
 
                                                     <!--提交按钮-->
-                                                    <div class="form-group submit_btn" >
+                                                    <div class="form-group submit_btn">
                                                         <div class="col-md-offset-5 col-sm-10">
-                                                            <button type="submit" class="btn btn-default">添加</button>
+                                                            <button type="submit" class="btn btn-default" id="addsumbit" onmousemove="checkbsubmit();">添加</button>
+                                                            <p id="mmsg" ></p>
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
+                                            <h4 id="msgsu" style="color:red;"></h4>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
@@ -540,13 +562,13 @@
                     </div>
                 </div>
                 <%--权限管理--%>
-                <div class="tab-pane fade"   id="4" style="padding-top: 30px;letter-spacing: 2px;">
-                    <div  class="context_form" style="height:auto ">
+                <div class="tab-pane fade" id="4" style="padding-top: 30px;letter-spacing: 2px;">
+                    <div class="context_form" style="height:auto ">
                         <div style="height:10%">
-                            <ul  class="nav nav-tabs">
+                            <ul class="nav nav-tabs">
 
                                 <li class="active">
-                                    <a> 权限管理  </a>
+                                    <a> 权限管理 </a>
                                 </li>
                             </ul>
                         </div>

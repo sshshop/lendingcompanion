@@ -18,4 +18,9 @@ public class CityService {
     public int selectCid(String city) {
         return  cityDao.findCid(city);
     }
+
+
+    public List<City> findCityByPid(int pid) {
+        return cityDao.findNameBypid(pid);
+    }
 }

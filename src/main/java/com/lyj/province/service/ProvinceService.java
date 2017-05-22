@@ -25,4 +25,8 @@ public class ProvinceService {
     public int selectPid(String pname) {
         return provinceDao.selectPid(pname);
     }
+
+    public List<Province> findALLp() {
+        return provinceDao.findAll();
+    }
 }

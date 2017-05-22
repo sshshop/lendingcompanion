@@ -15,6 +15,15 @@ public class Booktem {
     private Integer cobn;
     private String btauthor;
     private Date time;
+    private Double money;
+
+    public Double getMoney() {
+        return money;
+    }
+
+    public void setMoney(Double money) {
+        this.money = money;
+    }
 
     public Date getTime() {
         return time;

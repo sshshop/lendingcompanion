@@ -19,4 +19,6 @@ public interface CityDao {
 
     @Select("select * FROM city WHERE cid=#{cid}")
     City findNameBycid(Integer cid);
+    @Select("select * FROM city WHERE pid=#{pid}")
+    List<City> findNameBypid(int pid);
 }

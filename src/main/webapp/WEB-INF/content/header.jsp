@@ -56,7 +56,7 @@
             </ol>
         </div>
         <div class="col-md-9" style="padding-top: 10px; font-size: 16px;color:rgb(81,14,173);">
-            <marquee behavior="scroll" direction="left" scrollamount="5"><img src="image/guangbo.png" alt="广播图标" style="width:20px; height: 20px; margin-right: 7px;">今日添加新书有：人民的名义 作者：谭正兵</marquee>
+            <marquee behavior="scroll" direction="left" scrollamount="5"><img src="image/guangbo.png" alt="广播图标" style="width:20px; height: 20px; margin-right: 7px;">今日公告：<s:property value="#session.NewMsg.msg"/> </marquee>
         </div>
     </div>
 </div>

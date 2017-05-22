@@ -6,10 +6,8 @@ function checkUsername() {
     var username2 = document.getElementById("username2");
    if (username == null || username == '') {
        username2.innerHTML= "用户名不能为空";
-
         return false;
     }else if (username.length<5||username.length>20){
-
         username2.innerHTML="用户名长度为6-19位";
          return false;
      }else {

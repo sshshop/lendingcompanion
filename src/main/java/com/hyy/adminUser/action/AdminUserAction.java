@@ -1,17 +1,23 @@
 package com.hyy.adminUser.action;
 
 import com.hyy.adminUser.service.AdminUserService;
+import com.lj.booktemp.service.BooktemService;
 import com.lj.category.service.CategoryService;
+import com.lj.msg.service.MsgService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.upublic.vo.Admuser;
+import com.upublic.vo.Booktem;
 import org.apache.struts2.convention.annotation.*;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
 import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
 
 /**
+ *
  * Created by Scream on 2017/5/20.
  */
 
@@ -19,7 +25,7 @@ import javax.annotation.Resource;
  * 后台主页的跳转
  *
  * */
-@ParentPackage( value = "struts-default")
+@ParentPackage(value = "struts-default")
 @Namespace("")
 public class AdminUserAction extends ActionSupport {
     private String auname;
@@ -46,17 +52,21 @@ public class AdminUserAction extends ActionSupport {
     private AdminUserService adminUserService;
     @Resource(name = "categoryService")
     private CategoryService categoryService;
+    @Resource(name = "booktemService")
+    private BooktemService booktemService;
+    @Resource(name = "msgService")
+    private MsgService msgService;
 
-    @Action( value = "adminUser" ,
+    @Action(value = "adminUser",
             results = {
-                    @Result(name = "success",location = "adminindex.jsp")
+                    @Result(name = "success", location = "adminindex.jsp")
             })
 
-    public String adminUser(){
+    public String adminUser() {
         return SUCCESS;
     }
 
-    @Action( value = "adminUser_login",
+    @Action(value = "adminUser_login",
             results = {
                     @Result(location = "admin.jsp"),
                     @Result(name = "loginFailed",location = "adminindex.jsp")
@@ -70,16 +80,20 @@ public class AdminUserAction extends ActionSupport {
      *
      *
      * */
-    public String adminUserLogin(){
+
+    public String adminUserLogin() {
         Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
         if(a!=null){
             ActionContext.getContext().getValueStack().set("allUser",adminUserService.findUserAll());
             return SUCCESS;
         }
-        Admuser admuser = adminUserService.findAdminUser(auname,apwd);
-        ActionContext.getContext().getSession().put("adminUser",admuser);
-        ActionContext.getContext().getValueStack().set("allUser",adminUserService.findUserAll());
-        ActionContext.getContext().getSession().put("category",categoryService.findCategoryAll());
+        Admuser admuser = adminUserService.findAdminUser(auname, apwd);
+        ActionContext.getContext().getSession().put("adminUser", admuser);
+        ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
+        ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
+        ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
+        ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
+        System.out.println(admuser.getAuname() + "," + admuser.getApwd());
         /**
          *
          * 判断admuser是否为空，
@@ -87,7 +101,7 @@ public class AdminUserAction extends ActionSupport {
          * 否则登陆成功
          *
          * */
-        if (admuser==null){
+        if (admuser == null) {
             this.addActionError("用户不存在或用户名密码错误");
             return "loginFailed";
         }else {
