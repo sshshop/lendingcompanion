@@ -25,6 +25,12 @@ public class sqlFactory {
             if (user.getAddr() != null) {
                 SET("addr=#{addr}");
             }
+            if (user.getPid() != null) {
+                SET("pid=#{pid}");
+            }
+            if (user.getCid() != null) {
+                SET("cid=#{cid}");
+            }
             if (user.getEmail() != null) {
                 SET("email=#{email}");
             }

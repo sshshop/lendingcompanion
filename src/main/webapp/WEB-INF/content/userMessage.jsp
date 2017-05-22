@@ -134,7 +134,7 @@
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-4">出生年月</label>
 
-                                                        <input type="text" id="borth" name="dob" value=" <s:property value="#session.existedUser.dob" />" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
+                                                        <input type="text" id="borth" name="dob1" value=" <s:property value="#session.existedUser.dob" />" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
 
                                                     </div>
 
@@ -157,10 +157,10 @@
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-4">省份</label>
                                                         <span>
-                                                            <select name="province" id="s1" style="width: 98px" onblur="checkProvince()" >
+                                                            <select name="province1" id="s1" style="width: 98px" onblur="checkProvince()" >
                                                                 <option id="pname1"></option>
                                                             </select>
-                                                            <select name="city" id="s2"  style="width: 98px"onblur="checkCity()">
+                                                            <select name="city1" id="s2"  style="width: 98px"onblur="checkCity()">
                                                                 <option id="cname"></option>
                                                             </select>
 

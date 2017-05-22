@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-    <form method="post"  action="registerPost.action" onsubmit="return checkForm();">
+    <form method="post"  action="registerPost.action" onsubmit="return checkForm();" name="register">
     <!-- 中间部分 -->
     <div class="container context">
         <div class="row">
@@ -127,7 +127,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">出生年月</label>
 
-                            <input type="text" id="borth" name="dob" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
+                            <input type="text" id="borth" name="dob1" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
 
 
 
@@ -155,12 +155,12 @@
                             <label class="control-label col-md-4">省份</label>
                             <td  >
 
-                                <select name="province" id="s1" style="width: 98px" onblur="checkProvince()" >
+                                <select name="province1" id="s1" style="width: 98px" onblur="checkProvince()" >
                                     <option id="pname1"></option>
                                 </select>
 
 
-                                <select name="city" id="s2"  style="width: 98px"onblur="checkCity()">
+                                <select name="city1" id="s2"  style="width: 98px"onblur="checkCity()">
                                     <option id="cname"></option>
                                 </select>
 
@@ -198,7 +198,7 @@
                         <!--提交按钮-->
                         <div class="form-group submit_btn">
                             <div class="col-md-offset-5 col-sm-10">
-                                <button type="submit" class="btn btn-default">注册</button>
+                                <button type="submit" class="btn btn-default" onclick="checkPost();return false;">注册</button>
                             </div>
                         </div>
                     </form>

@@ -40,9 +40,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     // 模型驱动使用的对象
     private User user = new User();
-    private String province;
-    private String city;
-    private String dob;
+    private String province1;
+    private String city1;
+    private String dob1;
     private String sex1;
     private int bid;//图书bid
     private int status = 0;//用户跳转状态，默认值为0；1为详情页跳转，2未搜索页跳转
@@ -73,16 +73,16 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         this.sex1 = sex1;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    public void setProvince1(String province1) {
+        this.province1 = province1;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setCity1(String city1) {
+        this.city1 = city1;
     }
 
-    public void setDob(String dob) {
-        this.dob = dob;
+    public void setDob1(String dob1) {
+        this.dob1 = dob1;
     }
 
 
@@ -176,17 +176,18 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     //用户注册方法
     @Action(value = "registerPost", results = @Result(name = "registerSuccess", location = "login.jsp"))
     public String register() {
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++");
         if (sex1.equals("man")) {
             user.setSex(1);
         } else {
             user.setSex(0);
         }
 
-        /*System.out.println(user.getSex());*/
-        user.setPid(provinceService.selectPid(province));
-       /* System.out.println(user.getPid());*/
-        user.setCid(cityService.selectCid(city));
-       /* System.out.println(user.getCid());*/
+        System.out.println(user.getSex());
+        user.setPid(provinceService.selectPid(province1));
+        System.out.println(user.getPid());
+        user.setCid(cityService.selectCid(city1));
+        System.out.println(user.getCid());
         userService.sava(user);
         //注册成功返回页面
         return "registerSuccess";
@@ -267,14 +268,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     }
 
-    /**
-     * 用户中心
-     * 实现用户跳转到用户中心，并查询所有的用户信息
-     */
+
     @Action(value = "userMessage", results = {
             @Result(location = "userMessage.jsp"),
             @Result(name = LOGIN, location = "login.jsp")
     })
+
+
     public String userMessage() {
 
         User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
@@ -290,9 +290,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return SUCCESS;
     }
 
-    /**
-     * 用户中心修改用户信息
-     */
+
+
+
+
+
     @Action(value = "updateUser", results = {
             @Result(type = "redirect", location = "userMessage.action"),
             @Result(name = ERROR,location = "userMessage.jsp"),
@@ -304,19 +306,20 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             //用户未登录
             return LOGIN;
         }
-        System.out.println(province+city+sex1);
+
+        System.out.println(province1+city1+sex1);
         if ("man".equals(sex1)) {
             user.setSex(1);
         } else {
             user.setSex(0);
         }
-        user.setPid(provinceService.selectPid(province));
-        user.setCid(cityService.selectCid(city));
-        user.setUid(loginuser.getUid());
+        user.setPid(provinceService.selectPid(province1));
+        user.setCid(cityService.selectCid(city1));
+     //   user.setUid(loginuser.getUid());
         System.out.println("搞事情");
-        int i=userService.updateUser(user);
-        System.out.println(i);
-       if ( i!=1){
+      ;
+      //  System.out.println(i);
+     if (  userService.updateUser(user)!=1){
            this.addActionMessage("信息修改失败");
            return ERROR;
        }
