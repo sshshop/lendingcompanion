@@ -193,7 +193,9 @@
                         <!--使用协议-->
                         <div class="form-group">
                             <label class="control-label col-md-3"></label>
-                            <input style="width: auto" type="checkbox">已经阅读了并完全同意<a class="protocol_a" href="#">《使用协议》</a>中的全部条款
+                            <input style="width: auto" type="checkbox" name="xieyi" onclick="return checkedXieyi();">已经阅读了并完全同意<a class="protocol_a" href="#">《使用协议》</a>中的全部条款
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            <span id="xieyi" style="font-size: 10px; color: red " ></span>
                         </div>
                         <!--提交按钮-->
                         <div class="form-group submit_btn">

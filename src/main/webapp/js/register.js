@@ -24,7 +24,7 @@ function checkUsername() {
                    document.getElementById("username2").innerHTML = xhr.responseText;
                }
            }
-        return true;
+
     }
 
     }
@@ -32,8 +32,41 @@ function checkUsername() {
     xhr.open("GET","${pageContext.request.contextPath}/registerU.action?time="+new Date().getTime()+"&username="+username,true);
     // 4.发送
     xhr.send(null);
+    return true;
 }
 
+function checkedXieyi(){
+    var count = 0;
+    var checkArry = document.getElementsByName("xieyi");
+    for (var i = 0; i < checkArry.length; i++) {
+        if(checkArry[i].checked == true){
+            //选中的操作
+            count++;
+            document.getElementById("xieyi").innerHTML="";
+            return true;
+        }
+    }
+    if( count == 0 ){
+        document.getElementById("xieyi").innerHTML="请确认同意相关协议条款";
+        return false;
+    }
+}
+
+
+function checkPost() {
+    var a=checkUsername();
+    var b=checkUpassword();
+    var c=checkRepassword();
+    var d=checkPhone();
+    var e=checkProvince();
+    var f=checkEmail();
+    var g=checkedXieyi();
+    if(a==true&&b==true&&c==true&&d==true&&e==true&&f==true&&g==true){
+        document.register.submit();
+    }else{
+        return false;}
+
+}
 
 function createXmlHttp(){
     var xmlHttp;
@@ -119,14 +152,14 @@ function checkPhone() {
 function checkProvince() {
     var s1=document.getElementById("s1").value;
     var city=document.getElementById("city");
-    //创建异步交互对象
-    var xhr = createXmlHttp();
-    // 3.打开连接
-    xhr.open("GET","${pageContext.request.contextPath}/registerPid.action?time="+new Date().getTime()+"&pname="+s1,true);
-   // 4.发送
-    xhr.send(null);
+    /*//创建异步交互对象
+     var xhr = createXmlHttp();
+     // 3.打开连接
+     xhr.open("GET","${pageContext.request.contextPath}/registerPid.action?time="+new Date().getTime()+"&pname="+s1,true);
+     // 4.发送
+     xhr.send(null);*/
 
-   /* if (s1==opt0[0]){
+    if (s1==opt0[0]){
         city.innerHTML="请选择所在省份";
         return false;
     }else if (s2==opt0[1]){
@@ -135,16 +168,16 @@ function checkProvince() {
     }else {
         city.innerHTML="";
         return true;
-    }*/
+    }
 }
-function checkCity() {
+/*function checkCity() {
     var s2=document.getElementById("s2").value;
     //创建异步交互对象
     var xhr = createXmlHttp();
     // 打开连接
     xhr.open("GET","${pageContext.request.contextPath}/registerCid.action?time="+new Date().getTime()+"&cname="+s2,true);
     xhr.send(null);
-}
+}*/
 //城市下拉列表
 function Dsy()
 {
