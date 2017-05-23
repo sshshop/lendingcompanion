@@ -1,6 +1,11 @@
 package com.hyy.adminUser.service;
 
 import com.hyy.adminUser.dao.AdminUserDao;
+import com.lj.bookcomment.dao.BookcommentDao;
+import com.lj.borrowbook.dao.BorrowbookDao;
+import com.lj.news.dao.NewsDao;
+import com.lj.subcription.dao.SubscriptionDao;
+import com.upublic.dao.SearchDao;
 import com.upublic.vo.Admuser;
 import com.upublic.vo.User;
 import org.springframework.stereotype.Service;
@@ -15,6 +20,16 @@ import java.util.List;
 public class AdminUserService {
     @Resource(name = "adminUserDao")
     private AdminUserDao adminUserDao;
+    @Resource(name = "newsDao")
+    private NewsDao newsDao;
+    @Resource(name = "searchDao")
+    private SearchDao searchDao;
+    @Resource(name = "subscriptionDao")
+    private SubscriptionDao subscriptionDao;
+    @Resource(name = "bookCommentDao")
+    private BookcommentDao bookcommentDao;
+    @Resource(name = "borrowbookDao")
+    private BorrowbookDao borrowbookDao;
 
     /***
      *
@@ -48,6 +63,23 @@ public class AdminUserService {
     }
 
     public void deleteUser(Integer uid) {
+        if (!newsDao.findNewsByUid(uid).isEmpty()){
+            newsDao.deleteUser(uid);
+        }
+        if(!searchDao.findSearchByUid(uid).isEmpty()){
+            searchDao.deleteUser(uid);
+        }
+        if (!subscriptionDao.findSubscriptionByUid(uid).isEmpty()){
+            subscriptionDao.deleteUser(uid);
+        }
+        if (!bookcommentDao.findBookCommentByUId(uid).isEmpty()){
+            bookcommentDao.deleteUser(uid);
+        }
+        if(!borrowbookDao.findborrowedBookByUid(uid).isEmpty()){
+            borrowbookDao.deleteUser(uid);
+        }
+
+
         adminUserDao.deleteUser(uid);
     }
 }

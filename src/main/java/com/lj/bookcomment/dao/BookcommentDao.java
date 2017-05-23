@@ -41,4 +41,10 @@ public interface BookcommentDao extends PageParents<Bookcomment> {
     }
     )
     List<Bookcomment> findCommentByUId(@Param("user") User user);
+
+    @Select("SELECT * FROM bookcomment WHERE uid=#{uid}")
+    List<Bookcomment> findBookCommentByUId(@Param("uid") Integer uid);
+
+    @Delete("DELETE * FROM bookcomment WHERE uid=#{uid}")
+    void deleteUser(@Param("uid") Integer uid);
 }

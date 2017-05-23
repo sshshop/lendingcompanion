@@ -26,7 +26,7 @@ import javax.annotation.Resource;
  * 后台主页的跳转
  *
  * */
-@ParentPackage(value = "struts-default")
+@ParentPackage( value = "struts-default")
 @Namespace("")
 public class AdminUserAction extends ActionSupport {
     private String auname;
@@ -58,16 +58,16 @@ public class AdminUserAction extends ActionSupport {
     @Resource(name = "msgService")
     private MsgService msgService;
 
-    @Action(value = "adminUser",
+    @Action( value = "adminUser" ,
             results = {
-                    @Result(name = "success", location = "adminindex.jsp")
+                    @Result(name = "success",location = "adminindex.jsp")
             })
 
-    public String adminUser() {
+    public String adminUser(){
         return SUCCESS;
     }
 
-    @Action(value = "adminUser_login",
+    @Action( value = "adminUserLogin",
             results = {
                     @Result(location = "admin.jsp"),
                     @Result(name = "loginFailed",location = "adminindex.jsp")
@@ -81,8 +81,7 @@ public class AdminUserAction extends ActionSupport {
      *
      *
      * */
-
-    public String adminUserLogin() {
+    public String adminUserLogin(){
         Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
         if(a!=null){
             ActionContext.getContext().getValueStack().set("allUser",adminUserService.findUserAll());
@@ -101,7 +100,7 @@ public class AdminUserAction extends ActionSupport {
          * 否则登陆成功
          *
          * */
-        if (admuser == null) {
+        if (adminUserService.findAdminUser(auname,apwd)==null){
             this.addActionError("用户不存在或用户名密码错误");
             return "loginFailed";
         }else {

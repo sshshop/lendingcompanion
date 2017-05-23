@@ -1,5 +1,6 @@
 package com.lj.news.dao;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.upublic.vo.News;
 import com.upublic.vo.User;
 import org.apache.ibatis.annotations.Delete;
@@ -35,4 +36,11 @@ public interface NewsDao {
      */
     @Update("UPDATE news SET nstatus=1 WHERE nid=#{news.nid}")
     void updatStatus(@Param("news") News news);
+
+
+    @Select("SELECT * FROM news WHERE uid=#{uid}")
+    List<News> findNewsByUid(@Param("uid") Integer uid);
+
+    @Delete("DELETE * FROM news WHERE uid=#{uid}")
+    void deleteUser(@Param("uid") Integer uid);
 }

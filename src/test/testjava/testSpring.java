@@ -4,9 +4,11 @@ import com.lj.bookcomment.service.BookCommentService;
 import com.lj.borrowbook.service.BorrowbookService;
 import com.lj.category.service.CategoryService;
 
+import com.lj.news.dao.NewsDao;
 import com.lj.news.service.NewsService;
 import com.lyj.user.dao.UserDao;
 import com.lyj.user.service.UserService;
+import com.upublic.dao.SearchDao;
 import com.upublic.vo.*;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -28,9 +30,12 @@ public class testSpring {
     BookCommentService bookCommentService= (BookCommentService) ac.getBean("bookCommentService");
     BorrowbookService borrowbookService= (BorrowbookService) ac.getBean("borrowbookService");
     NewsService newsService= (NewsService) ac.getBean("newsService");
+    NewsDao newsDao = (NewsDao) ac.getBean("newsDao");
+    SearchDao searchDao = (SearchDao) ac.getBean("searchDao");
     @Test
     public void test(){
-//        userService.test();
+      List<Search> list =  searchDao.findSearchByUid(8);
+        System.out.println(list.size());
     }
     @Test
     public void  testCategoryFindAll(){

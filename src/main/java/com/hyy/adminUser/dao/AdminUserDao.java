@@ -2,6 +2,7 @@ package com.hyy.adminUser.dao;
 
 import com.upublic.vo.Admuser;
 import com.upublic.vo.User;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
@@ -40,9 +41,9 @@ public interface AdminUserDao {
      *
      * */
     @Select("SELECT * FROM user WHERE uid=#{uid}")
-    User findUserById(Integer uid);
+    User findUserById(@Param("uid") Integer uid);
 
 
-    @Select("Delete * From user Where uid=#{uid}")
-    void deleteUser(Integer uid);
+    @Delete("Delete * From user Where uid=#{uid}")
+    void deleteUser(@Param("uid") Integer uid);
 }

@@ -111,4 +111,11 @@
         <property name="mapperInterface" value="com.jidy.adminauthority.dao.AdminAuthorityDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+
+    <!--搜索表的dao配置<何永毅>-->
+    <bean id="searchDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.upublic.dao.SearchDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
 </beans>

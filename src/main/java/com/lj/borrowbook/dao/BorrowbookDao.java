@@ -56,4 +56,10 @@ public interface BorrowbookDao {
     }
     )
     List<Borrowbook> findBorrowedBookByUid(@Param("user") User user);
+
+    @Select("SELECT * FROM borrowbook WHERE uid=#{uid}")
+    List<Borrowbook> findborrowedBookByUid(@Param("uid") Integer uid);
+
+    @Delete("DELETE * FROM borrowbook WHERE uid=#{uid}")
+    void deleteUser(@Param("uid") Integer uid);
 }
