@@ -16,10 +16,13 @@ public class HashCode {
             int count=0;
             String temp=null;
             for(int j=i+1;j<arr.length;j++){
-                if(arr[i].equals(arr[j])){
-                    count++;
-                    temp=arr[i];
+                if (!arr[i].equals(" ")&&arr[i]!=null&&!arr[j].equals(" ")&&arr[j]!=null){
+                    if(arr[i].equals(arr[j])){
+                        count++;
+                        temp=arr[i];
+                    }
                 }
+
             }
             map.put(count+1, temp);
         }
@@ -32,7 +35,6 @@ public class HashCode {
         Arrays.sort(countArr);
         int MAXCOUNT=countArr[countArr.length-1];
         String maxvalue= map.get(MAXCOUNT);
-
         return maxvalue;
     }
 

@@ -22,6 +22,8 @@ import com.lj.bookcomment.service.BookCommentService;
 import javax.annotation.Resource;
 import java.util.*;
 
+import static com.jidy.utils.HashCode.findMaxString;
+
 /**
  * Created by jidy on 2017/5/8
  */
@@ -39,7 +41,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     private CategoryService categoryService;
     //将用户搜索信息插入搜索表
     @Resource(name = "recentSearchService")
-       private RecentSearchService recentSearchService;
+    private RecentSearchService recentSearchService;
     //将前台页面获取的值转换为对象
     Book book = new Book();
     //获取前台页面的值
@@ -51,10 +53,10 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         return bauthor;
     }*/
 
-   /* public void setBauthor(String bauthor) {
-        this.bauthor = bauthor;
-    }
-*/
+    /* public void setBauthor(String bauthor) {
+         this.bauthor = bauthor;
+     }
+ */
     //匹配字符串
     SearchRegex searchRegex = new SearchRegex();
     //关键字标红
@@ -112,8 +114,10 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         List<Book> bookList = new ArrayList<Book>();//返回结果到页面
         List<Book> recentSearch=new ArrayList<Book>();//接收最近搜索结果
         String search = searchRegex.searchMaster(inputInfo);//第一次匹配
-        //如果输入不为空进行第一次查询
-        if (search.length() != 0) {
+        if (search.length() == 0) {
+            this.addActionMessage("请输入查询数据");
+            return "searchBookFail";
+        }else{//如果输入不为空进行第一次查询
             book = keyWord.bookInfoMaster(inputInfo);
             PageBean<Book> pageBean = bookService.findByPage(book, page);
             if (pageBean.getList().size() <= 0 || pageBean.getList() == null) {
@@ -123,7 +127,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
             //将关键字加粗标红
             list.addAll(keyWordRed.replaceList(pageBean.getList(), inputInfo));
             //如果查询为空进行第二次查询
-            if (list == null || list.size() <= 0) {
+            if (list == null && list.size() <= 0) {
                 String string[] = searchRegex.searchFinal(inputInfo);
                 book = keyWord.bookInfoFinal(string);//第二次匹配
                 pageBean = bookService.findByBname(book, page);
@@ -135,7 +139,9 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
                 if (user != null) {
                     int uid = user.getUid();
-                    recentSearchService.insertSearchKeyword(uid, inputInfo);
+                    if (inputInfo.equals(" ")&&inputInfo!=null){
+                        recentSearchService.insertSearchKeyword(uid, inputInfo);
+                    }
                     List<String> strings = recentSearchService.findSearchKeyword(uid);
                     for (String string : strings) {
                         recentSearch.addAll(recentSearchService.recentSearchBookMaster(searchRegex.searchMaster(string)));
@@ -157,18 +163,11 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 }
                 ActionContext.getContext().getValueStack().set("BookList", bookList);
                 ActionContext.getContext().getValueStack().set("pageBean", pageBean);
-                int[] select=new int[pageBean.getTotalPage()];
-                for(int n=0;n<select.length;n++){
-                    select[n]=n+1;
-                }
-                ActionContext.getContext().getValueStack().set("select", select);
                 return "searchBookSuccess";
             }else {
                 this.addActionMessage("没有查询到图书信息");
                 return "searchBookFail";}
         }
-        this.addActionMessage("请输入查询数据");
-        return "searchBookFail";
     }
 
 
@@ -185,8 +184,6 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
         if (user != null) {
             int uid = user.getUid();
-
-            recentSearchService.insertSearchKeyword(uid, inputInfo);
             List<String> strings = recentSearchService.findSearchKeyword(uid);
             for (String string : strings) {
                 recentSearch.addAll(recentSearchService.recentSearchBookMaster(searchRegex.searchMaster(string)));
@@ -201,16 +198,13 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
             for (int i = 0; i < listA.size(); i++) {
                 strings[i]=listA.get(i);
             }
-            recentSearch.addAll(recentSearchService.recentSearchBookFinal(hashCode.findMaxString(strings)));
             Set<Book> books = new HashSet<Book>();
-            books.addAll(recentSearch);
-            ActionContext.getContext().getValueStack().set("recentSearchBook", books);
+            recentSearch.addAll(recentSearchService.recentSearchBookFinal(hashCode.findMaxString(strings)));
+            ActionContext.getContext().getValueStack().set("recentSearchBook", books.addAll(recentSearch));
         }
-            System.out.println("接收结果："+book.getBauthor());
-            String ss=searchRegex.splitRed(book.getBauthor());
-            System.out.println("处理结果："+ss);
-            List<Book> list=keyWordRed.replaceList(bookService.findAuthor(ss),ss);
-            ActionContext.getContext().getValueStack().set("BookList",list);
+        String ss=searchRegex.splitRed(book.getBauthor());
+        List<Book> list=keyWordRed.replaceList(bookService.findAuthor(ss),ss);
+        ActionContext.getContext().getValueStack().set("BookList",list);
         return "find";
     }
 
@@ -227,7 +221,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
             },
             exceptionMappings = {
                     //映射映射声明
-            @ExceptionMapping(exception="java.lang.Exception",result=ERROR)
+                    @ExceptionMapping(exception="java.lang.Exception",result=ERROR)
             }
     )
     public String findBookByBid() {
@@ -236,7 +230,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         if (bid!=null){
             book.setBid(bid);
             ServletActionContext.getRequest().getSession().removeAttribute("bid");
-           // ServletActionContext.getRequest().getSession().setAttribute("bid",null);
+            // ServletActionContext.getRequest().getSession().setAttribute("bid",null);
         }
         book = bookService.findBookById(book.getBid());
         ActionContext.getContext().getValueStack().set("pageBean", bookCommentService.findCommentByBId(book.getBid()));
