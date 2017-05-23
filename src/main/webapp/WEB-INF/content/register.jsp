@@ -127,7 +127,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">出生年月</label>
 
-                            <input type="text" id="borth" name="dob1" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
+                            <input type="text" id="borth" name="dob" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
 
 
 

@@ -1,6 +1,8 @@
 package com.lj.msg.dao;
 
 import com.upublic.vo.Msg;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -15,4 +17,7 @@ public interface MsgDao {
 
     @Select("SELECT * FROM msg ORDER BY time DESC LIMIT 1")
     Msg findNewMsg();
+
+    @Delete("delete from msg where mid=#{mid}")
+    void deleteMsg(@Param("mid") int mid);
 }

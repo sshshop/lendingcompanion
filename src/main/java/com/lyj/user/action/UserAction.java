@@ -179,6 +179,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         System.out.println(user.getSex());
         user.setPid(provinceService.selectPid(province1));
         System.out.println(user.getPid());
+        System.out.println(user.getDob());
         user.setCid(cityService.selectCid(city1));
         System.out.println(user.getCid());
         userService.sava(user);
@@ -270,7 +271,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     public String userMessage() {
 
-      /*  User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
         if (loginuser == null) {
             //用户未登录
             return LOGIN;
@@ -279,7 +280,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         ServletActionContext.getRequest().getSession().setAttribute("mysub", subscriptionService.findSubBooks(loginuser));
         ServletActionContext.getRequest().getSession().setAttribute("mycomment", bookCommentService.findCommentByUId(loginuser));
         ServletActionContext.getRequest().getSession().setAttribute("myborrow", borrowbookService.findBorrowedBookByUid(loginuser));
-        ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));*/
+        ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));
         return SUCCESS;
     }
 

@@ -10,10 +10,7 @@ import com.lyj.province.service.ProvinceService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.upublic.vo.Admuser;
-import com.upublic.vo.Booktem;
-import com.upublic.vo.Province;
-import com.upublic.vo.User;
+import com.upublic.vo.*;
 import org.apache.struts2.convention.annotation.*;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
@@ -36,6 +33,12 @@ import javax.annotation.Resources;
 public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
     private String auname;
     private String apwd;
+    private int mid;
+
+    public void setMid(int mid) {
+        this.mid = mid;
+    }
+
     private String city1;
     private String province1;
 
@@ -190,5 +193,20 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
         return SUCCESS;
     }
 
+    /**
+     *
+     * 根据Mid删除公告
+     *
+     * */
+    @Action(value = "msgDelete",
+            results = {
+                    @Result(name = "success",type = "redirect",location = "adminUserLogin.action"),
+                    @Result(name = "error",location = "msg.jsp")
+            }
+    )
+    public String msgDelete(){
+        msgService.deleteMsg(mid);
+        return SUCCESS;
+    }
 
 }

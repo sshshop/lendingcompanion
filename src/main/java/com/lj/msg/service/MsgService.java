@@ -23,4 +23,14 @@ public class MsgService {
     public Msg findNewMsg(){
         return msgDao.findNewMsg();
     }
+
+
+    /**
+     *
+     * 根据MID删除公告的Service层代码
+     *
+     * */
+    public void deleteMsg(int mid) {
+        msgDao.deleteMsg(mid);
+    }
 }

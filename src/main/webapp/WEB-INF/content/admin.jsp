@@ -146,7 +146,7 @@
                             </div>
                             <script>
                                 $("#adminUser_a").click(function(){
-                                        userAdminPage(1,5);
+                                        userAdminPage(1,10);
                                     $("#adminUser table").removeAttr("hidden")
                                 });
                                 var pageSize=0;//每页显示行数
@@ -351,7 +351,7 @@
                                         <td><s:property value="#msg.time" /></td>
                                         <td><s:property value="#msg.msg" default="null"/></td>
                                         <td>
-                                            <a href="#">
+                                            <a href="msgDelete.action?mid=<s:property value="#msg.mid"/>">
                                                 <img src="image/i_del.png" style="CURSOR: hand;height: 20px;">
                                             </a>
                                         </td>
@@ -366,7 +366,7 @@
                                 </table>
                                 <script>
                                     $("#adminNews_a").click(function(){
-                                        newsAdminPage(1,5);
+                                        newsAdminPage(1,10);
                                         $("#look table").removeAttr("hidden")
                                     });
                                     var pageSize=0;//每页显示行数
@@ -484,7 +484,7 @@
                             </div>
                             <script>
                                 $("#adminBook_a").click(function(){
-                                    bookAdminPage(1,5);
+                                    bookAdminPage(1,10);
                                     $("#adminBook table").removeAttr("hidden")
                                 });
                                 var pageSize=0;//每页显示行数
@@ -683,7 +683,7 @@
                         </table>
                         <script>
                             $("#adminAuthority_a").click(function(){
-                                authorityAdminPage(1,5);
+                                authorityAdminPage(1,10);
                                 $("#4 table").removeAttr("hidden")
                             });
                             var pageSize=0;//每页显示行数
@@ -746,9 +746,27 @@
                                     <a> 订单管理  </a>
                                 </li>
                             </ul>
+                            <div style="margin-top: 10px; float: right;">
+                                <form>
+                                    <select id="borrowSelect">
+                                        <option value="username">用户名</option>
+                                        <option value="bid">书名</option>
+                                    </select>
+                                    <input type="text" name="" id="borrowInput"/>
+                                    <input type="submit" >
+                                    <script>
+                                       $("#borrowSelect").change(function () {
+                                           var options = $("#borrowSelect option:selected");
+                                           $("#borrowInput").attr("name",options.val());
+                                       });
+                                    </script>
+                                </form>
+                            </div>
                         </div>
                         <table class="table" style="text-align: center; letter-spacing: 2px;" hidden>
                             <thead>
+                            <tr>
+                            </tr>
                             <tr>
                                 <td>订单号</td>
                                 <td>用户名</td>
@@ -795,7 +813,7 @@
                 </div>
                     <script>
                         $("#adminBorrow_a").click(function(){
-                            borrowAdminPage(1,5);
+                            borrowAdminPage(1,10);
                             $("#5 table").removeAttr("hidden")
                         });
                         var pageSize=0;//每页显示行数
