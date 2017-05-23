@@ -51,4 +51,7 @@ public interface SubscriptionDao {
 
     @Delete("DELETE FROM subscription WHERE uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
+
+    @Delete("delete from subscription where bid=#{bid} and uid=#{uid}")
+    int deleteSub(@Param("bid") Integer bid,@Param("uid") Integer uid);
 }

@@ -1,6 +1,7 @@
 package com.lj.subcription.action;
 
 import com.lj.subcription.service.SubscriptionService;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.upublic.vo.Subscription;
@@ -24,7 +25,6 @@ public class SubscriptionAction extends ActionSupport implements ModelDriven<Sub
     @Resource(name = "subscriptionService")
     private SubscriptionService subscriptionService;
     private Subscription subscription= new Subscription();
-
 
     @Action(
             value = "addSubscription",
@@ -52,6 +52,27 @@ public class SubscriptionAction extends ActionSupport implements ModelDriven<Sub
         }
     }
 
+    /**
+     *
+     * 根绝bid取消订阅，也就是删除订阅表中的数据
+     * @author Scream
+     *
+     * */
+    @Action(value = "deleteSub",
+            results = {
+                    @Result(type = "redirect",location = "userMessage.action"),
+                    @Result(name = "error",location = "msg.jsp")
+            }
+    )
+    public String deleteSub(){
+        User user = (User) ActionContext.getContext().getSession().get("existedUser");
+        System.out.println(user.getUid());
+        if(subscriptionService.deleteSub(subscription.getBid(),user.getUid())!=1){
+            this.addActionMessage("取消失败");
+            return ERROR;
+        }
+        return SUCCESS;
+    }
 
     public Subscription getModel() {
         return subscription;

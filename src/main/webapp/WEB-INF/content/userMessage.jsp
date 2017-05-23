@@ -223,7 +223,7 @@
                             <s:iterator var="mb"  value="#session.myborrow">
                             <tr  ng-repeat="data in datas">
                                 <s:iterator var="ml" value="#mb.list">
-                                <td><s:property value="#ml.bname" default="null" /> </td>
+                                <td><a href="findBookBybid.action?bid=<s:property value="#ml.bid"/>">《<s:property value="#ml.bname" default="null" />》</a></td>
                                 </s:iterator>
                                 <td><s:property value="#mb.btime" default="null" /></td>
                                 <td><s:property value="#mb.ttime" default="null" /></td>
@@ -267,10 +267,15 @@
                             <s:iterator var="sub" value="#session.mysub">
                                 <s:iterator var="b" value="#sub.list">
                             <tr  ng-repeat="data in datas">
-                                <td> <a href="findBookBybid.action?bid=<s:property value="#b.bid"/>" target="_blank"><img src="<s:property value="#b.bcover" />" style="height: 50px;width: 50px"></a> </td>
-                                <td><a href="findBookBybid.action?bid=<s:property value="#b.bid"/>" target="_blank"><s:property value="#b.bname" /></a></td>
-                                <td><s:property value="#b.nborrowed" /></td>
-                                <td><a href="">
+                                <td> <a href="findBookBybid.action?bid=<s:property value="#b.bid"/>"><img src="<s:property value="#b.bcover" />" style="height: 50px;width: 50px"></a> </td>
+                                <td><a href="findBookBybid.action?bid=<s:property value="#b.bid"/>">《<s:property value="#b.bname" />》</a></td>
+                                <s:if test="#b.nborrowed>0">
+                                    <td><a href="findBookBybid.action?bid=<s:property value="#b.bid" />">可以借阅</a></td>
+                                </s:if>
+                                <s:else>
+                                    <td><s:property value="#b.nborrowed" /> </td>
+                                </s:else>
+                                <td><a href="deleteSub.action?bid=<s:property value="#b.bid" />&&uid=<s:property value="#session.existedUser.uid"/> ">
                                     <img src="image/i_del.png" border="0" style="CURSOR: hand;height: 20px;">
                                 </a></td>
                             </tr>
@@ -308,7 +313,7 @@
                             <s:iterator var="myc" value="#session.mycomment">
                             <tr  ng-repeat="data in datas">
                                 <s:iterator var="book" value="#myc.list">
-                                <td><a href="findBookBybid.action?bid=<s:property value="#book.bid"/>" target="_blank"><s:property value="#book.bname"  /></a> </td>
+                                <td><a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">《<s:property value="#book.bname"  />》</a> </td>
                                 </s:iterator>
                                 <td><s:property value="#myc.inf"  /></td>
                                 <td><s:property value="#myc.bctime" /></td>

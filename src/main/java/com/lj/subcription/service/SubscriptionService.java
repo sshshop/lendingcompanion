@@ -53,4 +53,8 @@ public class SubscriptionService {
     public List<Subscription> findSubBooks(User user) {
         return subscriptionDao.findSubBooks(user);
     }
+
+    public int deleteSub(Integer bid,Integer uid) {
+        return subscriptionDao.deleteSub(bid,uid);
+    }
 }
