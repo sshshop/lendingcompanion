@@ -22,7 +22,6 @@ public class HashCode {
                         temp=arr[i];
                     }
                 }
-
             }
             map.put(count+1, temp);
         }

@@ -200,7 +200,8 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
             }
             Set<Book> books = new HashSet<Book>();
             recentSearch.addAll(recentSearchService.recentSearchBookFinal(hashCode.findMaxString(strings)));
-            ActionContext.getContext().getValueStack().set("recentSearchBook", books.addAll(recentSearch));
+            books.addAll(recentSearch);
+            ActionContext.getContext().getValueStack().set("recentSearchBook", books);
         }
         String ss=searchRegex.splitRed(book.getBauthor());
         List<Book> list=keyWordRed.replaceList(bookService.findAuthor(ss),ss);
