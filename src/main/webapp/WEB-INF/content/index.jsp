@@ -19,8 +19,8 @@
 <!--中间部分-->
 <div class="container index">
     <div class="row">
-        <div class="col-md-3 index_category">
-            <div class="col-md-8 category_nav">
+        <div class="col-md-2 index_category">
+            <div class="col-md-10 category_nav">
                 <ol class="">
                     <s:iterator var="c" value="#session.category">
                         <li class="category_nav_item"><a href="findBookByCid.action?cid=<s:property value="#c.cid"/> "><s:property value="#c.cname" /></a></li>
@@ -28,7 +28,7 @@
                 </ol>
             </div>
         </div>
-        <div class="col-md-9 index_information">
+        <div class="col-md-10 index_information">
             <div class="row">
                 <div class="col-md-9">
                     <div id="myCarousel" class="carousel slide">

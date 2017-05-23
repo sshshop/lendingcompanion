@@ -15,6 +15,7 @@
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script src="laydate/laydate.js"></script>
     <script src="js/booktem.js"></script>
+    <script src="js/register.js"></script>
     <script src="js/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
     <%--<script>--%>
         <%--window.onload = function(){--%>

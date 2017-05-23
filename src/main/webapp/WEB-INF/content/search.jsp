@@ -19,8 +19,8 @@
 <!--中间部分-->
 <div class="container index">
     <div class="row">
-        <div class="col-md-3 index_category">
-            <div class="col-md-8 category_nav">
+        <div class="col-md-2 index_category">
+            <div class="col-md-10 category_nav">
                 <ol class="">
                     <s:if test="#session.existedUser != null">
                         <span style="float: left;">相关历史搜索：</span></br>
@@ -57,7 +57,7 @@
                 </ol>
             </div>
         </div>
-        <div class="col-md-9 index_information">
+        <div class="col-md-10 index_information">
             <!--显示搜索结果start-->
             <div style="float: right;margin-right: 5px">
                 <s:iterator var="pageBean" value="pageBean">
@@ -129,41 +129,85 @@
     </div>
 </div>
 <br>
-<!--模态框主体start-->
 <div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="borrowLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="loginform form-horizontal" id="loginform" method="post" action="userLogin.action">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="borrowLabel">您还没有登录，请先登录</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-
-                        <div class="col-md-4"></div>
-                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input class="form-control username" name="username" id="username" placeholder="请输入用户名" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control password" id="password" name="upassword" placeholder="请输入密码" />
-                                    </div>
-                            </div>
-                        <div class="col-md-4"></div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="borrowLabel">
+                    <s:if test="#session.existedUser == null">
+                        您还没有登录，请先登录
+                    </s:if><s:else>
+                    <s:if test="model.nborrowed > 0">
+                        请选择您的取书时间和还书时间
+                    </s:if><s:else>
+                    啊哦~已经没有余量了
+                </s:else>
+                </s:else>
+                </h4>
+            </div>
+            <div class="modal-body logindiv">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 logindiv">
+                        <s:if test="#session.existedUser == null">
+                            <form class="loginform form-horizontal" id="loginform" method="post"
+                                  action="loginJumpThis.action?bid=<s:property value="model.bid"/>">
+                                <div class="form-group">
+                                    <input class="form-control username" name="username" id="username"
+                                           placeholder="请输入用户名"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control password" name="upassword" id="upassword"
+                                           placeholder="请输入密码"/>
+                                </div>
+                                <button type="submit" class="btn btn-primary">登录</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            </form>
+                        </s:if><s:else>
+                        <s:if test="model.nborrowed > 0">
+                            <form class="" method="post" action="addBorrowBook.action?bid=<s:property value="model.bid"/>">
+                                <div class="form-group row">
+                                    <label class="control-label col-md-4">取书时间</label>
+                                    <input style="height: 50px;" type="text" name="ttime" class="form-control col-md-4 laydate-icon"
+                                           id="borrowTime"/>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-4">还书时间</label>
+                                    <input style="height: 50px;" type="text" name="rtime" class="form-control col-md-4 laydate-icon"
+                                           id="takeTime"/>
+                                </div>
+                                <button type="submit" class="btn btn-primary">借阅</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            </form>
+                        </s:if><s:else>
+                        <p style="font-size: 18px;color: #000;">亲！这本书已经没有余量了，点击下方的收藏按钮我们会在有书的第一时间通知您的哟</p>
+                        <form class="loginform form-horizontal" id="loginform" method="post"
+                              action="addSubscription.action?bid=<s:property value="model.bid"/>">
+                            <button class="btn btn-primary">收藏</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </form>
+                    </s:else>
+                    </s:else>
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">登陆</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer logindiv">
+                <%--
+                                <s:if test="#session.loginedUser == null">
+                                </s:if><s:else>
+                                <s:if test="model.nborrowed > 0">
+                                </s:if><s:else>
+                                <button class="btn btn-primary">收藏</button>
+                            </s:else>
+                            </s:else>--%>
+            </div>
         </div>
     </div>
 </div>
-<!--模态框主体end-->
 <!--底部页面-->
 <%@include file="footer.jsp"%>
 </body>

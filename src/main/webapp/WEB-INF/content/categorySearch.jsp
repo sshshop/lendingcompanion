@@ -23,8 +23,8 @@
 <!--中间部分-->
 <div class="container index">
     <div class="row">
-        <div class="col-md-3 index_category">
-            <div class="col-md-8 category_nav">
+        <div class="col-md-2 index_category">
+            <div class="col-md-10 category_nav">
                 <ol class="">
                     <s:iterator var="c" value="#session.category">
                         <li class="category_nav_item"><a
@@ -34,7 +34,7 @@
                 </ol>
             </div>
         </div>
-        <div class="col-md-9 index_information">
+        <div class="col-md-10 index_information">
             <!--显示搜索结果start-->
             <div class="row">
                 <div class="col-md-12 index_booklist">
