@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.upublic.vo.*;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.*;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
 import javax.annotation.Resources;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +37,16 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
     private String apwd;
     private int mid;
     private String msg;
+    private Integer auid;
+    private Integer authority;
+
+    public void setAuid(Integer auid) {
+        this.auid = auid;
+    }
+
+    public void setAuthority(Integer authority) {
+        this.authority = authority;
+    }
 
     public void setMsg(String msg) {
         this.msg = msg;
@@ -90,6 +102,8 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
     private BooktemService booktemService;
     @Resource(name = "msgService")
     private MsgService msgService;
+    @Resource(name = "adminAuthorityService")
+    private AdminAuthorityService adminAuthorityService;
 
     @Action(value = "adminUser",
             results = {
@@ -118,7 +132,8 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
 
         Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
         if (a != null) {
-            List<Borrowbook> list = (List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed");
+            List<Borrowbook> list = ((List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed")==null?new ArrayList<Borrowbook>():(List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed"));
+
             if (!list.isEmpty()) {
                 ActionContext.getContext().getValueStack().set("borrowedbook", list);
              //   ActionContext.getContext().getSession().remove("findborrowed");
@@ -126,10 +141,12 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
             ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
             ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
             ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
+            ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
             return SUCCESS;
         }
         Admuser admuser = adminUserService.findAdminUser(auname, apwd);
         ActionContext.getContext().getSession().put("adminUser", admuser);
+        ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
         ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
         ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
         ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
@@ -146,6 +163,24 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
             return SUCCESS;
         }
     }
+    /**
+     *
+     * 用户退出功能模块
+     * 销毁Session
+     * @author Scream
+     *
+     * */
+    @Action(value = "adminloginOut",
+            results = {
+                    @Result(name = "success",location = "adminindex.jsp")
+            }
+    )
+    public String adminloginOut(){
+        ServletActionContext.getRequest().getSession().removeAttribute("adminUser");
+        ServletActionContext.getRequest().getSession().invalidate();
+        return SUCCESS;
+    }
+
 
     /**
      *
@@ -238,6 +273,54 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
             return ERROR;
         }else {
             return SUCCESS;
+        }
+    }
+
+    /**
+     *
+     * 管理员用户的升权操作
+     * @author Scream
+     *
+     * */
+    @Action(value = "changeUp",
+            results = {
+                    @Result(name = "success",type = "redirect",location = "adminUserLogin.action"),
+                    @Result(name = "error",location = "msg.jsp"),
+            }
+    )
+
+    public String changeUp(){
+        Admuser admuser = (Admuser) ActionContext.getContext().getSession().get("adminUser");
+        if (admuser.getAuthority()>(authority-1)){
+            adminAuthorityService.changAuthority(auid,authority);
+            return SUCCESS;
+        }else {
+            this.addActionMessage("您没有权限操作该用户");
+            return ERROR;
+        }
+    }
+
+    /**
+     *
+     * 管理员用户的降权操作
+     * @author Scream
+     *
+     **/
+    @Action(value = "changeDown",
+            results = {
+                    @Result(name = "success",type = "redirect",location = "adminUserLogin.action"),
+                    @Result(name = "error",location = "msg.jsp")
+            }
+    )
+
+    public String changeDown(){
+        Admuser admuser = (Admuser) ActionContext.getContext().getSession().get("adminUser");
+        if(admuser.getAuthority()>(authority+1)){
+            adminAuthorityService.changAuthority(auid,authority);
+            return SUCCESS;
+        }else {
+            this.addActionMessage("您没有权限操作该用户");
+            return ERROR;
         }
     }
 }

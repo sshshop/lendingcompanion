@@ -49,7 +49,7 @@
             </s:if><s:else>
             <%--  <a class="login" href="#"><s:property value="#session.existedUser.username" /></a>--%>
             <span style="display: block;float:left; color: dimgray;">欢迎您，<s:property value="#session.adminUser.auname"></s:property> 管理员</span>
-            <a class="register" href="loginOut.action">退出</a>
+            <a class="register" href="adminloginOut.action">退出</a>
         </s:else>
         </div>
     </div>
@@ -670,12 +670,13 @@
                                     <td><s:property value="#admin.auname"  /></td>
                                     <td><s:property value="#admin.authority"  /></td>
                                     <td>
-                                        <a <s:if test="authority<4">href="adminUserLogin.action?authority=<s:property value="authority+1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
+
+                                        <a <s:if test="authority<4">href="changeUp.action?authority=<s:property value="authority+1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
                                             <img src="image/up.png" style="CURSOR: hand;height: 20px;">
                                         </a>
                                     </td>
                                     <td>
-                                        <a <s:if test="authority>1">href="adminUserLogin.action?authority=<s:property value="authority-1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
+                                        <a <s:if test="authority>1">href="changeDown.action?authority=<s:property value="authority-1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
                                             <img src="image/down.png" style="CURSOR: hand;height: 20px;">
                                         </a>
                                     </td>

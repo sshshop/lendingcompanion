@@ -267,8 +267,8 @@
                             <s:iterator var="sub" value="#session.mysub">
                                 <s:iterator var="b" value="#sub.list">
                             <tr  ng-repeat="data in datas">
-                                <td> <img src="<s:property value="#b.bcover" />" style="height: 50px;width: 50px"> </td>
-                                <td><s:property value="#b.bname" /></td>
+                                <td> <a href="findBookBybid.action?bid=<s:property value="#b.bid"/>" target="_blank"><img src="<s:property value="#b.bcover" />" style="height: 50px;width: 50px"></a> </td>
+                                <td><a href="findBookBybid.action?bid=<s:property value="#b.bid"/>" target="_blank"><s:property value="#b.bname" /></a></td>
                                 <td><s:property value="#b.nborrowed" /></td>
                                 <td><a href="">
                                     <img src="image/i_del.png" border="0" style="CURSOR: hand;height: 20px;">
@@ -308,7 +308,7 @@
                             <s:iterator var="myc" value="#session.mycomment">
                             <tr  ng-repeat="data in datas">
                                 <s:iterator var="book" value="#myc.list">
-                                <td><s:property value="#book.bname"  /> </td>
+                                <td><a href="findBookBybid.action?bid=<s:property value="#book.bid"/>" target="_blank"><s:property value="#book.bname"  /></a> </td>
                                 </s:iterator>
                                 <td><s:property value="#myc.inf"  /></td>
                                 <td><s:property value="#myc.bctime" /></td>
