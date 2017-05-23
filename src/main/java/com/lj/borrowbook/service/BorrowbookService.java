@@ -106,4 +106,8 @@ public class BorrowbookService {
         }
         return borrowbookList;
     }
+
+    public int updatBorrowedStatus(Borrowbook borrowbook) {
+        return borrowbookDao.updatBorrowedStatus(borrowbook);
+    }
 }

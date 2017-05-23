@@ -2,13 +2,13 @@ package com.lj.borrowbook.action;
 
 import com.jidy.searchbook.service.BookService;
 import com.lj.borrowbook.service.BorrowbookService;
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.*;
 import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.*;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
 
 import javax.annotation.Resource;
 
@@ -26,7 +26,6 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     private String username;  //用于后台用户借书管理的用户名搜索用户id接受参数,并查询借书信息
     private String bname;  //用于后台管理员管理图书名字查询图书的id并查询借书信息
     //  private int bid; //图书id
-
 
 
     public String getUsername() {
@@ -110,10 +109,22 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
             @Result(location = "adminUserLogin.action", type = "redirect")
     })
     public String findBorrowedBookMSG() {
-        System.out.println(username+"---"+bname);
+        System.out.println(username + "-" + bname);
         ActionContext.getContext().getSession().put("findborrowed", borrowbookService.findBorrowedBookMSG(username, bname));
         System.out.println("准备跳转");
         return SUCCESS;
+    }
+
+    @Action(value = "updatBorrowedStatus", results = {
+            @Result(location = "adminUserLogin.action", type = "redirect"),
+            @Result(name = ERROR,location ="msg.jsp" )
+    })
+    public String updatBorrowedStatus() {
+        System.out.println("进入updatBorrowedStatus");
+        if (borrowbookService.updatBorrowedStatus(borrowbook) == 1)
+            return SUCCESS;
+        this.addActionMessage("修改借书状态错误");
+        return ERROR;
     }
 
     public Borrowbook getModel() {

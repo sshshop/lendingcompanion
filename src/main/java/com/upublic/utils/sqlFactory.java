@@ -1,6 +1,8 @@
 package com.upublic.utils;
 
+import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.jdbc.SQL;
 
 /**
@@ -10,10 +12,11 @@ import org.apache.ibatis.jdbc.SQL;
 public class sqlFactory {
     /**
      * 动态sql构建方法
+     *
      * @param user 传入需要修改的动态sql参数对象，此处为user实例化的类
      * @return 返回的是一个sql语句
      */
-    public String updateSql( final User user) {
+    public String updateSql(final User user) {
         return new SQL() {{
             UPDATE("user");
             if (user.getSex() != null) {
@@ -41,35 +44,48 @@ public class sqlFactory {
         }}.toString();
     }
 
-    public String saveUsersql( final User user) {
+    public String saveUsersql(final User user) {
         return new SQL() {{
             INSERT_INTO("user");
-            VALUES("username","#{username}");
-            VALUES("upassword","#{upassword}");
-            VALUES("pid","#{pid}");
-            VALUES("email","#{email}");
-            VALUES("phone","#{phone}");
-            VALUES("state","1");
+            VALUES("username", "#{username}");
+            VALUES("upassword", "#{upassword}");
+            VALUES("pid", "#{pid}");
+            VALUES("email", "#{email}");
+            VALUES("phone", "#{phone}");
+            VALUES("state", "1");
 
             if (user.getSex() != null) {
-                VALUES("sex","#{sex}");
+                VALUES("sex", "#{sex}");
             }
 
             if (user.getDob() != null) {
-                VALUES("dob","#{dob}");
+                VALUES("dob", "#{dob}");
 
             }
             if (user.getAddr() != null) {
-                VALUES("addr","#{addr}");
+                VALUES("addr", "#{addr}");
 
             }
 
             if (user.getCid() != null) {
-                VALUES("cid","#{cid}");
+                VALUES("cid", "#{cid}");
 
             }
 
 
+        }}.toString();
+    }
+
+    public String updateBorrSql(final Borrowbook borrowbook) {
+        return new SQL() {{
+            UPDATE("borrowbook");
+            if (borrowbook.getBstatus() == 2) {
+                SET("bstatus=2");
+            }
+            if (borrowbook.getBstatus() == 3) {
+                SET("bstatus=3");
+            }
+            WHERE("bbid=#{bbid}");
         }}.toString();
     }
 }

@@ -798,7 +798,7 @@
                                     <td><s:property value="#br.btime"/></td>
                                     <td><s:property value="#br.ttime"/></td>
                                     <td><s:property value="#br.rtime"/></td>
-                                    <td><s:if test="#br.bstatus==1"><a href="?bstatus=2">取书</a></s:if><s:elseif test="#br.bstatus==2"><a href="?bstatus=3">还书</a></s:elseif><s:else>已经还书</s:else>
+                                    <td><s:if test="#br.bstatus==1"><a href="updatBorrowedStatus.action?bstatus=2&bbid=<s:property value="#br.bbid"/>">取书</a></s:if><s:elseif test="#br.bstatus==2"><a href="updatBorrowedStatus.action?bstatus=3&bbid=<s:property value="#br.bbid"/>">还书</a></s:elseif><s:else>已经还书</s:else>
                                     </td>
                                     <td>
                                         <a href="#">
