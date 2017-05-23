@@ -224,12 +224,13 @@
                             <tr  ng-repeat="data in datas">
                                 <s:iterator var="ml" value="#mb.list">
                                 <td><a href="findBookBybid.action?bid=<s:property value="#ml.bid"/>">《<s:property value="#ml.bname" default="null" />》</a></td>
-                                </s:iterator>
+
                                 <td><s:property value="#mb.btime" default="null" /></td>
                                 <td><s:property value="#mb.ttime" default="null" /></td>
                                 <td><s:property value="#mb.rtime" default="null" /></td>
-                                <td><s:if test="#mb.bstatus==1">请尽快去取书</s:if><s:elseif test="#mb.bstatus==2">亲，记得还书哦！</s:elseif><s:else>已经归还</s:else>
+                                <td><s:if test="#mb.bstatus==1">请尽快去取书</s:if><s:elseif test="#mb.bstatus==2">亲，记得还书哦！</s:elseif><s:elseif test="#mb.bstatus==3"><a href="postBid.action?bid=<s:property value="#ml.bid"/>&&bbid=<s:property value="#mb.bbid"/>">评价</a></s:elseif><s:elseif test="#mb.bstatus==4">已评价</s:elseif>
                                         <%--<s:property value="#mb.bstatus" default="null" />--%></td>
+                                </s:iterator>
                             </tr>
                             </s:iterator>
                             <tr>
@@ -242,8 +243,6 @@
 
                     </div>
                 </div>
-
-
                 <div class="tab-pane fade"   id="3" style="padding-top: 30px;letter-spacing: 2px;" onload="goPage(1,10)">
                     <div  class="context_form" style="height:auto; ">
                         <div style="height:10%">

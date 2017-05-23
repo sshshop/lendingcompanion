@@ -50,4 +50,9 @@ public interface BookcommentDao extends PageParents<Bookcomment> {
     @Delete("DELETE FROM bookcomment WHERE uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
 
+    @Insert("insert into bookcomment(uid,bid,bctime,inf,username) values(#{uid},#{bid},NOW(),#{inf},#{username})")
+    int addBookcomment(@Param("uid") Integer uid,
+                       @Param("username") String username,
+                       @Param("bid") Integer bid,
+                       @Param("inf") String inf);
 }

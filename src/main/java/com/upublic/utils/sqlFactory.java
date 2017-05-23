@@ -85,6 +85,9 @@ public class sqlFactory {
             if (borrowbook.getBstatus() == 3) {
                 SET("bstatus=3");
             }
+            if(borrowbook.getBstatus() == 4){
+                SET("bstatus=4");
+            }
             WHERE("bbid=#{bbid}");
         }}.toString();
     }
