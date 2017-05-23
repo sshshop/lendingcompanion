@@ -79,10 +79,10 @@
         <div class="col-md-12 adminnav" style="letter-spacing: 2px;">
             <ul class="nav nav-pills nav-stacked" style="text-align: center ">
                 <li class="active" style="margin-top: 20px;"><a href="#1" data-toggle="tab" id="adminUser_a">用户管理</a></li>
-                <li style="margin-top: 20px;"><a href="#2" data-toggle="tab">公告管理</a></li>
-                <li style="margin-top: 20px;"><a href="#3" data-toggle="tab">图书管理</a></li>
-                <li style="margin-top: 20px;"><a href="#4" data-toggle="tab">权限管理</a></li>
-                <li style="margin-top: 20px;"><a href="#5" data-toggle="tab">借书管理</a></li>
+                <li style="margin-top: 20px;"><a href="#2" data-toggle="tab" id="adminNews_a">公告管理</a></li>
+                <li style="margin-top: 20px;"><a href="#3" data-toggle="tab" id="adminBook_a">图书管理</a></li>
+                <li style="margin-top: 20px;"><a href="#4" data-toggle="tab" id="adminAuthority_a">权限管理</a></li>
+                <li style="margin-top: 20px;"><a href="#5" data-toggle="tab" id="adminBorrow_a">借书管理</a></li>
             </ul>
         </div>
     </div>
@@ -180,14 +180,14 @@
                                     for(var i=1;i<=totalPage;i++)
 
                                     {
-                                        tempLi+='<li value='+i+'><a href="#adminUser" onclick="jumpPage('+i+')"> '+i+'</a></li>'
+                                        tempLi+='<li value='+i+'><a href="#adminUser" onclick="jumpAdminUserPage('+i+')"> '+i+'</a></li>'
                                     }
                                     $("#adminUserPage").html(tempLi);
                                     $("#adminUserPage").val(currentPage);
                                 }
 
 
-                                function jumpPage(i)
+                                function jumpAdminUserPage(i)
                                 {
                                     var num=parseInt(i);
                                     console.log(pageSize);
@@ -337,7 +337,7 @@
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="look">
-                                <table class="table" style="text-align: center; ">
+                                <table class="table" style="text-align: center; " hidden>
                                     <thead>
                                     <tr>
                                         <td>发布时间</td>
@@ -345,7 +345,7 @@
                                         <td>删除</td>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="newsAdminTable">
                                     <s:iterator var="msg" value="allmsg">
                                     <tr ng-repeat="data in datas">
                                         <td><s:property value="#msg.time" /></td>
@@ -357,8 +357,66 @@
                                         </td>
                                     </tr>
                                     </s:iterator>
+                                    <tr>
+                                        <ul class="pagination pagination-sm" id="adminNewsPage">
+
+                                        </ul>
+                                    </tr>
                                     </tbody>
                                 </table>
+                                <script>
+                                    $("#adminNews_a").click(function(){
+                                        newsAdminPage(1,5);
+                                        $("#look table").removeAttr("hidden")
+                                    });
+                                    var pageSize=0;//每页显示行数
+                                    var currentPage_=1;//当前页全局变量，用于跳转时判断是否在相同页，在就不跳，否则跳转。
+
+                                    function newsAdminPage(pno,psize){
+                                        var itable = document.getElementById("newsAdminTable");
+                                        var num = itable.rows.length;
+                                        pageSize = psize;//每页显示行数
+                                        //总共分几页
+                                        if(num/pageSize > parseInt(num/pageSize)){
+                                            totalPage=parseInt(num/pageSize)+1;
+                                        }else{
+                                            totalPage=parseInt(num/pageSize);
+                                        }
+                                        var currentPage = pno;//当前页数
+                                        currentPage_=currentPage;
+                                        var startRow = (currentPage - 1) * pageSize+1;
+                                        var endRow = currentPage * pageSize;
+                                        endRow = (endRow > num)? num : endRow;
+                                        //遍历显示数据实现分页
+                                        for(var i=1;i<(num+1);i++){
+                                            var irow = itable.rows[i-1];
+                                            if(i>=startRow && i<=endRow){
+                                                irow.style.display = "";
+                                            }else{
+                                                irow.style.display = "none";
+                                            }
+                                        }
+                                        var tempLi="";
+                                        for(var i=1;i<=totalPage;i++)
+
+                                        {
+                                            tempLi+='<li value='+i+'><a href="#look" onclick="jumpAdminNewsPage('+i+')"> '+i+'</a></li>'
+                                        }
+                                        $("#adminNewsPage").html(tempLi);
+                                        $("#adminNewsPage").val(currentPage);
+                                    }
+
+
+                                    function jumpAdminNewsPage(i)
+                                    {
+                                        var num=parseInt(i);
+                                        console.log(pageSize);
+                                        if(num!=currentPage_)
+                                        {
+                                            newsAdminPage(num,pageSize);
+                                        }
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -380,7 +438,7 @@
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="adminBook">
-                                <table class="table" style="text-align: center; letter-spacing: 2px;">
+                                <table class="table" style="text-align: center; letter-spacing: 2px;" hidden>
                                     <thead>
                                     <tr>
                                         <td>书籍名称</td>
@@ -395,7 +453,7 @@
                                         <td>删除</td>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="bookAdminTable">
                                     <s:iterator var="book" value="allBook">
                                     <tr ng-repeat="data in datas">
                                         <td><s:property value="#book.bname" /></td>
@@ -416,14 +474,24 @@
                                         </a></td>
                                     </tr>
                                     </s:iterator>
+                                    <tr>
+                                        <ul class="pagination pagination-sm" id="adminBookPage">
+
+                                        </ul>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <script>
-                                /*var pageSize=0;//每页显示行数
+                                $("#adminBook_a").click(function(){
+                                    bookAdminPage(1,5);
+                                    $("#adminBook table").removeAttr("hidden")
+                                });
+                                var pageSize=0;//每页显示行数
                                 var currentPage_=1;//当前页全局变量，用于跳转时判断是否在相同页，在就不跳，否则跳转。
-                                function goPage(pno,psize){
-                                    var itable = document.getElementById("adminBookTable");
+
+                                function bookAdminPage(pno,psize){
+                                    var itable = document.getElementById("bookAdminTable");
                                     var num = itable.rows.length;
                                     pageSize = psize;//每页显示行数
                                     //总共分几页
@@ -450,22 +518,22 @@
                                     for(var i=1;i<=totalPage;i++)
 
                                     {
-                                        tempLi+='<li value='+i+'><a href="#adminBook" onclick="jumpPage('+i+')"> '+i+'</a></li>'
+                                        tempLi+='<li value='+i+'><a href="#adminBook" onclick="jumpAdminBookPage('+i+')"> '+i+'</a></li>'
                                     }
-                                    $("#adminUserPage").html(tempLi);
-                                    $("#adminUserPage").val(currentPage);
+                                    $("#adminBookPage").html(tempLi);
+                                    $("#adminBookPage").val(currentPage);
                                 }
 
 
-                                function jumpPage(i)
+                                function jumpAdminBookPage(i)
                                 {
                                     var num=parseInt(i);
                                     console.log(pageSize);
                                     if(num!=currentPage_)
                                     {
-                                        goPage(num,pageSize);
+                                        bookAdminPage(num,pageSize);
                                     }
-                                }*/
+                                }
                             </script>
                             <div class="tab-pane fade" id="addBook">
                                 <div class="context">
@@ -577,7 +645,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <table class="table" style="text-align: center; letter-spacing: 2px;">
+                        <table class="table" style="text-align: center; letter-spacing: 2px;" hidden>
                             <thead>
                             <tr>
                                 <td>管理员编号</td>
@@ -587,7 +655,7 @@
                                 <td>降低权限</td>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="authorityAdminTable">
 
                             <tr ng-repeat="data in datas">
                                 <s:iterator var="admin" value="list">
@@ -606,9 +674,66 @@
                                     </td>
                                 </tr>
                             </s:iterator>
+                            <tr>
+                                <ul class="pagination pagination-sm" id="adminAuthorityPage">
+
+                                </ul>
+                            </tr>
                             </tbody>
                         </table>
+                        <script>
+                            $("#adminAuthority_a").click(function(){
+                                authorityAdminPage(1,5);
+                                $("#4 table").removeAttr("hidden")
+                            });
+                            var pageSize=0;//每页显示行数
+                            var currentPage_=1;//当前页全局变量，用于跳转时判断是否在相同页，在就不跳，否则跳转。
 
+                            function authorityAdminPage(pno,psize){
+                                var itable = document.getElementById("authorityAdminTable");
+                                var num = itable.rows.length;
+                                pageSize = psize;//每页显示行数
+                                //总共分几页
+                                if(num/pageSize > parseInt(num/pageSize)){
+                                    totalPage=parseInt(num/pageSize)+1;
+                                }else{
+                                    totalPage=parseInt(num/pageSize);
+                                }
+                                var currentPage = pno;//当前页数
+                                currentPage_=currentPage;
+                                var startRow = (currentPage - 1) * pageSize+1;
+                                var endRow = currentPage * pageSize;
+                                endRow = (endRow > num)? num : endRow;
+                                //遍历显示数据实现分页
+                                for(var i=1;i<(num+1);i++){
+                                    var irow = itable.rows[i-1];
+                                    if(i>=startRow && i<=endRow){
+                                        irow.style.display = "";
+                                    }else{
+                                        irow.style.display = "none";
+                                    }
+                                }
+                                var tempLi="";
+                                for(var i=1;i<=totalPage;i++)
+
+                                {
+                                    tempLi+='<li value='+i+'><a href="#4" onclick="jumpAdminAuthorityPage('+i+')"> '+i+'</a></li>'
+                                }
+                                $("#adminAuthorityPage").html(tempLi);
+                                $("#adminAuthorityPage").val(currentPage);
+                            }
+
+
+                            function jumpAdminAuthorityPage(i)
+                            {
+                                var num=parseInt(i);
+                                console.log(pageSize);
+                                if(num!=currentPage_)
+                                {
+                                    authorityAdminPage(num,pageSize);
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
                 <%--消息管理--%>
@@ -622,7 +747,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <table class="table" style="text-align: center; letter-spacing: 2px;">
+                        <table class="table" style="text-align: center; letter-spacing: 2px;" hidden>
                             <thead>
                             <tr>
                                 <td>订单号</td>
@@ -636,7 +761,7 @@
                                 <td>删除</td>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="borrowAdminTable">
                             <tr  ng-repeat="data in datas">
                                 <td><s:property value="" default="null" /> </td>
                                 <td><s:property value="" default="null" /></td>
@@ -657,12 +782,70 @@
                                 </td>
 
                             </tr>
+
+                            <tr>
+                                <ul class="pagination pagination-sm" id="adminBorrowPage">
+
+                                </ul>
+                            </tr>
                             </tbody>
                         </table>
 
                     </div>
                 </div>
+                    <script>
+                        $("#adminBorrow_a").click(function(){
+                            borrowAdminPage(1,5);
+                            $("#5 table").removeAttr("hidden")
+                        });
+                        var pageSize=0;//每页显示行数
+                        var currentPage_=1;//当前页全局变量，用于跳转时判断是否在相同页，在就不跳，否则跳转。
 
+                        function borrowAdminPage(pno,psize){
+                            var itable = document.getElementById("borrowAdminTable");
+                            var num = itable.rows.length;
+                            pageSize = psize;//每页显示行数
+                            //总共分几页
+                            if(num/pageSize > parseInt(num/pageSize)){
+                                totalPage=parseInt(num/pageSize)+1;
+                            }else{
+                                totalPage=parseInt(num/pageSize);
+                            }
+                            var currentPage = pno;//当前页数
+                            currentPage_=currentPage;
+                            var startRow = (currentPage - 1) * pageSize+1;
+                            var endRow = currentPage * pageSize;
+                            endRow = (endRow > num)? num : endRow;
+                            //遍历显示数据实现分页
+                            for(var i=1;i<(num+1);i++){
+                                var irow = itable.rows[i-1];
+                                if(i>=startRow && i<=endRow){
+                                    irow.style.display = "";
+                                }else{
+                                    irow.style.display = "none";
+                                }
+                            }
+                            var tempLi="";
+                            for(var i=1;i<=totalPage;i++)
+
+                            {
+                                tempLi+='<li value='+i+'><a href="#5" onclick="jumpAdminBorrowPage('+i+')"> '+i+'</a></li>'
+                            }
+                            $("#adminBorrowPage").html(tempLi);
+                            $("#adminBorrowPage").val(currentPage);
+                        }
+
+
+                        function jumpAdminBorrowPage(i)
+                        {
+                            var num=parseInt(i);
+                            console.log(pageSize);
+                            if(num!=currentPage_)
+                            {
+                                borrowAdminPage(num,pageSize);
+                            }
+                        }
+                    </script>
             </div>
         </div>
     </div>
