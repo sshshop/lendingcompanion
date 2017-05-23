@@ -20,6 +20,7 @@ public class AdminAuthorityService {
     }
 
     public void changAuthority(Integer auid, Integer authority) {
+        System.out.println(authority);
         adminAuthorityDao.changAuthority(auid,authority);
     }
 }

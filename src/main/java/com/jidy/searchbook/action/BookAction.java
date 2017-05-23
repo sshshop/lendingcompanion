@@ -102,6 +102,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         List<Book> bookList = new ArrayList<Book>();//返回结果到页面
         List<Book> recentSearch=new ArrayList<Book>();//接收最近搜索结果
         String search = searchRegex.searchMaster(inputInfo);//第一次匹配
+        setPage(page);
         //如果输入不为空进行第一次查询
         if (search.length() != 0) {
             book = keyWord.bookInfoMaster(inputInfo);
@@ -147,6 +148,11 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 }
                 ActionContext.getContext().getValueStack().set("BookList", bookList);
                 ActionContext.getContext().getValueStack().set("pageBean", pageBean);
+                int[] select=new int[pageBean.getTotalPage()];
+                for(int n=0;n<select.length;n++){
+                    select[n]=n+1;
+                }
+                ActionContext.getContext().getValueStack().set("select", select);
                 return "searchBookSuccess";
             }else {
                 this.addActionMessage("没有查询到图书信息");

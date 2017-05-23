@@ -1,6 +1,7 @@
 package com.hyy.adminUser.action;
 
 import com.hyy.adminUser.service.AdminUserService;
+import com.jidy.adminauthority.service.AdminAuthorityService;
 import com.lj.booktemp.service.BooktemService;
 import com.lj.category.service.CategoryService;
 import com.lj.msg.service.MsgService;
@@ -93,7 +94,6 @@ public class AdminUserAction extends ActionSupport {
         ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
         ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
         ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
-        System.out.println(admuser.getAuname() + "," + admuser.getApwd());
         /**
          *
          * 判断admuser是否为空，

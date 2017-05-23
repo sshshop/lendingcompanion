@@ -16,8 +16,16 @@
     <script src="laydate/laydate.js"></script>
     <script src="js/booktem.js"></script>
     <script src="js/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
-
-
+    <script>
+        window.onload = function(){
+            if(location.search.indexOf("?")==-1){
+                location.href += "?myurl";
+            }
+            else{
+                if(location.search.indexOf("myurl")==-1) location.href += "&myurl";
+            }
+        }
+    </script>
 </head>
 <body>
 <div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg"
@@ -590,21 +598,15 @@
                                     <td><s:property value="#admin.auname"  /></td>
                                     <td><s:property value="#admin.authority"  /></td>
                                     <td>
-                                        <s:if test="authority<4">
-                                            <a href="adminUser_login.action?authority=<s:property value="authority+1"/>&auid=<s:property value="#admin.auid"  />">
-                                                </s:if>
-                                                    <img src="image/up.png" style="CURSOR: hand;height: 20px;">
-                                            </a>
+                                        <a <s:if test="authority<4">href="adminUser_login.action?authority=<s:property value="authority+1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
+                                            <img src="image/up.png" style="CURSOR: hand;height: 20px;">
+                                        </a>
                                     </td>
                                     <td>
-                                        <s:if test="authority>1">
-                                            <a href="adminUser_login.action?authority=<s:property value="authority-1"/>&auid=<s:property value="#admin.auid"  /> ">
-                                                </s:if>
-                                                <img src="image/down.png" style="CURSOR: hand;height: 20px;">
-                                            </a>
-
+                                        <a <s:if test="authority>1">href="adminUser_login.action?authority=<s:property value="authority-1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
+                                            <img src="image/down.png" style="CURSOR: hand;height: 20px;">
+                                        </a>
                                     </td>
-
                                 </tr>
                             </s:iterator>
                             </tbody>

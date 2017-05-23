@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
+
 /**
  * Created by jidy on 2017/5/23.
  */
@@ -42,15 +44,15 @@ public class AdminAuthorityAction{
     }
 
     @Action(value = "adminUser_login",results = {
-            @Result(name = "findAdmin",location = "admin.jsp")
+            @Result(location = "admin.jsp")
     })
     public String findAllAdUser(){
-        System.out.println(authority);
         List<Admuser> list=new ArrayList<Admuser>();
         list.addAll(adminAuthorityService.findAllAdmUser());
-        ActionContext.getContext().getValueStack().set("list",list);
+        System.out.println(authority);
         adminAuthorityService.changAuthority(auid,authority);
-        return "findAdmin";
+        ActionContext.getContext().getValueStack().set("list",list);
+        return SUCCESS;
     }
 
 }

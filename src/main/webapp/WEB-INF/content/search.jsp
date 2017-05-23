@@ -83,7 +83,7 @@
             <!--显示搜索结果end-->
 
             <!--分页标签start 不要删-->
-        <s:iterator begin="var item=1" var="pageBean" value="pageBean">
+        <s:iterator begin="var item=1" var="pageBean" value="pageBean" status="s">
             <s:if test="pageBean.totalPage!=0">
                 <div class="row" style="text-align: center">
                     <ul class="pagination">
