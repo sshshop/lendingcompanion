@@ -38,6 +38,20 @@ public interface UserDao {
               @Param("email") String email,
               @Param("code") String code);
 
+    //管理员添加用户数据插入
+    @Insert("INSERT INTO user(username,upassword,sex,dob,phone,pid,cid,addr,email,state)" +
+            "VALUES(#{username},#{upassword},#{sex},#{dob},#{phone},#{pid},#{cid},#{addr},#{email},#{state})")
+    void adminsave(@Param("username") String username,
+              @Param("upassword") String upassword,
+              @Param("sex") int sex,
+              @Param("dob") Date dob,
+              @Param("phone") String phone,
+              @Param("pid") int pid,
+              @Param("cid") int cid,
+              @Param("addr") String addr,
+              @Param("email") String email,
+              @Param("state") Integer state);
+
     //注册激活码查询
     @Select("select * FROM user WHERE code=#{code}")
     User findBycode(@Param("code") String code);
@@ -61,4 +75,17 @@ public interface UserDao {
      */
     @UpdateProvider(type = sqlFactory.class, method = "updateSql")
     int updateUser(User user);
+
+
+    @Select("select * FROM user WHERE username=#{username}  ")
+    User findByEmail(@Param("username") String username );
+
+    @Update("UPDATE user SET upassword=#{upassword} WHERE username=#{username}")
+    void updatePassword(@Param("username")String username, @Param("upassword")String upassword);
+
+    @InsertProvider(type = sqlFactory.class,method = "saveUsersql")
+    void adminAdduser(User user);
+
+    @Select("select username  FROM user WHERE email=#{email}  ")
+    String findUsername(@Param("email") String email);
 }

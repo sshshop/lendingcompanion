@@ -1,5 +1,8 @@
 package com.lyj.user.utils;
 
+
+import org.apache.struts2.convention.annotation.Action;
+
 import java.util.UUID;
 
 /**
@@ -11,5 +14,11 @@ public class UUIDUtils {
      */
     public static String getUUID(){
         return UUID.randomUUID().toString().replace("-","");
+    }
+    @Action(value ="sendEmail")
+    public  static String getNumber(){
+        int code =(int)((Math.random()*9+1)*100000);
+        String s=code+"";
+        return s;
     }
 }

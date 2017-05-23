@@ -40,4 +40,36 @@ public class sqlFactory {
             WHERE("uid=#{uid}");
         }}.toString();
     }
+
+    public String saveUsersql( final User user) {
+        return new SQL() {{
+            INSERT_INTO("user");
+            VALUES("username","#{username}");
+            VALUES("upassword","#{upassword}");
+            VALUES("pid","#{pid}");
+            VALUES("email","#{email}");
+            VALUES("phone","#{phone}");
+            VALUES("state","1");
+
+            if (user.getSex() != null) {
+                VALUES("sex","#{sex}");
+            }
+
+            if (user.getDob() != null) {
+                VALUES("dob","#{dob}");
+
+            }
+            if (user.getAddr() != null) {
+                VALUES("addr","#{addr}");
+
+            }
+
+            if (user.getCid() != null) {
+                VALUES("cid","#{cid}");
+
+            }
+
+
+        }}.toString();
+    }
 }

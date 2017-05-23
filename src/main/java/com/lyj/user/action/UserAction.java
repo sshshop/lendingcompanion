@@ -6,9 +6,15 @@ import com.lj.news.service.NewsService;
 import com.lj.subcription.service.SubscriptionService;
 import com.lyj.city.service.CityService;
 import com.lyj.province.service.ProvinceService;
+import com.lyj.user.utils.SendMailUnitl;
+import com.lyj.user.utils.UUIDUtils;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.lyj.user.service.UserService;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.upublic.vo.City;
+import com.upublic.vo.Province;
 import com.upublic.vo.User;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
@@ -19,6 +25,7 @@ import org.apache.struts2.convention.annotation.Result;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -34,8 +41,14 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     private User user = new User();
     private String province1;
     private String city1;
-    private String dob1;
+    private String dob;
     private String sex1;
+
+
+
+    private String upassword1;
+
+    private String number1;
     private int bid;//图书bid
     private int status = 0;//用户跳转状态，默认值为0；1为详情页跳转，2未搜索页跳转
     // 注入UserService
@@ -65,6 +78,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         this.sex1 = sex1;
     }
 
+    public void setNumber1(String number1) {
+        this.number1 = number1;
+    }
+
     public void setProvince1(String province1) {
         this.province1 = province1;
     }
@@ -73,11 +90,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         this.city1 = city1;
     }
 
-    public void setDob1(String dob1) {
-        this.dob1 = dob1;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
-
+    public void setUpassword1(String upassword1) {
+        this.upassword1 = upassword1;
+    }
     public User getModel() {
         return user;
     }
@@ -147,10 +166,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         /**
          * 调用service进行查询
          */
-        System.out.println("进入住的了");
-        //      System.out.println(user.getUsername());
+
         List<User> list = userService.findUsernameAll(user);
-        /*System.out.println(list.get(0).getUsername());*/
+
         //获得rresponse对象，向页面输出
         HttpServletResponse response = ServletActionContext.getResponse();
         response.setContentType("text/html;charset=UTF-8");
@@ -169,20 +187,19 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     //用户注册方法
     @Action(value = "registerPost", results = @Result(name = "registerSuccess", location = "login.jsp"))
     public String register() {
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+        //获取性别按钮的值
         if (sex1.equals("man")) {
             user.setSex(1);
         } else {
             user.setSex(0);
         }
 
-        System.out.println(user.getSex());
+        //查询pid,cid的方法
         user.setPid(provinceService.selectPid(province1));
-        System.out.println(user.getPid());
-        System.out.println(user.getDob());
         user.setCid(cityService.selectCid(city1));
-        System.out.println(user.getCid());
-        userService.sava(user);
+
+        String i = "user";
+        userService.sava(user, i);
         //注册成功返回页面
         return "registerSuccess";
     }
@@ -202,10 +219,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
             // 激活成功
             // 修改用户的状态
-          /*  existUser.setCode(null);
-            existUser.setState(1);*/
-
-            userService.update(existUser);
+           userService.update(existUser);
             // 激活成功返回页面
             return NONE;
         }
@@ -301,12 +315,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             return LOGIN;
         }
 
-        System.out.println(province1+city1+sex1);
+        //System.out.println(province1 + city1 + sex1);
         if ("man".equals(sex1)) {
             user.setSex(1);
         } else {
             user.setSex(0);
         }
+
         //修改了提交省份城市空值报错的BUG
         if (!"请选择".equals(province1)){
             user.setPid(provinceService.selectPid(province1));
@@ -323,4 +338,75 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         System.out.println("修改成功");
         return SUCCESS;
     }
+
+    //忘记密码页面跳转
+    @Action(value = "findPassword1" ,results = @Result(name = "find1", location = "test.jsp"))
+    public String findPassword1(){
+        return "find1";
+    }
+
+
+    @Action(value = "findP" ,results = {@Result(name = "find2", location = "test2.jsp"),
+                @Result(name = "find3", location = "test3.jsp")})
+    //用户找回密码的方法1
+     public String findPassword() {
+        //判断用户名邮箱是否匹配
+
+       User u= userService.findByemail(user.getUsername());
+       // System.out.println(email.getEmail()+"----------------");
+         if (u.getEmail()==null) {
+             System.out.println("用户名不存在");
+            return  NONE;
+        }else {
+             String i = "findUser";
+             String number = UUIDUtils.getNumber();
+             ActionContext.getContext().getSession().put("email",u.getEmail());
+             ActionContext.getContext().getSession().put("finduser",u.getUsername());
+             ActionContext.getContext().getSession().put("code",number);
+             //发送验证码邮件
+             SendMailUnitl.senMail(u.getEmail(),number,i);
+             //跳转到填写验证码页面
+             return "find2";
+
+         }
+
+  }
+
+
+    //用户找回密码的方法2
+    @Action(value = "findNumber" ,results = @Result(name = "find3", location = "test3.jsp"))
+    public String findNumber(){
+
+        String number= (String) ActionContext.getContext().getSession().get("code");
+      /*  System.out.println(number);
+        System.out.println(number1);*/
+       if (number1.trim().equals(number)) {
+
+           ActionContext.getContext().getSession().remove("code");
+            //验证码正确，跳转到修改密码页面
+           return "find3";
+
+    } else {
+
+        System.out.println("验证码不正确！");
+
+        return NONE;
+    }
+
+
+
+    }
+    ////用户找回密码的方法
+  @Action(value = "updatePassword" ,results = @Result(name = "find4", location = "test4.jsp"))
+    public String updatePassword(){
+         String c= (String) ActionContext.getContext().getSession().get("finduser");
+        // System.out.println(c+upassword1);
+        userService.updatePassword(c,upassword1);
+        return "find4";
+    }
+
+
+
+
+
 }

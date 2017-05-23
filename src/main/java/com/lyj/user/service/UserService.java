@@ -35,21 +35,32 @@ public class UserService {
 
 
 
-    public void sava(User user) {
+    public void sava(User user,String i) {
 
         String code= UUIDUtils.getUUID()+UUIDUtils.getUUID();
-
         user.setCode(code);
-        SendMailUnitl.senMail(user.getEmail(),code);
+        //判断是用户添加或者管理员添加
+        if ("user".equalsIgnoreCase(i)){
+            SendMailUnitl.senMail(user.getEmail(),code,i);
+            userDao.save(user.getUsername(),user.getUpassword(),user.getSex(),user.getDob(),user.getPhone(),user.getPid(),user.getCid(),user.getAddr(),user.getEmail(),user.getCode());
+        }else if("admin".equalsIgnoreCase(i))
+        {
+            user.setState(1);
+          //  userDao.adminsave(user.getUsername(),user.getUpassword(),user.getSex(),user.getDob(),user.getPhone(),user.getPid(),user.getCid(),user.getAddr(),user.getEmail(),user.getState());
+            userDao.adminAdduser(user);
+        }
 
-        //System.out.println(user.getUsername()+"+"+user.getUpassword()+"+"+user.getSex()+"+"+user.getDob()+"+"+user.getPhone()+"+"+user.getPid()+"+"+user.getCid()+"+"+user.getAddr()+user.getEmail());
-        userDao.save(user.getUsername(),user.getUpassword(),user.getSex(),user.getDob(),user.getPhone(),user.getPid(),user.getCid(),user.getAddr(),user.getEmail(),user.getCode());
-        //userDao.savetest(user);
+
+        //System.out.println(user.getUsername()+"+"+user.getUpassword()+"+"+user.getSex()+"+"+user.getDob()+"+"+user.getPhone()+"+"+user.getPid()+"+"+user.getCid()+"+"+user.getAddr()+"+"+user.getEmail()+"+"+user.getCode());
+
+
     }
 
 
     public User findBycode(String code) {
         return userDao.findBycode(code);
+
+
     }
 
     public void update(User existUser) {
@@ -67,6 +78,21 @@ public class UserService {
      */
     public int updateUser(User user) {
             return userDao.updateUser(user);
+    }
+
+
+    public User findByemail(String username) {
+        return userDao.findByEmail(username);
+    }
+
+    public void updatePassword(String username,String upassword) {
+        //System.out.println(username+upassword);
+        userDao.updatePassword(username,upassword);
+
+    }
+
+    public String findUsername(User user) {
+        return userDao.findUsername(user.getEmail());
     }
 }
 
