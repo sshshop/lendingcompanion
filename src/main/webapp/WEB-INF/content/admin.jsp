@@ -102,9 +102,6 @@
                                 <li>
                                     <a href="#addUser" data-toggle="tab">添加用户</a>
                                 </li>
-                                <li>
-                                    <a href="#editUser" data-toggle="tab">编辑用户</a>
-                                </li>
                             </ul>
                         </div>
                         <div class="tab-content">
@@ -196,7 +193,7 @@
                                     console.log(pageSize);
                                     if(num!=currentPage_)
                                     {
-                                        goPage(num,pageSize);
+                                        userAdminPage(num,pageSize);
                                     }
                                 }
                             </script>

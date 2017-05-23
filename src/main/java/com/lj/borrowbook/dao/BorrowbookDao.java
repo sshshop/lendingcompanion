@@ -60,6 +60,6 @@ public interface BorrowbookDao {
     @Select("SELECT * FROM borrowbook WHERE uid=#{uid}")
     List<Borrowbook> findborrowedBookByUid(@Param("uid") Integer uid);
 
-    @Delete("DELETE * FROM borrowbook WHERE uid=#{uid}")
+    @Delete("DELETE FROM borrowbook WHERE uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
 }

@@ -151,7 +151,7 @@
                             <!--提交按钮-->
                             <div class="form-group submit_btn" >
                                 <div class="col-md-offset-5 col-sm-10">
-                                    <button type="submit" class="btn btn-default">修改</button>
+                                    <button type="submit" class="btn btn-default" href="editUser.action">修改</button>
                                 </div>
                             </div>
                         </form>

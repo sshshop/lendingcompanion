@@ -49,6 +49,6 @@ public interface SubscriptionDao {
     @Select("SELECT * FROM subscription WHERE uid=#{uid}")
     List<Subscription> findSubscriptionByUid(@Param("uid") Integer uid);
 
-    @Delete("DELETE * FROM subscription WHERE uid=#{uid}")
+    @Delete("DELETE FROM subscription WHERE uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
 }

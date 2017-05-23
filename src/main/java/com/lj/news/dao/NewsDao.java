@@ -41,6 +41,6 @@ public interface NewsDao {
     @Select("SELECT * FROM news WHERE uid=#{uid}")
     List<News> findNewsByUid(@Param("uid") Integer uid);
 
-    @Delete("DELETE * FROM news WHERE uid=#{uid}")
+    @Delete("DELETE FROM news WHERE uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
 }

@@ -64,22 +64,35 @@ public class AdminUserService {
 
     public void deleteUser(Integer uid) {
         if (!newsDao.findNewsByUid(uid).isEmpty()){
-            newsDao.deleteUser(uid);
-        }
-        if(!searchDao.findSearchByUid(uid).isEmpty()){
-            searchDao.deleteUser(uid);
+            System.out.println("1");
+             newsDao.deleteUser(uid);
+            System.out.println("1");
         }
         if (!subscriptionDao.findSubscriptionByUid(uid).isEmpty()){
+            System.out.println("2");
             subscriptionDao.deleteUser(uid);
+            System.out.println("2");
         }
         if (!bookcommentDao.findBookCommentByUId(uid).isEmpty()){
-            bookcommentDao.deleteUser(uid);
+            System.out.println("3");
+             bookcommentDao.deleteUser(uid);
+            System.out.println("3");
         }
         if(!borrowbookDao.findborrowedBookByUid(uid).isEmpty()){
-            borrowbookDao.deleteUser(uid);
+            System.out.println("4");
+             borrowbookDao.deleteUser(uid);
+            System.out.println("4");
         }
-
-
+        if(!searchDao.findSearchByUid(uid).isEmpty()){
+            System.out.println("5");
+            searchDao.deleteUser(uid);
+            System.out.println("5");
+        }
         adminUserDao.deleteUser(uid);
+
+
+
+
+
     }
 }

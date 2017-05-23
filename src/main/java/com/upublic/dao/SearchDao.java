@@ -15,6 +15,6 @@ public interface SearchDao {
     @Select("SELECT * FROM search WHERE uid=#{uid}")
     List<Search> findSearchByUid(@Param("uid") Integer uid);
 
-    @Delete("delete * from search where uid=#{uid}")
+    @Delete("delete from search where uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
 }

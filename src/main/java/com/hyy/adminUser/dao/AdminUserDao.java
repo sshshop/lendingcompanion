@@ -44,6 +44,6 @@ public interface AdminUserDao {
     User findUserById(@Param("uid") Integer uid);
 
 
-    @Delete("Delete * From user Where uid=#{uid}")
+    @Delete("Delete From user Where uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
 }
