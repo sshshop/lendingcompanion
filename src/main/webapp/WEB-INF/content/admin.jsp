@@ -15,7 +15,7 @@
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script src="laydate/laydate.js"></script>
     <script src="js/booktem.js"></script>
-    <script src="js/register.js"></script>
+    <script src="js/register.js"  type="text/javascript" charset="utf-8"></script>
     <script src="js/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
     <%--<script>--%>
         <%--window.onload = function(){--%>
@@ -205,22 +205,24 @@
                                         <div class="col-md-8">
                                             <!--注册表单-->
                                             <div>
-                                                <form class="form-horizontal register" id="register" action="">
+                                                <form class="form-horizontal register" id="register" action="addUser.action">
                                                     <!--用户名-->
                                                     <div class="form-group">
 
                                                         <label class="control-label col-md-4">用户名</label>
-                                                        <input type="text" value="null" name="username"
+                                                        <input type="text"  name="username"
                                                                class="form-control col-md-4 username" id="username"
                                                                onblur="checkUsername()"/>
-
+                                                        <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
+                                                        <span id="username2" style="font-size: 10px; color: red " ></span>
 
                                                     </div>
                                                      <!--密码-->
                                                      <div class="form-group">
                                                          <label class="control-label col-md-4">密码</label>
                                                          <input type="password" name="upassword" class="form-control col-md-4 password" id="upassword" placeholder="密码" onblur="checkUpassword()" />
-
+                                                         <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
+                                                         <span id="upassword2" style="font-size: 10px; color: red " ></span>
                                                      </div>
                                                      <%--<!--重复密码-->--%>
                                                      <%--<div class="form-group">--%>
@@ -262,17 +264,18 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">电话</label>
                                                         <input type="text" name="phone" class="form-control col-md-4 phone" id="phone" placeholder="电话" onblur="checkPhone()" />
+                                                        <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
                                                         <span id="phone2" style="font-size: 10px; color: red " ></span>
                                                     </div>
                                                     <!--省份----城市-->
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">省份</label>
                                                         <span>
-                                                            <select name="province" id="s1" style="width: 98px"
+                                                            <select name="province1" id="s1" style="width: 98px"
                                                                     onblur="checkProvince()">
                                                                 <option id="pname1"></option>
                                                             </select>
-                                                            <select name="city" id="s2"  style="width: 98px"onblur="checkCity()">
+                                                            <select name="city1" id="s2"  style="width: 98px"onblur="checkCity()">
                                                                 <option id="cname"></option>
                                                             </select>
 
@@ -280,6 +283,8 @@
                                                                 setup()
                                                             </SCRIPT>
                                                         </span>
+                                                        <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
+                                                        <span id="city" style="font-size: 10px; color: red " ></span>
                                                     </div>
 
                                                     <div class="form-group">
@@ -290,6 +295,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">邮箱地址</label>
                                                         <input type="text" id="email" name="email" class="form-control col-md-4 email"   placeholder="邮箱" onblur="return checkEmail()" />
+                                                        <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
                                                         <span id="email2" style="font-size: 10px; color: red " ></span>
                                                     </div>
                                                     <!--使用协议-->
