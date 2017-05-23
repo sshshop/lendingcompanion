@@ -185,6 +185,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
         if (user != null) {
             int uid = user.getUid();
+
             recentSearchService.insertSearchKeyword(uid, inputInfo);
             List<String> strings = recentSearchService.findSearchKeyword(uid);
             for (String string : strings) {
@@ -205,8 +206,10 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
             books.addAll(recentSearch);
             ActionContext.getContext().getValueStack().set("recentSearchBook", books);
         }
+            System.out.println("接收结果："+book.getBauthor());
             String ss=searchRegex.splitRed(book.getBauthor());
-            List<Book> list=keyWordRed.replaceList(bookService.findAuthor(ss),book.getBauthor());
+            System.out.println("处理结果："+ss);
+            List<Book> list=keyWordRed.replaceList(bookService.findAuthor(ss),ss);
             ActionContext.getContext().getValueStack().set("BookList",list);
         return "find";
     }
