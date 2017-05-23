@@ -34,9 +34,17 @@
                     <s:else>
                         <span style="float: left;margin-left: -10px">您可能感兴趣：</span></br>
                         <s:iterator var="book" value="recentSearchBook">
-                            <span style="width: 190px;margin:0 auto;margin-left: -10px;"><img style="width:130px;height: 140px " src="<s:property value="#book.bcover" />"></span></br>
-                            <span><s:property value="#book.bname"/></span></br>
-                            <span><small>作者：<s:property value="#book.bauthor"/></small></span></br>
+                            <span style="width: 190px;margin:0 auto;margin-left: -10px;">
+                                <a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">
+                                    <img style="width:130px;height: 140px " src="<s:property value="#book.bcover" />">
+                                </a>
+                            </span>
+                            <a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">
+                                <span><s:property value="#book.bname"/></span>
+                            </a> </br>
+                            </br>
+                            <a href="findAuthor.action?bauthor=<s:property value="#book.bauthor"/>">
+                            <span><small>作者：<s:property value="#book.bauthor"/></small></span></a></br>
                         </s:iterator>
                     </s:else>
                 </ol>
@@ -60,10 +68,14 @@
                         </div>
                         <div class="col-md-8 productlistcontent">
                             <div class="row productlistname">
-                                <span class="bname">书名：<s:property value="#BookList.bname"  escapeHtml="escapeHtml"/></span>
+                                <a href="findBookBybid.action?bid=<s:property value="#BookList.bid"/>">
+                                    <span class="bname">书名：<s:property value="#BookList.bname"  escapeHtml="escapeHtml"/></span>
+                                </a>
                             </div>
                             <div class="row productlistauthor">
-                                <span class="bauthor">作者：<s:property value="#BookList.bauthor" escapeHtml="escapeHtml"/></span>
+                                <span class="bauthor"><a href="findAuthor.action?bauthor=<s:property value="#BookList.bauthor"/>">作者:<s:property value="#BookList.bauthor" escapeHtml="escapeHtml"/>
+                                </a>
+                                </span>
                             </div>
                             <div class="row productlistauthor">
                                 <span class="bauthor">出版社：<s:property value="#BookList.badr" escapeHtml="escapeHtml"/></span>

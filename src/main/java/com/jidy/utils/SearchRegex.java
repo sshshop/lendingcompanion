@@ -1,6 +1,9 @@
 package com.jidy.utils;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by jidy on 2017/5/13.
  */
@@ -45,5 +48,20 @@ public class SearchRegex {
         return str;
     }
 
+    public String splitRed(String author){
+        Pattern p = Pattern.compile("<font color='red'><b>");
+        Matcher m;
+        m=p.matcher(author);
+        while (m.find()){
+            System.out.println(m.group());
+           author= m.replaceAll("").trim();
+        }
+        p=Pattern.compile("</b></font>");
+        m=p.matcher(author);
+        while (m.find()){
+            author= m.replaceAll("").trim();
+        }
+        return author;
+    }
 
 }

@@ -663,12 +663,12 @@
                                     <td><s:property value="#admin.auname"  /></td>
                                     <td><s:property value="#admin.authority"  /></td>
                                     <td>
-                                        <a <s:if test="authority<4">href="adminUser_login.action?authority=<s:property value="authority+1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
+                                        <a <s:if test="authority<4">href="adminUserLogin.action?authority=<s:property value="authority+1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
                                             <img src="image/up.png" style="CURSOR: hand;height: 20px;">
                                         </a>
                                     </td>
                                     <td>
-                                        <a <s:if test="authority>1">href="adminUser_login.action?authority=<s:property value="authority-1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
+                                        <a <s:if test="authority>1">href="adminUserLogin.action?authority=<s:property value="authority-1"/>&auid=<s:property value="#admin.auid"  />"</s:if> >
                                             <img src="image/down.png" style="CURSOR: hand;height: 20px;">
                                         </a>
                                     </td>

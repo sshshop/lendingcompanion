@@ -45,6 +45,16 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     //获取前台页面的值
     private String inputInfo;
     private Integer page = 1;
+   /* private String bauthor;
+
+    public String getBauthor() {
+        return bauthor;
+    }*/
+
+   /* public void setBauthor(String bauthor) {
+        this.bauthor = bauthor;
+    }
+*/
     //匹配字符串
     SearchRegex searchRegex = new SearchRegex();
     //关键字标红
@@ -102,7 +112,6 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         List<Book> bookList = new ArrayList<Book>();//返回结果到页面
         List<Book> recentSearch=new ArrayList<Book>();//接收最近搜索结果
         String search = searchRegex.searchMaster(inputInfo);//第一次匹配
-        setPage(page);
         //如果输入不为空进行第一次查询
         if (search.length() != 0) {
             book = keyWord.bookInfoMaster(inputInfo);
@@ -162,6 +171,46 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         return "searchBookFail";
     }
 
+
+    /*
+    * 根据作者名查询图书信息
+    *
+    *参数为作者名
+    * */
+    @Action(value = "findAuthor",results = {
+            @Result(name = "find",location = "search.jsp")
+    })
+    public String findAuthor(){
+        List<Book> recentSearch=new ArrayList<Book>();
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (user != null) {
+            int uid = user.getUid();
+            recentSearchService.insertSearchKeyword(uid, inputInfo);
+            List<String> strings = recentSearchService.findSearchKeyword(uid);
+            for (String string : strings) {
+                recentSearch.addAll(recentSearchService.recentSearchBookMaster(searchRegex.searchMaster(string)));
+            }
+            Set<Book> books = new HashSet<Book>();
+            books.addAll(recentSearch);
+            ActionContext.getContext().getValueStack().set("recentSearchBook", books);
+        } else {
+            HashCode hashCode=new HashCode();
+            List<String> listA=recentSearchService.findAllKeyword();
+            String[] strings=new String[listA.size()];
+            for (int i = 0; i < listA.size(); i++) {
+                strings[i]=listA.get(i);
+            }
+            recentSearch.addAll(recentSearchService.recentSearchBookFinal(hashCode.findMaxString(strings)));
+            Set<Book> books = new HashSet<Book>();
+            books.addAll(recentSearch);
+            ActionContext.getContext().getValueStack().set("recentSearchBook", books);
+        }
+            String ss=searchRegex.splitRed(book.getBauthor());
+            List<Book> list=keyWordRed.replaceList(bookService.findAuthor(ss),book.getBauthor());
+            ActionContext.getContext().getValueStack().set("BookList",list);
+        return "find";
+    }
+
     /**
      * 通过图书bid查询图书的详细信息。此action用于构建图书详情页
      *
@@ -201,5 +250,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     public Book getModel() {
         return book;
     }
+
+
 
 }

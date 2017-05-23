@@ -106,4 +106,7 @@ public class BookService{
    }
 
 
+    public List<Book> findAuthor(String bauthor) {
+      return bookDao.findAuthor(bauthor);
+    }
 }

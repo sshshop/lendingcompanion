@@ -43,7 +43,10 @@
                                     value="#c.bname"/> 》</a></span>
                             <br>
                                 <%--加上搜索链接--%>
-                            <span>作者：<s:property value="#c.bauthor"/> </span>
+                            <a href="findAuthor.action?bauthor=<s:property value="#c.bauthor"/>">
+                                <span>作者：<s:property value="#c.bauthor"/> </span>
+                            </a>
+
                         </div>
                     </div>
                 </s:iterator>
