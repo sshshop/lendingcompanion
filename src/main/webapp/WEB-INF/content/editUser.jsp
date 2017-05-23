@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/bootstrap-3.3.7/css/bootstrap.min.css">
+    <script src="js/register.js"></script>
     <script src="js/jquery-2.1.1/jquery.min.js"></script>
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script src="laydate/laydate.js"></script>
@@ -78,7 +79,7 @@
                 <div class="col-md-8" >
                     <!--注册表单-->
                     <div >
-                        <form class="form-horizontal register" action="" >
+                        <form class="form-horizontal register" action="editUser.action" >
                             <!--用户名-->
                             <div class="form-group">
 
@@ -124,10 +125,10 @@
                             <div class="form-group" >
                                 <label class="control-label col-md-4">省份</label>
                                 <span>
-                                                            <select name="province" id="s3" style="width: 98px"  >
+                                                            <select name="province1" id="s1" style="width: 98px"  >
                                                                 <option id="pname2"></option>
                                                             </select>
-                                                            <select name="city" id="s4"  style="width: 98px">
+                                                            <select name="city1" id="s2"  style="width: 98px">
                                                                 <option id="cname1"></option>
                                                             </select>
 
@@ -151,7 +152,7 @@
                             <!--提交按钮-->
                             <div class="form-group submit_btn" >
                                 <div class="col-md-offset-5 col-sm-10">
-                                    <button type="submit" class="btn btn-default" href="editUser.action">修改</button>
+                                    <button type="submit" class="btn btn-default">修改</button>
                                 </div>
                             </div>
                         </form>

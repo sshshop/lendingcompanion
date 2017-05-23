@@ -90,9 +90,13 @@ public class AdminUserService {
         }
         adminUserDao.deleteUser(uid);
 
+    }
 
+    public int updataUser(User user) {
+        return adminUserDao.updataUser(user);
+    }
 
-
-
+    public int findUserByName(String username) {
+        return adminUserDao.findUserByName(username).get(0).getUid();
     }
 }

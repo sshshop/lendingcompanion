@@ -1,10 +1,9 @@
 package com.hyy.adminUser.dao;
 
+import com.upublic.utils.sqlFactory;
 import com.upublic.vo.Admuser;
 import com.upublic.vo.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,4 +45,11 @@ public interface AdminUserDao {
 
     @Delete("Delete From user Where uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
+
+    @UpdateProvider(type = sqlFactory.class,method = "updateSql")
+    int updataUser(User user);
+
+
+    @Select("select * from user where username=#{username}")
+    List<User> findUserByName(@Param("username") String username);
 }
