@@ -2,9 +2,11 @@ package com.lj.borrowbook.service;
 
 import com.jidy.searchbook.dao.BookDao;
 import com.lj.borrowbook.dao.BorrowbookDao;
+import com.lj.news.dao.NewsDao;
 import com.lyj.user.dao.UserDao;
 import com.upublic.vo.Book;
 import com.upublic.vo.Borrowbook;
+import com.upublic.vo.News;
 import com.upublic.vo.User;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,8 @@ public class BorrowbookService {
     private UserDao userDao;
     @Resource(name = "bookDao")
     private BookDao bookDao;
-
+    @Resource(name = "newsDao")
+    private NewsDao newsDao;
     /**
      * 插入借书信息
      *
@@ -109,5 +112,19 @@ public class BorrowbookService {
 
     public int updatBorrowedStatus(Borrowbook borrowbook) {
         return borrowbookDao.updatBorrowedStatus(borrowbook);
+    }
+
+    public void insertNew(Integer bbid) {
+        Borrowbook borrowbook=borrowbookDao.findbook(bbid);
+        bookDao.updateNborrbor(borrowbook.getBook());
+        if (borrowbook.getBook().getNborrowed()==0){
+            //查询信息
+            List<Integer> uid =userDao.findUidBySUBbid(borrowbook.getBook().getBid());
+            //发送信息
+            for (int i=0;i<uid.size();i++){
+                newsDao.insertNews(new News(uid.get(i),"《"+borrowbook.getBook().getBname()+"》已经有存量，请尽快存取"));
+            }
+        }
+
     }
 }

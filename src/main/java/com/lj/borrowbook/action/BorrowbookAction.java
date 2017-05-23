@@ -121,8 +121,12 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     })
     public String updatBorrowedStatus() {
         System.out.println("进入updatBorrowedStatus");
-        if (borrowbookService.updatBorrowedStatus(borrowbook) == 1)
+        if (borrowbookService.updatBorrowedStatus(borrowbook) == 1){
+            if (borrowbook.getBstatus()==3){
+                borrowbookService.insertNew(borrowbook.getBbid());
+            }
             return SUCCESS;
+        }
         this.addActionMessage("修改借书状态错误");
         return ERROR;
     }

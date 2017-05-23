@@ -136,7 +136,6 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
 
             if (!list.isEmpty()) {
                 ActionContext.getContext().getValueStack().set("borrowedbook", list);
-             //   ActionContext.getContext().getSession().remove("findborrowed");
             }
             ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
             ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
@@ -145,6 +144,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
             return SUCCESS;
         }
         Admuser admuser = adminUserService.findAdminUser(auname, apwd);
+        ActionContext.getContext().getValueStack().set("borrowedbook", adminUserService.findBorrowedALLByBid());
         ActionContext.getContext().getSession().put("adminUser", admuser);
         ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
         ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
@@ -183,11 +183,10 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
 
 
     /**
-     *
      * 编辑用户模块，根据用户ID查询到用户的所有信息并反馈回前台页面进行编辑
-     * @author Scream
      *
-     * */
+     * @author Scream
+     */
     @Action(value = "adminUserEdit",
             results = {
                     @Result(location = "editUser.jsp")
@@ -199,11 +198,10 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
     }
 
     /**
-     *
      * 进入编辑页面后提交修改表单中的数据进行修改
-     * @author Scream
      *
-     * */
+     * @author Scream
+     */
     @Action(value = "editUser",
             results = {
                     @Result(type = "redirect", location = "adminUserLogin.action"),
@@ -224,11 +222,8 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
     }
 
     /**
-     *
      * 删除用户的模块，根据用户ID进行删除
-     *
-     *
-     * */
+     */
     @Action(value = "adminUserDel",
             results = {
                     @Result(type = "redirect", location = "adminUserLogin.action")
@@ -240,10 +235,8 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
     }
 
     /**
-     *
      * 根据Mid删除公告
-     *
-     * */
+     */
     @Action(value = "msgDelete",
             results = {
                     @Result(name = "success", type = "redirect", location = "adminUserLogin.action"),
@@ -256,22 +249,21 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
     }
 
     /**
-     *
      * 公告发布功能的Action层
-     * @author Scream
      *
-     * */
+     * @author Scream
+     */
     @Action(value = "publishMsg",
             results = {
-                        @Result(name = "success",type ="redirect",location = "adminUserLogin.action"),
-                        @Result(name = "error",location = "msg.jsp")
+                    @Result(name = "success", type = "redirect", location = "adminUserLogin.action"),
+                    @Result(name = "error", location = "msg.jsp")
             }
     )
-    public String publishMsg(){
-        if (msgService.saveMsg(msg)!=1){
+    public String publishMsg() {
+        if (msgService.saveMsg(msg) != 1) {
             this.addActionMessage("发布失败");
             return ERROR;
-        }else {
+        } else {
             return SUCCESS;
         }
     }

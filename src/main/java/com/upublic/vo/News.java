@@ -3,48 +3,57 @@ package com.upublic.vo;
 import java.util.Date;
 
 public class News {
-  private Integer nid;
-  private Integer uid;
-  private String ncontent;
-  private Integer nstatus;
-  private Date time;
-  public Integer getNid() {
-    return nid;
-  }
+    private Integer nid;
+    private Integer uid;
+    private String ncontent;
+    private Integer nstatus;
+    private Date time;
 
-  public void setNid(Integer nid) {
-    this.nid = nid;
-  }
+    public News() {
+    }
 
-  public Integer getUid() {
-    return uid;
-  }
+    public News(Integer uid, String ncontent) {
+        this.uid = uid;
+        this.ncontent = ncontent;
+    }
 
-  public void setUid(Integer uid) {
-    this.uid = uid;
-  }
+    public Integer getNid() {
+        return nid;
+    }
 
-  public String getNcontent() {
-    return ncontent;
-  }
+    public void setNid(Integer nid) {
+        this.nid = nid;
+    }
 
-  public void setNcontent(String ncontent) {
-    this.ncontent = ncontent;
-  }
+    public Integer getUid() {
+        return uid;
+    }
 
-  public Integer getNstatus() {
-    return nstatus;
-  }
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
-  public void setNstatus(Integer nstatus) {
-    this.nstatus = nstatus;
-  }
+    public String getNcontent() {
+        return ncontent;
+    }
 
-  public Date getTime() {
-    return time;
-  }
+    public void setNcontent(String ncontent) {
+        this.ncontent = ncontent;
+    }
 
-  public void setTime(Date time) {
-    this.time = time;
-  }
+    public Integer getNstatus() {
+        return nstatus;
+    }
+
+    public void setNstatus(Integer nstatus) {
+        this.nstatus = nstatus;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
 }

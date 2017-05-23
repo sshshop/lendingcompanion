@@ -137,4 +137,7 @@ public interface BookDao {
     @Select("select * FROM book WHERE bname like'%${re}%'")
     List<Book> findBookByRe(@Param("re") String re);
 
+    @Update("update book set nborrowed=nborrowed+1 where bid =#{book.bid} ")
+    void updateNborrbor(@Param("book") Book book);
+
 }

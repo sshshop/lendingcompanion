@@ -7,7 +7,9 @@ import com.lj.news.dao.NewsDao;
 import com.lj.subcription.dao.SubscriptionDao;
 import com.upublic.dao.SearchDao;
 import com.upublic.vo.Admuser;
+import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -98,5 +100,9 @@ public class AdminUserService {
 
     public int findUserByName(String username) {
         return adminUserDao.findUserByName(username).get(0).getUid();
+    }
+
+    public List<Borrowbook> findBorrowedALLByBid(){
+        return borrowbookDao.findBorrowedALLByBid();
     }
 }

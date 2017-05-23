@@ -109,4 +109,7 @@ public interface UserDao {
 
     @Select("select username  FROM user WHERE email=#{email}  ")
     String findUsername(@Param("email") String email);
+
+    @Select("select uid from subscription where bid=#{bid}")
+    List<Integer> findUidBySUBbid(Integer bid);
 }

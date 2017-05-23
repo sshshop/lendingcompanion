@@ -102,6 +102,23 @@ public interface BorrowbookDao {
     )
     List<Borrowbook> findBorrowedByBid(@Param("book") Book book);
 
+    @Select("SELECT * FROM borrowbook ORDER BY btime DESC")
+    @Results(value = {
+            @Result(column = "uid", property = "uid"),
+            @Result(column = "uid", property = "userList", many = @Many(select = "com.lyj.user.dao.UserDao.findBoorUserByUid")),
+            @Result(column = "bid", property = "bid"),
+            @Result(column = "bid", property = "list", many = @Many(select = "com.jidy.searchbook.dao.BookDao.findBookById"))
+    }
+    )
+    List<Borrowbook> findBorrowedALLByBid();
+
     @UpdateProvider(type = sqlFactory.class, method = "updateBorrSql")
     int updatBorrowedStatus(Borrowbook borrowbook);
+
+    @Select("SELECT bid FROM borrowbook WHERE bbid=#{bbid}")
+    @Results(value = {
+            @Result(column = "bid",property = "bid"),
+            @Result(column = "bid",property = "book",one = @One(select = "com.jidy.searchbook.dao.BookDao.findBookById"))
+    })
+    Borrowbook findbook(Integer bbid);
 }

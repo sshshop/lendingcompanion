@@ -158,4 +158,12 @@ public class testSpring {
         System.out.println(borrowbookList.get(2).getUserList().get(0).getUsername());
         System.out.println(borrowbookList.get(0).getList().get(0).getBname());
     }
+    @Test
+    public void testqq(){
+        Borrowbook borrowbook=borrowbookDao.findbook(1);
+        System.out.println(
+                borrowbook.getBook().getBname()
+        );
+
+    }
 }

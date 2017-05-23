@@ -2,10 +2,7 @@ package com.lj.news.dao;
 
 import com.upublic.vo.News;
 import com.upublic.vo.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -42,4 +39,10 @@ public interface NewsDao {
 
     @Delete("DELETE FROM news WHERE uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
+/**
+ * 消息表的信息查询
+ *
+ */
+    @Insert("insert into news(uid,ncontent,nstatus,time) values (#{news.uid},#{news.ncontent},0,now())")
+    void insertNews(@Param("news") News news);
 }
