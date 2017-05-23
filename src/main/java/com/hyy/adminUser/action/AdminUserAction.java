@@ -34,6 +34,11 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
     private String auname;
     private String apwd;
     private int mid;
+    private String msg;
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     public void setMid(int mid) {
         this.mid = mid;
@@ -209,4 +214,24 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
         return SUCCESS;
     }
 
+    /**
+     *
+     * 公告发布功能的Action层
+     * @author Scream
+     *
+     * */
+    @Action(value = "publishMsg",
+            results = {
+                        @Result(name = "success",type ="redirect",location = "adminUserLogin.action"),
+                        @Result(name = "error",location = "msg.jsp")
+            }
+    )
+    public String publishMsg(){
+        if (msgService.saveMsg(msg)!=1){
+            this.addActionMessage("发布失败");
+            return ERROR;
+        }else {
+            return SUCCESS;
+        }
+    }
 }

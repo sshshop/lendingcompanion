@@ -33,4 +33,9 @@ public class MsgService {
     public void deleteMsg(int mid) {
         msgDao.deleteMsg(mid);
     }
+
+
+    public int saveMsg(String msg) {
+        return msgDao.saveMsg(msg);
+    }
 }

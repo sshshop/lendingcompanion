@@ -307,12 +307,15 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         } else {
             user.setSex(0);
         }
-        user.setPid(provinceService.selectPid(province1));
-        user.setCid(cityService.selectCid(city1));
-     //   user.setUid(loginuser.getUid());
-        System.out.println("搞事情");
-      ;
-      //  System.out.println(i);
+        //修改了提交省份城市空值报错的BUG
+        if (!"请选择".equals(province1)){
+            user.setPid(provinceService.selectPid(province1));
+        }
+       if(!"请选择".equals(city1)){
+           user.setCid(cityService.selectCid(city1));
+       }
+       //修改BUG END
+        user.setUid(loginuser.getUid());
      if (  userService.updateUser(user)!=1){
            this.addActionMessage("信息修改失败");
            return ERROR;

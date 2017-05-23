@@ -20,7 +20,7 @@
 <div class="container index">
     <div class="row">
         <div class="col-md-2 index_category">
-            <div class="col-md-10 category_nav">
+            <div class="col-md-12 category_nav">
                 <ol class="">
                     <s:if test="#session.existedUser != null">
                         <span style="float: left;">相关历史搜索：</span></br>
@@ -90,11 +90,7 @@
                             <div class="row productlisttext">
                                 <span class="bnumber">图书编号：<s:property value="#BookList.bnum" escapeHtml="escapeHtml"/></span>
                             </div>
-                            <div class="row">
-                                <div class="borrowButton">
-                                    <button type="button" class="borrow" data-toggle="modal" data-target="#borrowModal"><img src="image/borrow.gif"></button>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

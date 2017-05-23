@@ -85,7 +85,7 @@
 
                                     <label>所属地址:</label>
                                     <s:property value="#session.existedUser.province.pname" />
-                                    <s:property value="#session.existedUser.caty.cname" />
+                                    <s:property value="#session.existedUser.city.cname" />
                                     <s:property value="#session.existedUser.addr" />
                                 </div>
                                 <div class="form-group">
@@ -134,7 +134,7 @@
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-4">出生年月</label>
 
-                                                        <input type="text" id="borth" name="dob1" value=" <s:property value="#session.existedUser.dob" />" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
+                                                        <input type="text" id="borth" name="dob" value=" <s:property value="#session.existedUser.dob" />" class="form-control col-md-4 borth laydate-icon" id="borth" placeholder="出生年月" onclick="laydate()" />
 
                                                     </div>
 
@@ -158,10 +158,10 @@
                                                         <label class="control-label col-md-4">省份</label>
                                                         <span>
                                                             <select name="province1" id="s1" style="width: 98px" onblur="checkProvince()" >
-                                                                <option id="pname1"></option>
+                                                                <option id="pname1"selected="selected"><s:property value="#session.existedUser.province.pname"/> </option>
                                                             </select>
                                                             <select name="city1" id="s2"  style="width: 98px"onblur="checkCity()">
-                                                                <option id="cname"></option>
+                                                                <option id="cname" selected><s:property value="#session.existedUser.city.cname"/> </option>
                                                             </select>
 
                                                             <SCRIPT language="javascript">

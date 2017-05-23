@@ -326,9 +326,9 @@
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="send">
-                                <form>
+                                <form action="publishMsg.action">
                                 <div class="row" style="padding-left: 30px;">
-                                    <textarea class="col-md-8" placeholder="请填写不超过30字的公告" rows="3" cols="20" maxlength="60"></textarea>
+                                    <textarea name="msg" class="col-md-8" placeholder="请填写不超过30字的公告" rows="3" cols="20" maxlength="60"></textarea>
                                 </div>
                                 <div class="row" style="padding-left:30px;margin-top: 30px;">
                                     <div class="col-md-6" style="float: right;">

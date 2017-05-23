@@ -2,6 +2,7 @@ package com.lj.msg.dao;
 
 import com.upublic.vo.Msg;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -20,4 +21,7 @@ public interface MsgDao {
 
     @Delete("delete from msg where mid=#{mid}")
     void deleteMsg(@Param("mid") int mid);
+
+    @Insert("insert into msg(msg,time) value(#{msg},NOW())")
+    int saveMsg(@Param("msg") String msg);
 }
