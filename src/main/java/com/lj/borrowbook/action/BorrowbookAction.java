@@ -2,6 +2,7 @@ package com.lj.borrowbook.action;
 
 import com.jidy.searchbook.service.BookService;
 import com.lj.borrowbook.service.BorrowbookService;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.upublic.vo.Borrowbook;
@@ -22,7 +23,27 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     @Resource(name = "bookService")
     private BookService bookService;
     private Borrowbook borrowbook = new Borrowbook();
+    private String username;  //用于后台用户借书管理的用户名搜索用户id接受参数,并查询借书信息
+    private String bname;  //用于后台管理员管理图书名字查询图书的id并查询借书信息
     //  private int bid; //图书id
+
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getBname() {
+        return bname;
+    }
+
+    public void setBname(String bname) {
+        this.bname = bname;
+    }
 
     public void setBorrowbookService(BorrowbookService borrowbookService) {
         this.borrowbookService = borrowbookService;
@@ -82,6 +103,16 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     public String jumpBorrowBook() {
         System.out.println("跳转到页面成功,获取到的图书id是：" + borrowbook.getBid());
         ServletActionContext.getRequest().getSession().setAttribute("addBook", bookService.findBookById(borrowbook.getBid()));
+        return SUCCESS;
+    }
+
+    @Action(value = "findBorrowedBookMSG", results = {
+            @Result(location = "adminUserLogin.action", type = "redirect")
+    })
+    public String findBorrowedBookMSG() {
+        System.out.println(username+"---"+bname);
+        ActionContext.getContext().getSession().put("findborrowed", borrowbookService.findBorrowedBookMSG(username, bname));
+        System.out.println("准备跳转");
         return SUCCESS;
     }
 

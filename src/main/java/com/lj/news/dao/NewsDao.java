@@ -1,6 +1,5 @@
 package com.lj.news.dao;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.upublic.vo.News;
 import com.upublic.vo.User;
 import org.apache.ibatis.annotations.Delete;

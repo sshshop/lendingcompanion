@@ -1,7 +1,9 @@
 package com.lj.bookcomment.dao;
 
 import com.upublic.utils.PageParents;
+import com.upublic.vo.Book;
 import com.upublic.vo.Bookcomment;
+import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
 import org.apache.ibatis.annotations.*;
 
@@ -47,4 +49,5 @@ public interface BookcommentDao extends PageParents<Bookcomment> {
 
     @Delete("DELETE FROM bookcomment WHERE uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
+
 }

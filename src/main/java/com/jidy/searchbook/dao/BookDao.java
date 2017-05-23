@@ -134,4 +134,7 @@ public interface BookDao {
     @Select("select bid,bcover,bname,bauthor,nborrowed,badr,bcobn,bnum from book " +
             "where bauthor REGEXP CONCAT('(',#{bauthor},')')")
     List<Book> findAuthor(@Param("bauthor") String bauthor);
+    @Select("select * FROM book WHERE bname like'%${re}%'")
+    List<Book> findBookByRe(@Param("re") String re);
+
 }

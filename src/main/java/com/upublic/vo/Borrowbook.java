@@ -6,12 +6,21 @@ import java.util.List;
 public class Borrowbook {
     private Integer bbid;
     private Integer uid;
+    private List<User> userList;
     private Integer bid;
     private List<Book> list;
     private Date btime;
     private Date rtime;
     private Integer bstatus; //借书状态，1为提交信息（包括交押金）借书未取书，2为已取书未还书，3为已还书
     private Date ttime;
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
 
     public Integer getBbid() {
         return bbid;

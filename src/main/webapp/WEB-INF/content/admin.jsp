@@ -122,13 +122,13 @@
                                     </thead>
                                     <tbody id="adminUserTable">
                                     <s:iterator var="auser" value="allUser">
-                                        <tr  ng-repeat="data in datas">
-                                            <td><s:property value="#auser.username" /> </td>
-                                            <td><s:property value="#auser.upassword" /></td>
-                                            <td><s:property value="#auser.dob" /></td>
-                                            <td><s:property value="#auser.phone" /></td>
-                                            <td><s:property value="#auser.addr" /></td>
-                                            <td><s:property value="#auser.email" /></td>
+                                        <tr ng-repeat="data in datas">
+                                            <td><s:property value="#auser.username"/></td>
+                                            <td><s:property value="#auser.upassword"/></td>
+                                            <td><s:property value="#auser.dob"/></td>
+                                            <td><s:property value="#auser.phone"/></td>
+                                            <td><s:property value="#auser.addr"/></td>
+                                            <td><s:property value="#auser.email"/></td>
                                             <td>
                                                 <a href="adminUserEdit.action?uid=<s:property value="#auser.uid" />">
                                                     <img src="image/edit.png" style="CURSOR: hand;height: 20px;">
@@ -366,8 +366,8 @@
                                     </tbody>
                                 </table>
                                 <script>
-                                    $("#adminNews_a").click(function(){
-                                        newsAdminPage(1,10);
+                                    $("#adminNews_a").click(function () {
+                                        newsAdminPage(1, 10);
                                         $("#look table").removeAttr("hidden")
                                     });
                                     var pageSize=0;//每页显示行数
@@ -484,8 +484,8 @@
                                 </table>
                             </div>
                             <script>
-                                $("#adminBook_a").click(function(){
-                                    bookAdminPage(1,10);
+                                $("#adminBook_a").click(function () {
+                                    bookAdminPage(1, 10);
                                     $("#adminBook table").removeAttr("hidden")
                                 });
                                 var pageSize=0;//每页显示行数
@@ -683,8 +683,8 @@
                             </tbody>
                         </table>
                         <script>
-                            $("#adminAuthority_a").click(function(){
-                                authorityAdminPage(1,10);
+                            $("#adminAuthority_a").click(function () {
+                                authorityAdminPage(1, 10);
                                 $("#4 table").removeAttr("hidden")
                             });
                             var pageSize=0;//每页显示行数
@@ -748,18 +748,18 @@
                                 </li>
                             </ul>
                             <div style="margin-top: 10px; float: right;">
-                                <form>
+                                <form action="findBorrowedBookMSG.action" method="post">
                                     <select id="borrowSelect">
                                         <option value="username">用户名</option>
-                                        <option value="bid">书名</option>
+                                        <option value="bname">书名</option>
                                     </select>
-                                    <input type="text" name="" id="borrowInput"/>
-                                    <input type="submit" >
+                                    <input type="text" name="username" id="borrowInput"/>
+                                    <input type="submit">
                                     <script>
-                                       $("#borrowSelect").change(function () {
-                                           var options = $("#borrowSelect option:selected");
-                                           $("#borrowInput").attr("name",options.val());
-                                       });
+                                        $("#borrowSelect").change(function () {
+                                            var options = $("#borrowSelect option:selected");
+                                            $("#borrowInput").attr("name", options.val());
+                                        });
                                     </script>
                                 </form>
                             </div>
@@ -776,35 +776,33 @@
                                 <td>取书时间</td>
                                 <td>还书时间</td>
                                 <td>借书状态</td>
-                                <td>编辑</td>
                                 <td>删除</td>
                             </tr>
                             </thead>
                             <tbody id="borrowAdminTable">
-                            <tr  ng-repeat="data in datas">
-                                <td><s:property value="" default="null" /> </td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /> </td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /></td>
-                                <td><s:property value="" default="null" /></td>
-                                <td>
-                                    <a href="#">
-                                        <img src="image/edit.png" style="CURSOR: hand;height: 20px;">
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#">
-                                        <img src="image/i_del.png" style="CURSOR: hand;height: 20px;">
-                                    </a>
-                                </td>
-
-                            </tr>
-
+                            <s:iterator var="br" value="borrowedbook">
+                                <tr ng-repeat="data in datas">
+                                    <td><s:property value="#br.bbid"/></td>
+                                    <s:iterator var="uname" value="#br.userList">
+                                        <td><s:property value="#uname.username"/></td>
+                                    </s:iterator>
+                                    <s:iterator var="bbname" value="#br.list">
+                                        <td><s:property value="#bbname.bname"/></td>
+                                    </s:iterator>
+                                    <td><s:property value="#br.btime"/></td>
+                                    <td><s:property value="#br.ttime"/></td>
+                                    <td><s:property value="#br.rtime"/></td>
+                                    <td><s:if test="#br.bstatus==1"><a href="?bstatus=2">取书</a></s:if><s:elseif test="#br.bstatus==2"><a href="?bstatus=3">还书</a></s:elseif><s:else>已经还书</s:else>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            <img src="image/i_del.png" style="CURSOR: hand;height: 20px;">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </s:iterator>
                             <tr>
                                 <ul class="pagination pagination-sm" id="adminBorrowPage">
-
                                 </ul>
                             </tr>
                             </tbody>
@@ -820,39 +818,37 @@
                         var pageSize=0;//每页显示行数
                         var currentPage_=1;//当前页全局变量，用于跳转时判断是否在相同页，在就不跳，否则跳转。
 
-                        function borrowAdminPage(pno,psize){
-                            var itable = document.getElementById("borrowAdminTable");
-                            var num = itable.rows.length;
-                            pageSize = psize;//每页显示行数
-                            //总共分几页
-                            if(num/pageSize > parseInt(num/pageSize)){
-                                totalPage=parseInt(num/pageSize)+1;
-                            }else{
-                                totalPage=parseInt(num/pageSize);
-                            }
-                            var currentPage = pno;//当前页数
-                            currentPage_=currentPage;
-                            var startRow = (currentPage - 1) * pageSize+1;
-                            var endRow = currentPage * pageSize;
-                            endRow = (endRow > num)? num : endRow;
-                            //遍历显示数据实现分页
-                            for(var i=1;i<(num+1);i++){
-                                var irow = itable.rows[i-1];
-                                if(i>=startRow && i<=endRow){
-                                    irow.style.display = "";
-                                }else{
-                                    irow.style.display = "none";
-                                }
-                            }
-                            var tempLi="";
-                            for(var i=1;i<=totalPage;i++)
-
-                            {
-                                tempLi+='<li value='+i+'><a href="#5" onclick="jumpAdminBorrowPage('+i+')"> '+i+'</a></li>'
-                            }
-                            $("#adminBorrowPage").html(tempLi);
-                            $("#adminBorrowPage").val(currentPage);
+                    function borrowAdminPage(pno, psize) {
+                        var itable = document.getElementById("borrowAdminTable");
+                        var num = itable.rows.length;
+                        pageSize = psize;//每页显示行数
+                        //总共分几页
+                        if (num / pageSize > parseInt(num / pageSize)) {
+                            totalPage = parseInt(num / pageSize) + 1;
+                        } else {
+                            totalPage = parseInt(num / pageSize);
                         }
+                        var currentPage = pno;//当前页数
+                        currentPage_ = currentPage;
+                        var startRow = (currentPage - 1) * pageSize + 1;
+                        var endRow = currentPage * pageSize;
+                        endRow = (endRow > num) ? num : endRow;
+                        //遍历显示数据实现分页
+                        for (var i = 1; i < (num + 1); i++) {
+                            var irow = itable.rows[i - 1];
+                            if (i >= startRow && i <= endRow) {
+                                irow.style.display = "";
+                            } else {
+                                irow.style.display = "none";
+                            }
+                        }
+                        var tempLi = "";
+                        for (var i = 1; i <= totalPage; i++) {
+                            tempLi += '<li value=' + i + '><a href="#5" onclick="jumpAdminBorrowPage(' + i + ')"> ' + i + '</a></li>'
+                        }
+                        $("#adminBorrowPage").html(tempLi);
+                        $("#adminBorrowPage").val(currentPage);
+                    }
 
 
                         function jumpAdminBorrowPage(i)

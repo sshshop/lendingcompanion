@@ -76,6 +76,27 @@ public interface UserDao {
     @UpdateProvider(type = sqlFactory.class, method = "updateSql")
     int updateUser(User user);
 
+    /**
+     * 根据用户查询用户id
+     * @param username 用户名
+     * @return 用户id的封装结合
+     */
+    @Select("SELECT uid FROM user WHERE username=#{username}")
+    List<Integer> findUidByUname(String username);
+
+    @Select("select * FROM user WHERE username like'%${re}%'")
+    List<User> findUserByRe(@Param("re") String re);
+
+    @Select("select * FROM user WHERE uid=#{user.uid}")
+    @Results(value = {
+            @Result(column = "cid", property = "cid"),
+            @Result(column = "pid", property = "pid"),
+            @Result(column = "cid", property = "city", one = @One(select = "com.lyj.city.dao.CityDao.findNameBycid")),
+            @Result(column = "pid", property = "province", one = @One(select = "com.lyj.province.dao.ProvinceDao.findNameByPid"))
+    })
+    User findBoorUserByUid(@Param("uid") Integer uid);
+
+
 
     @Select("select * FROM user WHERE username=#{username}  ")
     User findByEmail(@Param("username") String username );

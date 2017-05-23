@@ -18,9 +18,9 @@ import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
 import javax.annotation.Resources;
+import java.util.List;
 
 /**
- *
  * Created by Scream on 2017/5/20.
  */
 
@@ -28,9 +28,9 @@ import javax.annotation.Resources;
  * 后台主页的跳转
  *
  * */
-@ParentPackage( value = "struts-default")
+@ParentPackage(value = "struts-default")
 @Namespace("")
-public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
+public class AdminUserAction extends ActionSupport implements ModelDriven<User> {
     private String auname;
     private String apwd;
     private int mid;
@@ -56,7 +56,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
     }
 
 
-  //  private Integer uid;
+    //  private Integer uid;
     private User user = new User();
 
     public User getModel() {
@@ -77,6 +77,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
     public void setAdminUserService(AdminUserService adminUserService) {
         this.adminUserService = adminUserService;
     }
+
     @Resource(name = "cityService")
     private CityService cityService;
     @Resource(name = "provinceService")
@@ -90,19 +91,19 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
     @Resource(name = "msgService")
     private MsgService msgService;
 
-    @Action( value = "adminUser" ,
+    @Action(value = "adminUser",
             results = {
-                    @Result(name = "success",location = "adminindex.jsp")
+                    @Result(name = "success", location = "adminindex.jsp")
             })
 
-    public String adminUser(){
+    public String adminUser() {
         return SUCCESS;
     }
 
-    @Action( value = "adminUserLogin",
+    @Action(value = "adminUserLogin",
             results = {
                     @Result(location = "admin.jsp"),
-                    @Result(name = "loginFailed",location = "adminindex.jsp")
+                    @Result(name = "loginFailed", location = "adminindex.jsp")
             }
     )
 
@@ -113,10 +114,16 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
      *
      *
      * */
-    public String adminUserLogin(){
+    public String adminUserLogin() {
+
         Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
-        if(a!=null){
-            ActionContext.getContext().getValueStack().set("allUser",adminUserService.findUserAll());
+        if (a != null) {
+            List<Borrowbook> list = (List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed");
+            if (!list.isEmpty()) {
+                ActionContext.getContext().getValueStack().set("borrowedbook", list);
+             //   ActionContext.getContext().getSession().remove("findborrowed");
+            }
+            ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
             ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
             ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
             return SUCCESS;
@@ -128,16 +135,14 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
         ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
         ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
         /**
-         *
          * 判断admuser是否为空，
          * 如果为空则登录失败，
          * 否则登陆成功
-         *
          * */
-        if (adminUserService.findAdminUser(auname,apwd)==null){
+        if (adminUserService.findAdminUser(auname, apwd) == null) {
             this.addActionError("用户不存在或用户名密码错误");
             return "loginFailed";
-        }else {
+        } else {
             return SUCCESS;
         }
     }
@@ -148,15 +153,16 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
      * @author Scream
      *
      * */
-    @Action( value = "adminUserEdit",
+    @Action(value = "adminUserEdit",
             results = {
-                @Result(location = "editUser.jsp")
+                    @Result(location = "editUser.jsp")
             }
     )
-    public String adminUserEdit(){
-        ActionContext.getContext().getValueStack().set("allUserById",adminUserService.findUserById(user.getUid()));
+    public String adminUserEdit() {
+        ActionContext.getContext().getValueStack().set("allUserById", adminUserService.findUserById(user.getUid()));
         return SUCCESS;
     }
+
     /**
      *
      * 进入编辑页面后提交修改表单中的数据进行修改
@@ -165,18 +171,18 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
      * */
     @Action(value = "editUser",
             results = {
-                    @Result(type = "redirect",location = "adminUserLogin.action"),
-                    @Result(name = "error",location = "msg.jsp")
+                    @Result(type = "redirect", location = "adminUserLogin.action"),
+                    @Result(name = "error", location = "msg.jsp")
             }
     )
 
-    public String editUser(){
+    public String editUser() {
 //        System.out.println(city1+","+province1);
         user.setUid(adminUserService.findUserByName(user.getUsername()));
-        if (adminUserService.updataUser(user)!=1){
+        if (adminUserService.updataUser(user) != 1) {
             this.addActionMessage("修改失败");
             return ERROR;
-        }else {
+        } else {
             this.addActionMessage("修改成功");
             return SUCCESS;
         }
@@ -188,12 +194,12 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
      *
      *
      * */
-    @Action( value = "adminUserDel",
+    @Action(value = "adminUserDel",
             results = {
-                @Result(type = "redirect",location = "adminUserLogin.action")
+                    @Result(type = "redirect", location = "adminUserLogin.action")
             }
     )
-    public String adminUserDel(){
+    public String adminUserDel() {
         adminUserService.deleteUser(user.getUid());
         return SUCCESS;
     }
@@ -205,11 +211,11 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User>{
      * */
     @Action(value = "msgDelete",
             results = {
-                    @Result(name = "success",type = "redirect",location = "adminUserLogin.action"),
-                    @Result(name = "error",location = "msg.jsp")
+                    @Result(name = "success", type = "redirect", location = "adminUserLogin.action"),
+                    @Result(name = "error", location = "msg.jsp")
             }
     )
-    public String msgDelete(){
+    public String msgDelete() {
         msgService.deleteMsg(mid);
         return SUCCESS;
     }

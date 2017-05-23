@@ -62,4 +62,34 @@ public interface BorrowbookDao {
 
     @Delete("DELETE FROM borrowbook WHERE uid=#{uid}")
     void deleteUser(@Param("uid") Integer uid);
+
+    /**
+     * 根据用户id查询用户借书的信息，级联查询图书详情，用于后台,
+     * @param user 用户的uid
+     * @return
+     */
+    @Select("SELECT * FROM borrowbook WHERE uid=#{user.uid} ORDER BY btime DESC")
+    @Results(value = {
+            @Result(column = "uid", property = "uid"),
+            @Result(column = "uid", property = "userList", many = @Many(select = "com.lyj.user.dao.UserDao.findBoorUserByUid")),
+            @Result(column = "bid", property = "bid"),
+            @Result(column = "bid", property = "list", many = @Many(select = "com.jidy.searchbook.dao.BookDao.findBookById"))
+    }
+    )
+    List<Borrowbook> findBorroewByUid(@Param("user") User user);
+
+    /**
+     * 根据图书id查询图书的借书信息，包括显示用户个人信息
+     * @param book 图书的bid
+     * @return
+     */
+    @Select("SELECT * FROM borrowbook WHERE bid=#{book.bid} ORDER BY btime DESC")
+    @Results(value = {
+            @Result(column = "uid", property = "uid"),
+            @Result(column = "uid", property = "userList", many = @Many(select = "com.lyj.user.dao.UserDao.findBoorUserByUid")),
+            @Result(column = "bid", property = "bid"),
+            @Result(column = "bid", property = "list", many = @Many(select = "com.jidy.searchbook.dao.BookDao.findBookById"))
+    }
+    )
+    List<Borrowbook> findBorrowedByBid(@Param("book")Book book);
 }
