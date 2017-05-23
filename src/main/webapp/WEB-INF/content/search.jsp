@@ -25,9 +25,16 @@
                     <s:if test="#session.existedUser != null">
                         <span style="float: left;">相关历史搜索：</span></br>
                         <s:iterator var="book" value="recentSearchBook">
-                                <span style="width: 190px;margin:0 auto;margin-left: -10px;"><img style="width:130px;height: 140px " src="<s:property value="#book.bcover" />"></span></br>
-                                <span><s:property value="#book.bname"/></span></br>
-                                <span><small>作者：<s:property value="#book.bauthor"/></small></span></br>
+                                <span style="width: 190px;margin:0 auto;margin-left: -10px;">
+                                    <a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">
+                                        <img style="width:130px;height: 140px " src="<s:property value="#book.bcover" />">
+                                    </a>
+                                </span>
+                                <a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">
+                                    <span><s:property value="#book.bname"/></span>
+                                </a> </br>
+                                <a href="findAuthor.action?bauthor=<s:property value="#book.bauthor"/>">
+                                <span><small>作者：<s:property value="#book.bauthor"/></small></span></a></br>
                         </s:iterator>
                     </s:if>
 
