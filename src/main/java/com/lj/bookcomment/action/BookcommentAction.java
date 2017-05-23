@@ -65,7 +65,6 @@ public class BookcommentAction extends ActionSupport implements ModelDriven<Book
             }
     )
     public String postBid(){
-        System.out.println(bbid+","+bookcomment.getBid());
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         Borrowbook borrowbook = new Borrowbook();
         borrowbook.setBbid(bbid);
