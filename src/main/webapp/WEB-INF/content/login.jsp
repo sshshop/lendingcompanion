@@ -43,7 +43,7 @@
                         <label class="control-label col-md-4">密码</label>
                         <input type="password" name="upassword" class="form-control col-md-4 password" id="password" placeholder="密码" />
                         <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
-                        <span style="font-size: 13px;letter-spacing: 2px;">忘记密码</span>
+                        <span style="font-size: 13px;letter-spacing: 2px;"><a href="findPassword1.action" style="display:inline">忘记密码</a></span>
                     </div>
                     <!--提交按钮-->
                     <div class="form-group submit_btn">
