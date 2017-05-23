@@ -204,7 +204,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
             ActionContext.getContext().getValueStack().set("recentSearchBook", books);
         }
         String ss=searchRegex.splitRed(book.getBauthor());
-        List<Book> list=keyWordRed.replaceList(bookService.findAuthor(ss),ss);
+        List<Book> list=keyWordRed.replaceListB(bookService.findAuthor(ss),ss);
         ActionContext.getContext().getValueStack().set("BookList",list);
         return "find";
     }

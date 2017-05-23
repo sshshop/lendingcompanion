@@ -61,4 +61,43 @@ public class KeyWordRed<T>{
         return strSource;
     }
 
+    public List<T> replaceListB(List<T> strSource, String inputInfo){
+        inputInfo=inputInfo.trim();
+        List<T> listBook =new ArrayList<T>();
+        try {
+            strSource=replaceB(strSource,inputInfo,"<font color='red'><b>"+inputInfo+"</b></font>");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        listBook.addAll(strSource);
+        return listBook;
+
+    }
+
+    List<T> replaceB(List<T> strSource, String strFrom, String strTo) throws IllegalAccessException {
+        StringBuffer stringBuffer=new StringBuffer();
+        Pattern p = Pattern.compile(strFrom,Pattern.CASE_INSENSITIVE);
+        Matcher m;
+        for (int i = 0; i < strSource.size(); i++) {
+            Field fields = null;
+            try {
+                fields = strSource.get(i).getClass().getDeclaredField("bauthor");
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+            Object oi = strSource.get(i);
+                if(!fields.isAccessible()){
+                    fields.setAccessible(true);
+                }
+                String str=fields.get(oi).toString();
+                m=p.matcher(str);
+                while(m.find()){
+                    str=m.replaceAll(strTo);
+                }
+                fields.set(oi,str);
+        }
+        return strSource;
+    }
+
+
 }
