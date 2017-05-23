@@ -16,7 +16,7 @@
     <script src="js/jquery-2.1.1/jquery.min.js"></script>
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script src="laydate/laydate.js"></script>
-    <title>书籍详情页</title>
+    <title>“无微不至”的借阅伴侣</title>
 </head>
 <body onload="goPage(1,7)">
 <div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg"

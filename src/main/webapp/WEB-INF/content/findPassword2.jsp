@@ -1,3 +1,17 @@
+
+<%--
+  Created by IntelliJ IDEA.
+  User: Rabit
+  Date: 2017/5/7<form method="post" action="findNumber.action">
+邮箱： <input type="text"  value="<s:property value="#session.email" />"  readonly  name="email"  />
+
+    <br>
+验证码：<input name="number1" /><br>
+    <button type="submit"  style="height: 30px;">下一步</button>
+</form>
+  Time: 16:34
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -26,29 +40,35 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <!--注册表单-->
+            <div >
+            <label style="margin-left: 39%"  ><img src="image/yanzheng1.png" height="100px"></label><br>
+                <label style="margin-left: 41%;font-size: 18px;" >验证身份</label>
+            </div>
             <div class="context_form" style="background-color:rgba(112,128,144,0.8);">
-                <form class="form-horizontal register" id="register" action="userLogin.action" method="post">
-                    <div class="form-group">
-                        <s:actionerror/>
+
+                <form class="form-horizontal register"  action="findNumber.action" method="post">
+
+                    <div class="form-group ">
+                        <%--<label><img src="image/background.jpg"></label>--%>
+                        <label class="control-label "><img src="image/tishi.png" height="27px">&nbsp;邮箱验证码验证账户 请确认是你本人操作，请完成以下验证</label>
                     </div>
-                    <!--用户名-->
+                    <!--邮箱-->
                     <div class="form-group">
-                        <label class="control-label col-md-4">用户名</label>
-                        <input type="text" name="username" class="form-control col-md-4 username" id="username" placeholder="用户名" />
-                        <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
+                        <label class="control-label col-md-4">邮箱</label>
+                        <input readonly class="form-control col-md-4 username" value="<s:property value="#session.email"/>"  />
 
                     </div>
                     <!--密码-->
                     <div class="form-group">
-                        <label class="control-label col-md-4">密码</label>
-                        <input type="password" name="upassword" class="form-control col-md-4 password" id="password" placeholder="密码" />
-                        <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
-                        <span style="font-size: 13px;letter-spacing: 2px;">忘记密码</span>
+                        <label class="control-label col-md-4">验证码</label>
+                        <input type="text" name="number1" class="form-control col-md-2 password"  />
+                        <span id="number" style="font-size: 12px; color: red;" ><s:actionerror/></span>
                     </div>
+
                     <!--提交按钮-->
                     <div class="form-group submit_btn">
-                        <div class="col-md-offset-5 col-sm-10">
-                            <button type="submit" class="btn btn-default">登录</button>
+                        <div class="col-md-offset-7 ">
+                            <button type="submit" class="btn btn-default" style="width: 28%" onclick="return checkNumber()">确定</button>
                         </div>
                     </div>
                 </form>
@@ -58,7 +78,7 @@
         </div>
     </div>
 </div>
-    <!-- 底部页面 -->
+<!-- 底部页面 -->
 <%@include file="footer.jsp"%>
 
 </body>

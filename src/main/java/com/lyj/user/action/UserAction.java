@@ -184,6 +184,28 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return NONE;
     }
 
+    @Action(value = "findPassword")
+    public String findByName2() throws IOException {
+        /**
+         * 调用service进行查询
+         */
+
+        List<User> list = userService.findUsernameAll(user);
+
+        //获得rresponse对象，向页面输出
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setContentType("text/html;charset=UTF-8");
+
+        if (list.isEmpty() || list.size() < 1) {
+            //没有查询到该用户：用户名可以使用
+            response.getWriter().println("<font color='red'>用户名不存在</font>");
+        } else {
+            //查询到该用户：用户名已存在
+            response.getWriter().println("");
+
+        }
+        return NONE;
+    }
     //用户注册方法
     @Action(value = "registerPost", results = @Result(name = "registerSuccess", location = "login.jsp"))
     public String register() {
@@ -214,6 +236,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             // 激活失败
             this.addActionMessage("激活失败：激活码错误！");
             // 激活失败返回页面
+
             return "registerSuccess";
         } else {
 
@@ -339,24 +362,40 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return SUCCESS;
     }
 
-    //忘记密码页面跳转
-    @Action(value = "findPassword1" ,results = @Result(name = "find1", location = "test.jsp"))
+
+    /*//忘记密码页面跳转
+    @Action(value = "findPassword1" ,results = @Result(name = ERROR, location = "findPassword1.jsp"))
     public String findPassword1(){
-        return "find1";
-    }
+        return ERROR;
+    }*/
 
 
-    @Action(value = "findP" ,results = {@Result(name = "find2", location = "test2.jsp"),
-                @Result(name = "find3", location = "test3.jsp")})
+    @Action(value = "findP" ,results = {@Result(name = "find1", location = "findPassword1.jsp"),
+            @Result(name = "find2", location = "findPassword2.jsp"),
+                @Result(name = "find3", location = "findPassword3.jsp")})
     //用户找回密码的方法1
-     public String findPassword() {
+     public String findPassword() throws IOException {
         //判断用户名邮箱是否匹配
-
+        System.out.println(user.getUsername());
        User u= userService.findByemail(user.getUsername());
        // System.out.println(email.getEmail()+"----------------");
-         if (u.getEmail()==null) {
+         if (u==null) {
              System.out.println("用户名不存在");
-            return  NONE;
+             this.addActionError("用户名不存在");
+             return "find1";
+            /* //获得rresponse对象，向页面输出
+             HttpServletResponse response = ServletActionContext.getResponse();
+             response.setContentType("text/html;charset=UTF-8");
+
+
+                 //没有查询到该用户：用户名可以使用
+                 response.getWriter().println("<font color='green'>用户名可以使用</font>");
+
+                 //查询到该用户：用户名已存在
+                 response.getWriter().println("<font color='red'>用户名已存在</font>");*/
+
+
+
         }else {
              String i = "findUser";
              String number = UUIDUtils.getNumber();
@@ -374,8 +413,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
 
     //用户找回密码的方法2
-    @Action(value = "findNumber" ,results = @Result(name = "find3", location = "test3.jsp"))
-    public String findNumber(){
+    @Action(value = "findNumber" ,results = {@Result(name = "find3", location = "findPassword3.jsp"),
+                            @Result(name = "find2", location = "findPassword2.jsp")})
+    public String findNumber() throws IOException {
 
         String number= (String) ActionContext.getContext().getSession().get("code");
       /*  System.out.println(number);
@@ -388,16 +428,15 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     } else {
 
-        System.out.println("验证码不正确！");
+            System.out.println("验证码不正确！");
+            this.addActionError("验证码不正确");
 
-        return NONE;
+           return "find2";
     }
-
-
 
     }
     ////用户找回密码的方法
-  @Action(value = "updatePassword" ,results = @Result(name = "find4", location = "test4.jsp"))
+  @Action(value = "updatePassword" ,results = @Result(name = "find4", location = "findPassword4.jsp"))
     public String updatePassword(){
          String c= (String) ActionContext.getContext().getSession().get("finduser");
         // System.out.println(c+upassword1);

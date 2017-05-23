@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>“无微不至”的借阅伴侣</title>
 </head>
 <body>
 <s:property value="#session.existedUser.uid"/>

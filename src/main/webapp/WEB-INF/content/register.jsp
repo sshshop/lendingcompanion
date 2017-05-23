@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 
 
-    <title>注册</title>
+    <title>“无微不至”的借阅伴侣</title>
     
     <link type="text/css" rel="stylesheet" href="laydate/skins/default/laydate.css" id="LayDateSkin">
     <link type="text/css" rel="stylesheet" href="laydate/need/laydate.css">

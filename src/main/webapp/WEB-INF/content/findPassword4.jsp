@@ -1,3 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Rabit
+  Date: 2017/5/7
+  Time: 16:34
+  To change this template use File | Settings | File Templates.
+--%>
+
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -26,39 +34,33 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <!--注册表单-->
+            <div >
+                <label style="margin-left: 39%"  ><img src="image/yanzheng3.png" height="100px"></label><br>
+                <label style="margin-left: 45%;font-size: 18px;" >完成</label>
+            </div>
             <div class="context_form" style="background-color:rgba(112,128,144,0.8);">
-                <form class="form-horizontal register" id="register" action="userLogin.action" method="post">
-                    <div class="form-group">
-                        <s:actionerror/>
-                    </div>
-                    <!--用户名-->
-                    <div class="form-group">
-                        <label class="control-label col-md-4">用户名</label>
-                        <input type="text" name="username" class="form-control col-md-4 username" id="username" placeholder="用户名" />
-                        <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
 
+                <form class="form-horizontal register"  >
+
+                    <div class="form-group " style="text-align: center">
+                        <%--<label><img src="image/background.jpg"></label>--%>
+                        <label class="control-label " ><img src="image/tishi2.png" height="27px">&nbsp;重置成功，请牢记新的登录密码</label>
+                        <label><a href="loginS.action">重新登录</a></label>
                     </div>
+                    <!--邮箱-->
+
                     <!--密码-->
-                    <div class="form-group">
-                        <label class="control-label col-md-4">密码</label>
-                        <input type="password" name="upassword" class="form-control col-md-4 password" id="password" placeholder="密码" />
-                        <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
-                        <span style="font-size: 13px;letter-spacing: 2px;">忘记密码</span>
-                    </div>
-                    <!--提交按钮-->
-                    <div class="form-group submit_btn">
-                        <div class="col-md-offset-5 col-sm-10">
-                            <button type="submit" class="btn btn-default">登录</button>
-                        </div>
-                    </div>
+
+
+
                 </form>
-                </form>
+
             </div>
             <div class="col-md-3"></div>
         </div>
     </div>
 </div>
-    <!-- 底部页面 -->
+<!-- 底部页面 -->
 <%@include file="footer.jsp"%>
 
 </body>
