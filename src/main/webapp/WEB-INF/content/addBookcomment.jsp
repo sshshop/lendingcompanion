@@ -34,7 +34,7 @@
         <button type="submit" class="btn btn-primary">提交</button>
     </form>--%>
 
-<div    id="3" style="padding-top: 30px;letter-spacing: 2px;width: 49%;margin:0 auto; " >
+<div    id="3" style="padding-top: 30px;letter-spacing: 2px;margin:0 auto;width: 50%" >
     <div  class="context_form" style="height: 50%" >
         <div style="height:10%">
             <ul  class="nav nav-tabs">
@@ -44,12 +44,12 @@
                 </li>
             </ul>
         </div>
-        <div>
+        <div style="margin-top: 10%;margin-left: 17%">
             <%--<s:property value="#session.existedUser.uid"/>--%>
-            <form  style="margin-left: 25%;margin-top: 10%" class="loginform form-horizontal" id="loginform" method="post" action="addBookcomment.action?bid=<s:property value="BBBID.bid"/>&bbid=<s:property value="BBBID.bbid"/>">
+            <form    class="loginform form-horizontal" id="loginform" method="post" action="addBookcomment.action?bid=<s:property value="BBBID.bid"/>&bbid=<s:property value="BBBID.bbid"/>">
                 <textarea  class="context_form"  rows="5" cols="60" name="inf" id="bookcomment" placeholder="快来评价吧~"></textarea><br>
 
-                <button class="btn btn-primary col-md-offset-6" type="submit" style="width: 15%;margin-top: 3%" >提&nbsp;&nbsp;交</button>
+                <button class="btn btn-primary col-md-offset-8" type="submit" style="width: 15%;margin-top: 3%;" >提&nbsp;&nbsp;交</button>
             </form>
         </div>
     </div>

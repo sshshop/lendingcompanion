@@ -218,8 +218,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     }
 
     //用户注册方法
-    @Action(value = "registerPost", results = {@Result(name = "registerSuccess", location = "msg.jsp"),
-            @Result(name = ERROR, location = "registermsg.jsp")
+    @Action(value = "registerPost", results = {@Result(name = "registerSuccess", location = "registerSuccess.jsp"),
+            @Result(name = ERROR, location = "registerFalse.jsp")
 
     }
 
@@ -250,8 +250,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     //用户激活方法
     @Action(value = "active",
-            results = {@Result(name = ERROR, location = "registefali.jsp"),
-                    @Result(location = "registersucee.jsp")}
+            results = {@Result(name = ERROR, location = "registerFalse.jsp"),
+                    @Result(location = "registersucee.jsp"),
+            @Result(name = "registerSuccess",location = "registerSuccess2.jsp")}
     )
     public String active() {
         User existUser = userService.findBycode(user.getCode());
@@ -268,7 +269,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             userService.update(existUser);
             this.addActionError("激活成功，请登录！");
             // 激活成功返回登录页面
-            return SUCCESS;
+            return "registerSuccess";
         }
     }
 

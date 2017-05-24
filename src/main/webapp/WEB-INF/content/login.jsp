@@ -28,22 +28,20 @@
             <!--注册表单-->
             <div class="context_form" style="background-color:rgba(112,128,144,0.8);">
                 <form class="form-horizontal register" id="register" action="userLogin.action" method="post">
-                    <div class="form-group">
-                        <s:actionerror/>
-                    </div>
+
                     <!--用户名-->
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 7%">
                         <label class="control-label col-md-4">用户名</label>
                         <input type="text" name="username" class="form-control col-md-4 username" id="username" placeholder="用户名" />
                         <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
-
+                        <span style="font-size: 13px;letter-spacing: 2px;"><a href="findPassword1.action" style="display:inline">忘记密码?</a></span>
                     </div>
                     <!--密码-->
                     <div class="form-group">
                         <label class="control-label col-md-4">密码</label>
                         <input type="password" name="upassword" class="form-control col-md-4 password" id="password" placeholder="密码" />
-                        <span style="color: red; font-size: 22px; margin-left: 4px; padding-top: 3px;">*</span>
-                        <span style="font-size: 13px;letter-spacing: 2px;"><a href="findPassword1.action" style="display:inline">忘记密码?</a></span>
+
+                        <span style="font-size: 13px;color: red;letter-spacing: 2px; display:inline"> &nbsp;<s:actionerror/></span>
                     </div>
                     <!--提交按钮-->
                     <div class="form-group submit_btn">
