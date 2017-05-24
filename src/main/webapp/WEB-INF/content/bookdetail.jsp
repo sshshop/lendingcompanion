@@ -57,7 +57,9 @@
             <div class="row" style="background-color:#91c2ad;height:19%;">
                 <div class="col-md-12">
                     <h1 class="text-center" style="font-size: 25px">《<s:property value="model.bname"/>》
+                        <a href="findAuthor.action?bauthor=<s:property value="model.bauthor" />">
                         <small>作者：<s:property value="model.bauthor"/></small>
+                        </a>
                     </h1>
                 </div>
             </div>
