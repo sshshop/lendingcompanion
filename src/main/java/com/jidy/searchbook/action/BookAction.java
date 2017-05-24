@@ -152,6 +152,9 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 } else {
                     HashCode hashCode=new HashCode();
                     List<String> listA=recentSearchService.findAllKeyword();
+                    List<String> listB=new ArrayList<String>();
+                    listB.add("");
+                    listA.removeAll(listB);
                     String[] strings=new String[listA.size()];
                     for (int i = 0; i < listA.size(); i++) {
                         strings[i]=listA.get(i);
@@ -194,6 +197,9 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
             HashCode hashCode=new HashCode();
             List<String> listA=recentSearchService.findAllKeyword();
             String[] strings=new String[listA.size()];
+            List<String> listB=new ArrayList<String>();
+            listB.add("");
+            listA.removeAll(listB);
             for (int i = 0; i < listA.size(); i++) {
                 strings[i]=listA.get(i);
             }
