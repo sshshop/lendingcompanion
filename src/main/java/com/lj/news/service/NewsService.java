@@ -20,4 +20,12 @@ public class NewsService {
     public List<News> findNewsByUid(User user) {
         return newsDao.findNewByUid(user);
     }
+
+    public void delNewsById(News news) {
+        newsDao.delNew(news);
+    }
+
+    public void updateStatus(News news) {
+        newsDao.updatStatus(news);
+    }
 }

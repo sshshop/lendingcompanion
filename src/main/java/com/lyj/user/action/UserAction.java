@@ -12,9 +12,6 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.lyj.user.service.UserService;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.upublic.vo.City;
-import com.upublic.vo.Province;
 import com.upublic.vo.User;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
@@ -218,8 +215,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     }
 
     //用户注册方法
-    @Action(value = "registerPost", results = {@Result(name = "registerSuccess", location = "registerSuccess.jsp"),
-            @Result(name = ERROR, location = "registerFalse.jsp")
+    @Action(value = "registerPost", results = {@Result(name = "registerSuccess", location = "registersucee.jsp"),
+            @Result(name = ERROR, location = "registermsg.jsp")
 
     }
 
@@ -244,7 +241,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         String i = "user";
         userService.sava(user, i);
         //注册成功返回页面
-        this.addActionMessage("登录");
+        this.addActionError("请去邮箱激活账号！");
         return "registerSuccess";
     }
 

@@ -50,10 +50,20 @@
                         </div>
                         <table class="table" style="text-align: center; letter-spacing: 2px;">
                             <thead>
+                            <tr style="font-size: 15px;">
+                                <td>消息时间</td>
+                                <td>内容</td>
+                                <td>状态</td>
+                            </tr>
                             <s:iterator var="n" value="#session.mynews">
-                            <td style="font-size: 70px;">
-                            <td><s:property value="#n.ncontent" default="没有取到消息内容"/></td>
-                            <td><s:property value="#n.time" default="系统本地时间"/></td>
+
+                            <tr style="font-size: 15px;">
+                                <td><s:property value="#n.time"/></td>
+                                <td><s:property value="#n.ncontent"/></td>
+                                <td> <s:if test="#n.nstatus==0"><a href="updateStatus?nid=<s:property value="#n.nid"/>" ><img src="image/reader.png"
+                                                                style="width: 25px;height: 25px" title="标记为已读"></a></s:if><s:elseif
+                                        test="#n.nstatus==1"><a href="delNews?nid=<s:property value="#n.nid"/> " ><img style="width: 25px;height: 25px"
+                                                                               src="image/i_del.png" title="点击可删除"></a></s:elseif></td>
                             </tr>
                                 <%-- <tr  ng-repeat="data in datas" style="float: right">
 

@@ -17,7 +17,7 @@
 <!--头部页面-->
 <%@include file="header.jsp" %>
 <script>
-    window.setTimeout("window.location='registerS.action'",2000);
+    window.setTimeout("window.location='loginS.action'",2000);
 </script>
 <h1 style="text-align: center">信息提示:</h1>
 <h2 style="text-align: center"><s:actionerror/></h2>
