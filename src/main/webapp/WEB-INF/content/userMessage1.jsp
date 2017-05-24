@@ -29,11 +29,11 @@
     <div class="row">
         <div class="col-md-2 " style="letter-spacing: 2px;margin-top: 30px;">
             <ul class="nav nav-pills nav-stacked" style="text-align: center ">
-                <li class="active" ><a href="userMessage.action" data-toggle="tab">用户信息</a></li>
-                <li style="margin-top: 20px;"> <a href="SubscriptionInfo.action" data-toggle="tab">我的订阅</a></li>
-                <li style="margin-top: 20px;"><a href="appraise.action" data-toggle="tab">我的评价</a></li>
-                <li style="margin-top: 20px;"><a href="BorrowInfo.action" data-toggle="tab">借阅信息</a></li>
-                <li style="margin-top: 20px;"><a href="systemmsg.action" data-toggle="tab">系统消息</a></li>
+                <li class="active" ><a href="userMessage.action" >用户信息</a></li>
+                <li style="margin-top: 20px;"> <a href="SubscriptionInfo.action" >我的订阅</a></li>
+                <li style="margin-top: 20px;"><a href="appraise.action" >我的评价</a></li>
+                <li style="margin-top: 20px;"><a href="BorrowInfo.action" >借阅信息</a></li>
+                <li style="margin-top: 20px;"><a href="systemmsg.action" >系统消息</a></li>
             </ul>
         </div>
         <div class="col-md-10">
@@ -187,7 +187,7 @@
                     </div>
                 </div>
 
-
+<%--
                 <div class="tab-pane fade"   id="2" style="padding-top: 30px; letter-spacing: 2px;" onload="goPage(1,10)">
                     <div  class="context_form" style=" height:auto; ">
                         <div style="height:10%">
@@ -218,7 +218,7 @@
                                 <td><s:property value="#mb.ttime" default="null" /></td>
                                 <td><s:property value="#mb.rtime" default="null" /></td>
                                 <td><s:if test="#mb.bstatus==1">请尽快去取书</s:if><s:elseif test="#mb.bstatus==2">亲，记得还书哦！</s:elseif><s:elseif test="#mb.bstatus==3"><a href="postBid.action?bid=<s:property value="#ml.bid"/>&&bbid=<s:property value="#mb.bbid"/>">评价</a></s:elseif><s:elseif test="#mb.bstatus==4">已评价</s:elseif>
-                                        <%--<s:property value="#mb.bstatus" default="null" />--%></td>
+                                        &lt;%&ndash;<s:property value="#mb.bstatus" default="null" />&ndash;%&gt;</td>
                                 </s:iterator>
                             </tr>
                             </s:iterator>
@@ -335,16 +335,16 @@
                                 <td><s:property value="#n.ncontent" default="没有取到消息内容"/></td>
                                 <td ><s:property value="#n.time" default="系统本地时间" /></td>
                             </tr>
-                           <%-- <tr  ng-repeat="data in datas" style="float: right">
+                           &lt;%&ndash; <tr  ng-repeat="data in datas" style="float: right">
 
-                            </tr>--%>
+                            </tr>&ndash;%&gt;
                             </thead>
                             <tbody>
                             </s:iterator>
                             </tbody>
                         </table>
                          </div>
-                </div>
+                </div>--%>
             </div>
         </div>
     </div>

@@ -38,7 +38,7 @@ public class BookcommentAction extends ActionSupport implements ModelDriven<Book
 
     @Action(value = "addBookcomment",
             results = {
-                    @Result(type = "redirect",location = "userMessage.action"),
+                    @Result(type = "redirect",location = "appraise.action"),
                     @Result(name = "error",location = "msg.jsp")
             }
     )

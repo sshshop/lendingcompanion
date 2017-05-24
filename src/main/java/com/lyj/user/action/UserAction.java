@@ -300,8 +300,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     }
 
 
+
+    /**
+     * 用户信息中心跳转
+     * @return
+     */
     @Action(value = "userMessage", results = {
-            @Result(location = "userMessage.jsp"),
+            @Result(location = "userMessage1.jsp"),
             @Result(name = LOGIN, location = "login.jsp")
     })
 
@@ -313,11 +318,111 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             //用户未登录
             return LOGIN;
         }
+         ServletActionContext.getRequest().getSession().setAttribute("existedUser", userService.findUserByUid(loginuser));
+        //   ServletActionContext.getRequest().getSession().setAttribute("mysub", subscriptionService.findSubBooks(loginuser));  //我的订阅跳转
+        //   ServletActionContext.getRequest().getSession().setAttribute("mycomment", bookCommentService.findCommentByUId(loginuser));//我的评价跳转
+        // ServletActionContext.getRequest().getSession().setAttribute("myborrow", borrowbookService.findBorrowedBookByUid(loginuser));  //我的借书信息
+  //      ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));  //我的消息
+        return SUCCESS;
+    }
+
+    /**
+     * 借书信息跳转
+     * @return
+     */
+    @Action(value = "BorrowInfo", results = {
+            @Result(location = "userMessage2.jsp"),
+            @Result(name = LOGIN, location = "login.jsp")
+    })
+
+
+    public String BorrowInfo() {
+
+        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (loginuser == null) {
+            //用户未登录
+            return LOGIN;
+        }
         ServletActionContext.getRequest().getSession().setAttribute("existedUser", userService.findUserByUid(loginuser));
-        ServletActionContext.getRequest().getSession().setAttribute("mysub", subscriptionService.findSubBooks(loginuser));
-        ServletActionContext.getRequest().getSession().setAttribute("mycomment", bookCommentService.findCommentByUId(loginuser));
-        ServletActionContext.getRequest().getSession().setAttribute("myborrow", borrowbookService.findBorrowedBookByUid(loginuser));
-        ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));
+        //   ServletActionContext.getRequest().getSession().setAttribute("mysub", subscriptionService.findSubBooks(loginuser));  //我的订阅跳转
+        //   ServletActionContext.getRequest().getSession().setAttribute("mycomment", bookCommentService.findCommentByUId(loginuser));//我的评价跳转
+        ServletActionContext.getRequest().getSession().setAttribute("myborrow", borrowbookService.findBorrowedBookByUid(loginuser));  //我的借书信息
+        //   ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));  //我的消息
+        return SUCCESS;
+    }
+
+    /**
+     * 订阅信息
+     * @return
+     */
+    @Action(value = "SubscriptionInfo", results = {
+            @Result(location = "userMessage3.jsp"),
+            @Result(name = LOGIN, location = "login.jsp")
+    })
+
+
+    public String SubscriptionInfo() {
+
+        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (loginuser == null) {
+            //用户未登录
+            return LOGIN;
+        }
+        ServletActionContext.getRequest().getSession().setAttribute("existedUser", userService.findUserByUid(loginuser));
+        ServletActionContext.getRequest().getSession().setAttribute("mysub", subscriptionService.findSubBooks(loginuser));  //我的订阅跳转
+        //   ServletActionContext.getRequest().getSession().setAttribute("mycomment", bookCommentService.findCommentByUId(loginuser));//我的评价跳转
+        // ServletActionContext.getRequest().getSession().setAttribute("myborrow", borrowbookService.findBorrowedBookByUid(loginuser));  //我的借书信息
+        //   ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));  //我的消息
+        return SUCCESS;
+    }
+
+
+    /**
+     * 评价信息跳转
+     * @return
+     */
+    @Action(value = "appraise", results = {
+            @Result(location = "userMessage4.jsp"),
+            @Result(name = LOGIN, location = "login.jsp")
+    })
+
+
+    public String appraise() {
+
+        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (loginuser == null) {
+            //用户未登录
+            return LOGIN;
+        }
+        ServletActionContext.getRequest().getSession().setAttribute("existedUser", userService.findUserByUid(loginuser));
+        //   ServletActionContext.getRequest().getSession().setAttribute("mysub", subscriptionService.findSubBooks(loginuser));  //我的订阅跳转
+        ServletActionContext.getRequest().getSession().setAttribute("mycomment", bookCommentService.findCommentByUId(loginuser));//我的评价跳转
+        // ServletActionContext.getRequest().getSession().setAttribute("myborrow", borrowbookService.findBorrowedBookByUid(loginuser));  //我的借书信息
+        //   ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));  //我的消息
+        return SUCCESS;
+    }
+
+    /**
+     * 系统消息跳转
+     * @return
+     */
+    @Action(value = "systemmsg", results = {
+            @Result(location = "userMessage5.jsp"),
+            @Result(name = LOGIN, location = "login.jsp")
+    })
+
+    public String systemmsg() {
+
+        User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (loginuser == null) {
+            //用户未登录
+            return LOGIN;
+        }
+        ServletActionContext.getRequest().getSession().setAttribute("existedUser", userService.findUserByUid(loginuser));
+        //   ServletActionContext.getRequest().getSession().setAttribute("mysub", subscriptionService.findSubBooks(loginuser));  //我的订阅跳转
+        //   ServletActionContext.getRequest().getSession().setAttribute("mycomment", bookCommentService.findCommentByUId(loginuser));//我的评价跳转
+        // ServletActionContext.getRequest().getSession().setAttribute("myborrow", borrowbookService.findBorrowedBookByUid(loginuser));  //我的借书信息
+        ServletActionContext.getRequest().getSession().setAttribute("mynews", newsService.findNewsByUid(loginuser));  //我的消息
         return SUCCESS;
     }
 
@@ -328,7 +433,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     @Action(value = "updateUser", results = {
             @Result(type = "redirect", location = "userMessage.action"),
-            @Result(name = ERROR,location = "userMessage.jsp"),
+            @Result(name = ERROR,location = "userMessage1.jsp"),
             @Result(name = LOGIN, location = "login.jsp")
     })
     public String updateUser() {
@@ -344,7 +449,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         } else {
             user.setSex(0);
         }
-
         //修改了提交省份城市空值报错的BUG
         if (!"请选择".equals(province1)){
             user.setPid(provinceService.selectPid(province1));
@@ -383,19 +487,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
              System.out.println("用户名不存在");
              this.addActionError("用户名不存在");
              return "find1";
-            /* //获得rresponse对象，向页面输出
-             HttpServletResponse response = ServletActionContext.getResponse();
-             response.setContentType("text/html;charset=UTF-8");
-
-
-                 //没有查询到该用户：用户名可以使用
-                 response.getWriter().println("<font color='green'>用户名可以使用</font>");
-
-                 //查询到该用户：用户名已存在
-                 response.getWriter().println("<font color='red'>用户名已存在</font>");*/
-
-
-
         }else {
              String i = "findUser";
              String number = UUIDUtils.getNumber();
