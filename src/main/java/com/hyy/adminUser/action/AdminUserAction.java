@@ -130,38 +130,152 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
      * */
     public String adminUserLogin() {
 
-        Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
-        if (a != null) {
-            List<Borrowbook> list = ((List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed")==null?new ArrayList<Borrowbook>():(List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed"));
-
-            if (!list.isEmpty()) {
-                ActionContext.getContext().getValueStack().set("borrowedbook", list);
-            }
-            ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
-            ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
-            ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
-            ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
-            return SUCCESS;
-        }
+//        Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
+//        if (a != null) {
+//            ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
+//            ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
+//            ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
+//            ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
+//            return SUCCESS;
+//        }
         Admuser admuser = adminUserService.findAdminUser(auname, apwd);
-        ActionContext.getContext().getValueStack().set("borrowedbook", adminUserService.findBorrowedALLByBid());
+//        ActionContext.getContext().getValueStack().set("borrowedbook", adminUserService.findBorrowedALLByBid());
         ActionContext.getContext().getSession().put("adminUser", admuser);
-        ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
-        ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
-        ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
-        ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
+//        ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
+//        ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
+//        ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
+//        ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
         ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
         /**
          * 判断admuser是否为空，
          * 如果为空则登录失败，
          * 否则登陆成功
          * */
-        if (adminUserService.findAdminUser(auname, apwd) == null) {
+        if (admuser == null) {
             this.addActionError("用户不存在或用户名密码错误");
             return "loginFailed";
         } else {
             return SUCCESS;
         }
+    }
+
+    @Action(value = "adminUserforward",
+            results = {
+                    @Result(name = "success",location = "admin1.jsp"),
+                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+            }
+    )
+    public String adminUserforward(){
+        Admuser a = (Admuser) ServletActionContext.getRequest().getSession().getAttribute("adminUser");
+        if(a == null){
+            return LOGIN;
+        }
+        ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
+
+        return SUCCESS;
+    }
+
+    /**
+     *
+     * 公告管理跳转
+     * @author Scream
+     *
+     * */
+    @Action(value = "adminMsgforward",
+            results = {
+                    @Result(location = "admin2.jsp"),
+                    @Result(name = "loginFailed", location = "adminindex.jsp"),
+                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+            }
+    )
+
+    public String adminMsgforward() {
+
+        Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
+        if (a == null) {
+            return LOGIN;
+        }
+        ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
+        ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
+        return SUCCESS;
+    }
+    /**
+     *
+     * 图书管理跳转Action
+     * @author Scream
+     *
+     * */
+    @Action(value = "adminBookforward",
+            results = {
+                    @Result(location = "admin3.jsp"),
+                    @Result(name = "loginFailed", location = "adminindex.jsp"),
+                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+
+            }
+    )
+
+    public String adminBookforward() {
+
+        Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
+        if (a == null) {
+            return LOGIN;
+        }
+        ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
+        ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
+        return SUCCESS;
+    }
+    /**
+     *
+     * 权限管理跳转页面
+     * @author Scream
+     *
+     * */
+    @Action(value = "adminAuthorityforward",
+            results = {
+                    @Result(location = "admin4.jsp"),
+                    @Result(name = "loginFailed", location = "adminindex.jsp"),
+                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+            }
+    )
+
+    public String adminAuthorityforward() {
+
+        Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
+        if (a == null) {
+            return LOGIN;
+        }
+        ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
+        ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
+        return SUCCESS;
+    }
+    /**
+     *
+     * 借书管理跳转
+     * @author Scream
+     *
+     * */
+    @Action(value = "adminBorrowforward",
+            results = {
+                    @Result(location = "admin5.jsp"),
+                    @Result(name = "loginFailed", location = "adminindex.jsp"),
+                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+            }
+    )
+
+    public String adminBorrowforward() {
+
+        Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
+        if (a == null) {
+            return LOGIN;
+        }
+        List<Borrowbook> list = ((List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed")==null?new ArrayList<Borrowbook>():(List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed"));
+        if (!list.isEmpty()) {
+        ActionContext.getContext().getValueStack().set("borrowedbook", list);
+        return SUCCESS;
+        }
+        ActionContext.getContext().getValueStack().set("borrowedbook", adminUserService.findBorrowedALLByBid());
+        ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
+        return SUCCESS;
     }
     /**
      *
@@ -204,7 +318,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
      */
     @Action(value = "editUser",
             results = {
-                    @Result(type = "redirect", location = "adminUserLogin.action"),
+                    @Result(type = "redirect", location = "adminUserforward.action"),
                     @Result(name = "error", location = "msg.jsp")
             }
     )
@@ -226,7 +340,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
      */
     @Action(value = "adminUserDel",
             results = {
-                    @Result(type = "redirect", location = "adminUserLogin.action")
+                    @Result(type = "redirect", location = "adminUserforward.action")
             }
     )
     public String adminUserDel() {
@@ -239,7 +353,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
      */
     @Action(value = "msgDelete",
             results = {
-                    @Result(name = "success", type = "redirect", location = "adminUserLogin.action"),
+                    @Result(name = "success", type = "redirect", location = "adminMsgforward.action"),
                     @Result(name = "error", location = "msg.jsp")
             }
     )
@@ -255,7 +369,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
      */
     @Action(value = "publishMsg",
             results = {
-                    @Result(name = "success", type = "redirect", location = "adminUserLogin.action"),
+                    @Result(name = "success", type = "redirect", location = "adminMsgforward.action"),
                     @Result(name = "error", location = "msg.jsp")
             }
     )
@@ -276,7 +390,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
      * */
     @Action(value = "changeUp",
             results = {
-                    @Result(name = "success",type = "redirect",location = "adminUserLogin.action"),
+                    @Result(name = "success",type = "redirect",location = "adminAuthorityforward.action"),
                     @Result(name = "error",location = "msg.jsp"),
             }
     )
@@ -300,7 +414,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
      **/
     @Action(value = "changeDown",
             results = {
-                    @Result(name = "success",type = "redirect",location = "adminUserLogin.action"),
+                    @Result(name = "success",type = "redirect",location = "adminAuthorityforward.action"),
                     @Result(name = "error",location = "msg.jsp")
             }
     )

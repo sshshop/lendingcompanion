@@ -1,6 +1,7 @@
 package com.lj.booktemp.action;
 
 import com.lj.booktemp.service.BooktemService;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.upublic.vo.Booktem;
@@ -67,7 +68,7 @@ public class BooktemAction extends ActionSupport implements ModelDriven<Booktem>
      * @throws IOException
      */
     @Action(value = "addBook", results = {
-            @Result(name = SUCCESS, location = "msg.jsp")
+            @Result(name = SUCCESS, type = "redirect",location = "adminBookforward.action")
     })
     public String addBook() throws IOException {
         System.out.println("图书的值：" + tcid);
@@ -101,7 +102,7 @@ public class BooktemAction extends ActionSupport implements ModelDriven<Booktem>
      * @return
      */
     @Action(value = "delBook", results = {
-            @Result(location = "msg.jsp"),
+            @Result(type = "redirect",location = "adminBookforward.action"),
             @Result(name = ERROR,location = "msg.jsp")
     })
     public String delBook(){
@@ -116,4 +117,41 @@ public class BooktemAction extends ActionSupport implements ModelDriven<Booktem>
         return SUCCESS;
     }
 
+    /**
+     *
+     * 编辑图书
+     * @author Scream
+     *
+     * */
+    @Action(value = "editBook",
+            results = {
+                    @Result(location = "editBook.jsp")
+            }
+    )
+    public String editBook(){
+        ActionContext.getContext().getValueStack().set("bookitem",booktemService.findBookByBtid(booktem.getBtid()));
+        return SUCCESS;
+    }
+    /**
+     *
+     * 修改图书信息
+     * @author Scream
+     *
+     * */
+
+    @Action(value = "editBookPost",
+            results = {
+                    @Result(type = "redirect",location = "adminBookforward.action"),
+                    @Result(name = "error",location = "msg.jsp")
+            }
+    )
+    public String editBookPost(){
+       /* if (booktemService.updateBook(booktem) != 1){
+            this.addActionMessage("修改失败");
+            return ERROR;
+        }*/
+        System.out.println(booktem);
+        System.out.println("--"+booktem.getBtname()+"--");
+        return SUCCESS;
+    }
 }

@@ -1,5 +1,6 @@
 package com.upublic.utils;
 
+import com.upublic.vo.Booktem;
 import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
 import org.apache.ibatis.annotations.Update;
@@ -44,6 +45,39 @@ public class sqlFactory {
         }}.toString();
     }
 
+    public String updateBook(final Booktem booktem){
+        return new SQL(){{
+            UPDATE("booktem");
+            if (booktem.getBtname() != null){
+                SET("btname=#{btname}");
+            }
+            if (booktem.getAdr() != null){
+                SET("adr=#{adr}");
+            }
+            if (booktem.getNum() != null){
+                SET("num=#{num}");
+            }
+            if (booktem.getCover() != null){
+                SET("cover=#{cover}");
+            }
+            if (booktem.getSequence() != null){
+                SET("sequence=#{sequence}");
+            }
+            if (booktem.getBtcontent() != null){
+                SET("btcontent=#btcontent}");
+            }
+            if (booktem.getIdt() != null){
+                SET("idt=#{idt}");
+            }
+            if (booktem.getBtauthor() != null){
+                SET("btauthor=#{btauthor}");
+            }
+            if (booktem.getCobn() != null){
+                SET("cobn=#{cobn}");
+            }
+            WHERE("btid=#{btid}");
+        }}.toString();
+    }
     public String saveUsersql(final User user) {
         return new SQL() {{
             INSERT_INTO("user");

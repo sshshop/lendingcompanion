@@ -1,11 +1,9 @@
 package com.lj.booktemp.dao;
 
+import com.upublic.utils.sqlFactory;
 import com.upublic.vo.Book;
 import com.upublic.vo.Booktem;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -39,4 +37,11 @@ public interface BooktemDao {
     int countbooktem(Integer bid);
     @Delete("DELETE FROM booktem WHERE btid=#{btid}")
     void delBook(Integer btid);
+
+
+    @Select("select * from booktem where btid=#{btid}")
+    List<Booktem> findBookByBtid(Integer btid);
+
+    @UpdateProvider(type = sqlFactory.class,method = "updateBook")
+    int updateBook(Booktem booktem);
 }

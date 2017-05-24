@@ -37,4 +37,12 @@ public class BooktemService {
         if (booktemDao.countbooktem(temp) > 0)
             booktemDao.delBook(temp);
     }
+
+    public List<Booktem> findBookByBtid(Integer btid) {
+        return booktemDao.findBookByBtid(btid);
+    }
+
+    public int updateBook(Booktem booktem) {
+        return booktemDao.updateBook(booktem);
+    }
 }

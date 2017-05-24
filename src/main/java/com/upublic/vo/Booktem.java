@@ -120,4 +120,9 @@ public class Booktem {
     public void setBtauthor(String btauthor) {
         this.btauthor = btauthor;
     }
+
+    @Override
+    public String toString() {
+        return getBtname()+getBtauthor()+getAdr()+getNum()+(getBtname()=="");
+    }
 }

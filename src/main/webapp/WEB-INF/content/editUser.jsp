@@ -100,7 +100,7 @@
                             <div class="form-group" >
                                 <label class="control-label col-md-4">出生年月</label>
 
-                                <input type="text" placeholder="<s:property value="allUserById.dob"/>" name="dob" class="form-control col-md-4 borth laydate-icon" id="editborth" style="height: 30px;" onclick="laydate()" />
+                                <input type="text" value="<s:property value="allUserById.dob"/>" name="dob" class="form-control col-md-4 borth laydate-icon" id="editborth" style="height: 30px;" onclick="laydate()" />
 
 
 
@@ -119,7 +119,7 @@
                             <!--电话-->
                             <div class="form-group" >
                                 <label class="control-label col-md-4">电话</label>
-                                <input type="text" name="phone" class="form-control col-md-4 phone" placeholder="<s:property value="allUserById.phone"/> " />
+                                <input type="text" name="phone" class="form-control col-md-4 phone" value="<s:property value="allUserById.phone"/> " />
                             </div>
                             <!--省份----城市-->
                             <div class="form-group" >
@@ -140,12 +140,12 @@
 
                             <div class="form-group" >
                                 <label class="control-label col-md-4">详细地址</label>
-                                <input type="text" name="addr" class="form-control col-md-4 addr" placeholder="<s:property value="allUserById.addr"/>"  />
+                                <input type="text" name="addr" class="form-control col-md-4 addr" value="<s:property value="allUserById.addr"/>"  />
                             </div>
                             <!--邮箱-->
                             <div class="form-group" >
                                 <label class="control-label col-md-4">邮箱地址</label>
-                                <input type="text"  name="email" class="form-control col-md-4 email"   placeholder="<s:property value="allUserById.email"/>" />
+                                <input type="text"  name="email" class="form-control col-md-4 email"   value="<s:property value="allUserById.email"/>" />
                             </div>
                             <!--使用协议-->
 

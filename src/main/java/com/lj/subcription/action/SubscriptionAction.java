@@ -60,7 +60,7 @@ public class SubscriptionAction extends ActionSupport implements ModelDriven<Sub
      * */
     @Action(value = "deleteSub",
             results = {
-                    @Result(type = "redirect",location = "userMessage.action"),
+                    @Result(type = "redirect",location = "SubscriptionInfo.action"),
                     @Result(name = "error",location = "msg.jsp")
             }
     )

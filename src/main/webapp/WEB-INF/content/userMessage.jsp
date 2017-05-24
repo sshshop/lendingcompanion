@@ -29,11 +29,11 @@
     <div class="row">
         <div class="col-md-2 " style="letter-spacing: 2px;margin-top: 30px;">
             <ul class="nav nav-pills nav-stacked" style="text-align: center ">
-                <li class="active" ><a href="userMessage.action" data-toggle="tab">用户信息</a></li>
-                <li style="margin-top: 20px;"> <a href="SubscriptionInfo.action" data-toggle="tab">我的订阅</a></li>
-                <li style="margin-top: 20px;"><a href="appraise.action" data-toggle="tab">我的评价</a></li>
-                <li style="margin-top: 20px;"><a href="BorrowInfo.action" data-toggle="tab">借阅信息</a></li>
-                <li style="margin-top: 20px;"><a href="systemmsg.action" data-toggle="tab">系统消息</a></li>
+                <li class="active" ><a href="userMessage.action">用户信息</a></li>
+                <li style="margin-top: 20px;"> <a href="SubscriptionInfo.action">我的订阅</a></li>
+                <li style="margin-top: 20px;"><a href="appraise.action">我的评价</a></li>
+                <li style="margin-top: 20px;"><a href="BorrowInfo.action">借阅信息</a></li>
+                <li style="margin-top: 20px;"><a href="systemmsg.action">系统消息</a></li>
             </ul>
         </div>
         <div class="col-md-10">

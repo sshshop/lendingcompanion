@@ -59,7 +59,7 @@ public class AdminUserAction implements ModelDriven<User>
 
     @Resource(name = "cityService")
     private CityService cityService;
-    @Action(value="addUser",results = @Result(name = "addSuccess", location = "msg.jsp"))
+    @Action(value="addUser",results = @Result(name = "addSuccess",type = "redirect",location = "adminUserforward.action"))
     public String addUser(){
 
         if (sex1.equals("man")) {
