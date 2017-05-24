@@ -117,22 +117,22 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         if (search.length() == 0) {
             this.addActionMessage("请输入查询数据");
             return "searchBookFail";
-        }else{//如果输入不为空进行第一次查询
+        }else{
+            //如果输入不为空进行第一次查询
             book = keyWord.bookInfoMaster(inputInfo);
             PageBean<Book> pageBean = bookService.findByPage(book, page);
             if (pageBean.getList().size() <= 0 || pageBean.getList() == null) {
                 book = keyWord.bookInfoMaster(search);//获取book对象
                 pageBean = bookService.findByPage(book, page);
+                //如果查询为空进行第二次查询
+                if (pageBean.getList().size() <= 0 || pageBean.getList() == null) {
+                    String string[] = searchRegex.searchFinal(inputInfo);
+                    book = keyWord.bookInfoFinal(string);//第二次匹配
+                    pageBean = bookService.findByBname(book, page);
+                }
             }
             //将关键字加粗标红
             list.addAll(keyWordRed.replaceList(pageBean.getList(), inputInfo));
-            //如果查询为空进行第二次查询
-            if (list == null && list.size() <= 0) {
-                String string[] = searchRegex.searchFinal(inputInfo);
-                book = keyWord.bookInfoFinal(string);//第二次匹配
-                pageBean = bookService.findByBname(book, page);
-                list.addAll(keyWordRed.replaceList(pageBean.getList(), inputInfo));
-            }
             bookList = keyWord.uniq(list);//去重并保持排序
             //将登陆用户搜索数据插入搜索表
             if (bookList != null && bookList.size() > 0) {
@@ -169,7 +169,6 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 return "searchBookFail";}
         }
     }
-
 
     /*
     * 根据作者名查询图书信息

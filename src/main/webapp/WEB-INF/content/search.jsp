@@ -90,7 +90,6 @@
                             <div class="row productlisttext">
                                 <span class="bnumber">图书编号：<s:property value="#BookList.bnum" escapeHtml="escapeHtml"/></span>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -107,15 +106,6 @@
                         <li><a <s:if test="pageBean.page > 1"> href="searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>" </s:if>>上一页</a></li>
                         <li><a <s:if test="pageBean.page < pageBean.totalPage"> href="searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>下一页</a></li>
                         <li><a <s:if test="pageBean.page != pageBean.totalPage&&pageBean.totalPage>0"> href="searchBookInfo.action?page=<s:property value="pageBean.totalPage"/>&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>尾页</a></li>
-                        <li><select style="border: 0px;height: 33px">
-                            <s:if test="1 < pageBean.page">
-                                <option><a href="searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">第<s:property value="pageBean.page-1"/>/<s:property value="pageBean.totalPage"/>页</a></option>
-                            </s:if>
-                            <a href=""><option selected>第<s:property value="pageBean.page"/>/<s:property value="pageBean.totalPage"/>页</option></a>
-                            <s:if test="pageBean.page < pageBean.totalPage">
-                                <option><a href="searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>">第<s:property value="pageBean.page+1"/>/<s:property value="pageBean.totalPage"/>页</a></option>
-                            </s:if>
-                        </select></li>
                     </ul>
                 </div>
             </s:if>
