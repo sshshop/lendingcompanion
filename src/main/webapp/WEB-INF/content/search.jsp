@@ -71,7 +71,9 @@
                 <div class="productlist">
                     <div class="row productlist_2" style="overflow: hidden">
                         <div class="col-md-3 productlistimg">
-                            <a href="findBookBybid.action?bid=<s:property value="#BookList.bid"/>"><img src="<s:property value="#BookList.bcover"/>"></a>
+                            <a href="findBookBybid.action?bid=<s:property value="#BookList.bid"/>">
+                                <img src="<s:property value="#BookList.bcover"/>">
+                            </a>
                         </div>
                         <div class="col-md-8 productlistcontent">
                             <div class="row productlistname">
@@ -101,7 +103,6 @@
             <s:if test="pageBean.totalPage!=0">
                 <div class="row" style="text-align: center">
                     <ul class="pagination">
-                        <li></li>
                         <li><a <s:if test="pageBean.page != 1"> href="searchBookInfo.action?page=1&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>首页</a></li>
                         <li><a <s:if test="pageBean.page > 1"> href="searchBookInfo.action?page=<s:property value="pageBean.page-1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>" </s:if>>上一页</a></li>
                         <li><a <s:if test="pageBean.page < pageBean.totalPage"> href="searchBookInfo.action?page=<s:property value="pageBean.page+1"/>&inputInfo= <%= request.getAttribute("inputInfo") %>"</s:if>>下一页</a></li>

@@ -59,7 +59,7 @@ public interface BookDao {
                          @Param("badr") String badr,
                          @Param("bauthor") String bauthor);
 
-    @Select("select bid bcover,bname,bauthor,nborrowed,badr,bcobn,bnum from book " +
+    @Select("select bid,bcover,bname,bauthor,nborrowed,badr,bcobn,bnum from book " +
             "where bname REGEXP CONCAT('(',#{bname},')')" +
             "OR bname REGEXP CONCAT('(',#{initials},')') " +
             "OR bname REGEXP CONCAT('(',#{fight},')') " +
