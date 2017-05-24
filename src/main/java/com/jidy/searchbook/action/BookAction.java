@@ -139,7 +139,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
                 if (user != null) {
                     int uid = user.getUid();
-                    if (inputInfo.equals(" ")&&inputInfo!=null){
+                    if (!inputInfo.equals(" ")&&inputInfo!=null){
                         recentSearchService.insertSearchKeyword(uid, inputInfo);
                     }
                     List<String> strings = recentSearchService.findSearchKeyword(uid);
