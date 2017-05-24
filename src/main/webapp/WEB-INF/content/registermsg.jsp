@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>“无微不至”的借阅伴侣</title>
+    <title>信息提示</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -12,14 +12,14 @@
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg"
-                                                                                          style="width: 100%;height: 100%;">
+<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg" style="width: 100%;height: 100%;">
 </div>
 <!--头部页面-->
 <%@include file="header.jsp" %>
-
+<script>
+    window.setTimeout("window.location='registerS.action'",2000);
+</script>
 <h1 style="text-align: center">信息提示:</h1>
 <h2 style="text-align: center"><s:actionerror/></h2>
-<h2 style="text-align: center"><s:actionmessage/></h2>
 </body>
 </html>

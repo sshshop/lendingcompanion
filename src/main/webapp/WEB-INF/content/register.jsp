@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page  language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <html lang="en">
 <head>
@@ -32,59 +32,7 @@
 <body>
 <div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg" style="width: 100%;height: 100%;"></div>
     <!-- 头部页面 -->
-    <div class="container header">
-        <!-- 顶部信息 -->
-        <div class="row header_title">
-            <div class="col-md-4 header_title_left">
-
-            </div>
-            <div class="col-md-6 header_title_mid">
-                <span>“无微不至”的借阅伴侣</span>
-            </div>
-            <div class="col-md-2 header_title_right">
-                <a class="login" href="loginS.action">登录</a>
-                <a class="register">注册</a>
-                <a class="collect">收藏本站</a>
-            </div>
-        </div>
-        <!-- logo以及搜索框 -->
-        <div class="row header_main">
-            <div class="col-md-5 logo">
-                <img src="image/logo.png">
-            </div>
-            <div class="col-md-7 header_search">
-                <form class="nameSearch_form" id="nameSearch_form" action="">
-                    <span class="header_search_text">书名或作者名</span>
-                    <input class="nameSearch" id="nameSearch" type="text" placeholder="请输入您要搜的书..." />
-                    <button type="submit" class="glyphicon-search"></button>
-                </form>
-                <div class="header_search_title">
-                    无微不至，搜你想搜
-                </div>
-            </div>
-        </div>
-        <!--导航栏-->
-        <div class="row header_nav" id="header_nav">
-            <div class="col-md-12">
-                <a  href="index.action">主页</a>
-                <a  href="#">热门推荐</a>
-                <a  href="#">借书排行榜</a>
-                <a  href="#">网站简介</a>
-                <a  href="#">网站公告</a>
-                <a  href="#">联系我们</a>
-            </div>
-        </div>
-        <!--面包屑导航栏-->
-        <div class="row header_smallNav">
-            <div class="col-md-12">
-                <span class="header_smallNav_text">您所在的位置:</span>
-                <ol class="breadcrumb">
-                    <li><a href="index.action">主页</a></li>
-                    <li class="active">注册</li>
-                </ol>
-            </div>
-        </div>
-    </div>
+<%@include file="header.jsp" %>
     <form method="post"  action="registerPost.action" onsubmit="return checkForm();" name="register">
     <!-- 中间部分 -->
     <div class="container context">
@@ -213,73 +161,6 @@
 
     </form>
     <!-- 底部页面 -->
-    <div class="footer">
-        <div class="row img_information">
-            <div class="col-md-3 img_item">
-                <img class="img1" src="image/service_items_1.png">
-            </div>
-            <div class="col-md-3 img_item">
-                <img class="img2" src="image/service_items_2.png">
-            </div>
-            <div class="col-md-3 img_item">
-                <img class="img3" src="image/service_items_3.png">
-            </div>
-            <div class="col-md-3 img_item">
-                <img class="img4" src="image/service_items_4.png">
-            </div>
-        </div>
-        <div id="footer-2013">
-            <div class="links">
-
-                <a href="article-5.html" target="_blank">关于我们</a>
-                |
-
-                <a href="article-1056.html" target="_blank">法律声明</a>
-                |
-
-                <a href="article-24.html" target="_blank">诚征英才</a>
-                |
-
-                <a href="article-9.html" target="_blank">商家入驻</a>
-                |
-
-                <a href="article-12.html" target="_blank">加盟我们</a>
-                |
-
-                <a href="article-14.html" target="_blank">广告服务</a>
-                |
-
-                <a href="article-1045.html" target="_blank">客服中心</a>
-
-
-            </div>
-
-            <div class="copyright">
-                Copyright © 2010-2017 XX借书网 www.XXX.com 版权所有 | E-mail：651081143@qq.com<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <br>
-
-                相关备案信息：京ICP备10218744号-1｜京ICP证070359号｜京公网安备11011202001572号｜新出发京零字第通100048号
-
-            </div>
-        </div>
-    </div>
+<%@include file="footer.jsp"%>
 </body>
 </html>
