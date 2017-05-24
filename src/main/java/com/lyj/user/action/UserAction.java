@@ -117,7 +117,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
      */
     @Action(value = "userLogin", results = {
             @Result(name = "loginSuccess", location = "index.action", type = "redirect"),
-            @Result(name = LOGIN, location = "loginS.action",type = "redirect"),
+            @Result(name = LOGIN, location = "loginS.action", type = "redirect"),
             @Result(name = ERROR, location = "index.action", type = "redirect")
     }
     )
@@ -141,7 +141,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     }
 
     //用户登录
-    @Action(value = "loginS", results = {@Result(name = LOGIN, location = "loginS.action",type = "redirect"),
+    @Action(value = "loginS", results = {@Result(name = LOGIN, location = "login.jsp"),
             @Result(name = ERROR, location = "index.action", type = "redirect")
     })
     public String loginS() {
@@ -155,10 +155,18 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     }
 
     //用户注册
-    @Action(value = "registerS", results = @Result(name = "register", location = "register.jsp"))
+    @Action(value = "registerS", results = {@Result(name = "register", location = "register.jsp"),
+            @Result(name = SUCCESS, location = "index.jsp", type = "redirect")
+    })
     public String registerS() {
-        this.addActionMessage("注册");
-        return "register";
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
+        if (user == null) {
+            this.addActionMessage("注册");
+            return "register";
+        } else {
+            this.addActionMessage("登录");
+            return SUCCESS;
+        }
     }
 
 
@@ -289,7 +297,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             results = {
                     @Result(type = "redirect", location = "findBookBybid.action"),
                     @Result(name = ERROR, type = "redirect", location = "index.action"),
-                    @Result(name = LOGIN, location = "loginS.action",type = "redirect")
+                    @Result(name = LOGIN, location = "loginS.action", type = "redirect")
             }
     )
     public String loginJumpThis() {
@@ -324,7 +332,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
      */
     @Action(value = "userMessage", results = {
             @Result(location = "userMessage1.jsp"),
-            @Result(name = LOGIN, location = "loginS.action",type = "redirect")
+            @Result(name = LOGIN, location = "loginS.action", type = "redirect")
     })
 
 
@@ -351,7 +359,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
      */
     @Action(value = "BorrowInfo", results = {
             @Result(location = "userMessage2.jsp"),
-            @Result(name = LOGIN, location = "loginS.action",type = "redirect")
+            @Result(name = LOGIN, location = "loginS.action", type = "redirect")
     })
 
 
@@ -378,7 +386,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
      */
     @Action(value = "SubscriptionInfo", results = {
             @Result(location = "userMessage3.jsp"),
-            @Result(name = LOGIN, location = "loginS.action",type = "redirect")
+            @Result(name = LOGIN, location = "loginS.action", type = "redirect")
     })
 
 
@@ -406,7 +414,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
      */
     @Action(value = "appraise", results = {
             @Result(location = "userMessage4.jsp"),
-            @Result(name = LOGIN, location = "loginS.action",type = "redirect")
+            @Result(name = LOGIN, location = "loginS.action", type = "redirect")
     })
 
 
@@ -433,7 +441,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
      */
     @Action(value = "systemmsg", results = {
             @Result(location = "userMessage5.jsp"),
-            @Result(name = LOGIN, location = "loginS.action",type = "redirect")
+            @Result(name = LOGIN, location = "loginS.action", type = "redirect")
     })
 
     public String systemmsg() {
@@ -456,7 +464,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     @Action(value = "updateUser", results = {
             @Result(type = "redirect", location = "userMessage.action"),
             @Result(name = ERROR, location = "userMessage1.jsp"),
-            @Result(name = LOGIN,location = "loginS.action",type = "redirect")
+            @Result(name = LOGIN, location = "loginS.action", type = "redirect")
     })
     public String updateUser() {
         User loginuser = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
