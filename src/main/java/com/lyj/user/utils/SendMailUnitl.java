@@ -62,7 +62,7 @@ public class SendMailUnitl {
 				message.setSubject("来自阅读伴侣的官方激活邮件");
 				/*message.setContent("<h1>阅读伴侣的官方激活邮件!点下面链接完成激活操作!<br></h1><h3><a href='http://localhost:8082/lengdingbook/active.action?code="+code+"'>http://localhost:8082/lengdingbook/active.action?code="+code+"</a></h3>",
 						"text/html;charset=UTF-8");*/
-				message.setContent("<h1>阅读伴侣的官方激活邮件!点下面链接完成激活操作!<br></h1><h3><a href='http://http://120.25.245.88:8080/lengdingbook/active.action?code="+code+"'>http://http://120.25.245.88:8080/lengdingbook/active.action?code="+code+"</a></h3>",
+				message.setContent("<h1>阅读伴侣的官方激活邮件!点下面链接完成激活操作!<br></h1><h3><a href='http://120.25.245.88:8080/lengdingbook/active.action?code="+code+"'>http://120.25.245.88:8080/lengdingbook/active.action?code="+code+"</a></h3>",
 						"text/html;charset=UTF-8");
 			}if ("findUser".equalsIgnoreCase(i)){
 				message.setSubject("来自阅读伴侣的官方找回密码邮件");

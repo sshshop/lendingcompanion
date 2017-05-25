@@ -1,5 +1,4 @@
-<%@ page language="java"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <div class="container footer">
     <div class="row img_information">
         <div class="col-md-3 img_item">

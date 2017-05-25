@@ -56,7 +56,7 @@ public interface BorrowbookDao {
      * @param user 用户的书籍信息封装
      * @return 返回封装的用户借书的信息
      */
-    @Select("SELECT * FROM borrowbook WHERE uid=#{user.uid}")
+    @Select("SELECT * FROM borrowbook WHERE uid=#{user.uid} ORDER BY btime DESC")
     @Results(value = {
             @Result(column = "bid", property = "bid"),
             @Result(column = "bid", property = "list", many = @Many(select = "com.jidy.searchbook.dao.BookDao.findBookById"))

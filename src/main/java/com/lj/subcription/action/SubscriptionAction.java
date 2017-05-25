@@ -29,8 +29,8 @@ public class SubscriptionAction extends ActionSupport implements ModelDriven<Sub
     @Action(
             value = "addSubscription",
             results = {
-                    @Result(location = "msg.jsp"),
-                    @Result(name = "addfail",location = "msg.jsp")
+                    @Result(location = "submsg.jsp"),
+                    @Result(name = "addfail",location = "submsgf.jsp")
             }
     )
     /**

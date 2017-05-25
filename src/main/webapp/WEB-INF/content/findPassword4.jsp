@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Rabit
-  Date: 2017/5/7
-  Time: 16:34
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>

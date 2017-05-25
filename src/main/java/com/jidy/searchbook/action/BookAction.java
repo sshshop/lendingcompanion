@@ -181,6 +181,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
             @Result(name = "find",location = "search.jsp")
     })
     public String findAuthor(){
+        System.out.println("作者的搜索"+book.getBauthor());
         List<Book> recentSearch=new ArrayList<Book>();
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute("existedUser");
         if (user != null) {

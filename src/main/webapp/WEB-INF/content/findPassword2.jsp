@@ -1,17 +1,3 @@
-
-<%--
-  Created by IntelliJ IDEA.
-  User: Rabit
-  Date: 2017/5/7<form method="post" action="findNumber.action">
-邮箱： <input type="text"  value="<s:property value="#session.email" />"  readonly  name="email"  />
-
-    <br>
-验证码：<input name="number1" /><br>
-    <button type="submit"  style="height: 30px;">下一步</button>
-</form>
-  Time: 16:34
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>

@@ -114,7 +114,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
      */
     @Action(value = "userLogin", results = {
             @Result(name = "loginSuccess", location = "index.action", type = "redirect"),
-            @Result(name = LOGIN, location = "loginS.action", type = "redirect"),
+            @Result(name = LOGIN, location = "login.jsp"),
             @Result(name = ERROR, location = "index.action", type = "redirect")
     }
     )
@@ -124,6 +124,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
             List<User> list = userService.findUserAll(user);
             if (list.isEmpty()) {
                 //登录失败
+                this.addActionMessage("登录");
                 this.addActionError("密码或者用户名错误");
                 return LOGIN;
             } else {

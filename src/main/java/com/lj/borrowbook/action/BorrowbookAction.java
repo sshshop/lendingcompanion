@@ -59,9 +59,9 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     @Action(
             value = "addBorrowBook",
             results = {
-                    @Result(location = "msg.jsp"),
+                    @Result(location = "msgborrowed.jsp"),
                     @Result(name = LOGIN, location = "login.jsp"),
-                    @Result(name = ERROR, location = "msg.jsp")
+                    @Result(name = ERROR, location = "msgborrowed.jsp")
             }, exceptionMappings = {
             //映射映射声明
             @ExceptionMapping(exception = "java.lang.Exception", result = ERROR)
@@ -82,11 +82,13 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
                 this.addActionMessage("借书成功");
                 return SUCCESS;
             } else {
+                System.out.println("借书失败，同一本书不能借阅两次！");
                 this.addActionMessage("借书失败，同一本书不能借阅两次！");
                 return ERROR;
             }
 
         } else {
+            System.out.println("借书失败，因为您现在还有两本书未归还！");
             this.addActionMessage("借书失败，因为您现在还有两本书未归还！");
             return ERROR;
         }

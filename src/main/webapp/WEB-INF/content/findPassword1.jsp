@@ -1,14 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Rabit
-  Date: 2017/5/7
-  Time: 16:34
-<form method="post" action="findP.action">
-用户名：<input name="username" /><br>
-
- <button type="submit"  style="height: 30px;">下一步</button>
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>

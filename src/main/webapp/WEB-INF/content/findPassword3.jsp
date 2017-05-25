@@ -1,18 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Rabit
-  Date: 2017/5/7<form method="post" action="updatePassword.action">
-
-    新密码 <input type="text"  name="upassword1"  />
-
-    <br>
-    确认输入密码：<input type="text"  name="repassword"  /><br>
-    <button type="submit"  style="height: 30px;">修改</button>
-
-</form>
-  Time: 16:34
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>

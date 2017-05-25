@@ -1,5 +1,4 @@
-<%@ page language="java"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <div class="container header">
     <!-- 顶部信息 -->
     <div class="row header_title">
