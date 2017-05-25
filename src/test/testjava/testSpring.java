@@ -126,12 +126,14 @@ public class testSpring {
 
     @Test
     public void testREX() {
-        String temp = "我要吃 11acb d饭？!#*";
+        String temp = "'ll我要吃 11acb d饭？!#*";
         temp=temp.replace(" ","");
-        String re = "[\u4e00-\u9fa5a-zA-Z0-9]";
-        Pattern reg = Pattern.compile(re);
+        String re = "[\u4e00-\u9fa5a-zA-Z0-9]+";
+        Pattern reg = Pattern.compile(re,Pattern.CASE_INSENSITIVE);
         Matcher m=reg.matcher(temp);
-        System.out.println(m);
+     while (m.find()){
+         System.out.println(m.group());
+     }
         temp = m.replaceAll("c");
         System.out.println(temp);
     }

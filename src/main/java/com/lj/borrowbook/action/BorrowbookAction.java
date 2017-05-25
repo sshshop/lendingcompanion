@@ -12,6 +12,8 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
 import javax.annotation.Resource;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Rabit on 2017/5/9.
@@ -24,8 +26,8 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     @Resource(name = "bookService")
     private BookService bookService;
     private Borrowbook borrowbook = new Borrowbook();
-    private String username;  //用于后台用户借书管理的用户名搜索用户id接受参数,并查询借书信息
-    private String bname;  //用于后台管理员管理图书名字查询图书的id并查询借书信息
+    private String username="";  //用于后台用户借书管理的用户名搜索用户id接受参数,并查询借书信息
+    private String bname="";  //用于后台管理员管理图书名字查询图书的id并查询借书信息
     //  private int bid; //图书id
 
 
@@ -108,7 +110,7 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
 
     @Action(value = "findBorrowedBookMSG", results = {
             @Result(location = "adminBorrowforward.action", type = "redirect"),
-            @Result(name = LOGIN,location = "adminUserLogin.action",type = "redirect")
+            @Result(name = LOGIN, location = "adminUserLogin.action", type = "redirect")
     })
     public String findBorrowedBookMSG() {
         Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
@@ -116,6 +118,12 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
             return LOGIN;
         }
         System.out.println(username + "-" + bname);
+        if (!username.equals("") && username != null) {
+            username = reString(username);
+        }
+        if (!bname.equals("") && bname != null) {
+            bname = reString(bname);
+        }
         ActionContext.getContext().getSession().put("findborrowed", borrowbookService.findBorrowedBookMSG(username, bname));
         System.out.println("准备跳转");
         return SUCCESS;
@@ -123,12 +131,12 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
 
     @Action(value = "updatBorrowedStatus", results = {
             @Result(location = "adminBorrowforward.action", type = "redirect"),
-            @Result(name = ERROR,location ="msg.jsp" )
+            @Result(name = ERROR, location = "msg.jsp")
     })
     public String updatBorrowedStatus() {
         System.out.println("进入updatBorrowedStatus");
-        if (borrowbookService.updatBorrowedStatus(borrowbook) == 1){
-            if (borrowbook.getBstatus()==3){
+        if (borrowbookService.updatBorrowedStatus(borrowbook) == 1) {
+            if (borrowbook.getBstatus() == 3) {
                 borrowbookService.insertNew(borrowbook.getBbid());
             }
             return SUCCESS;
@@ -141,8 +149,22 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
         return borrowbook;
     }
 
-    public String reString(String temp){
-        
+    /**
+     * 搜索字段的优化，防止sql注入
+     *
+     * @param temp
+     * @return
+     */
+    public String reString(String temp) {
+        temp = temp.replace(" ", "");
+        temp =temp.replaceAll("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]","");
+        String re = "[\u4e00-\u9fa5a-zA-Z0-9]";
+        Pattern reg = Pattern.compile(re, Pattern.CASE_INSENSITIVE);
+        Matcher m = reg.matcher(temp);
+        while (m.find()) {
+            temp = m.group();
+        }
+        System.out.println("最终结果" + temp);
         return temp;
     }
 }
