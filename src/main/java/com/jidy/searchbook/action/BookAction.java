@@ -121,7 +121,9 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                     pageBean = bookService.findByBname(book, page);
                 }
             }
-            //将关键字加粗标红
+            /*
+            * 将关键字加粗标红
+            * */
             list.addAll(keyWordRed.replaceList(pageBean.getList(), inputInfo));
             bookList = keyWord.uniq(list);//去重并保持排序
             //将登陆用户搜索数据插入搜索表
