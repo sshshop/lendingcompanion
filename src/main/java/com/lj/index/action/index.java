@@ -30,11 +30,61 @@ public class index extends ActionSupport{
     @Action( value = "about" ,
             results = {
             /*多个返回值*/
-                    @Result(name = "success",location = "aboutUs.jsp")
+                    @Result(name = "success1",location = "aboutUs.jsp")
             })
     public String findcategoryall() {
 
-        return SUCCESS;
+        return "success1";
+    }
+
+    @Action( value = "LagalStatement" ,
+            results = {
+            /*多个返回值*/
+                    @Result(name = "success2",location = "LegalStatement.jsp")
+            })
+    public String LagalStatement() {
+
+        return "success2";
+    }
+
+    @Action( value = "Recruitingtalents" ,
+            results = {
+            /*多个返回值*/
+                    @Result(name = "success3",location = "Recruitingtalents.jsp")
+            })
+    public String Recruitingtalents() {
+
+        return "success3";
+    }
+
+    @Action( value = "joinUs" ,
+            results = {
+            /*多个返回值*/
+                    @Result(name = "success4",location = "joinUs.jsp")
+            })
+    public String joinUs() {
+
+        return "success4";
+    }
+
+    @Action( value = "usuallyQuestion" ,
+            results = {
+            /*多个返回值*/
+                    @Result(name = "success5",location = "usuallyQuestion.jsp")
+            })
+    public String usuallyQuestion() {
+
+        return "success5";
+    }
+
+    @Action( value = "contactUs" ,
+            results = {
+            /*多个返回值*/
+                    @Result(name = "success6",location = "contactUs.jsp")
+            })
+    public String contactUs() {
+
+        return "success6";
     }
 
 

@@ -17,25 +17,25 @@
     <div class="row " id="footer-2013">
         <div class="links">
 
-            <a href="article-5.html" target="_blank">关于我们</a>
+            <a href="about.action">关于我们</a>
             |
 
-            <a href="article-1056.html" target="_blank">法律声明</a>
+            <a href="LagalStatement.action">法律声明</a>
             |
 
-            <a href="article-24.html" target="_blank">诚征英才</a>
+            <a href="Recruitingtalents.action">诚征英才</a>
             |
 
-            <a href="article-9.html" target="_blank">商家入驻</a>
+            <a href="joinUs.action">商家入驻</a>
             |
 
-            <a href="article-12.html" target="_blank">加盟我们</a>
+            <a href="joinUs.action">加盟我们</a>
             |
 
-            <a href="article-14.html" target="_blank">广告服务</a>
+            <a href="contactUs.action">广告服务</a>
             |
 
-            <a href="article-1045.html" target="_blank">客服中心</a>
+            <a href="contactUs.action">客服中心</a>
 
 
         </div>
