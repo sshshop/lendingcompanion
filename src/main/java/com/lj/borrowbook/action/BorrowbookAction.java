@@ -3,6 +3,7 @@ package com.lj.borrowbook.action;
 import com.jidy.searchbook.service.BookService;
 import com.lj.borrowbook.service.BorrowbookService;
 import com.opensymphony.xwork2.*;
+import com.upublic.vo.Admuser;
 import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
 import org.apache.struts2.ServletActionContext;
@@ -106,9 +107,14 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     }
 
     @Action(value = "findBorrowedBookMSG", results = {
-            @Result(location = "adminUserLogin.action", type = "redirect")
+            @Result(location = "adminBorrowforward.action", type = "redirect"),
+            @Result(name = LOGIN,location = "adminUserLogin.action",type = "redirect")
     })
     public String findBorrowedBookMSG() {
+        Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
+        if (a == null) {
+            return LOGIN;
+        }
         System.out.println(username + "-" + bname);
         ActionContext.getContext().getSession().put("findborrowed", borrowbookService.findBorrowedBookMSG(username, bname));
         System.out.println("准备跳转");
@@ -133,5 +139,10 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
 
     public Borrowbook getModel() {
         return borrowbook;
+    }
+
+    public String reString(String temp){
+        
+        return temp;
     }
 }

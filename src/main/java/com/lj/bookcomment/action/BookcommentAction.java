@@ -70,6 +70,7 @@ public class BookcommentAction extends ActionSupport implements ModelDriven<Book
         borrowbook.setBbid(bbid);
         borrowbook.setBid(bookcomment.getBid());
         ActionContext.getContext().getValueStack().set("BBBID",borrowbook);
+        this.addActionMessage("书籍评论");
         return SUCCESS;
     }
 
