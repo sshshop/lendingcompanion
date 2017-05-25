@@ -116,7 +116,7 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     }
 
     @Action(value = "updatBorrowedStatus", results = {
-            @Result(location = "adminUserLogin.action", type = "redirect"),
+            @Result(location = "adminBorrowforward.action", type = "redirect"),
             @Result(name = ERROR,location ="msg.jsp" )
     })
     public String updatBorrowedStatus() {

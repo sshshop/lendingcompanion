@@ -45,49 +45,49 @@ public class sqlFactory {
     }
 
 
-
-    public String adminupdateBook(final Booktem booktem){
-        return new SQL(){{
+    public String adminupdateBook(final Booktem booktem) {
+        return new SQL() {{
             UPDATE("booktem");
-           /* if (booktem.getBtname() != null){
+            if (booktem.getBtname() != null) {
                 SET("btname=#{btname}");
-            }*/
-           /* if (booktem.getCid()!=null){
+            }
+            if (booktem.getCid() != null) {
                 SET("cid=#{cid}");
-            }*/
-            if (booktem.getBtauthor() != null){
+            }
+            if (booktem.getBtauthor() != null) {
                 SET("btauthor=#{btauthor}");
             }
-            if (booktem.getAdr() != null){
+            if (booktem.getAdr() != null) {
                 SET("adr=#{adr}");
             }
-            if (booktem.getNum() != null){
+            if (booktem.getNum() != null) {
                 SET("num=#{num}");
             }
-            if (booktem.getCover() != null){
+            if (booktem.getCover() != null) {
                 SET("cover=#{cover}");
             }
-            if (booktem.getSequence() != null){
+            if (booktem.getSequence() != null) {
                 SET("sequence=#{sequence}");
             }
-            if (booktem.getBtcontent() != null){
+            if (booktem.getBtcontent() != null) {
                 SET("btcontent=#{btcontent}");
             }
-            if (booktem.getIdt() != null){
+            if (booktem.getIdt() != null) {
                 SET("idt=#{idt}");
             }
-            if (booktem.getCobn() != 0){
+            if (booktem.getCobn() != null) {
                 SET("cobn=#{cobn}");
             }
-            if (booktem.getMoney()!=0){
+            if (booktem.getMoney() != 0) {
                 SET("money=#{money}");
             }
-            if (booktem.getTime()!=null){
+            if (booktem.getTime() != null) {
                 SET("time=#{time}");
             }
             WHERE("btid=#{btid}");
         }}.toString();
     }
+
     public String saveUsersql(final User user) {
         return new SQL() {{
             INSERT_INTO("user");
@@ -128,7 +128,7 @@ public class sqlFactory {
             if (borrowbook.getBstatus() == 3) {
                 SET("bstatus=3");
             }
-            if(borrowbook.getBstatus() == 4){
+            if (borrowbook.getBstatus() == 4) {
                 SET("bstatus=4");
             }
             WHERE("bbid=#{bbid}");

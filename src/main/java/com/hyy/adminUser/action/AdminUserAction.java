@@ -107,7 +107,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
 
     @Action(value = "adminUser",
             results = {
-                    @Result(name = "success", location = "adminindex.jsp")
+                    @Result(name = "success", location = "adminlogin.jsp")
             })
 
     public String adminUser() {
@@ -116,7 +116,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
 
     @Action(value = "adminUserLogin",
             results = {
-                    @Result(location = "admin.jsp"),
+                    @Result(location = "admin1.jsp"),
                     @Result(name = "loginFailed", location = "adminindex.jsp")
             }
     )
@@ -140,12 +140,11 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
 //        }
         Admuser admuser = adminUserService.findAdminUser(auname, apwd);
 //        ActionContext.getContext().getValueStack().set("borrowedbook", adminUserService.findBorrowedALLByBid());
-        ActionContext.getContext().getSession().put("adminUser", admuser);
 //        ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
 //        ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
 //        ActionContext.getContext().getValueStack().set("allBook", booktemService.findBookAll());
 //        ActionContext.getContext().getValueStack().set("allmsg", msgService.findAllMsg());
-        ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
+    //    ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
         /**
          * 判断admuser是否为空，
          * 如果为空则登录失败，
@@ -155,19 +154,20 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
             this.addActionError("用户不存在或用户名密码错误");
             return "loginFailed";
         } else {
+            ActionContext.getContext().getSession().put("adminUser", admuser);
             return SUCCESS;
         }
     }
 
     @Action(value = "adminUserforward",
             results = {
-                    @Result(name = "success",location = "admin1.jsp"),
-                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+                    @Result(name = "success", location = "admin1.jsp"),
+                    @Result(name = LOGIN, type = "redirect", location = "adminUser.action")
             }
     )
-    public String adminUserforward(){
+    public String adminUserforward() {
         Admuser a = (Admuser) ServletActionContext.getRequest().getSession().getAttribute("adminUser");
-        if(a == null){
+        if (a == null) {
             return LOGIN;
         }
         ActionContext.getContext().getValueStack().set("allUser", adminUserService.findUserAll());
@@ -176,16 +176,14 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
     }
 
     /**
-     *
      * 公告管理跳转
-     * @author Scream
      *
-     * */
+     * @author Scream
+     */
     @Action(value = "adminMsgforward",
             results = {
                     @Result(location = "admin2.jsp"),
-                    @Result(name = "loginFailed", location = "adminindex.jsp"),
-                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+                    @Result(name = LOGIN, type = "redirect", location = "adminUser.action")
             }
     )
 
@@ -199,17 +197,17 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
         ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
         return SUCCESS;
     }
+
     /**
-     *
      * 图书管理跳转Action
-     * @author Scream
      *
-     * */
+     * @author Scream
+     */
     @Action(value = "adminBookforward",
             results = {
                     @Result(location = "admin3.jsp"),
                     @Result(name = "loginFailed", location = "adminindex.jsp"),
-                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+                    @Result(name = LOGIN, type = "redirect", location = "adminUser.action")
 
             }
     )
@@ -224,17 +222,17 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
         ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
         return SUCCESS;
     }
+
     /**
-     *
      * 权限管理跳转页面
-     * @author Scream
      *
-     * */
+     * @author Scream
+     */
     @Action(value = "adminAuthorityforward",
             results = {
                     @Result(location = "admin4.jsp"),
                     @Result(name = "loginFailed", location = "adminindex.jsp"),
-                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+                    @Result(name = LOGIN, type = "redirect", location = "adminUser.action")
             }
     )
 
@@ -244,52 +242,52 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
         if (a == null) {
             return LOGIN;
         }
-        ActionContext.getContext().getValueStack().set("list",adminAuthorityService.findAllAdmUser());
+        ActionContext.getContext().getValueStack().set("list", adminAuthorityService.findAllAdmUser());
         ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
         return SUCCESS;
     }
+
     /**
-     *
      * 借书管理跳转
-     * @author Scream
      *
-     * */
+     * @author Scream
+     */
     @Action(value = "adminBorrowforward",
             results = {
                     @Result(location = "admin5.jsp"),
                     @Result(name = "loginFailed", location = "adminindex.jsp"),
-                    @Result(name = LOGIN,type = "redirect",location = "adminUser.action")
+                    @Result(name = LOGIN, type = "redirect", location = "adminUser.action")
             }
     )
 
     public String adminBorrowforward() {
-
         Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
         if (a == null) {
             return LOGIN;
         }
-        List<Borrowbook> list = ((List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed")==null?new ArrayList<Borrowbook>():(List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed"));
+        List<Borrowbook> list = ((List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed") == null ? new ArrayList<Borrowbook>() : (List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed"));
         if (!list.isEmpty()) {
-        ActionContext.getContext().getValueStack().set("borrowedbook", list);
-        return SUCCESS;
+            ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
+            ActionContext.getContext().getValueStack().set("borrowedbook", list);
+            return SUCCESS;
         }
         ActionContext.getContext().getValueStack().set("borrowedbook", adminUserService.findBorrowedALLByBid());
         ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
         return SUCCESS;
     }
+
     /**
-     *
      * 用户退出功能模块
      * 销毁Session
-     * @author Scream
      *
-     * */
+     * @author Scream
+     */
     @Action(value = "adminloginOut",
             results = {
-                    @Result(name = "success",location = "adminindex.jsp")
+                    @Result(name = "success", location = "adminindex.jsp")
             }
     )
-    public String adminloginOut(){
+    public String adminloginOut() {
         ServletActionContext.getRequest().getSession().removeAttribute("adminUser");
         ServletActionContext.getRequest().getSession().invalidate();
         return SUCCESS;
@@ -383,48 +381,46 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
     }
 
     /**
-     *
      * 管理员用户的升权操作
-     * @author Scream
      *
-     * */
+     * @author Scream
+     */
     @Action(value = "changeUp",
             results = {
-                    @Result(name = "success",type = "redirect",location = "adminAuthorityforward.action"),
-                    @Result(name = "error",location = "msg.jsp"),
+                    @Result(name = "success", type = "redirect", location = "adminAuthorityforward.action"),
+                    @Result(name = "error", location = "msg.jsp")
             }
     )
 
-    public String changeUp(){
+    public String changeUp() {
         Admuser admuser = (Admuser) ActionContext.getContext().getSession().get("adminUser");
-        if (admuser.getAuthority()>(authority-1)){
-            adminAuthorityService.changAuthority(auid,authority);
+        if (admuser.getAuthority() > (authority - 1)) {
+            adminAuthorityService.changAuthority(auid, authority);
             return SUCCESS;
-        }else {
+        } else {
             this.addActionMessage("您没有权限操作该用户");
             return ERROR;
         }
     }
 
     /**
-     *
      * 管理员用户的降权操作
-     * @author Scream
      *
+     * @author Scream
      **/
     @Action(value = "changeDown",
             results = {
-                    @Result(name = "success",type = "redirect",location = "adminAuthorityforward.action"),
-                    @Result(name = "error",location = "msg.jsp")
+                    @Result(name = "success", type = "redirect", location = "adminAuthorityforward.action"),
+                    @Result(name = "error", location = "msg.jsp")
             }
     )
 
-    public String changeDown(){
+    public String changeDown() {
         Admuser admuser = (Admuser) ActionContext.getContext().getSession().get("adminUser");
-        if(admuser.getAuthority()>(authority+1)){
-            adminAuthorityService.changAuthority(auid,authority);
+        if (admuser.getAuthority() > (authority + 1)) {
+            adminAuthorityService.changAuthority(auid, authority);
             return SUCCESS;
-        }else {
+        } else {
             this.addActionMessage("您没有权限操作该用户");
             return ERROR;
         }

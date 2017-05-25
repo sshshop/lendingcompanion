@@ -12,8 +12,7 @@
     <script src="css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg"
-                                                                                          style="width: 100%;height: 100%;">
+<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg" style="width: 100%;height: 100%;">
 </div>
 <!--头部页面-->
 <%@include file="header.jsp" %>

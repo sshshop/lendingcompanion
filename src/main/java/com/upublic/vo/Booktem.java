@@ -3,8 +3,8 @@ package com.upublic.vo;
 import java.util.Date;
 
 public class Booktem {
-    private int btid;
-    private int cid;
+    private Integer btid;
+    private Integer cid;
     private String btname;
     private String adr;
     private String num;
@@ -12,7 +12,7 @@ public class Booktem {
     private String sequence;
     private String btcontent;
     private String idt;
-    private int cobn;
+    private Integer cobn;
     private String btauthor;
     private Date time;
     private double money;
@@ -33,19 +33,19 @@ public class Booktem {
         this.time = time;
     }
 
-    public int getBtid() {
+    public Integer getBtid() {
         return btid;
     }
 
-    public void setBtid(int btid) {
+    public void setBtid(Integer btid) {
         this.btid = btid;
     }
 
-    public int getCid() {
+    public Integer getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(Integer cid) {
         this.cid = cid;
     }
 
@@ -105,11 +105,11 @@ public class Booktem {
         this.idt = idt;
     }
 
-    public int getCobn() {
+    public Integer getCobn() {
         return cobn;
     }
 
-    public void setCobn(int cobn) {
+    public void setCobn(Integer cobn) {
         this.cobn = cobn;
     }
 
@@ -123,6 +123,6 @@ public class Booktem {
 
     @Override
     public String toString() {
-        return getBtid()+getBtname()+getBtauthor()+getAdr()+getNum()+(getBtname().equals(""));
+        return getBtid() + getBtname() + getBtauthor() + getAdr() + getNum() + (getBtname().equals(""));
     }
 }

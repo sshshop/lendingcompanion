@@ -29,8 +29,7 @@
     <%--</script>--%>
 </head>
 <body onload="userAdminPage(1,10)">
-<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg"
-                                                                                          style="width: 100%;height: 100%;">
+<div style="position:fixed;left: 0px;top: 0px;width:100%;height: 100%; z-index: -1;"><img src="image/background.jpg" style="width: 100%;height: 100%;">
 </div>
 <!--头部页面-->
 <div class="container header">
