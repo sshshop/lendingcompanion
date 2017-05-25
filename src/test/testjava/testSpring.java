@@ -131,7 +131,7 @@ public class testSpring {
         String re = "[\u4e00-\u9fa5a-zA-Z0-9]";
         Pattern reg = Pattern.compile(re);
         Matcher m=reg.matcher(temp);
-        System.out.println();
+        System.out.println(m);
         temp = m.replaceAll("c");
         System.out.println(temp);
     }

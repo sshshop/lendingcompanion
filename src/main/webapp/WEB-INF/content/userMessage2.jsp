@@ -57,7 +57,7 @@
                                 <td>借书时间</td>
                                 <td>取书时间</td>
                                 <td>还书截止时间</td>
-                                <td>归还状态</td>
+                                <td>状态</td>
                             </tr>
                             </thead>
                             <tbody>
