@@ -109,13 +109,17 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     }
 
     @Action(value = "findBorrowedBookMSG", results = {
-            @Result(location = "adminBorrowforward.action", type = "redirect"),
-            @Result(name = LOGIN, location = "adminUserLogin.action", type = "redirect")
+            @Result(location = "admin5.jsp"),
+            @Result(name = LOGIN, location = "adminUserLogin.action", type = "redirect"),
+            @Result(name = "info", location = "adminBorrowforward.action", type = "redirect")
     })
     public String findBorrowedBookMSG() {
         Admuser a = (Admuser) ActionContext.getContext().getSession().get("adminUser");
         if (a == null) {
             return LOGIN;
+        }
+        if (username.trim().equals("")&&bname.trim().equals("")){
+            return "info";
         }
         System.out.println(username + "-" + bname);
         if (!username.equals("") && username != null) {
@@ -124,7 +128,8 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
         if (!bname.equals("") && bname != null) {
             bname = reString(bname);
         }
-        ActionContext.getContext().getSession().put("findborrowed", borrowbookService.findBorrowedBookMSG(username, bname));
+     //   ActionContext.getContext().getSession().put("findborrowed", borrowbookService.findBorrowedBookMSG(username, bname));
+        ActionContext.getContext().getValueStack().set("borrowedbook", borrowbookService.findBorrowedBookMSG(username, bname));
         System.out.println("准备跳转");
         return SUCCESS;
     }
@@ -158,7 +163,7 @@ public class BorrowbookAction extends ActionSupport implements ModelDriven<Borro
     public String reString(String temp) {
         temp = temp.replace(" ", "");
         temp =temp.replaceAll("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]","");
-        String re = "[\u4e00-\u9fa5a-zA-Z0-9]";
+        String re = "[\u4e00-\u9fa5a-zA-Z0-9]+";
         Pattern reg = Pattern.compile(re, Pattern.CASE_INSENSITIVE);
         Matcher m = reg.matcher(temp);
         while (m.find()) {

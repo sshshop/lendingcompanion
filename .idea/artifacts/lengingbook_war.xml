@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="lengingbook:war">
     <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="software.war">
+    <root id="archive" name="lengdingbook.war">
       <element id="artifact" artifact-name="lengingbook:war exploded" />
     </root>
   </artifact>

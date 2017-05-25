@@ -265,12 +265,13 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
         if (a == null) {
             return LOGIN;
         }
-        List<Borrowbook> list = ((List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed") == null ? new ArrayList<Borrowbook>() : (List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed"));
+       /* List<Borrowbook> list = ((List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed") == null ? new ArrayList<Borrowbook>() : (List<Borrowbook>) ActionContext.getContext().getSession().get("findborrowed"));
         if (!list.isEmpty()) {
             ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
             ActionContext.getContext().getValueStack().set("borrowedbook", list);
+
             return SUCCESS;
-        }
+        }*/
         ActionContext.getContext().getValueStack().set("borrowedbook", adminUserService.findBorrowedALLByBid());
         ActionContext.getContext().getSession().put("category", categoryService.findCategoryAll());
         return SUCCESS;

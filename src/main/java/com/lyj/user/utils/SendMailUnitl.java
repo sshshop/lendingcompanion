@@ -60,14 +60,17 @@ public class SendMailUnitl {
 			// 设置邮件的内容
 			if ("user".equalsIgnoreCase(i)){
 				message.setSubject("来自阅读伴侣的官方激活邮件");
-				message.setContent("<h1>阅读伴侣的官方激活邮件!点下面链接完成激活操作!</h1><h3><a href='http://localhost:8082/lengdingbook/active.action?code="+code+"'>http://localhost:8082/lengdingbook/active.action?code="+code+"</a></h3>",
+				/*message.setContent("<h1>阅读伴侣的官方激活邮件!点下面链接完成激活操作!<br></h1><h3><a href='http://localhost:8082/lengdingbook/active.action?code="+code+"'>http://localhost:8082/lengdingbook/active.action?code="+code+"</a></h3>",
+						"text/html;charset=UTF-8");*/
+				message.setContent("<h1>阅读伴侣的官方激活邮件!点下面链接完成激活操作!<br></h1><h3><a href='http://http://120.25.245.88:8080/lengdingbook/active.action?code="+code+"'>http://http://120.25.245.88:8080/lengdingbook/active.action?code="+code+"</a></h3>",
 						"text/html;charset=UTF-8");
 			}if ("findUser".equalsIgnoreCase(i)){
 				message.setSubject("来自阅读伴侣的官方找回密码邮件");
+				/*message.setContent("<h1>【阅读伴侣】您正在重置密码，验证码"+code+"，请在15分钟内按页面提示提交验证码，切勿将验证码泄露于他人。</h1>",
+						"text/html;charset=UTF-8");*/
 				message.setContent("<h1>【阅读伴侣】您正在重置密码，验证码"+code+"，请在15分钟内按页面提示提交验证码，切勿将验证码泄露于他人。</h1>",
 						"text/html;charset=UTF-8");
 			}
-
 			// 发送邮件
 			Transport.send(message);
 		} catch (AddressException e) {

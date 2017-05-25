@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="lengingbook:war exploded">
-    <output-path>$PROJECT_DIR$/target/software</output-path>
+    <output-path>$PROJECT_DIR$/target/lengdingbook</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -49,7 +49,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/software/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/lengdingbook/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="lengingbook/web/Web" />
     </root>

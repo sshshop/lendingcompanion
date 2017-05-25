@@ -209,7 +209,7 @@
 
 
     <build>
-        <finalName>software</finalName>
+        <finalName>lengdingbook</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
