@@ -39,8 +39,7 @@
     <div class="row header_nav" id="header_nav">
         <div class="col-md-12" style="margin-left:12%">
             <a  href="index.action">主页</a>
-            <a  href="#">热门推荐</a>
-            <a  href="#">借书排行榜</a>
+            <a  href="findBookByCid.action?cid=1">具体分类</a>
             <a  href="about.action">网站简介</a>
             <a href="contactUs.action">联系我们</a>
         </div>

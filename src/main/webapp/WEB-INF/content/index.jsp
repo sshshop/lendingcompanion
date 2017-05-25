@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 index_booklist">
+                <div class="col-md-12 index_booklist" id="">
                     <span class="index_booklist_text">新书上架</span>
                 </div>
             </div>

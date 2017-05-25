@@ -78,7 +78,7 @@
     <div class="row">
         <div class="col-md-12 adminnav" style="letter-spacing: 2px;">
             <ul class="nav nav-pills nav-stacked" style="text-align: center ">
-                <li class="active" style="margin-top: 20px;"><a href="adminUserforward.action" id="adminUser_a">用户管理</a></li>
+                <li style="margin-top: 20px;"><a href="adminUserforward.action" id="adminUser_a">用户管理</a></li>
                 <li style="margin-top: 20px;"><a href="adminMsgforward.action" id="adminNews_a">公告管理</a></li>
                 <li style="margin-top: 20px;"><a href="adminBookforward.action" id="adminBook_a">图书管理</a></li>
                 <li style="margin-top: 20px;"><a href="adminAuthorityforward.action" id="adminAuthority_a">权限管理</a></li>
