@@ -24,6 +24,7 @@
                 <ol class="">
                     <s:if test="#session.existedUser != null">
                         <span style="float: left;">相关历史搜索：</span></br>
+
                         <s:iterator var="book" value="recentSearchBook">
                                 <span style="width: 190px;margin:0 auto;margin-left: -20px;">
                                     <a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">
@@ -43,7 +44,7 @@
                         <s:iterator var="book" value="recentSearchBook">
                             <span style="width: 190px;margin:0 auto;margin-left: -20px;">
                                 <a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">
-                                    <img style="width:130px;height: 140px " src="<s:property value="#book.bcover" />">
+                                    <img style="width:90%;height: 140px " src="<s:property value="#book.bcover" />">
                                 </a>
                             </span>
                             <a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">
