@@ -17,7 +17,7 @@ import java.util.List;
  */
 @ParentPackage(value = "struts-default")
 @Namespace(value = "")
-@Action
+
 @Results(value = {@Result(name = "success",location = "index.jsp")})
 public class index extends ActionSupport{
     @Resource(name = "bookService")
@@ -27,10 +27,10 @@ public class index extends ActionSupport{
     @Resource(name = "msgService")
     private MsgService msgService;
 
-    @Action( value = "cafindall" ,
+    @Action( value = "about" ,
             results = {
             /*多个返回值*/
-                    @Result(name = "success",location = "test.jsp")
+                    @Result(name = "success",location = "aboutUs.jsp")
             })
     public String findcategoryall() {
 

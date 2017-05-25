@@ -24,8 +24,11 @@
                                                                                           style="width: 100%;height: 100%;">
 </div>
 <!--头部页面-->
+
 <%@include file="header.jsp" %>
-<div class="container">
+
+
+<div >
     <div class="row">
         <div class="col-md-2 " style="letter-spacing: 2px;margin-top: 30px;">
             <ul class="nav nav-pills nav-stacked" style="text-align: center ">
@@ -198,10 +201,12 @@
                                 </li>
                             </ul>
                         </div>
+
                         <table class="table" style="text-align: center; ">
                             <thead>
                             <tr>
-                                <td>书籍名称</td>
+
+                                <td>书籍名称 </td>
                                 <td>借书时间</td>
                                 <td>取书时间</td>
                                 <td>还书截止时间</td>
@@ -217,7 +222,11 @@
                                 <td><s:property value="#mb.btime" default="null" /></td>
                                 <td><s:property value="#mb.ttime" default="null" /></td>
                                 <td><s:property value="#mb.rtime" default="null" /></td>
-                                <td><s:if test="#mb.bstatus==1">请尽快去取书</s:if><s:elseif test="#mb.bstatus==2">亲，记得还书哦！</s:elseif><s:elseif test="#mb.bstatus==3"><a href="postBid.action?bid=<s:property value="#ml.bid"/>&&bbid=<s:property value="#mb.bbid"/>">评价</a></s:elseif><s:elseif test="#mb.bstatus==4">已评价</s:elseif>
+                                <td>
+                                    <s:if test="#mb.bstatus==1">请尽快去取书</s:if>
+                                    <s:elseif test="#mb.bstatus==2">亲，记得还书哦！</s:elseif>
+                                    <s:elseif test="#mb.bstatus==3"> <a href="postBid.action?bid=<s:property value="#ml.bid"/>&&bbid=<s:property value="#mb.bbid"/>">未评价</a></s:elseif>
+                                    <s:elseif test="#mb.bstatus==4">已评价</s:elseif>
                                         <%--<s:property value="#mb.bstatus" default="null" />--%></td>
                                 </s:iterator>
                             </tr>
@@ -284,9 +293,11 @@
                             <ul  class="nav nav-tabs">
 
                                 <li class="active">
-                                    <a> 我的评价  </a>
+                                    <a data-toggle="tab"> 我的评价  </a>
                                 </li>
+
                             </ul>
+
                         </div>
                         <table class="table" style="text-align: center; letter-spacing: 2px;">
                             <thead>
@@ -301,10 +312,10 @@
                             <s:iterator var="myc" value="#session.mycomment">
                             <tr  ng-repeat="data in datas">
                                 <s:iterator var="book" value="#myc.list">
-                                <td><a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">《<s:property value="#book.bname"  />》</a> </td>
+                                <td ><a href="findBookBybid.action?bid=<s:property value="#book.bid"/>">《<s:property value="#book.bname"  />》</a> </td>
                                 </s:iterator>
-                                <td><s:property value="#myc.inf"  /></td>
-                                <td><s:property value="#myc.bctime" /></td>
+                                <td ><s:property value="#myc.inf"  /></td>
+                                <td ><s:property value="#myc.bctime"  /></td>
 
                             </tr>
                             </s:iterator>
@@ -316,6 +327,8 @@
                             </tbody>
                         </table>
                     </div>
+
+
                 </div>
 
                 <div class="tab-pane fade"   id="5" style="padding-top: 30px;letter-spacing: 2px;">
