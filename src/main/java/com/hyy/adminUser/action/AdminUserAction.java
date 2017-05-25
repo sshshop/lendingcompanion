@@ -285,7 +285,7 @@ public class AdminUserAction extends ActionSupport implements ModelDriven<User> 
      */
     @Action(value = "adminloginOut",
             results = {
-                    @Result(name = "success", location = "adminindex.jsp")
+                    @Result(name = "success", location = "admin.jsp")
             }
     )
     public String adminloginOut() {

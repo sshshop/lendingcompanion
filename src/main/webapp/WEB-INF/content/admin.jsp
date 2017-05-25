@@ -44,8 +44,7 @@
         </div>
         <div class="col-md-4 header_title_right">
             <s:if test="#session.adminUser==null">
-                <a class="login" href="loginS.action">登录</a>
-                <a class="register" href="registerS.action">注册</a>
+                <a class="login" href="adminUser.action">登录</a>
             </s:if><s:else>
             <%--  <a class="login" href="#"><s:property value="#session.existedUser.username" /></a>--%>
             <span style="display: block;float:left; color: dimgray;">欢迎您，<s:property value="#session.adminUser.auname"></s:property> 管理员</span>

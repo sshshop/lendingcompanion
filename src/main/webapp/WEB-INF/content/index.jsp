@@ -51,6 +51,9 @@
                             </div>
                         </div>
                     </div>
+                    <script>
+                        $("#myCarousel").carousel('cycle');
+                    </script>
                 </div>
                 <div class="col-md-3 borrowBook">
                     <div class="borrowBook_title"><strong>热门书籍排行榜</strong></div>
