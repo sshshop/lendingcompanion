@@ -4,6 +4,7 @@ import com.lj.booktemp.service.BooktemService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.upublic.utils.sqlFactory;
 import com.upublic.vo.Booktem;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -27,6 +28,12 @@ public class BooktemAction extends ActionSupport implements ModelDriven<Booktem>
     @Resource(name = "booktemService")
     private BooktemService booktemService; //注入service
     private int tcid;
+    private String bcobn;
+
+    public void setBcobn(String bcobn) {
+        this.bcobn = bcobn;
+    }
+
     /*获取上传文件,名称必须和表单file控件名相同*/
     private File uploadfile;
 
@@ -146,12 +153,21 @@ public class BooktemAction extends ActionSupport implements ModelDriven<Booktem>
             }
     )
     public String editBookPost(){
-       /* if (booktemService.updateBook(booktem) != 1){
+        System.out.println(booktem);
+
+        System.out.println("--"+booktem.getBtname()+"--");
+       if (uploadfileFileName!=null&&uploadfileFileName!="") {
+           System.out.println("图书封面设置");
+       }
+      //  System.out.println(bcobn+"图书的余量");
+      //  booktem.setCobn(bcobn);
+        System.out.println(booktem.getCobn());
+        System.out.println(new sqlFactory().adminupdateBook(booktem));
+     /*  if (booktemService.updateBook(booktem) != 1){
             this.addActionMessage("修改失败");
             return ERROR;
         }*/
-        System.out.println(booktem);
-        System.out.println("--"+booktem.getBtname()+"--");
+        booktemService.updateBook(booktem);
         return SUCCESS;
     }
 }

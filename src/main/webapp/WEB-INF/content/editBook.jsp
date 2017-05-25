@@ -87,52 +87,51 @@
 
                             <div class="form-group">
 
-                                <label class="control-label col-md-4">书籍名称：</label>
-                                <input type="text" name="btname" placeholder="<s:property value="#b.btname"/>" class="form-control col-md-4 username" id="btname"/>
+                                <label class="control-label col-md-4">书籍名称：1</label>
+                                <input type="text" name="btname" value="<s:property value="#b.btname"/>"  class="form-control col-md-4 username" id="btname"/>
 
 
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">作者：</label>
-                                <input type="text" name="btauthor" placeholder="<s:property value="#b.btauthor"/>" class="form-control col-md-4 " id="author"/>
+                                <label class="control-label col-md-4">作者：2</label>
+                                <input type="text" name="btauthor" value="<s:property value="#b.btauthor"/>" class="form-control col-md-4 " id="author"/>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">出版社：</label>
-                                <input type="text" name="adr" placeholder="<s:property value="#b.adr"/>" class="form-control col-md-4 adr" id="adr"  onblur="checkbadr()"/>
+                                <label class="control-label col-md-4">出版社：3</label>
+                                <input type="text" name="adr" value="<s:property value="#b.adr"/>" class="form-control col-md-4 adr" id="adr"  onblur="checkbadr()"/>
 
                             </div>
                             <!--出生年月-->
                             <div class="form-group">
-                                <label class="control-label col-md-4">书籍编号：</label>
+                                <label class="control-label col-md-4">书籍编号：4</label>
 
-                                <input type="text" id="num" name="num" class="form-control col-md-4 num" placeholder="<s:property value="#b.num"/>" />
+                                <input type="text" id="num" name="num" class="form-control col-md-4 num" value="<s:property value="#b.num"/>" />
 
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">书籍封面:</label>
-                                <input type="file" name="uploadfile" value="<s:property value="#b.cover"/>" class="form-control col-md-4 cover" id="cover"/>
+                                <label class="control-label col-md-4">书籍封面:5</label>value="<s:property value="#b.cover"/>"
+                                <input type="file" name="uploadfile"  class="form-control col-md-4 cover" id="cover"/>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">序:</label>
+                                <label class="control-label col-md-4">序:6</label>
                                 <textarea class="form-control col-md-4" id="sequence" name="sequence" rows="5"
-                                                 cols="50" placeholder="<s:property value="#b.sequence"/>"></textarea>
+                                                 cols="50" value="<s:property value="#b.sequence"/>"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">导读:</label>
-                                <textarea class="form-control col-md-4" name="idt" id="idt" rows="5" cols="50" placeholder="<s:property value="#b.idt"/>" ></textarea>
+                                <label class="control-label col-md-4">导读:7</label>
+                                <textarea class="form-control col-md-4" name="idt" id="idt" rows="5" cols="50" value="<s:property value="#b.idt"/>" ></textarea>
                             </div>
                             <!--邮箱-->
                             <div class="form-group">
-                                <label class="control-label col-md-4">内容:</label>
+                                <label class="control-label col-md-4">内容:8</label>
                                 <textarea class="form-control col-md-4" id="btcontent" name="btcontent"
-                                           rows="5" cols="50" placeholder="<s:property value="#b.btcontent"/>"></textarea>
+                                           rows="5" cols="50" ></textarea>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">藏书量:</label>
-                                <input type="text" id="cobn" name="cobn" id="cobn"
-                                       placeholder="<s:property value="#b.cobn"/>"  class="form-control col-md-4 cobn"/>
+                                <label class="control-label col-md-4">藏书量:9</label>
+                                <input type="text" id="cobn" name="cobn" value="<s:property value="#b.cobn"/>"  class="form-control col-md-4"/>
                             </div>
 
                             <!--使用协议-->

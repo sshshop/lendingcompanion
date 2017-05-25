@@ -4,6 +4,7 @@ import com.upublic.utils.sqlFactory;
 import com.upublic.vo.Book;
 import com.upublic.vo.Booktem;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
 
@@ -42,6 +43,14 @@ public interface BooktemDao {
     @Select("select * from booktem where btid=#{btid}")
     List<Booktem> findBookByBtid(Integer btid);
 
-    @UpdateProvider(type = sqlFactory.class,method = "updateBook")
-    int updateBook(Booktem booktem);
+    @UpdateProvider(type = sqlFactory.class,method = "adminupdateBook")
+    void updateBook(Booktem booktem);
+   // void updateBook(@Param("btid") Integer btid,@Param("cid") Integer cid,@Param("cobn") Integer cobn,@Param("btname") String btname,@Param("adr") String adr,@Param("num") String num,@Param("cover") String cover,@Param("sequence") String sequence,@Param("btcontent") String btcontent,@Param("idt") String idt,@Param("btautor") String btautor,@Param("money") Double money);
+
 }
+
+/*@Results(value = {
+        @Result(id=true,column = "btid",property = "btid",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
+        @Result(column = "cobn",property = "cobn",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
+        @Result(column = "cid",property = "cid",jdbcType = JdbcType.INTEGER,javaType = Integer.class)}
+)*/

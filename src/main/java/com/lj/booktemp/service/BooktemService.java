@@ -42,7 +42,8 @@ public class BooktemService {
         return booktemDao.findBookByBtid(btid);
     }
 
-    public int updateBook(Booktem booktem) {
-        return booktemDao.updateBook(booktem);
+    public void updateBook(Booktem booktem) {
+      //  booktemDao.updateBook(booktem.getBtid(),booktem.getCid(),booktem.getCobn(),booktem.getBtname(),booktem.getAdr(),booktem.getNum(),booktem.getCover(),booktem.getSequence(),booktem.getBtcontent(),booktem.getIdt(),booktem.getBtauthor(),booktem.getMoney());
+         booktemDao.updateBook(booktem);
     }
 }

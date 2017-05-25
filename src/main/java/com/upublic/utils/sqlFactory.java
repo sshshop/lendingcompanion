@@ -3,7 +3,6 @@ package com.upublic.utils;
 import com.upublic.vo.Booktem;
 import com.upublic.vo.Borrowbook;
 import com.upublic.vo.User;
-import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.jdbc.SQL;
 
 /**
@@ -45,11 +44,19 @@ public class sqlFactory {
         }}.toString();
     }
 
-    public String updateBook(final Booktem booktem){
+
+
+    public String adminupdateBook(final Booktem booktem){
         return new SQL(){{
             UPDATE("booktem");
-            if (booktem.getBtname() != null){
+           /* if (booktem.getBtname() != null){
                 SET("btname=#{btname}");
+            }*/
+           /* if (booktem.getCid()!=null){
+                SET("cid=#{cid}");
+            }*/
+            if (booktem.getBtauthor() != null){
+                SET("btauthor=#{btauthor}");
             }
             if (booktem.getAdr() != null){
                 SET("adr=#{adr}");
@@ -64,16 +71,19 @@ public class sqlFactory {
                 SET("sequence=#{sequence}");
             }
             if (booktem.getBtcontent() != null){
-                SET("btcontent=#btcontent}");
+                SET("btcontent=#{btcontent}");
             }
             if (booktem.getIdt() != null){
                 SET("idt=#{idt}");
             }
-            if (booktem.getBtauthor() != null){
-                SET("btauthor=#{btauthor}");
-            }
-            if (booktem.getCobn() != null){
+            if (booktem.getCobn() != 0){
                 SET("cobn=#{cobn}");
+            }
+            if (booktem.getMoney()!=0){
+                SET("money=#{money}");
+            }
+            if (booktem.getTime()!=null){
+                SET("time=#{time}");
             }
             WHERE("btid=#{btid}");
         }}.toString();
@@ -103,7 +113,6 @@ public class sqlFactory {
 
             if (user.getCid() != null) {
                 VALUES("cid", "#{cid}");
-
             }
 
 

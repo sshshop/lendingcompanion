@@ -3,8 +3,8 @@ package com.upublic.vo;
 import java.util.Date;
 
 public class Booktem {
-    private Integer btid;
-    private Integer cid;
+    private int btid;
+    private int cid;
     private String btname;
     private String adr;
     private String num;
@@ -12,16 +12,16 @@ public class Booktem {
     private String sequence;
     private String btcontent;
     private String idt;
-    private Integer cobn;
+    private int cobn;
     private String btauthor;
     private Date time;
-    private Double money;
+    private double money;
 
-    public Double getMoney() {
+    public double getMoney() {
         return money;
     }
 
-    public void setMoney(Double money) {
+    public void setMoney(double money) {
         this.money = money;
     }
 
@@ -33,19 +33,19 @@ public class Booktem {
         this.time = time;
     }
 
-    public Integer getBtid() {
+    public int getBtid() {
         return btid;
     }
 
-    public void setBtid(Integer btid) {
+    public void setBtid(int btid) {
         this.btid = btid;
     }
 
-    public Integer getCid() {
+    public int getCid() {
         return cid;
     }
 
-    public void setCid(Integer cid) {
+    public void setCid(int cid) {
         this.cid = cid;
     }
 
@@ -105,11 +105,11 @@ public class Booktem {
         this.idt = idt;
     }
 
-    public Integer getCobn() {
+    public int getCobn() {
         return cobn;
     }
 
-    public void setCobn(Integer cobn) {
+    public void setCobn(int cobn) {
         this.cobn = cobn;
     }
 
@@ -123,6 +123,6 @@ public class Booktem {
 
     @Override
     public String toString() {
-        return getBtname()+getBtauthor()+getAdr()+getNum()+(getBtname()=="");
+        return getBtid()+getBtname()+getBtauthor()+getAdr()+getNum()+(getBtname().equals(""));
     }
 }

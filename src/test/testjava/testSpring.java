@@ -113,8 +113,8 @@ public class testSpring {
     @Test
     public void testBooktem(){
         Booktem booktem = new Booktem();
-        booktem.setBtname("heheda");
-        System.out.println(new sqlFactory().updateBook(booktem));
+        booktem.setMoney(10.0);
+        System.out.println(new sqlFactory().adminupdateBook(booktem));
     }
 
 }
