@@ -47,16 +47,6 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
     //获取前台页面的值
     private String inputInfo;
     private Integer page = 1;
-   /* private String bauthor;
-
-    public String getBauthor() {
-        return bauthor;
-    }*/
-
-    /* public void setBauthor(String bauthor) {
-         this.bauthor = bauthor;
-     }
- */
     //匹配字符串
     SearchRegex searchRegex = new SearchRegex();
     //关键字标红
@@ -159,7 +149,14 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                     for (int i = 0; i < listA.size(); i++) {
                         strings[i]=listA.get(i);
                     }
-                    recentSearch.addAll(recentSearchService.recentSearchBookFinal(hashCode.findMaxString(strings)));
+                    String s[]=hashCode.findMaxString(strings);
+                    recentSearch.addAll(recentSearchService.recentSearchBookFinal(s[s.length-1]));
+                    if (recentSearch.size()<6){
+                        recentSearch.addAll(recentSearchService.recentSearchBookFinal(s[s.length-2]));
+                        if (recentSearch.size()<8){
+                            recentSearch.addAll(recentSearchService.recentSearchBookFinal(s[s.length-3]));
+                        }
+                    }
                     Set<Book> books = new HashSet<Book>();
                     books.addAll(recentSearch);
                     ActionContext.getContext().getValueStack().set("recentSearchBook", books);
@@ -204,7 +201,14 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
                 strings[i]=listA.get(i);
             }
             Set<Book> books = new HashSet<Book>();
-            recentSearch.addAll(recentSearchService.recentSearchBookFinal(hashCode.findMaxString(strings)));
+            String s[]=hashCode.findMaxString(strings);
+            recentSearch.addAll(recentSearchService.recentSearchBookFinal(s[s.length-1]));
+            if (recentSearch.size()<6){
+                recentSearch.addAll(recentSearchService.recentSearchBookFinal(s[s.length-2]));
+                if (recentSearch.size()<8){
+                    recentSearch.addAll(recentSearchService.recentSearchBookFinal(s[s.length-3]));
+                }
+            }
             books.addAll(recentSearch);
             ActionContext.getContext().getValueStack().set("recentSearchBook", books);
         }
@@ -249,11 +253,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Book> {
         }
 
     }
-
     public Book getModel() {
         return book;
     }
-
-
-
 }

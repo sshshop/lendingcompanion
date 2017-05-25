@@ -28,25 +28,25 @@ public interface RecentSearchDao {
     *
     * 返回关键字数组
     * */
-    @Select("select scontent from search where uid=#{uid} order by stime desc LIMIT 5")
+    @Select("select scontent from search where uid=#{uid} order by stime desc LIMIT 6")
     List<String> findSearchKeyword(Integer uid);
 
     /*
     * 搜索图书列表<第一次>
     * */
-    @Select("select * from book where bname REGEXP #{bname}  order by bname LIMIT 6")
+    @Select("select * from book where bname REGEXP #{bname}  order by time LIMIT 6")
     public List<Book> recentSearchBookMaster(@Param("bname") String keyWord);
 
     /*
     * 搜索图书列表<第二次>
     * */
     //@SelectProvider(type = SearchBookSqlProvider.class ,method = "")
-    @Select("select * from book where bname REGEXP #{bname} order by  hborrowed asc LIMIT 6")
+    @Select("select * from book where bname REGEXP #{bname} order by  hborrowed desc LIMIT 6")
     public List<Book> recentSearchBookFinal(@Param("bname") String keyword);
 
     /*
     * 查询所有用户的搜索关键字
     * */
-    @Select("select scontent from search")
+    @Select("select scontent from search order by stime desc limit 30")
     List<String> findAllKeyword();
 }

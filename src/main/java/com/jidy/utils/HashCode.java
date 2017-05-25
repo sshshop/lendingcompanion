@@ -3,37 +3,40 @@ package com.jidy.utils;
 /**
  * Created by jidy on 2017/5/21.
  */
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 public class HashCode {
-    public static String  findMaxString(String[] arr){
-        Map<Integer,String> map=new HashMap<Integer,String>();
-        for(int i=0;i<arr.length-1;i++){
-            int count=0;
-            String temp=null;
-            for(int j=i+1;j<arr.length;j++){
-                if (!arr[i].equals(" ")&&arr[i]!=null&&!arr[j].equals(" ")&&arr[j]!=null){
-                    if(arr[i].equals(arr[j])){
-                        count++;
-                        temp=arr[i];
-                    }
+    public static String[]  findMaxString(String[] arr){
+        List<ListBean> list=new ArrayList<ListBean>();
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        String[] strings=arr;
+        for (String str:strings) {
+            int count =0;
+            for(int i=0;i<strings.length;i++){
+                if (str.equals(strings[i])) {
+                    map.put(str, ++count);
                 }
             }
-            map.put(count+1, temp);
         }
-        int[] countArr= new int[map.size()];
-        for(int c:map.keySet()){
-            for(int i=0;i<map.size();i++){
-                countArr[i]=c;
+
+        for (String key:map.keySet()) {
+            ListBean bean=new  ListBean();
+            bean.setCount(map.get(key));
+            bean.setKeyWord(key);
+            list.add(bean);
+        }
+
+        Collections.sort(list,new Comparator<ListBean>(){
+            public int compare(ListBean arg0, ListBean arg1) {
+                return arg0.getCount().compareTo(arg1.getCount());
             }
+        });
+        String[] keyword=new String[3];
+        for (int i = 0; i < 3; i++) {
+            keyword[i]=list.get(list.size()-i-1).getKeyWord();
         }
-        Arrays.sort(countArr);
-        int MAXCOUNT=countArr[countArr.length-1];
-        String maxvalue= map.get(MAXCOUNT);
-        return maxvalue;
+        return keyword;
     }
 
 }
