@@ -45,7 +45,7 @@
             </s:if><s:else>
             <%--  <a class="login" href="#"><s:property value="#session.existedUser.username" /></a>--%>
             <span style="display: block;float:left; color: dimgray;">欢迎您，<s:property value="#session.adminUser.auname"></s:property> 管理员</span>
-            <a class="register" href="loginOut.action">退出</a>
+            <a class="register" href="adminloginOut.action">退出</a>
         </s:else>
         </div>
     </div>
@@ -87,50 +87,50 @@
 
                             <div class="form-group">
 
-                                <label class="control-label col-md-4">书籍名称：1</label>
+                                <label class="control-label col-md-4">书籍名称：</label>
                                 <input type="text" name="btname" value="<s:property value="#b.btname"/>"  class="form-control col-md-4 username" id="btname"/>
 
 
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">作者：2</label>
+                                <label class="control-label col-md-4">作者：</label>
                                 <input type="text" name="btauthor" value="<s:property value="#b.btauthor"/>" class="form-control col-md-4 " id="author"/>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">出版社：3</label>
+                                <label class="control-label col-md-4">出版社：</label>
                                 <input type="text" name="adr" value="<s:property value="#b.adr"/>" class="form-control col-md-4 adr" id="adr"  onblur="checkbadr()"/>
 
                             </div>
                             <!--出生年月-->
                             <div class="form-group">
-                                <label class="control-label col-md-4">书籍编号：4</label>
+                                <label class="control-label col-md-4">书籍编号：</label>
 
                                 <input type="text" id="num" name="num" class="form-control col-md-4 num" value="<s:property value="#b.num"/>" />
 
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">书籍封面:5</label>value="<s:property value="#b.cover"/>"
+                                <label class="control-label col-md-4">书籍封面:</label>
                                 <input type="file" name="uploadfile"  class="form-control col-md-4 cover" id="cover"/>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">序:6</label>
+                                <label class="control-label col-md-4">序:</label>
                                 <textarea class="form-control col-md-4" id="sequence" name="sequence" rows="5"
                                                  cols="50" value="<s:property value="#b.sequence"/>"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-4">导读:7</label>
+                                <label class="control-label col-md-4">导读:</label>
                                 <textarea class="form-control col-md-4" name="idt" id="idt" rows="5" cols="50" value="<s:property value="#b.idt"/>" ></textarea>
                             </div>
                             <!--邮箱-->
                             <div class="form-group">
-                                <label class="control-label col-md-4">内容:8</label>
+                                <label class="control-label col-md-4">内容:</label>
                                 <textarea class="form-control col-md-4" id="btcontent" name="btcontent"
                                            rows="5" cols="50" ></textarea>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">藏书量:9</label>
+                                <label class="control-label col-md-4">藏书量:</label>
                                 <input type="text" id="cobn" name="cobn" value="<s:property value="#b.cobn"/>"  class="form-control col-md-4"/>
                             </div>
 

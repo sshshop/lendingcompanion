@@ -152,21 +152,22 @@ public class BooktemAction extends ActionSupport implements ModelDriven<Booktem>
                     @Result(name = "error",location = "msg.jsp")
             }
     )
-    public String editBookPost(){
+    public String editBookPost() throws IOException {
         System.out.println(booktem);
-
         System.out.println("--"+booktem.getBtname()+"--");
        if (uploadfileFileName!=null&&uploadfileFileName!="") {
-           System.out.println("图书封面设置");
+           String realpath = ServletActionContext.getServletContext().getRealPath("/image/1");
+           File savefile = new File(realpath, uploadfileFileName);
+           String path = "image/1/" + uploadfileFileName;
+           booktem.setCover(path);
+           if (uploadfile != null) {
+               if (!savefile.getParentFile().exists())
+                   savefile.getParentFile().mkdirs();
+               FileUtils.copyFile(uploadfile, savefile);
+           }
        }
-      //  System.out.println(bcobn+"图书的余量");
-      //  booktem.setCobn(bcobn);
         System.out.println(booktem.getCobn());
         System.out.println(new sqlFactory().adminupdateBook(booktem));
-     /*  if (booktemService.updateBook(booktem) != 1){
-            this.addActionMessage("修改失败");
-            return ERROR;
-        }*/
         booktemService.updateBook(booktem);
         return SUCCESS;
     }

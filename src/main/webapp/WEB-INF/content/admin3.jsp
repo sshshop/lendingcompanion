@@ -47,7 +47,6 @@
                 <a class="login" href="loginS.action">登录</a>
                 <a class="register" href="registerS.action">注册</a>
             </s:if><s:else>
-            <%--  <a class="login" href="#"><s:property value="#session.existedUser.username" /></a>--%>
             <span style="display: block;float:left; color: dimgray;">欢迎您，<s:property value="#session.adminUser.auname"></s:property> 管理员</span>
             <a class="register" href="adminloginOut.action">退出</a>
         </s:else>
@@ -128,7 +127,7 @@
                                             <td><s:property value="#book.bauthor" /></td>
                                             <td><s:property value="#book.badr" /></td>
                                             <td><s:property value="#book.bnum" /></td>
-                                            <td><s:property value="#book.bcover" /></td>
+                                            <td><img src="<s:property value="#book.bcover" />" style="width: 20px;height: 20px" /></td>
                                             <td><s:property value="#book.bcobn"/></td>
                                             <td><s:property value="#book.nborrowed" /></td>
                                             <td><s:property value="#book.time" /></td>

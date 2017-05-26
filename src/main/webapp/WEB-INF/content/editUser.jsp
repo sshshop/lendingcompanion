@@ -39,7 +39,7 @@
             </s:if><s:else>
             <%--  <a class="login" href="#"><s:property value="#session.existedUser.username" /></a>--%>
             <span style="display: block;float:left; color: dimgray;">欢迎您，<s:property value="#session.adminUser.auname"></s:property> 管理员</span>
-            <a class="register" href="loginOut.action">退出</a>
+            <a class="register" href="adminloginOut.action">退出</a>
         </s:else>
         </div>
     </div>
